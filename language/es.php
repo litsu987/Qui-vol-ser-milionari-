@@ -12,17 +12,20 @@ $lang = array(
         'play' => 'JUGAR',
         'nextQuestions' => 'SIGUIENTES PREGUNTAS',
         'toStart' => 'VOLVER AL INICIO',
-        'publishScore' => '¿Quieres publicar tu puntuación?',
         'publishButton' => 'PUBLICAR PUNTUACIÓN',
-        'hallOfFameButton' => 'Hall of Fame'
+        'hallOfFameButton' => 'Hall of Fame',
+        'yes' => 'SÍ',
+        'no' => 'NO',
     ],
     'messages' => [
         'correct' => '¡Respuesta correcta!',
         'incorrect' => '¡Respuesta incorrecta!',
         'win' => 'FELICIDADES, ¡HAS GANADO!',
-        'lose' => 'LO SIENTO, HAS PERDIDO'
+        'lose' => 'LO SIENTO, HAS PERDIDO',
+        'score' => 'Tu puntuación és ',
+        'publishScore' => '¿Quieres publicar tu puntuación?',
     ],
-    'inputPlaceholder' => 'Introduce tu nombre',
+    'namePlaceholder' => 'Introduce tu nombre',
     'tittle' => '¿QUIEN QUIERE SER MILLONARIO?'
 );
 ?>

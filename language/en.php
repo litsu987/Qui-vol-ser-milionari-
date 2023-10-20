@@ -12,17 +12,20 @@ $lang = array(
         'play' => 'PLAY',
         'nextQuestions' => 'NEXT QUESTIONS',
         'toStart' => 'BACK TO START',
-        'publishScore' => 'Do you want to publish your score?',
         'publishButton' => 'PUBLISH SCORE',
-        'hallOfFameButton' => 'Hall of Fame'
+        'hallOfFameButton' => 'Hall of Fame',
+        'yes' => 'YES',
+        'no' => 'NO',
     ],
     'messages' => [
         'correct' => 'Correct Answer!',
         'incorrect' => 'Incorrect Answer!',
         'win' => 'CONGRATULATIONS, YOU HAVE WON!',
-        'lose' => 'SORRY, YOU HAVE LOST'
+        'lose' => 'SORRY, YOU HAVE LOST',
+        'score' => 'Your score is: ',
+        'publishScore' => 'Do you want to publish your score?',
     ],
-    'inputPlaceholder' => 'Enter your name',
+    'namePlaceholder' => 'Enter your name',
     'tittle' => 'WHO WANTS TO BE A MILLIONAIRE?'
 );
 ?>

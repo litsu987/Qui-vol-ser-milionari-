@@ -21,7 +21,7 @@ include 'language/' . $_SESSION['lang'] . '.php';
 
 <body>
     <div>
-        <img src="" alt="">
+        <img src="" alt="Header">
     </div>
     <h1>
         <?php echo $lang['tittle']; ?>
@@ -47,7 +47,7 @@ include 'language/' . $_SESSION['lang'] . '.php';
     <a href="game.php">
         <?php echo $lang['buttons']['play']; ?>
     </a>
-    <a href="ranking.php">
+    <a href="win.php">
         <?php echo $lang['buttons']['hallOfFameButton']; ?>
     </a>
 
