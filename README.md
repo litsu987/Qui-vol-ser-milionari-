@@ -1,4 +1,3 @@
-# Qui-vol-ser-milionari-
 # ¿Quién Quiere Ser Millonario?
 
 ![Captura de Pantalla del Juego](LOGO_QQSM.jng)
@@ -20,7 +19,12 @@ Este proyecto es una versión web del popular juego de preguntas "¿Quién Quier
 
 ## Cómo Empezar
 
-1. Clona este repositorio en tu máquina local.
+Para comenzar a utilizar este proyecto en tu entorno local, sigue estos pasos:
 
+1. Clona este repositorio en tu máquina local.
+2. Abre una terminal y navega al directorio del proyecto.
+3. Ejecuta el siguiente comando para iniciar un servidor PHP local: php -S localhost:8000
+4. Abre tu navegador web y ve a http://localhost:8000 para acceder al juego.
+    
 
 
