@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: #001F3F;
+        }
+    </style>
 </head>
-<body onload="soundBadQuestion()">
-    <button onclick="soundBadQuestion()">sonido</button>
-    <script src="juegos.js"></script>
+<body>
 </body>
 </html>
