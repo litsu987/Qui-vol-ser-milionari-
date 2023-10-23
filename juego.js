@@ -22,4 +22,4 @@ function soundLose(){
 	var sonido = document.createElement("iframe");
 	sonido.setAttribute("src","./music/lose_sound.mp3");
 	document.body.appendChild(sonido);
-}   
+}
