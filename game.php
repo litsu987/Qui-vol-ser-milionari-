@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION['lang'])) {
+    if (!($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
+        $_SESSION['lang'] = 'en';
+    }
+}
+include '../assets/language/' . $_SESSION['lang'] . '.php';
+$_SESSION['score'] = 13;
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +17,10 @@
     <title>Document</title>
 </head>
 <body>
-    
-
 <?php
-$nombre_archivo = 'questions/catalan_1.txt';
 
+$nombre_archivo = 'questions/catalan_1.txt';
+echo '<h2>Nivel 1</h2>';
 // Comprueba si el archivo existe
 if (file_exists($nombre_archivo)) {
     // Abre el archivo en modo lectura
@@ -65,30 +75,20 @@ if (file_exists($nombre_archivo)) {
         // Limitar a las 3 primeras preguntas
         $preguntas_respuestas = array_slice($preguntas_respuestas, 0, 3);
 
-        if (isset($_POST['mostrarContenido'])) {
-            echo '<div id="preguntas_contenedor">';
-            foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
-                $pregunta = $pregunta_respuestas['pregunta'];
-                $respuestas = $pregunta_respuestas['respuestas'];
-                $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
-                echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">';
-                mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta);
-                if ($i < count($preguntas_respuestas) - 1) {
-                    echo '<button id="mostrar_' . ($i + 1) . '" onclick="mostrarSiguientePregunta(' . ($i + 1) . ')">Mostrar Siguiente Pregunta</button>';
-                }
-                echo '</div>';
+        foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
+            $pregunta = $pregunta_respuestas['pregunta'];
+            $respuestas = $pregunta_respuestas['respuestas'];
+            $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
+            echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">';
+            mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta);
+            if ($i < count($preguntas_respuestas) - 1) {
+                echo '<button id="mostrar_' . ($i + 1) . '" style="display: none;" onclick="mostrarSiguientePregunta(' . ($i + 1) . ')">Mostrar Siguiente Pregunta</button>';
             }
             echo '</div>';
-        } else {
-            // Muestra solo el botón para mostrar el contenido
-            echo '
-            <form method="post">
-                <input type="submit" name="mostrarContenido" value="Mostrar Preguntas y Respuestas">
-            </form>';
         }
     } else {
         echo "No se pudo abrir el archivo.";
-    }
+    }   
 } else {
     echo "El archivo no existe.";
 }
@@ -140,8 +140,10 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
     if (respuesta === respuestaCorrecta) {
         boton.style.backgroundColor = "green"; // Cambia el color del botón a verde
-    } else {
 
+        // Muestra el botón "Mostrar Siguiente Pregunta"
+        document.getElementById("mostrar_" + ultimaPreguntaMostrada).style.display = "block";
+    } else {
         boton.style.backgroundColor = "red"; // Cambia el color del botón a rojo
     }
 
@@ -150,10 +152,6 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         element.disabled = true;
     });
 }
-
-
-
 </script>
-
 </body>
 </html>
