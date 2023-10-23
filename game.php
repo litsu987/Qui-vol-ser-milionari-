@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+$respuesta = ''; // Inicializa la variable respuesta
+$respuestaCorrecta = ''; // Inicializa la variable respuestaCorrecta
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,93 +13,30 @@
     <title>Document</title>
 </head>
 <body>
-    
 
 <?php
-$nombre_archivo = 'questions/catalan_1.txt';
+$dificultad=1;
 
-// Comprueba si el archivo existe
-if (file_exists($nombre_archivo)) {
-    // Abre el archivo en modo lectura
-    $archivo = fopen($nombre_archivo, 'r');
+function obtenerArchivoSegunDificultad($nivelDificultad) {
+    // Define una matriz que asocia cada nivel de dificultad con un archivo correspondiente
+    $archivosPorDificultad = [
+        1 => 'questions/catalan_1.txt', // Archivo para nivel de dificultad 1
+        2 => 'questions/catalan_2.txt', // Archivo para nivel de dificultad 2
+        3 => 'questions/catalan_3.txt', // Archivo para nivel de dificultad 3
+        4 => 'questions/catalan_4.txt', // Archivo para nivel de dificultad 4
+        5 => 'questions/catalan_5.txt', // Archivo para nivel de dificultad 5
+        6 => 'questions/catalan_6.txt', // Archivo para nivel de dificultad 6
+    ];
 
-    if ($archivo) {
-        $preguntas_respuestas = [];
-        $pregunta = '';
-        $respuestas = [];
-        $respuestaCorrecta = ''; // Variable para almacenar la respuesta correcta
-
-        while (($linea = fgets($archivo)) !== false) {
-            $linea = trim($linea); // Elimina espacios en blanco al principio y al final de la línea
-
-            if (empty($linea)) {
-                continue; // Salta las líneas en blanco
-            }
-
-            if (substr($linea, 0, 1) === '*') {
-                // Nueva pregunta
-                if (!empty($pregunta)) {
-                    // Agrega la pregunta y respuestas al arreglo
-                    $preguntas_respuestas[] = [
-                        'pregunta' => $pregunta,
-                        'respuestas' => $respuestas,
-                        'respuestaCorrecta' => $respuestaCorrecta,
-                    ];
-                }
-                // Reinicia para la nueva pregunta
-                $pregunta = substr($linea, 1);
-                $respuestas = [];
-                $respuestaCorrecta = ''; // Reinicia la respuesta correcta
-            } elseif (substr($linea, 0, 1) === '-') {
-                // Respuesta incorrecta
-                $respuestas[] = ['respuesta' => substr($linea, 1), 'correcta' => false];
-            } elseif (substr($linea, 0, 1) === '+') {
-                // Respuesta correcta
-                $respuestas[] = ['respuesta' => substr($linea, 1), 'correcta' => true];
-                $respuestaCorrecta = substr($linea, 1);
-            } else {
-                // Línea de texto anterior
-                $pregunta .= ' ' . $linea;
-            }
-        }
-
-        // Cerrar el archivo
-        fclose($archivo);
-
-        // Barajar aleatoriamente las preguntas
-        shuffle($preguntas_respuestas);
-
-        // Limitar a las 3 primeras preguntas
-        $preguntas_respuestas = array_slice($preguntas_respuestas, 0, 3);
-
-        if (isset($_POST['mostrarContenido'])) {
-            echo '<div id="preguntas_contenedor">';
-            foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
-                $pregunta = $pregunta_respuestas['pregunta'];
-                $respuestas = $pregunta_respuestas['respuestas'];
-                $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
-                echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">';
-                mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta);
-                if ($i < count($preguntas_respuestas) - 1) {
-                    echo '<button id="mostrar_' . ($i + 1) . '" onclick="mostrarSiguientePregunta(' . ($i + 1) . ')">Mostrar Siguiente Pregunta</button>';
-                }
-                echo '</div>';
-            }
-            echo '</div>';
-        } else {
-            // Muestra solo el botón para mostrar el contenido
-            echo '
-            <form method="post">
-                <input type="submit" name="mostrarContenido" value="Mostrar Preguntas y Respuestas">
-            </form>';
-        }
+    // Verifica si el nivel de dificultad proporcionado existe en la matriz
+    if (array_key_exists($nivelDificultad, $archivosPorDificultad)) {
+        return $archivosPorDificultad[$nivelDificultad];
     } else {
-        echo "No se pudo abrir el archivo.";
+        // Si el nivel de dificultad no se encuentra, utiliza un archivo predeterminado (por ejemplo, el nivel 1)
+        return 'questions/nivel1.txt';
     }
-} else {
-    echo "El archivo no existe.";
 }
-
+// Define la función mostrarPreguntaRespuestas
 function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {
     echo "<strong>$pregunta</strong>\n";
     echo '<div class="respuestas">';
@@ -105,55 +49,114 @@ function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {
     echo '</div>';
     echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje
 }
-?>
-<script>
-var ultimaPreguntaMostrada = 1; // Variable para rastrear la última pregunta mostrada
 
-function mostrarSiguientePregunta(id) {
-    var preguntaActual = document.getElementById("pregunta_" + id);
-    preguntaActual.style.display = "block";
 
-    // Oculta el botón "Mostrar Pregunta Anterior" para la primera pregunta
-    if (id === 1 || id === 2) {
-        document.getElementById("mostrar_" + id).style.display = "none";
-    }
 
-    var siguienteId = id + 1;
-    if (siguienteId <= <?php echo count($preguntas_respuestas); ?>) {
-        var siguientePregunta = document.getElementById("pregunta_" + siguienteId);
-        siguientePregunta.style.display = "block";
-    } else {
-        // Aquí puedes agregar el código para mostrar más preguntas si las hay
-        // Por ejemplo, para mostrar 3 preguntas adicionales:
-        for (var i = 1; i <= 3; i++) {
-            var pregunta = document.getElementById("pregunta_" + (siguienteId + i));
-            if (pregunta) {
-                pregunta.style.display = "block";
-            }
+function cargarPreguntasYMostrar($nombre_archivo, $dificultad) {
+    // Aquí va el código actual de cargarPreguntas
+    // ...
+
+    echo '<div id="preguntas_contenedor">';
+    foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
+        $pregunta = $pregunta_respuestas['pregunta'];
+        $respuestas = $pregunta_respuestas['respuestas'];
+        $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
+        echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">';
+        mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta);
+        if ($i < count($preguntas_respuestas) - 1) {
+            echo '<button id="mostrar_' . ($i + 1) . '" style="display: none;" onclick="mostrarSiguientePregunta(' . ($i + 1) . ')">Mostrar Siguiente Pregunta</button>';
         }
+        echo '</div>';
     }
-    ultimaPreguntaMostrada = siguienteId;
+    echo '</div>';
 }
 
-function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
-    var botones = boton.parentElement.querySelectorAll('button');
+function cargarPreguntas($nombre_archivo) {
+    
+    // Comprueba si el archivo existe
+    if (file_exists($nombre_archivo)) {
+        // Abre el archivo en modo lectura
+        $archivo = fopen($nombre_archivo, 'r');
 
-    if (respuesta === respuestaCorrecta) {
-        boton.style.backgroundColor = "green"; // Cambia el color del botón a verde
+        if ($archivo) {
+            $preguntas_respuestas = [];
+            $pregunta = '';
+            $respuestas = [];
+            $respuestaCorrecta = ''; // Variable para almacenar la respuesta correcta
+
+            while (($linea = fgets($archivo)) !== false) {
+                $linea = trim($linea); // Elimina espacios en blanco al principio y al final de la línea
+
+                if (empty($linea)) {
+                    continue; // Salta las líneas en blanco
+                }
+
+                if (substr($linea, 0, 1) === '*') {
+                    // Nueva pregunta
+                    if (!empty($pregunta)) {
+                        // Agrega la pregunta y respuestas al arreglo
+                        $preguntas_respuestas[] = [
+                            'pregunta' => $pregunta,
+                            'respuestas' => $respuestas,
+                            'respuestaCorrecta' => $respuestaCorrecta,
+                        ];
+                    }
+                    // Reinicia para la nueva pregunta
+                    $pregunta = substr($linea, 1);
+                    $respuestas = [];
+                    $respuestaCorrecta = ''; // Reinicia la respuesta correcta
+                } elseif (substr($linea, 0, 1) === '-') {
+                    // Respuesta incorrecta
+                    $respuestas[] = ['respuesta' => substr($linea, 1), 'correcta' => false];
+                } elseif (substr($linea, 0, 1) === '+') {
+                    // Respuesta correcta
+                    $respuestas[] = ['respuesta' => substr($linea, 1), 'correcta' => true];
+                    $respuestaCorrecta = substr($linea, 1);
+                } else {
+                    // Línea de texto anterior
+                    $pregunta .= ' ' . $linea;
+                }
+            }
+
+            // Cerrar el archivo
+            fclose($archivo);
+
+            // Barajar aleatoriamente las preguntas
+            shuffle($preguntas_respuestas);
+
+            // Limitar a las 3 primeras preguntas
+            $preguntas_respuestas = array_slice($preguntas_respuestas, 0, 3);
+
+            echo '<div id="preguntas_contenedor">';
+            foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
+                $pregunta = $pregunta_respuestas['pregunta'];
+                $respuestas = $pregunta_respuestas['respuestas'];
+                $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
+                echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">';
+                mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta);
+                if ($i < count($preguntas_respuestas) - 1) {
+                    echo '<button id="mostrar_' . ($i + 1) . '" style="display: none;" onclick="mostrarSiguientePregunta(' . ($i + 1) . ')">Mostrar Siguiente Pregunta</button>';
+                }
+                echo '</div>';
+                
+            }
+            echo '</div>';
+           
+        } else {
+            echo "No se pudo abrir el archivo.";
+        }
     } else {
-
-        boton.style.backgroundColor = "red"; // Cambia el color del botón a rojo
+        echo "El archivo no existe.";
     }
-
-    // Deshabilita todos los botones en el mismo grupo de respuestas
-    botones.forEach(function (element) {
-        element.disabled = true;
-    });
 }
 
 
+$archivoSeleccionado = obtenerArchivoSegunDificultad($dificultad);
+cargarPreguntas($archivoSeleccionado);
 
-</script>
 
+echo "<p>$dificultad";
+?>
+<script src="juego.js"></script>
 </body>
 </html>
