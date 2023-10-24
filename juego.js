@@ -64,8 +64,33 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         respuestasCorrectas++;
 
         if (respuestasCorrectas === 3) {
-            // Llama a cargarPreguntas cuando se han dado 3 respuestas correctas
-            cargarPreguntas(archivoSeleccionado);
+            console.log(nuevaDificultad); // Mensaje de depuración
+            // Define la nueva dificultad
+            var nuevaDificultad = nivel + 1;
+        
+            // Realiza una solicitud POST al servidor para actualizar la dificultad
+            fetch('game.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'newDificultad=' + nuevaDificultad,
+            })
+            .then(function (response) {
+                if (response.status === 200) {
+                    // La solicitud se completó con éxito
+                    console.log('Dificultad actualizada en el servidor'); // Mensaje de depuración
+                    console.log(nuevaDificultad); // Mensaje de depuración
+                } else {
+                    // Maneja errores o problemas en la solicitud
+                    console.error('Error al actualizar la dificultad');
+                }
+            })
+            .catch(function (error) {
+                console.error('Error en la solicitud: ' + error);
+            });
+        
+            // Resto del código para manejar las respuestas correctas
         }
 
         // Muestra el botón "Mostrar Siguiente Pregunta"

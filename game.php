@@ -3,7 +3,26 @@ session_start();
 
 $respuesta = ''; // Inicializa la variable respuesta
 $respuestaCorrecta = ''; // Inicializa la variable respuestaCorrecta
+$dificultad=0;
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verifica si es una solicitud POST para actualizar la dificultad
+    echo "Dificultad actualizada a: " . $dificultad; // Mensaje de depuración
+    $newDificultad = isset($_POST['newDificultad']) ? intval($_POST['newDificultad']) : null;
+   
+    if ($newDificultad !== null) {
+        if ($newDificultad >= 1 && $newDificultad <= 6) {
+            // Actualiza la variable $dificultad
+            $dificultad = $newDificultad;
+    
+            // Mensaje de depuración para verificar la nueva dificultad
+            echo "Dificultad actualizada a: " . $dificultad;
+        }
+        
+    }
+}
+echo $dificultad;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -155,7 +174,7 @@ $archivoSeleccionado = obtenerArchivoSegunDificultad($dificultad);
 cargarPreguntas($archivoSeleccionado);
 
 
-echo "<p>$dificultad";
+
 ?>
 <script src="juego.js"></script>
 </body>
