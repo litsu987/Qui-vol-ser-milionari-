@@ -95,12 +95,19 @@ if (file_exists($nombre_archivo)) {
 }
 
 function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {
-    echo "<div id='contenidoPregunta'>$pregunta</div>\n";
-    echo '<div class="respuestas">';
+    ?>
+    <div id='contenidoPregunta' class="radial-gradient">
+    <?php
+    echo "<h1 >$pregunta</h1>\n";
+    ?>
+    </div>
+    <?php
+    echo '<div id="respuestas">';
     
     foreach ($respuestas as $i => $respuesta) {
         $respuestaTexto = $respuesta['respuesta'];
-        echo '<button onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+        echo '<button id="contenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+    
     }
     
     echo '</div>';
