@@ -17,6 +17,8 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
     <title>
         <?php echo $lang['tittle']; ?>
     </title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
@@ -44,10 +46,10 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         </li>
     </ul>
 
-    <a href="game.php">
+    <a href="win.php" class="button">
         <?php echo $lang['buttons']['play']; ?>
     </a>
-    <a href="win.php">
+    <a href="ranking.php" class="button">
         <?php echo $lang['buttons']['hallOfFameButton']; ?>
     </a>
 

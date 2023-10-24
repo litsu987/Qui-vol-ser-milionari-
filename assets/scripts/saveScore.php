@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION["score"])) && isset($_SESSION[session_id()])) {
+if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION["score"]))) {
+
     $name = $_POST["name"];
     $currentDate = $_POST["currentDate"];
-    $score = $SESSION["score"];
+    $score = $_SESSION["score"];
     $sessionId = session_id();
-
 
     $data = "$sessionId-;-;-$name-;-;-$score-;-;-$currentDate" . PHP_EOL;
 
@@ -18,4 +18,6 @@ if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION[
         fclose($file);
     }
 }
+header("Location: ../../pages/index.php");
+exit;
 ?>

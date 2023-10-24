@@ -4,6 +4,7 @@ if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'
     $_SESSION['lang'] = 'en';
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
+$_SESSION['score'] = 15;
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +28,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         <?php echo $lang['messages']['win']; ?>
     </h1>
     <h3>
-        <?php echo $lang['messages']['score'] . "18"; ?>
+        <?php echo $lang['messages']['score'] . $_SESSION['score']; ?>
     </h3>
     <div id="publishQuestion">
         <h5>
@@ -42,10 +43,9 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
     </div>
 
     <div id="nameAndPublishDiv">
-        <form action="saveScore.php.php" method="post">
+        <form action="../assets/scripts/saveScore.php" method="post">
             <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
-            <input type="hidden" id="currentDate" name="currentDate" value="">
-            <input type="hidden" id="score" name="score" value="">
+            <input type="hidden" id="currentDate" name="currentDate" value="<?php echo date('Y-m-d-H:i:s'); ?>">
             <button type="submit" class="button" id="publishButton">
                 <?php echo $lang['buttons']['publishButton']; ?>
                 <i class="fas fa-upload"></i>
