@@ -1,51 +1,84 @@
 <?php
 session_start();
 
-$respuesta = ''; // Inicializa la variable respuesta
-$respuestaCorrecta = ''; // Inicializa la variable respuestaCorrecta
-$dificultad=0;
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Verifica si es una solicitud POST para actualizar la dificultad
-    echo "Dificultad actualizada a: " . $dificultad; // Mensaje de depuración
-    $newDificultad = isset($_POST['newDificultad']) ? intval($_POST['newDificultad']) : null;
-   
-    if ($newDificultad !== null) {
-        if ($newDificultad >= 1 && $newDificultad <= 6) {
-            // Actualiza la variable $dificultad
-            $dificultad = $newDificultad;
-    
-            // Mensaje de depuración para verificar la nueva dificultad
-            echo "Dificultad actualizada a: " . $dificultad;
-        }
-        
-    }
+if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
+    $_SESSION['lang'] = 'en';
 }
-echo $dificultad;
+
+$_SESSION['lang'] = 'en';
+
+include 'language/' . $_SESSION['lang'] . '.php';
+$_SESSION['score'] = 13;
+    
+
+if (isset($_POST['aumentar_dificultad'])) {
+    if (!isset($_SESSION['nivel_dificultad'])) {
+        // Si la variable de sesión 'nivel_dificultad' no existe en esta sesión, inicialízala en 1
+        $_SESSION['nivel_dificultad'] = 1;
+    } else {
+        // Aumenta la variable de sesión 'nivel_dificultad' en 1
+        $_SESSION['nivel_dificultad']++;
+    }
+} else {
+    // Restablece la variable de sesión 'nivel_dificultad' en 1 cuando no se presiona el botón
+    $_SESSION['nivel_dificultad'] = 1;
+}
+
+$dificultad = $_SESSION['nivel_dificultad'];
+
 ?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>
+        <?php echo $lang['tittle']; ?>
+    </title>
+    <style> 
+    .oculto {
+        display: none;
+    }
+    </style>
 </head>
 <body>
+<img src="./images/banner.jpg" alt="Banner">
+<p><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></p>
 
 <?php
-$dificultad=1;
 
 function obtenerArchivoSegunDificultad($nivelDificultad) {
     // Define una matriz que asocia cada nivel de dificultad con un archivo correspondiente
-    $archivosPorDificultad = [
-        1 => 'questions/catalan_1.txt', // Archivo para nivel de dificultad 1
-        2 => 'questions/catalan_2.txt', // Archivo para nivel de dificultad 2
-        3 => 'questions/catalan_3.txt', // Archivo para nivel de dificultad 3
-        4 => 'questions/catalan_4.txt', // Archivo para nivel de dificultad 4
-        5 => 'questions/catalan_5.txt', // Archivo para nivel de dificultad 5
-        6 => 'questions/catalan_6.txt', // Archivo para nivel de dificultad 6
-    ];
+    if ($_SESSION['lang'] == 'ca'){
+        $archivosPorDificultad = [
+            1 => 'questions/catalan_1.txt', // Archivo para nivel de dificultad 1
+            2 => 'questions/catalan_2.txt', // Archivo para nivel de dificultad 2
+            3 => 'questions/catalan_3.txt', // Archivo para nivel de dificultad 3
+            4 => 'questions/catalan_4.txt', // Archivo para nivel de dificultad 4
+            5 => 'questions/catalan_5.txt', // Archivo para nivel de dificultad 5
+            6 => 'questions/catalan_6.txt', // Archivo para nivel de dificultad 6
+        ];
+    }else  if ($_SESSION['lang'] == 'es'){
+        $archivosPorDificultad = [
+            1 => 'questions/spanish_1.txt', // Archivo para nivel de dificultad 1
+            2 => 'questions/spanish_2.txt', // Archivo para nivel de dificultad 2
+            3 => 'questions/spanish_3.txt', // Archivo para nivel de dificultad 3
+            4 => 'questions/spanish_4.txt', // Archivo para nivel de dificultad 4
+            5 => 'questions/spanish_5.txt', // Archivo para nivel de dificultad 5
+            6 => 'questions/spanish_6.txt', // Archivo para nivel de dificultad 6
+        ];
+    }else  if ($_SESSION['lang'] == 'en'){
+        $archivosPorDificultad = [
+            1 => 'questions/english_1.txt', // Archivo para nivel de dificultad 1
+            2 => 'questions/english_2.txt', // Archivo para nivel de dificultad 2
+            3 => 'questions/english_3.txt', // Archivo para nivel de dificultad 3
+            4 => 'questions/english_4.txt', // Archivo para nivel de dificultad 4
+            5 => 'questions/english_5.txt', // Archivo para nivel de dificultad 5
+            6 => 'questions/english_6.txt', // Archivo para nivel de dificultad 6
+        ];
+    }
 
     // Verifica si el nivel de dificultad proporcionado existe en la matriz
     if (array_key_exists($nivelDificultad, $archivosPorDificultad)) {
@@ -70,25 +103,6 @@ function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {
 }
 
 
-
-function cargarPreguntasYMostrar($nombre_archivo, $dificultad) {
-    // Aquí va el código actual de cargarPreguntas
-    // ...
-
-    echo '<div id="preguntas_contenedor">';
-    foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
-        $pregunta = $pregunta_respuestas['pregunta'];
-        $respuestas = $pregunta_respuestas['respuestas'];
-        $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
-        echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">';
-        mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta);
-        if ($i < count($preguntas_respuestas) - 1) {
-            echo '<button id="mostrar_' . ($i + 1) . '" style="display: none;" onclick="mostrarSiguientePregunta(' . ($i + 1) . ')">Mostrar Siguiente Pregunta</button>';
-        }
-        echo '</div>';
-    }
-    echo '</div>';
-}
 
 function cargarPreguntas($nombre_archivo) {
     
@@ -153,13 +167,13 @@ function cargarPreguntas($nombre_archivo) {
                 $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
                 echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">';
                 mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta);
-                if ($i < count($preguntas_respuestas) - 1) {
-                    echo '<button id="mostrar_' . ($i + 1) . '" style="display: none;" onclick="mostrarSiguientePregunta(' . ($i + 1) . ')">Mostrar Siguiente Pregunta</button>';
-                }
+
                 echo '</div>';
                 
             }
             echo '</div>';
+            
+           
            
         } else {
             echo "No se pudo abrir el archivo.";
@@ -170,12 +184,24 @@ function cargarPreguntas($nombre_archivo) {
 }
 
 
+if ($dificultad > 6) {
+    echo "<script>window.location = 'win.php';</script>";
+    exit;
+}
+
 $archivoSeleccionado = obtenerArchivoSegunDificultad($dificultad);
 cargarPreguntas($archivoSeleccionado);
 
 
-
 ?>
+<form method="post" action="game.php">
+  <input type="hidden" name="aumentar_dificultad" value="1">
+  <input type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
+  
+</form>
+
+
+
 <script src="juego.js"></script>
 </body>
 </html>
