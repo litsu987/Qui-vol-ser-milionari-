@@ -5,7 +5,7 @@ if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'
     $_SESSION['lang'] = 'en';
 }
 
-include 'language/' . $_SESSION['lang'] . '.php';
+include '../assets/language/' . $_SESSION['lang'] . '.php';
 $_SESSION['score'] = 13;
     
 
@@ -35,10 +35,10 @@ $dificultad = $_SESSION['nivel_dificultad'];
     <title>
         <?php echo $lang['tittle']; ?>
     </title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
 </head>
 <body>
-<img src="./images/banner.jpg" alt="Banner">
+<img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
 <p><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></p>
 
 <?php
@@ -47,30 +47,30 @@ function obtenerArchivoSegunDificultad($nivelDificultad) {
     // Define una matriz que asocia cada nivel de dificultad con un archivo correspondiente
     if ($_SESSION['lang'] == 'ca'){
         $archivosPorDificultad = [
-            1 => 'questions/catalan_1.txt', // Archivo para nivel de dificultad 1
-            2 => 'questions/catalan_2.txt', // Archivo para nivel de dificultad 2
-            3 => 'questions/catalan_3.txt', // Archivo para nivel de dificultad 3
-            4 => 'questions/catalan_4.txt', // Archivo para nivel de dificultad 4
-            5 => 'questions/catalan_5.txt', // Archivo para nivel de dificultad 5
-            6 => 'questions/catalan_6.txt', // Archivo para nivel de dificultad 6
+            1 => '../assets/questions/catalan_1.txt', // Archivo para nivel de dificultad 1
+            2 => '../assets/questions/catalan_2.txt', // Archivo para nivel de dificultad 2
+            3 => '../assets/questions/catalan_3.txt', // Archivo para nivel de dificultad 3
+            4 => '../assets/questions/catalan_4.txt', // Archivo para nivel de dificultad 4
+            5 => '../assets/questions/catalan_5.txt', // Archivo para nivel de dificultad 5
+            6 => '../assets/questions/catalan_6.txt', // Archivo para nivel de dificultad 6
         ];
     }else  if ($_SESSION['lang'] == 'es'){
         $archivosPorDificultad = [
-            1 => 'questions/spanish_1.txt', // Archivo para nivel de dificultad 1
-            2 => 'questions/spanish_2.txt', // Archivo para nivel de dificultad 2
-            3 => 'questions/spanish_3.txt', // Archivo para nivel de dificultad 3
-            4 => 'questions/spanish_4.txt', // Archivo para nivel de dificultad 4
-            5 => 'questions/spanish_5.txt', // Archivo para nivel de dificultad 5
-            6 => 'questions/spanish_6.txt', // Archivo para nivel de dificultad 6
+            1 => '../assets/questions/spanish_1.txt', // Archivo para nivel de dificultad 1
+            2 => '../assets/questions/spanish_2.txt', // Archivo para nivel de dificultad 2
+            3 => '../assets/questions/spanish_3.txt', // Archivo para nivel de dificultad 3
+            4 => '../assets/questions/spanish_4.txt', // Archivo para nivel de dificultad 4
+            5 => '../assets/questions/spanish_5.txt', // Archivo para nivel de dificultad 5
+            6 => '../assets/questions/spanish_6.txt', // Archivo para nivel de dificultad 6
         ];
     }else  if ($_SESSION['lang'] == 'en'){
         $archivosPorDificultad = [
-            1 => 'questions/english_1.txt', // Archivo para nivel de dificultad 1
-            2 => 'questions/english_2.txt', // Archivo para nivel de dificultad 2
-            3 => 'questions/english_3.txt', // Archivo para nivel de dificultad 3
-            4 => 'questions/english_4.txt', // Archivo para nivel de dificultad 4
-            5 => 'questions/english_5.txt', // Archivo para nivel de dificultad 5
-            6 => 'questions/english_6.txt', // Archivo para nivel de dificultad 6
+            1 => '../assets/questions/english_1.txt', // Archivo para nivel de dificultad 1
+            2 => '../assets/questions/english_2.txt', // Archivo para nivel de dificultad 2
+            3 => '../assets/questions/english_3.txt', // Archivo para nivel de dificultad 3
+            4 => '../assets/questions/english_4.txt', // Archivo para nivel de dificultad 4
+            5 => '../assets/questions/english_5.txt', // Archivo para nivel de dificultad 5
+            6 => '../assets/questions/english_6.txt', // Archivo para nivel de dificultad 6
         ];
     }
 
@@ -204,6 +204,6 @@ cargarPreguntas($archivoSeleccionado);
   <!-- Botón de envío con texto "Siguiente Pregunta" (depende del idioma) -->
 </form>
 
-<script src="juego.js"></script>
+<script src="../assets/scripts/juego.js"></script>
 </body>
 </html>

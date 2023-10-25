@@ -4,11 +4,11 @@ function playSound(soundFile) {
 }
 
 function soundSuccessQuuestion() {
-    playSound('./music/success_sound.mp3');
+    playSound('../music/success_sound.mp3');
 }
 
 function soundBadQuestion() {
-    playSound('./music/error_sound.mp3');
+    playSound('../music/error_sound.mp3');
 }
 
 
