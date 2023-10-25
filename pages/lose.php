@@ -26,7 +26,7 @@ if (isset($_GET['puntaje'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body>
+<body onload="soundLoseQuestion()">
     <div>
         <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
     </div>
@@ -68,6 +68,7 @@ if (isset($_GET['puntaje'])) {
     </a>
 
     <script src="../assets/scripts/script.js"></script>
+    <script src="../assets/scripts/juego.js"></script>
 
 </body>
 

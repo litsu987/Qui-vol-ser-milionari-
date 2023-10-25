@@ -41,11 +41,11 @@ $dificultad = $_SESSION['nivel_dificultad'];
     <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
 </head>
 <body>
-<div>
-<img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
+<div class="bannerMillonario">
+<img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
 </div>
 
-<p><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></p>
+<h3 class="lvlDifivultad"><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></h3>
 
 <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
 <?php
@@ -91,14 +91,14 @@ function obtenerArchivoSegunDificultad($nivelDificultad) {
 }
 
 function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {
-    echo "<strong>$pregunta</strong>\n"; // Imprime la pregunta como texto en negrita
+    echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
 
     echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
 
     // Recorre las respuestas
     foreach ($respuestas as $i => $respuesta) {
         $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
-        echo '<button onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+        echo '<button class="contenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
         // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
     }
 
