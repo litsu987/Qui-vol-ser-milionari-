@@ -41,13 +41,13 @@ $dificultad = $_SESSION['nivel_dificultad'];
     <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
 </head>
 <body>
-<div>
-<!-- <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner"> -->
+<div class="bannerMillonario">
+<img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
 </div>
 
-<p class="lvlDifivultad"><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></p>
+<h3 class="lvlDifivultad trapecioDificultad"><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></h3>
 
-<div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
+<div id="nivel-dificultad " data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
 <?php
 
 function obtenerArchivoSegunDificultad($nivelDificultad) {
@@ -90,7 +90,7 @@ function obtenerArchivoSegunDificultad($nivelDificultad) {
     }
 }
 
-function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {
+function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {    
     echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
 
     echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
@@ -172,10 +172,10 @@ function cargarPreguntas($nombre_archivo) {
                 $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
                 $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta']; // Extrae la respuesta correcta
             
-                echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
+                echo '<div class="cosas" id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
                 mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
                 echo '</div>'; // Cierra el div de la pregunta
-                echo '<div class="espacioPreguntas"></div>';
+                echo '<div class=""></div>';
 
                 
             }
@@ -208,7 +208,7 @@ cargarPreguntas($archivoSeleccionado);
 // A continuación, se crea un formulario para permitir al jugador avanzar a la siguiente pregunta:
 
 ?>
-<form method="post" action="game.php">
+<form class="formNextQuestions" method="post" action="game.php">
   <input type="hidden" name="aumentar_dificultad" value="1">
   <!-- Campo oculto que indica la intención de aumentar la dificultad -->
   <input type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">

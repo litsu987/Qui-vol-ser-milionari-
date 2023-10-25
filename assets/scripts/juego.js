@@ -69,6 +69,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
             botonesFormulario.forEach(function(boton) {
                 boton.classList.remove("oculto");
+                boton.classList.add("nextQuestion");
             });
         }
 
@@ -109,6 +110,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             clearTimeout(alertTimeout);
         };
     }
+
     if (preguntasAcertadas === 18) {
         window.location.href = 'win.php?puntaje=' + preguntasAcertadas;
     } 
