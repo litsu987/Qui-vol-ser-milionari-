@@ -26,46 +26,52 @@ if (isset($_GET['puntaje'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body onload="soundWinQuestion()">
-    <div>
-        <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
+<body onload="soundWinQuestion()" class="bodyLoseWin">
+    <div  class="divImagenPrincipal centrar">
+        <img class="imagenPrincipal" src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
     </div>
-    <h1>
-        <?php echo $lang['messages']['win']; ?>
-    </h1>
-    <h3>
-        <?php echo $lang['messages']['score'] . $_SESSION['score']; ?>
-    </h3>
-    <div id="publishQuestion">
-        <h5>
-            <?php echo $lang['messages']['publishScore']; ?>
-        </h5>
-        <button id="yesPublish" class="button">
-            <?php echo $lang['buttons']['yes']; ?>
-        </button>
-        <button id="noPublish" class="button">
-            <?php echo $lang['buttons']['no']; ?>
-        </button>
-    </div>
-
-    <div id="nameAndPublishDiv">
-        <form action="../assets/scripts/saveScore.php" method="post">
-            <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
-            <input type="hidden" id="currentDate" name="currentDate" value="<?php echo date('Y-m-d-H:i:s'); ?>">
-            <button type="submit" class="button" id="publishButton">
-                <?php echo $lang['buttons']['publishButton']; ?>
-                <i class="fas fa-upload"></i>
+    <div class="fondo">
+        <h1 class="tituloLost centrar">
+            <?php echo $lang['messages']['win']; ?>
+        </h1>
+        <h3 class="centrar score">
+            <?php echo $lang['messages']['score'] . $_SESSION['score']; ?>
+        </h3>
+        <h5 class="centrar ">
+                <?php echo $lang['messages']['publishScore']; ?>
+            </h5>
+        <div id="publishQuestion" class="preguntaPublicar centrar">
+            
+            <button id="yesPublish" class="button">
+                <?php echo $lang['buttons']['yes']; ?>
             </button>
-        </form>
-    </div>
+            <button id="noPublish" class="button">
+                <?php echo $lang['buttons']['no']; ?>
+            </button>
+        </div>
 
-    <img src="" alt="victoryImage">
-    <a href="ranking.php" class="button">
-        <?php echo $lang['buttons']['hallOfFameButton']; ?>
-    </a>
-    <a href="index.php" class="button">
-        <?php echo $lang['buttons']['toStart']; ?>
-    </a>
+        <div id="nameAndPublishDiv">
+            <form action="../assets/scripts/saveScore.php" method="post">
+                <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
+                <input type="hidden" id="currentDate" name="currentDate" value="<?php echo date('Y-m-d-H:i:s'); ?>">
+                <button type="submit" class="button" id="publishButton">
+                    <?php echo $lang['buttons']['publishButton']; ?>
+                    <i class="fas fa-upload"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="centrar divExtras">
+            <a href="ranking.php" class="button">
+                <?php echo $lang['buttons']['hallOfFameButton']; ?>
+            </a>
+            <a href="index.php" class="button">
+                <?php echo $lang['buttons']['toStart']; ?>
+            </a>
+        </div>
+       
+    </div>
+    
 
     <script src="../assets/scripts/script.js"></script>
     <script src="../assets/scripts/juego.js"></script>

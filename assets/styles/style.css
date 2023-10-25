@@ -9,7 +9,7 @@ body {
     padding-bottom: 100px;
     
 }
-
+/* INDEX.PHP */
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -234,7 +234,64 @@ button[type="reset"].button:hover {
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
 
 }
+/* LOSE.PHP-WIN.PHP */
 
+.divImagenPrincipal{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.imagenPrincipal{
+    
+    text-align: center; /* Alinea el texto al centro */
+    position: center; /* Fija el banner en la pantalla */
+    width: 700px; /* Ancho del banner al 100% de la pantalla */
+    top: 0; /* Sitúa el banner en la parte superior */
+}
+.bodyLoseWin{
+    Overflow: hidden;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.centrar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.fondo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    height: 400px;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    border: 8px outset #b3b3b2;
+    padding: 20px;
+    border-radius: 19px 26px 0px 0px;
+    width: 700px;
+}
+.tituloLost{
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
 
+}
+.preguntaPublicar{
+   margin-top: 20px;
+   gap: 10px;
+}
+.score{
+    margin-bottom: 20px;
+}
+.divExtras{
+    margin-top: 20px;
+    margin-left: 0px;
+    gap: 10px;
+    flex-direction: column;
+}
 
-/* boton.classList.add("nextQuestion"); */
