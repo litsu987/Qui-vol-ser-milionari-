@@ -15,7 +15,6 @@ body {
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(90deg,#6610f2 0%, #6f42c1 80%);
-    padding-bottom: 100px;
     
 }
 /* INDEX.PHP */
@@ -274,8 +273,9 @@ button[type="reset"].button:hover {
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     border: 8px outset #b3b3b2;
     padding: 20px;
-    border-radius: 19px 26px 0px 0px;
+    border-radius: 19px 0px 26px 0px;
     width: 700px;
+    color: white;
 }
 .tituloLost{
     color: white;
@@ -324,7 +324,7 @@ button[type="reset"].button:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 5px;
 }
   
 #languages img {
@@ -355,6 +355,7 @@ button[type="reset"].button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 #banner img {
@@ -363,12 +364,12 @@ button[type="reset"].button:hover {
 }
 
 h1 {
-    color: #1d060c; /* Color del texto para el elemento h1 */
+    color: #1d060c;
     text-align: center;
     font-family: 'Alfa Slab One', serif;
     font-size: 250%;
     margin: 10px 0px 0px;
-
+    -webkit-text-stroke: 0.5px #b3b3b2;
 }
 
 #ul-container {
@@ -378,15 +379,16 @@ h1 {
 }
 
 ul {
-    background-color: #fdd750; /* Color de fondo para la lista desordenada (ul) */
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     padding: 20px; /* Agregar espacio alrededor de la lista para mejorar la legibilidad */
-    border-radius: 20px;
+    border-radius: 19px 0px 26px 0px;
+    border: 8px outset #b3b3b2;
     list-style: none;
     max-width: 60%;
     text-align: justify;
-    color: #1d060c;
-    border: 2px solid #1d060c;
+    color: white;
     font-family: 'Roboto Mono', monospace;
+    margin: 15px 0px 15px;
 }
 li {
     display: flex;

@@ -31,8 +31,8 @@ if (isset($_GET['puntaje'])) {
 </head>
 
 <body onload="soundLoseQuestion()" class="bodyLoseWin">
-    <div class="divImagenPrincipal centrar">
-        <img class="imagenPrincipal" src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
+    <div id="banner">
+        <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
     <div class="fondo">
         <h1 class="tituloLost centrar">
@@ -42,10 +42,10 @@ if (isset($_GET['puntaje'])) {
             <?php echo $lang['messages']['score'] . $_SESSION['score']; ?>
         </h3>
         <h5 class="centrar ">
-                <?php echo $lang['messages']['publishScore']; ?>
+            <?php echo $lang['messages']['publishScore']; ?>
         </h5>
         <div id="publishQuestion" class="preguntaPublicar centrar">
-            
+
             <button id="yesPublish" class="button">
                 <?php echo $lang['buttons']['yes']; ?>
             </button>
@@ -54,7 +54,7 @@ if (isset($_GET['puntaje'])) {
             </button>
         </div>
 
-        <div id="nameAndPublishDiv" >
+        <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
                 <input type="hidden" id="currentDate" name="currentDate" value="">
@@ -74,8 +74,8 @@ if (isset($_GET['puntaje'])) {
             </a>
         </div>
     </div>
-    
-    
+
+
 
     <script src="../assets/scripts/script.js"></script>
     <script src="../assets/scripts/juego.js"></script>
