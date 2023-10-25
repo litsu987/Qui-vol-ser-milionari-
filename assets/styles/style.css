@@ -1,9 +1,13 @@
 /* Estilo general para la página */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+*{
     margin: 0;
     padding: 0;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(90deg,#6610f2 0%, #6f42c1 80%);
+    padding-bottom: 100px;
+    max-width: 1920px;
 }
 
 .container {
@@ -149,3 +153,59 @@ button[type="reset"].button:hover {
 .oculto {
     display: none;
 }
+/* GAME.PHP */
+.lvlDifivultad{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 250px;
+}
+#preguntas_contenedor{
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 150px;
+}
+.contenidoPregunta{
+    color: white;
+    width: 1250px;
+    margin-bottom: 50px;
+    text-align: center;
+    border: 8px outset #b3b3b2;
+    padding: 20px;
+    border-radius: 19px 26px 0px 0px;
+    background: #0069bb;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: -webkit-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: -moz-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%); 
+    
+}
+.respuestas{
+    display: grid; 
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    height: 100%;
+    width: 80%;
+    margin-left: 10%;
+
+}
+.contenidoRespuesta{
+    cursor: pointer;
+    text-align: center;
+    font-size: x-large;
+    width: 100%;
+    height: 80px;
+    color: white;
+    background: #0069bb;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: -webkit-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: -moz-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%); 
+}
+.espacioPreguntas{
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+

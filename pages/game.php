@@ -42,10 +42,10 @@ $dificultad = $_SESSION['nivel_dificultad'];
 </head>
 <body>
 <div>
-<img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
+<!-- <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner"> -->
 </div>
 
-<p><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></p>
+<p class="lvlDifivultad"><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></p>
 
 <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
 <?php
@@ -91,19 +91,20 @@ function obtenerArchivoSegunDificultad($nivelDificultad) {
 }
 
 function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {
-    echo "<strong>$pregunta</strong>\n"; // Imprime la pregunta como texto en negrita
+    echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
 
     echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
 
     // Recorre las respuestas
     foreach ($respuestas as $i => $respuesta) {
         $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
-        echo '<button onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+
+        echo '<button class="contenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
         // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
     }
 
     echo '</div>'; // Cierra el contenedor de respuestas
-
+    
     echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje de respuesta
 }
 
@@ -174,6 +175,9 @@ function cargarPreguntas($nombre_archivo) {
                 echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
                 mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
                 echo '</div>'; // Cierra el div de la pregunta
+                echo '<div class="espacioPreguntas"></div>';
+
+                
             }
             echo '</div>'; // Cierra el contenedor principal de todas las preguntas
             
