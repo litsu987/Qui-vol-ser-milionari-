@@ -3,7 +3,9 @@ session_start();
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
-    $_SESSION['lang'] = 'en';
+    if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
+        $_SESSION['lang'] = 'en';
+    }
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
 

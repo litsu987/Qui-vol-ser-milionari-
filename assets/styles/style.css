@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
 /* Estilo general para la página */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #7cb0c8;
     margin: 0;
     padding: 0;
 }
@@ -13,10 +16,6 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #333;
 }
 
 table {
@@ -46,8 +45,8 @@ tr:nth-child(even) {
 a {
     text-decoration: none;
     color: #007BFF;
-    display: block;
-    margin-top: 20px;
+    display: inline-block;
+    margin-top: 10px;
     font-weight: bold;
 }
 
@@ -85,12 +84,16 @@ a:hover {
     border: none;
     background-color: #007bff;
     color: #fff;
-    border-radius: 5px;
+    border: 2px solid #1d060c;
+    border-radius: 10px;
     font-size: 16px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Estilo cuando se pasa el cursor sobre el botón */
@@ -117,15 +120,6 @@ button[type="reset"].button:hover {
     background-color: #b72e37;
 }
 
-/* Estilo para el botón de "Cancelar" u otro botón secundario */
-.button.secondary {
-    background-color: #6c757d;
-}
-
-.button.secondary:hover {
-    background-color: #545b62;
-}
-
 /* Estilo para el botón con icono (icono a la izquierda del texto) */
 .button.icon {
     display: flex;
@@ -149,3 +143,134 @@ button[type="reset"].button:hover {
 .oculto {
     display: none;
 }
+
+
+
+
+/* index.php */
+.buttonsGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonsGroup a:first-child {
+    width: 120px;
+    height: 50px;
+    text-align: center;
+    line-height: 100%;
+    font-size: 150%;
+}
+
+.buttonsGroup a:nth-child(2) {
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    line-height: 100%;
+}
+
+#languages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
+  
+#languages img {
+    margin: 10px;
+    width: 99px;
+    height: 66px;
+    object-fit: cover;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    border: 2px solid #1d060c;
+    
+
+}
+  
+#languages img:hover {
+    filter: brightness(70%);
+    transform: rotate(360deg); /* Gira la imagen 360 grados una vez al pasar el ratón por encima */
+    border-radius: 50%; /* Vuelve a aplicar bordes redondeados después de la rotación */
+}
+  
+#banner {
+    background: linear-gradient(to bottom, #27082a, #563c56); /* Imagen de fondo para el banner */
+    height: 100%; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#banner img {
+    height: 180px;
+    width: auto;
+}
+
+h1 {
+    color: #1d060c; /* Color del texto para el elemento h1 */
+    text-align: center;
+    font-family: 'Alfa Slab One', serif;
+    font-size: 250%;
+    margin: 10px 0px 0px;
+
+}
+
+#ul-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    background-color: #fdd750; /* Color de fondo para la lista desordenada (ul) */
+    padding: 20px; /* Agregar espacio alrededor de la lista para mejorar la legibilidad */
+    border-radius: 20px;
+    list-style: none;
+    max-width: 60%;
+    text-align: justify;
+    color: #1d060c;
+    border: 2px solid #1d060c;
+    font-family: 'Roboto Mono', monospace;
+}
+li {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    align-items: center;
+}
+
+.text-container {
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+/* .ul-container{
+    color: white;
+    width: 1250px;
+    margin-bottom: 50px;
+    text-align: center;
+    border: 8px outset #b3b3b2;
+    padding: 20px;
+    border-radius: 19px 26px 0px 0px;
+    background-color: #0069bb;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: -webkit-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: -moz-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%); 
+    
+} */
+
+
+
+
+
