@@ -28,17 +28,39 @@ function soundLose(){
 	document.body.appendChild(sonido);
 }   
 
-
-var ultimaPreguntaMostrada = 1;
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
+
+
+var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
+var ultimaPreguntaMostrada = 1;
+var preguntasAcertadas = localStorage.getItem('puntaje');
+
+if (nivelDificultadActual === '1') {
+    preguntasAcertadas = 0;
+    localStorage.setItem('nivelDificultad', nivelDificultadActual);
+}
+   
+
+if (preguntasAcertadas === null) {
+    // Si no hay un puntaje almacenado, establecerlo en 0
+    preguntasAcertadas = 0;
+} else {
+    // Convertir el valor recuperado a un número
+    preguntasAcertadas = parseInt(preguntasAcertadas);
+}
 
 function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     var botones = boton.parentElement.querySelectorAll('button');
 
     if (respuesta === respuestaCorrecta) {
+
+        console.log('Nivel de dificultad actual:', nivelDificultadActual);
         soundSuccessQuuestion();
         boton.style.backgroundColor = "green"; // Cambia el color del botón a verde
         respuestasCorrectas++;
+
+         preguntasAcertadas++;
+         localStorage.setItem('puntaje', preguntasAcertadas);
 
         // Reproducir el sonido de éxito
         
@@ -66,12 +88,12 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
                 siguientePregunta.style.display = "block";
             }
         }
+
     } else {
         soundBadQuestion();
         boton.style.backgroundColor = "red"; // Cambia el color del botón a rojo
 
-      
-
+    
         // Deshabilita todos los botones en el mismo grupo de respuestas
         botones.forEach(function (element) {
             element.disabled = true;
@@ -79,7 +101,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         // Mostrar ventana emergente al fallar la respuesta
         var alertTimeout = setTimeout(function() {
-            window.location.href = "lose.php"; // Redirige automáticamente al usuario a "lose.php"
+            window.location.href = 'win.php?puntaje=' + preguntasAcertadas; // Redirige automáticamente al usuario a "lose.php"
         }, 1000); // Espera 1 segundo antes de mostrar la ventana emergente
 
         // Agregar un evento para cancelar el temporizador si el usuario cierra la ventana emergente
@@ -87,5 +109,9 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             clearTimeout(alertTimeout);
         };
     }
+    if (preguntasAcertadas === 18) {
+        window.location.href = 'win.php?puntaje=' + preguntasAcertadas;
+    } 
+    
 }
 

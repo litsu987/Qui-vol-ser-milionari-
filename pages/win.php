@@ -4,7 +4,13 @@ if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'
     $_SESSION['lang'] = 'en';
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
-$_SESSION['score'] = 15;
+
+
+if (isset($_GET['puntaje'])) {
+    $puntaje = intval($_GET['puntaje']);
+    $_SESSION['score'] = $puntaje;
+}
+
 ?>
 
 <!DOCTYPE html>

@@ -6,7 +6,7 @@ if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'
 }
 
 include '../assets/language/' . $_SESSION['lang'] . '.php';
-$_SESSION['score'] = 13;
+$_SESSION['score'] = 0;
     
 
 if (isset($_POST['aumentar_dificultad'])) {
@@ -16,11 +16,14 @@ if (isset($_POST['aumentar_dificultad'])) {
     } else {
         // Aumenta la variable de sesión 'nivel_dificultad' en 1
         $_SESSION['nivel_dificultad']++;
+        if ($_SESSION['nivel_dificultad'] <=6){
+        }
     }
 } else {
     // Restablece la variable de sesión 'nivel_dificultad' en 1 cuando no se presiona el botón
     $_SESSION['nivel_dificultad'] = 1;
 }
+
 
 $dificultad = $_SESSION['nivel_dificultad'];
 
@@ -44,6 +47,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
 
 <p><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></p>
 
+<div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
 <?php
 
 function obtenerArchivoSegunDificultad($nivelDificultad) {
