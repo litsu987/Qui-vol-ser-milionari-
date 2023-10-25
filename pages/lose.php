@@ -22,7 +22,7 @@ $_SESSION['score'] = 13;
 
 <body>
     <div>
-        <img src="" alt="Header">
+        <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
     </div>
     <h1>
         <?php echo $lang['messages']['lose']; ?>

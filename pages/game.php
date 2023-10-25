@@ -38,7 +38,10 @@ $dificultad = $_SESSION['nivel_dificultad'];
     <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
 </head>
 <body>
+<div>
 <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
+</div>
+
 <p><?php echo $lang['messages']['dificultLvl']; ?> : <?php echo $_SESSION['nivel_dificultad']; ?></p>
 
 <?php
