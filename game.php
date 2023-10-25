@@ -5,8 +5,6 @@ if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'
     $_SESSION['lang'] = 'en';
 }
 
-$_SESSION['lang'] = 'en';
-
 include 'language/' . $_SESSION['lang'] . '.php';
 $_SESSION['score'] = 13;
     
@@ -37,11 +35,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
     <title>
         <?php echo $lang['tittle']; ?>
     </title>
-    <style> 
-    .oculto {
-        display: none;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <img src="./images/banner.jpg" alt="Banner">
@@ -88,35 +82,39 @@ function obtenerArchivoSegunDificultad($nivelDificultad) {
         return 'questions/nivel1.txt';
     }
 }
-// Define la función mostrarPreguntaRespuestas
+
 function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta) {
-    echo "<strong>$pregunta</strong>\n";
-    echo '<div class="respuestas">';
-    
+    echo "<strong>$pregunta</strong>\n"; // Imprime la pregunta como texto en negrita
+
+    echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
+
+    // Recorre las respuestas
     foreach ($respuestas as $i => $respuesta) {
-        $respuestaTexto = $respuesta['respuesta'];
+        $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
         echo '<button onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+        // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
     }
-    
-    echo '</div>';
-    echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje
+
+    echo '</div>'; // Cierra el contenedor de respuestas
+
+    echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje de respuesta
 }
 
 
 
 function cargarPreguntas($nombre_archivo) {
-    
     // Comprueba si el archivo existe
     if (file_exists($nombre_archivo)) {
         // Abre el archivo en modo lectura
         $archivo = fopen($nombre_archivo, 'r');
 
         if ($archivo) {
-            $preguntas_respuestas = [];
-            $pregunta = '';
-            $respuestas = [];
-            $respuestaCorrecta = ''; // Variable para almacenar la respuesta correcta
+            $preguntas_respuestas = [];  // Array para almacenar preguntas y respuestas
+            $pregunta = '';  // Variable para almacenar la pregunta actual
+            $respuestas = [];  // Array para almacenar las respuestas
+            $respuestaCorrecta = '';  // Variable para almacenar la respuesta correcta
 
+            // Recorre el archivo línea por línea
             while (($linea = fgets($archivo)) !== false) {
                 $linea = trim($linea); // Elimina espacios en blanco al principio y al final de la línea
 
@@ -127,7 +125,7 @@ function cargarPreguntas($nombre_archivo) {
                 if (substr($linea, 0, 1) === '*') {
                     // Nueva pregunta
                     if (!empty($pregunta)) {
-                        // Agrega la pregunta y respuestas al arreglo
+                        // Agrega la pregunta y respuestas al array
                         $preguntas_respuestas[] = [
                             'pregunta' => $pregunta,
                             'respuestas' => $respuestas,
@@ -160,21 +158,18 @@ function cargarPreguntas($nombre_archivo) {
             // Limitar a las 3 primeras preguntas
             $preguntas_respuestas = array_slice($preguntas_respuestas, 0, 3);
 
-            echo '<div id="preguntas_contenedor">';
+            echo '<div id="preguntas_contenedor">'; // Abre el contenedor principal para todas las preguntas
             foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
-                $pregunta = $pregunta_respuestas['pregunta'];
-                $respuestas = $pregunta_respuestas['respuestas'];
-                $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
-                echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">';
-                mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta);
-
-                echo '</div>';
-                
-            }
-            echo '</div>';
+                $pregunta = $pregunta_respuestas['pregunta']; // Extrae la pregunta actual
+                $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
+                $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta']; // Extrae la respuesta correcta
             
-           
-           
+                echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
+                mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
+                echo '</div>'; // Cierra el div de la pregunta
+            }
+            echo '</div>'; // Cierra el contenedor principal de todas las preguntas
+            
         } else {
             echo "No se pudo abrir el archivo.";
         }
@@ -185,22 +180,29 @@ function cargarPreguntas($nombre_archivo) {
 
 
 if ($dificultad > 6) {
+    // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
     echo "<script>window.location = 'win.php';</script>";
+    // Redirige al jugador a la página de victoria
     exit;
+    // Detiene la ejecución del script para evitar que el juego continúe
 }
 
-$archivoSeleccionado = obtenerArchivoSegunDificultad($dificultad);
-cargarPreguntas($archivoSeleccionado);
+// Si la dificultad no es mayor que 6, el juego continúa:
 
+$archivoSeleccionado = obtenerArchivoSegunDificultad($dificultad);
+// Selecciona el archivo de preguntas según la dificultad actual
+cargarPreguntas($archivoSeleccionado);
+// Carga y muestra las preguntas desde el archivo seleccionado
+
+// A continuación, se crea un formulario para permitir al jugador avanzar a la siguiente pregunta:
 
 ?>
 <form method="post" action="game.php">
   <input type="hidden" name="aumentar_dificultad" value="1">
+  <!-- Campo oculto que indica la intención de aumentar la dificultad -->
   <input type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
-  
+  <!-- Botón de envío con texto "Siguiente Pregunta" (depende del idioma) -->
 </form>
-
-
 
 <script src="juego.js"></script>
 </body>
