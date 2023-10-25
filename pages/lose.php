@@ -4,8 +4,14 @@ if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'
     $_SESSION['lang'] = 'en';
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
-$_SESSION['score'] = 13;
+
+if (isset($_GET['puntaje'])) {
+    $puntaje = intval($_GET['puntaje']);
+    $_SESSION['score'] = $puntaje;
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,13 +28,13 @@ $_SESSION['score'] = 13;
 
 <body>
     <div>
-        <img src="" alt="Header">
+        <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
     </div>
     <h1>
-        <?php echo $lang['messages']['win']; ?>
+        <?php echo $lang['messages']['lose']; ?>
     </h1>
     <h3>
-        <?php echo $lang['messages']['score']; ?>
+        <?php echo $lang['messages']['score'] . $_SESSION['score']; ?>
     </h3>
     <div id="publishQuestion">
         <h5>
@@ -43,7 +49,7 @@ $_SESSION['score'] = 13;
     </div>
 
     <div id="nameAndPublishDiv">
-        <form action="saveScore.php.php" method="post">
+        <form action="../assets/scripts/saveScore.php" method="post">
             <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
             <input type="hidden" id="currentDate" name="currentDate" value="">
             <button type="submit" class="button" id="publishButton">

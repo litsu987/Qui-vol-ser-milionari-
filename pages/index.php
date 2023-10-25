@@ -23,7 +23,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
 
 <body>
     <div>
-        <img src="" alt="Header">
+        <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
     </div>
     <h1>
         <?php echo $lang['tittle']; ?>
@@ -63,6 +63,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         <a href="index.php?lang=en">
             <img id="en" src="../assets/images/UKFlag.jpg" alt="England flag">
         </a>
+
     </div>
 </body>
 

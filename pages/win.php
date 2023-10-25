@@ -4,7 +4,13 @@ if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'
     $_SESSION['lang'] = 'en';
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
-$_SESSION['score'] = 15;
+
+
+if (isset($_GET['puntaje'])) {
+    $puntaje = intval($_GET['puntaje']);
+    $_SESSION['score'] = $puntaje;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +28,7 @@ $_SESSION['score'] = 15;
 
 <body>
     <div>
-        <img src="" alt="Header">
+        <img src="../assets/images/LOGO_QQSM.jpg" alt="Banner">
     </div>
     <h1>
         <?php echo $lang['messages']['win']; ?>
