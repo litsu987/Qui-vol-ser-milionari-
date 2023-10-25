@@ -11,22 +11,17 @@ function soundBadQuestion() {
     playSound('../music/error_sound.mp3');
 }
 
+function soundLoseQuestion() {
+    playSound('../music/lose_sound.mp3');
+}
 
-function soundHelp(){
-	var sonido = document.createElement("iframe");
-	sonido.setAttribute("src","./music/help_sound.mp3");
-	document.body.appendChild(sonido);
-}   
-function soundWin(){
-	var sonido = document.createElement("iframe");
-	sonido.setAttribute("src","./music/win_sound.mp3");
-	document.body.appendChild(sonido);
-}   
-function soundLose(){
-	var sonido = document.createElement("iframe");
-	sonido.setAttribute("src","./music/lose_sound.mp3");
-	document.body.appendChild(sonido);
-}   
+function soundWinQuestion() {
+    playSound('../music/win_sound.mp3');
+}
+
+function soundHelpQuestion() {
+    playSound('../music/help_sound.mp3');
+}
 
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
 
@@ -69,6 +64,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
             botonesFormulario.forEach(function(boton) {
                 boton.classList.remove("oculto");
+                boton.classList.add("nextQuestion");
             });
         }
 
