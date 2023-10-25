@@ -101,7 +101,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         // Mostrar ventana emergente al fallar la respuesta
         var alertTimeout = setTimeout(function() {
-            window.location.href = 'win.php?puntaje=' + preguntasAcertadas; // Redirige automáticamente al usuario a "lose.php"
+            window.location.href = 'lose.php?puntaje=' + preguntasAcertadas; // Redirige automáticamente al usuario a "lose.php"
         }, 1000); // Espera 1 segundo antes de mostrar la ventana emergente
 
         // Agregar un evento para cancelar el temporizador si el usuario cierra la ventana emergente
