@@ -35,7 +35,7 @@ if (isset($_GET['puntaje'])) {
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
     <div class="fondo">
-        <h1 class="tituloLost centrar">
+        <h1 class="tituloLost centrar h1Titulo">
             <?php echo $lang['messages']['lose']; ?>
         </h1>
         <h3 class="centrar score">

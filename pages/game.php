@@ -79,7 +79,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
         // Recorre las respuestas
         foreach ($respuestas as $i => $respuesta) {
             $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
-            echo '<button class="contenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+            echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
         }
 

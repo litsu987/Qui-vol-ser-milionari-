@@ -27,7 +27,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
     <div id="banner">
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
-    <h1>
+    <h1 class="h1Titulo">
         <?php echo $lang['tittle']; ?>
     </h1>
     <div id="ul-container">

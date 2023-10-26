@@ -51,7 +51,8 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         console.log('Nivel de dificultad actual:', nivelDificultadActual);
         soundSuccessQuuestion();
-        boton.style.backgroundColor = "green"; // Cambia el color del botón a verde
+        boton.classList.remove("backgroundContenidoRespuesta");
+        boton.classList.add("backgroundContenidoRespuestaCorrecta");
         respuestasCorrectas++;
 
          preguntasAcertadas++;
@@ -87,7 +88,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
     } else {
         soundBadQuestion();
-        boton.style.backgroundColor = "red"; // Cambia el color del botón a rojo
+        boton.classList.add("backgroundContenidoRespuestaIncorrecta");
 
     
         // Deshabilita todos los botones en el mismo grupo de respuestas
