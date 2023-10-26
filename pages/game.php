@@ -71,18 +71,20 @@ $dificultad = $_SESSION['nivel_dificultad'];
 
     function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta)
     {
-        echo "<strong>$pregunta</strong>\n"; // Imprime la pregunta como texto en negrita
+        // echo "<div class='preguntasRespuestasDiv'>";
+        echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
     
         echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
     
         // Recorre las respuestas
         foreach ($respuestas as $i => $respuesta) {
             $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
-            echo '<button onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+            echo '<button class="contenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
         }
 
         echo '</div>'; // Cierra el contenedor de respuestas
+        // echo "</div>";
     
         echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje de respuesta
     }
