@@ -24,8 +24,10 @@ $lang = array(
         'lose' => 'LO SIENTO, HAS PERDIDO',
         'score' => 'Tu puntuación és ',
         'publishScore' => '¿Quieres publicar tu puntuación?',
+        'dificultLvl' => 'Nivel de dificultad',
     ],
     'namePlaceholder' => 'Introduce tu nombre',
-    'tittle' => '¿QUIEN QUIERE SER MILLONARIO?'
+    'tittle' => '¿QUIEN QUIERE SER MILLONARIO?',
+    'nextQuestions' => 'SIGUIENTES PREGUNTAS',
 );
 ?>

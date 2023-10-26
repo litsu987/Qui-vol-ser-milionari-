@@ -24,8 +24,10 @@ $lang = array(
         'lose' => 'SORRY, YOU HAVE LOST',
         'score' => 'Your score is: ',
         'publishScore' => 'Do you want to publish your score?',
+        'dificultLvl' => 'Difficulty level',
     ],
     'namePlaceholder' => 'Enter your name',
-    'tittle' => 'WHO WANTS TO BE A MILLIONAIRE?'
+    'tittle' => 'WHO WANTS TO BE A MILLIONAIRE?',
+    'nextQuestions' => 'NEXT QUESTIONS',
 );
 ?>
