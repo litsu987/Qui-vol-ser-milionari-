@@ -13,6 +13,23 @@ if (isset($_POST['puntaje'])) {
     $puntaje = intval($_POST['puntaje']);
     $_SESSION['score'] = $puntaje;
 }
+
+
+if (isset($_POST['tiempoTranscurrido'])) {
+    // Recibe el valor del tiempo transcurrido a través de la solicitud AJAX
+    $tiempoTranscurrido = $_POST['tiempoTranscurrido'];
+
+    // Guarda el tiempo transcurrido en una variable de sesión
+    $_SESSION['tiempoTranscurrido'] = $tiempoTranscurrido;
+    
+    // Puedes responder con un mensaje de éxito si es necesario
+    echo "Tiempo guardado con éxito";
+    echo "Tiempo transcurrido: $tiempoTranscurrido segundos";
+} else {
+    // Manejar cualquier otro caso o error
+    echo "Error: Tiempo no recibido";
+}
+
 ?>
 
 

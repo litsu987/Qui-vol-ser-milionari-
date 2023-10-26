@@ -1,3 +1,4 @@
+var tiempoInicio = Date.now();
 function playSound(soundFile) {
     var audio = new Audio(soundFile);
     audio.play();
@@ -48,8 +49,6 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     var botones = boton.parentElement.querySelectorAll('button');
 
     if (respuesta === respuestaCorrecta) {
-
-        console.log('Nivel de dificultad actual:', nivelDificultadActual);
         soundSuccessQuuestion();
         boton.classList.remove("backgroundContenidoRespuesta");
         boton.classList.add("backgroundContenidoRespuestaCorrecta");
@@ -113,6 +112,10 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             document.body.appendChild(form);
             form.submit();
 
+            var tiempoTranscurrido = Math.floor((Date.now() - tiempoInicio) / 1000); // en segundos
+            enviarTiempoTranscurrido(tiempoTranscurrido);
+            
+
            
         }, 1000); // Espera 1 segundo antes de mostrar la ventana emergente
 
@@ -135,8 +138,65 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         formWin.appendChild(input);
         document.body.appendChild(formWin);
         formWin.submit();
+        var tiempoTranscurrido = Math.floor((Date.now() / 1000) - tiempoInicio);
+        enviarTiempoTranscurrido(tiempoTranscurrido);
+        
             }, 1000);
     }
     
+    
 }
 
+
+function actualizarCronometro() {
+    var cronometro = document.getElementById('cronometro');
+    var tiempoInicio = Math.floor(Date.now() / 1000); // Establece el tiempo de inicio cada vez que se carga la página
+
+    // Actualiza el cronómetro cada segundo
+    var intervalo = setInterval(function () {
+        var tiempoActual = Math.floor(Date.now() / 1000);
+        var tiempoTranscurrido = tiempoActual - tiempoInicio;
+        cronometro.textContent = 'Tiempo: ' + tiempoTranscurrido + ' segundos';
+    }, 1000);
+
+    // Detiene el intervalo cuando el usuario deja la página
+    window.onbeforeunload = function () {
+        clearInterval(intervalo);
+    };
+}
+
+// Llama a la función para actualizar el cronómetro cuando la página se carga
+window.onload = function () {
+    actualizarCronometro();
+};
+
+function enviarTiempoTranscurrido(tiempoTranscurrido) {
+    
+    // Crea un formulario
+    var form = document.createElement('form');
+    form.method = 'post';
+    
+    // Establece la acción del formulario en 'win.php' o 'lose.php' según el caso
+    var destino = (preguntasAcertadas === 18) ? 'win.php' : 'lose.php';
+    form.action = destino;
+
+    // Crea un campo oculto para el tiempo transcurrido
+    var inputTiempo = document.createElement('input');
+    inputTiempo.type = 'hidden';
+    inputTiempo.name = 'tiempoTranscurrido';
+    inputTiempo.value = tiempoTranscurrido;
+
+    // Crea un campo oculto para el puntaje
+    var inputPuntaje = document.createElement('input');
+    inputPuntaje.type = 'hidden';
+    inputPuntaje.name = 'puntaje';
+    inputPuntaje.value = preguntasAcertadas;
+
+    // Agrega los campos ocultos al formulario
+    form.appendChild(inputTiempo);
+    form.appendChild(inputPuntaje);
+
+    // Agrega el formulario al cuerpo del documento y envíalo
+    document.body.appendChild(form);
+    form.submit();
+}

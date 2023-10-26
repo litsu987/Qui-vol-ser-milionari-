@@ -27,8 +27,6 @@ if (isset($_POST['aumentar_dificultad'])) {
 }
 
 
-$dificultad = $_SESSION['nivel_dificultad'];
-
 ?>
 
 
@@ -46,6 +44,8 @@ $dificultad = $_SESSION['nivel_dificultad'];
 </head>
 
 <body>
+    <div id="cronometro">Tiempo: 0 segundos</div>
+
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>
@@ -56,7 +56,11 @@ $dificultad = $_SESSION['nivel_dificultad'];
     </h3>
 
     <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
+    
     <?php
+
+    
+
 
     function obtenerArchivoSegunDificultad($nivelDificultad)
     {
