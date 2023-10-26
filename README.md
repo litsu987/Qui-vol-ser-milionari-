@@ -1,7 +1,5 @@
 # ¿Quién Quiere Ser Millonario?
 
-![Captura de Pantalla del Juego](LOGO_QQSM.jng)
-
 ## Descripción del Proyecto
 
 Este proyecto es una versión web del popular juego de preguntas "¿Quién Quiere Ser Millonario?". El objetivo del juego es poner a prueba los conocimientos del jugador en una serie de preguntas de opción múltiple y brindarles la oportunidad de ganar premios virtuales.
