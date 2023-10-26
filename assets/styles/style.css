@@ -297,6 +297,8 @@ button[type="reset"].button:hover {
     flex-direction: column;
 }
 
+
+
 /* index.php */
 .buttonsGroup {
     display: flex;
@@ -345,13 +347,13 @@ button[type="reset"].button:hover {
   
 #languages img:hover {
     filter: brightness(70%);
-    transform: rotate(360deg); /* Gira la imagen 360 grados una vez al pasar el ratón por encima */
-    border-radius: 50%; /* Vuelve a aplicar bordes redondeados después de la rotación */
+    transform: rotate(360deg);
+    border-radius: 50%;
 }
   
 #banner {
-    background: linear-gradient(to bottom, #27082a, #563c56); /* Imagen de fondo para el banner */
-    height: 100%; /* Ajusta la altura según tus necesidades */
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -380,7 +382,7 @@ h1 {
 
 ul {
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    padding: 20px; /* Agregar espacio alrededor de la lista para mejorar la legibilidad */
+    padding: 20px;
     border-radius: 19px 0px 26px 0px;
     border: 8px outset #b3b3b2;
     list-style: none;
