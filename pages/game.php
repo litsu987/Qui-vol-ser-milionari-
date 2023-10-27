@@ -46,6 +46,17 @@ $dificultad = $_SESSION['nivel_dificultad'];
 </head>
 
 <body>
+    <noscript>
+        <div id="avisoJS" class="avisoJS" >
+            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+            <div class="deshabilitado">
+            <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" 
+                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+            </div>
+        </div>
+        <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+    </noscript> 
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>
@@ -79,7 +90,8 @@ $dificultad = $_SESSION['nivel_dificultad'];
         // Recorre las respuestas
         foreach ($respuestas as $i => $respuesta) {
             $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
-            echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+            echo '<button class="pregunta' . ($respondida ? ' respondida' : '') . '  contenidoRespuesta backgroundContenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+            
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
         }
 
@@ -190,7 +202,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
     <form method="post" action="game.php">
         <input type="hidden" name="aumentar_dificultad" value="1">
         <!-- Campo oculto que indica la intención de aumentar la dificultad -->
-        <input type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
+        <input type="submit" id="botonCambiarNivel" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
         <!-- Botón de envío con texto "Siguiente Pregunta" (depende del idioma) -->
     </form>
 

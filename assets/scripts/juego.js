@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var avisoJS = document.getElementById('noscript');
+    var fondoDesenfocado = document.getElementById('fondoDesenfocado');
+  
+    avisoJS.style.display = 'none'; // Oculta el mensaje de aviso
+    fondoDesenfocado.style.display = 'none'; // Oculta el fondo desenfocado
+  });
 function playSound(soundFile) {
     var audio = new Audio(soundFile);
     audio.play();
@@ -53,10 +60,11 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         soundSuccessQuuestion();
         boton.classList.remove("backgroundContenidoRespuesta");
         boton.classList.add("backgroundContenidoRespuestaCorrecta");
+        
         respuestasCorrectas++;
 
-         preguntasAcertadas++;
-         localStorage.setItem('puntaje', preguntasAcertadas);
+        preguntasAcertadas++;
+        localStorage.setItem('puntaje', preguntasAcertadas);
 
         // Reproducir el sonido de éxito
         
@@ -66,9 +74,12 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             botonesFormulario.forEach(function(boton) {
                 boton.classList.remove("oculto");
                 boton.classList.add("nextQuestion");
+                scrollHaciaAbajo();
+
+                
             });
         }
-
+        
         // Deshabilita todos los botones en el mismo grupo de respuestas
         botones.forEach(function (element) {
             element.disabled = true;
@@ -76,6 +87,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         // Obtén el ID de la pregunta actual
         var id = parseInt(boton.parentElement.parentElement.id.split('_')[1]);
+        scrollHaciaSiguientePregunta(); 
 
         // Muestra automáticamente la siguiente pregunta si no estás en la última pregunta
         if (id < 3) {
@@ -83,9 +95,12 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             var siguientePregunta = document.getElementById("pregunta_" + siguienteId);
             if (siguientePregunta) {
                 siguientePregunta.style.display = "block";
-            }
-        }
+                
 
+            }
+            
+        }
+        scrollHaciaSiguientePregunta(); 
     } else {
         soundBadQuestion();
         boton.classList.add("backgroundContenidoRespuestaIncorrecta");
@@ -111,4 +126,29 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     } 
     
 }
-
+function scrollHaciaSiguientePregunta() {
+    var siguientePregunta = document.querySelector('.pregunta:not(.respondida)');
+  
+    if (siguientePregunta) {
+      siguientePregunta.scrollIntoView({ behavior: "smooth" });
+    }
+    else {
+        // Si no hay más preguntas, hacer scroll hacia el final de la página
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+    }
+}
+function scrollHaciaAbajo() {
+    var botonCambiarNivel = document.getElementById('botonCambiarNivel');
+  
+    if (botonCambiarNivel) {
+      botonCambiarNivel.scrollIntoView({ behavior: "smooth" });
+    }
+}
+  
+  
+  
+  
+  

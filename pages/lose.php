@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['authorized'])) {
+    http_response_code(403);
+    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+    exit;
+}
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
@@ -31,6 +38,17 @@ if (isset($_GET['puntaje'])) {
 </head>
 
 <body onload="soundLoseQuestion()" class="bodyLoseWin">
+    <noscript>
+        <div id="avisoJS" class="avisoJS" >
+            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+            <div class="deshabilitado">
+            <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" 
+                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+            </div>
+        </div>
+        <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+    </noscript> 
     <div id="banner">
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
