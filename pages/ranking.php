@@ -60,7 +60,7 @@ usort($recordsArray, 'compareRecords');
 </head>
 
 <body>
-    <h1>Hall Of Fame</h1>
+    <h1 class="h1Titulo">Hall Of Fame</h1>
 
     <table>
         <tr>
