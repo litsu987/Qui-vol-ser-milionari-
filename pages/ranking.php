@@ -3,7 +3,9 @@ session_start();
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
-    $_SESSION['lang'] = 'en';
+    if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
+        $_SESSION['lang'] = 'en';
+    }
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
 
@@ -58,7 +60,7 @@ usort($recordsArray, 'compareRecords');
 </head>
 
 <body>
-    <h1>Hall Of Fame</h1>
+    <h1 class="h1Titulo">Hall Of Fame</h1>
 
     <table>
         <tr>

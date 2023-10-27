@@ -11,22 +11,17 @@ function soundBadQuestion() {
     playSound('../music/error_sound.mp3');
 }
 
+function soundLoseQuestion() {
+    playSound('../music/lose_sound.mp3');
+}
 
-function soundHelp(){
-	var sonido = document.createElement("iframe");
-	sonido.setAttribute("src","./music/help_sound.mp3");
-	document.body.appendChild(sonido);
-}   
-function soundWin(){
-	var sonido = document.createElement("iframe");
-	sonido.setAttribute("src","./music/win_sound.mp3");
-	document.body.appendChild(sonido);
-}   
-function soundLose(){
-	var sonido = document.createElement("iframe");
-	sonido.setAttribute("src","./music/lose_sound.mp3");
-	document.body.appendChild(sonido);
-}   
+function soundWinQuestion() {
+    playSound('../music/win_sound.mp3');
+}
+
+function soundHelpQuestion() {
+    playSound('../music/help_sound.mp3');
+}
 
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
 
@@ -56,7 +51,8 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         console.log('Nivel de dificultad actual:', nivelDificultadActual);
         soundSuccessQuuestion();
-        boton.style.backgroundColor = "green"; // Cambia el color del botón a verde
+        boton.classList.remove("backgroundContenidoRespuesta");
+        boton.classList.add("backgroundContenidoRespuestaCorrecta");
         respuestasCorrectas++;
 
          preguntasAcertadas++;
@@ -92,7 +88,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
     } else {
         soundBadQuestion();
-        boton.style.backgroundColor = "red"; // Cambia el color del botón a rojo
+        boton.classList.add("backgroundContenidoRespuestaIncorrecta");
 
     
         // Deshabilita todos los botones en el mismo grupo de respuestas
@@ -110,7 +106,6 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             clearTimeout(alertTimeout);
         };
     }
-
     if (preguntasAcertadas === 18) {
         window.location.href = 'win.php?puntaje=' + preguntasAcertadas;
     } 
