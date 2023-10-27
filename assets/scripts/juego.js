@@ -1,3 +1,5 @@
+var tiempoInicio = Date.now();
+
 function playSound(soundFile) {
     var audio = new Audio(soundFile);
     audio.play();
@@ -48,8 +50,6 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     var botones = boton.parentElement.querySelectorAll('button');
 
     if (respuesta === respuestaCorrecta) {
-
-        console.log('Nivel de dificultad actual:', nivelDificultadActual);
         soundSuccessQuuestion();
         boton.classList.remove("backgroundContenidoRespuesta");
         boton.classList.add("backgroundContenidoRespuestaCorrecta");
@@ -98,18 +98,28 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         // Mostrar ventana emergente al fallar la respuesta
         var alertTimeout = setTimeout(function() {
-
-
+            // Cambia la acción del formulario a 'lose.php'
             var form = document.createElement('form');
             form.method = 'post';
-            form.action = 'lose.php';
+            form.action = 'lose.php';  // Cambia 'win.php' a 'lose.php'
 
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'puntaje';
-            input.value = preguntasAcertadas;
+            // Crea un campo oculto para el tiempo transcurrido
+            var inputTiempo = document.createElement('input');
+            inputTiempo.type = 'hidden';
+            inputTiempo.name = 'tiempoTranscurrido';
+            inputTiempo.value = tiempoInicio; // Usar tiempoInicio en lugar de tiempoTranscurrido
 
-            form.appendChild(input);
+            // Crea un campo oculto para el puntaje
+            var inputPuntaje = document.createElement('input');
+            inputPuntaje.type = 'hidden';
+            inputPuntaje.name = 'puntaje';
+            inputPuntaje.value = preguntasAcertadas;
+
+            // Agrega los campos ocultos al formulario
+            form.appendChild(inputTiempo);
+            form.appendChild(inputPuntaje);
+
+            // Agrega el formulario al cuerpo del documento y envíalo
             document.body.appendChild(form);
             form.submit();
 
@@ -135,8 +145,73 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         formWin.appendChild(input);
         document.body.appendChild(formWin);
         formWin.submit();
+        
+        
             }, 1000);
     }
     
+    
 }
 
+var tiempoInicio = localStorage.getItem('tiempoInicio');
+var cronometroInterval; // Variable para almacenar el intervalo del cronómetro
+
+if (tiempoInicio === null || preguntasAcertadas <= 0) {
+    tiempoInicio = 0;
+} else {
+    tiempoInicio = parseInt(tiempoInicio);
+}
+
+function actualizarCronometro() {
+    var cronometro = document.getElementById('cronometro');
+    
+    cronometroInterval = setInterval(function () {
+        var minutos = Math.floor(tiempoInicio / 60);
+        var segundos = tiempoInicio % 60;
+        var tiempoFormateado = minutos + ':' + (segundos < 10 ? '0' : '') + segundos; // Formato 0:00
+
+        cronometro.textContent = tiempoFormateado;
+        localStorage.setItem('tiempoInicio', tiempoInicio);
+        tiempoInicio++; // Incrementa el tiempo en segundos
+    }, 1000);
+}
+
+window.onload = function () {
+    actualizarCronometro();
+};
+
+localStorage.onload = function () {
+    tiempoInicio = parseInt(localStorage.getItem('tiempoInicio'));
+    clearInterval(cronometroInterval); // Detén el intervalo actual
+    actualizarCronometro(); // Reinicia el cronómetro con el valor de localStorage
+};
+
+function enviarTiempoTranscurrido() {
+    // Crea un formulario
+    var form = document.createElement('form');
+    form.method = 'post';
+
+    // Establece la acción del formulario en 'win.php' o 'lose.php' según el caso
+    var destino = (preguntasAcertadas === 18) ? 'win.php' : 'lose.php';
+    form.action = destino;
+
+    // Crea un campo oculto para el tiempo transcurrido
+    var inputTiempo = document.createElement('input');
+    inputTiempo.type = 'hidden';
+    inputTiempo.name = 'tiempoTranscurrido';
+    inputTiempo.value = tiempoInicio; // Usar tiempoInicio en lugar de tiempoTranscurrido
+
+    // Crea un campo oculto para el puntaje
+    var inputPuntaje = document.createElement('input');
+    inputPuntaje.type = 'hidden';
+    inputPuntaje.name = 'puntaje';
+    inputPuntaje.value = preguntasAcertadas;
+
+    // Agrega los campos ocultos al formulario
+    form.appendChild(inputTiempo);
+    form.appendChild(inputPuntaje);
+
+    // Agrega el formulario al cuerpo del documento y envíalo
+    document.body.appendChild(form);
+    form.submit();
+}

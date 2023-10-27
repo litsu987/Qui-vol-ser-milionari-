@@ -18,14 +18,11 @@ if (isset($_POST['aumentar_dificultad'])) {
     } else {
         // Aumenta la variable de sesión 'nivel_dificultad' en 1
         $_SESSION['nivel_dificultad']++;
-        if ($_SESSION['nivel_dificultad'] <= 6) {
-        }
     }
 } else {
-    // Restablece la variable de sesión 'nivel_dificultad' en 1 cuando no se presiona el botón
+   
     $_SESSION['nivel_dificultad'] = 1;
 }
-
 
 $dificultad = $_SESSION['nivel_dificultad'];
 
@@ -46,6 +43,12 @@ $dificultad = $_SESSION['nivel_dificultad'];
 </head>
 
 <body>
+    <div id="cronometro2">
+        <h1 id="cronometro"> </h1>
+    </div>
+
+
+
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>
@@ -56,7 +59,11 @@ $dificultad = $_SESSION['nivel_dificultad'];
     </h3>
 
     <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
+    
     <?php
+
+    
+
 
     function obtenerArchivoSegunDificultad($nivelDificultad)
     {
