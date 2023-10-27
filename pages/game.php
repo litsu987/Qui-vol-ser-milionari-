@@ -60,7 +60,13 @@ $dificultad = $_SESSION['nivel_dificultad'];
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>
-
+   
+        <div class="comodines">
+            <button class="comTiempo oval">50 : 50</button>
+            <button class="comPublico oval">comPublico</button>
+            <button class="comCincueta oval">comCincueta</button>
+        </div>
+    
     <h3 class="lvlDifivultad">
         <?php echo $lang['messages']['dificultLvl']; ?> :
         <?php echo $_SESSION['nivel_dificultad']; ?>
