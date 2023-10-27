@@ -16,23 +16,13 @@ if (isset($_POST['puntaje'])) {
 
 
 if (isset($_POST['tiempoTranscurrido'])) {
-    // Recibe el valor del tiempo transcurrido a través de la solicitud AJAX
+    
     $tiempoTranscurrido = $_POST['tiempoTranscurrido'];
-
-    // Guarda el tiempo transcurrido en una variable de sesión
     $_SESSION['tiempoTranscurrido'] = $tiempoTranscurrido;
     
-    // Puedes responder con un mensaje de éxito si es necesario
-    echo "Tiempo guardado con éxito";
-    echo "Tiempo transcurrido: $tiempoTranscurrido segundos";
-} else {
-    // Manejar cualquier otro caso o error
-    echo "Error: Tiempo no recibido";
-}
+} 
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +64,7 @@ if (isset($_POST['tiempoTranscurrido'])) {
         <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
-                <input type="hidden" id="currentDate" name="currentDate" value="">
+                <input type="hidden" id="currentDate" name="currentDate" value="tiempoTranscurrido">
                 <button type="submit" class="button" id="publishButton">
                     <?php echo $lang['buttons']['publishButton']; ?>
                     <i class="fas fa-upload"></i>

@@ -18,11 +18,9 @@ if (isset($_POST['aumentar_dificultad'])) {
     } else {
         // Aumenta la variable de sesión 'nivel_dificultad' en 1
         $_SESSION['nivel_dificultad']++;
-        if ($_SESSION['nivel_dificultad'] <= 6) {
-        }
     }
 } else {
-    // Restablece la variable de sesión 'nivel_dificultad' en 1 cuando no se presiona el botón
+   
     $_SESSION['nivel_dificultad'] = 1;
 }
 

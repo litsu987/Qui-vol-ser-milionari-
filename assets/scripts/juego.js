@@ -1,4 +1,5 @@
 var tiempoInicio = Date.now();
+
 function playSound(soundFile) {
     var audio = new Audio(soundFile);
     audio.play();
@@ -147,28 +148,31 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     
 }
 
+var tiempoInicio = localStorage.getItem('tiempoInicio');
+if (tiempoInicio === null) {
+    tiempoInicio = (preguntasAcertadas <= 0) ? 0 : Date.now();
+} else {
+    tiempoInicio = parseInt(tiempoInicio);
+}
 
 function actualizarCronometro() {
     var cronometro = document.getElementById('cronometro');
-    var tiempoInicio = Math.floor(Date.now() / 1000); // Establece el tiempo de inicio cada vez que se carga la página
-
-    // Actualiza el cronómetro cada segundo
-    var intervalo = setInterval(function () {
-        var tiempoActual = Math.floor(Date.now() / 1000);
-        var tiempoTranscurrido = tiempoActual - tiempoInicio;
-        cronometro.textContent = 'Tiempo: ' + tiempoTranscurrido + ' segundos';
+    
+    setInterval(function () {
+        if (preguntasAcertadas <= 0) {
+            tiempoInicio += 1; // Incrementa el tiempo en segundos solo si preguntasAcertadas es 0 o negativo
+        }
+        cronometro.textContent = 'Tiempo: ' + tiempoInicio + ' segundos';
+        localStorage.setItem('tiempoInicio', tiempoInicio);
     }, 1000);
-
-    // Detiene el intervalo cuando el usuario deja la página
-    window.onbeforeunload = function () {
-        clearInterval(intervalo);
-    };
 }
 
-// Llama a la función para actualizar el cronómetro cuando la página se carga
 window.onload = function () {
     actualizarCronometro();
 };
+
+
+
 
 function enviarTiempoTranscurrido(tiempoTranscurrido) {
     

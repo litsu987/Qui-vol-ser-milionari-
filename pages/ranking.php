@@ -18,7 +18,8 @@ $recordsArray = [];
 foreach ($records as $record) {
     $data = explode("-;-;-", $record);
     // Verifica si hay al menos 4 elementos en la línea
-    if (count($data) >= 4) {
+    if (count($data) >= 3) {
+        
         $recordData = [
             'idSesion' => $data[0],
             'nombre' => $data[1],
@@ -68,7 +69,7 @@ usort($recordsArray, 'compareRecords');
             <th>Puntuación</th>
             <th>Nombre</th>
             <th>ID sesion</th>
-            <th>Fecha y Hora</th>
+            <th>Tiempo</th>
         </tr>
         <?php
         foreach ($recordsArray as $index => $record) {

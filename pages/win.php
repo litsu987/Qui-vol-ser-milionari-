@@ -13,6 +13,14 @@ if (isset($_POST['puntaje'])) {
     $puntaje = intval($_POST['puntaje']);
     $_SESSION['score'] = $puntaje;
 }
+
+if (isset($_POST['tiempoTranscurrido'])) {
+    
+    $tiempoTranscurrido = $_POST['tiempoTranscurrido'];
+    $_SESSION['tiempoTranscurrido'] = $tiempoTranscurrido;
+    
+} 
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +63,7 @@ if (isset($_POST['puntaje'])) {
         <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
-                <input type="hidden" id="currentDate" name="currentDate" value="<?php echo date('Y-m-d-H:i:s'); ?>">
+                <input type="hidden" id="currentDate" name="currentDate" value="tiempoTranscurrido">
                 <button type="submit" class="button" id="publishButton">
                     <?php echo $lang['buttons']['publishButton']; ?>
                     <i class="fas fa-upload"></i>
