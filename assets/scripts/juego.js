@@ -147,6 +147,71 @@ function scrollHaciaAbajo() {
       botonCambiarNivel.scrollIntoView({ behavior: "smooth" });
     }
 }
+
+// function mostrarPopup() {
+//     document.getElementById("popup").style.display = "block";
+// }
+  
+// function cerrarPopup() {
+//     document.getElementById("popup").style.display = "none";
+// }
+
+function mostrarEstadistica(pregunta, porcentaje) {
+    const popup = document.getElementById("popup");
+    popup.style.display = "block";
+  
+    const chartData = [
+      { opcion: "Correcta", porcentaje: porcentaje },
+      { opcion: "Incorrecta", porcentaje: 100 - porcentaje }
+    ];
+  
+    dibujarDiagrama(chartData, pregunta);
+}
+  
+function leerPreguntasDesdeArchivo() {
+    // Código para leer el archivo de texto y devolver un array de preguntas y porcentajes
+}
+  
+ function dibujarDiagrama(data, pregunta) {
+    const chartDiv = document.getElementById("chart");
+  
+    const chart = document.createElement("div");
+    chart.classList.add("chart");
+  
+    data.forEach(item => {
+      const barra = document.createElement("div");
+      barra.classList.add("barra");
+      barra.style.width = `${item.porcentaje}%`;
+      barra.innerText = `${item.opcion} (${item.porcentaje}%)`;
+      chart.appendChild(barra);
+    });
+  
+    const preguntaElement = document.createElement("h3");
+    preguntaElement.innerText = pregunta;
+  
+    chartDiv.innerHTML = ''; // Limpiar contenido previo
+    chartDiv.appendChild(preguntaElement);
+    chartDiv.appendChild(chart);
+}
+  
+function cargarPregunta(idPregunta) {
+    const preguntas = leerPreguntasDesdeArchivo();
+    const preguntaActual = preguntas[idPregunta];
+  
+    if (preguntaActual) {
+      const [pregunta, porcentaje] = preguntaActual.split(";");
+      mostrarEstadistica(pregunta, Number(porcentaje));
+    } else {
+      alert("No hay más preguntas disponibles.");
+    }
+}
+  
+function siguientePregunta() {
+    // Lógica para cargar la siguiente pregunta
+    cargarPregunta(1); // Por ejemplo, cargar la segunda pregunta (índice 1)
+}
+  
+  
   
   
   

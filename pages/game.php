@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
@@ -57,20 +58,30 @@ $dificultad = $_SESSION['nivel_dificultad'];
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript> 
+    <div class="comodines">
+            <button class="comTiempo oval">50 : 50</button>
+            <button onclick="mostrarEstadistica()" class="comPublico oval">comPublico</button>
+            <button class="comCincueta oval">comCincueta</button>
+        </div>
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>
    
-        <div class="comodines">
-            <button class="comTiempo oval">50 : 50</button>
-            <button class="comPublico oval">comPublico</button>
-            <button class="comCincueta oval">comCincueta</button>
-        </div>
+        
     
     <h3 class="lvlDifivultad">
         <?php echo $lang['messages']['dificultLvl']; ?> :
         <?php echo $_SESSION['nivel_dificultad']; ?>
     </h3>
+
+
+    <div id="popup" class="popup">
+        <div class="contenido-popup">
+            <span class="cerrar-popup" onclick="cerrarPopup()">&times;</span>
+            <h2>Estadística</h2>
+            <p>Aquí va tu estadística</p>
+        </div>
+    </div>
 
     <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
     <?php
