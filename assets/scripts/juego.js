@@ -62,6 +62,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         
 
         if (respuestasCorrectas === 3) {
+            pausarCronometro()
             var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
             botonesFormulario.forEach(function(boton) {
                 boton.classList.remove("oculto");
@@ -155,6 +156,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
 var tiempoInicio = localStorage.getItem('tiempoInicio');
 var cronometroInterval; // Variable para almacenar el intervalo del cronómetro
+var cronometroPausado = false; 
 
 if (tiempoInicio === null || preguntasAcertadas <= 0) {
     tiempoInicio = 0;
@@ -214,4 +216,11 @@ function enviarTiempoTranscurrido() {
     // Agrega el formulario al cuerpo del documento y envíalo
     document.body.appendChild(form);
     form.submit();
+}
+
+function pausarCronometro() {
+    if (!cronometroPausado) { // Solo pausar si no está pausado ya
+        clearInterval(cronometroInterval);
+        cronometroPausado = true;
+    }
 }

@@ -7,13 +7,13 @@ if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION[
     $score = $_SESSION["score"];
     $sessionId = session_id();
     $tiempo = $_SESSION['tiempoInicio'];
-    $minutos = $tiempo / 60; // Calcula los minutos
+    $minutos = $tiempo / 60; 
 
     if ($_SESSION["score"] == 18){
         if ($tiempo <= 300){
-            $score=$score+5;
-        }else if ($tiempo <= 600){
             $score=$score+3;
+        }else if ($tiempo <= 600){
+            $score=$score+2;
         }else if ($tiempo <= 900){
             $score=$score+1;
         }

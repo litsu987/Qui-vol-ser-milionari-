@@ -44,7 +44,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
 
 <body>
     <div id="cronometro2">
-        <h1 id="cronometro"> </h1>
+        <h1 id="cronometro">-:--</h1>
     </div>
 
 
