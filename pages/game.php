@@ -47,6 +47,10 @@ $dificultad = $_SESSION['nivel_dificultad'];
         <h1 id="cronometro">-:--</h1>
     </div>
 
+    <button id="eliminarRespuestas" onclick="eliminarRespuestas(this)">Eliminar 2 respuestas incorrectas</button>
+
+
+
 
 
     <div class="bannerMillonario">
@@ -89,7 +93,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
             echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
         }
-
+       
         echo '</div>'; // Cierra el contenedor de respuestas
         // echo "</div>";
     

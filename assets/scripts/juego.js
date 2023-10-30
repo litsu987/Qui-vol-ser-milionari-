@@ -26,8 +26,7 @@ function soundHelpQuestion() {
 }
 
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
-
-
+var comodinUsado
 var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
 var ultimaPreguntaMostrada = 1;
 var preguntasAcertadas = localStorage.getItem('puntaje');
@@ -48,21 +47,21 @@ if (preguntasAcertadas === null) {
 
 function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     var botones = boton.parentElement.querySelectorAll('button');
+    var esRespuestaCorrecta = respuesta === respuestaCorrecta;
 
-    if (respuesta === respuestaCorrecta) {
+    if (esRespuestaCorrecta) {
         soundSuccessQuuestion();
         boton.classList.remove("backgroundContenidoRespuesta");
         boton.classList.add("backgroundContenidoRespuestaCorrecta");
         respuestasCorrectas++;
 
-         preguntasAcertadas++;
-         localStorage.setItem('puntaje', preguntasAcertadas);
+        preguntasAcertadas++;
+        localStorage.setItem('puntaje', preguntasAcertadas);
 
         // Reproducir el sonido de éxito
-        
 
         if (respuestasCorrectas === 3) {
-            pausarCronometro()
+            pausarCronometro();
             var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
             botonesFormulario.forEach(function(boton) {
                 boton.classList.remove("oculto");
@@ -71,7 +70,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         }
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
-        botones.forEach(function (element) {
+        botones.forEach(function(element) {
             element.disabled = true;
         });
 
@@ -86,14 +85,12 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
                 siguientePregunta.style.display = "block";
             }
         }
-
     } else {
         soundBadQuestion();
         boton.classList.add("backgroundContenidoRespuestaIncorrecta");
 
-    
         // Deshabilita todos los botones en el mismo grupo de respuestas
-        botones.forEach(function (element) {
+        botones.forEach(function(element) {
             element.disabled = true;
         });
 
@@ -102,13 +99,13 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             // Cambia la acción del formulario a 'lose.php'
             var form = document.createElement('form');
             form.method = 'post';
-            form.action = 'lose.php';  // Cambia 'win.php' a 'lose.php'
+            form.action = 'lose.php';
 
             // Crea un campo oculto para el tiempo transcurrido
             var inputTiempo = document.createElement('input');
             inputTiempo.type = 'hidden';
             inputTiempo.name = 'tiempoTranscurrido';
-            inputTiempo.value = tiempoInicio; // Usar tiempoInicio en lugar de tiempoTranscurrido
+            inputTiempo.value = tiempoInicio;
 
             // Crea un campo oculto para el puntaje
             var inputPuntaje = document.createElement('input');
@@ -123,9 +120,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             // Agrega el formulario al cuerpo del documento y envíalo
             document.body.appendChild(form);
             form.submit();
-
-           
-        }, 1000); // Espera 1 segundo antes de mostrar la ventana emergente
+        }, 1000);
 
         // Agregar un evento para cancelar el temporizador si el usuario cierra la ventana emergente
         window.onbeforeunload = function() {
@@ -134,25 +129,22 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     }
     if (preguntasAcertadas === 18) {
         var alertTimeout = setTimeout(function() {
-        var formWin = document.createElement('form');
-        formWin.method = 'post';
-        formWin.action = 'win.php';
+            var formWin = document.createElement('form');
+            formWin.method = 'post';
+            formWin.action = 'win.php';
 
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'puntaje';
-        input.value = preguntasAcertadas;
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'puntaje';
+            input.value = preguntasAcertadas;
 
-        formWin.appendChild(input);
-        document.body.appendChild(formWin);
-        formWin.submit();
-        
-        
-            }, 1000);
+            formWin.appendChild(input);
+            document.body.appendChild(formWin);
+            formWin.submit();
+        }, 1000);
     }
-    
-    
 }
+
 
 var tiempoInicio = localStorage.getItem('tiempoInicio');
 var cronometroInterval; // Variable para almacenar el intervalo del cronómetro
@@ -223,4 +215,22 @@ function pausarCronometro() {
         clearInterval(cronometroInterval);
         cronometroPausado = true;
     }
+}
+
+
+function eliminarRespuestas(boton) {
+    var botones = boton.parentElement.querySelectorAll('button');
+    var respuestasIncorrectas = [];
+
+    // Filtrar las respuestas incorrectas
+    botones.forEach(function(element) {
+        if (!element.classList.contains("backgroundContenidoRespuestaCorrecta")) {
+            respuestasIncorrectas.push(element);
+        }
+    });
+
+    // Eliminar todas las respuestas incorrectas
+    respuestasIncorrectas.forEach(function(respuestaIncorrecta) {
+        respuestaIncorrecta.style.display = "none";
+    });
 }
