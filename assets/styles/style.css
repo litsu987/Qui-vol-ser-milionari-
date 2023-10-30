@@ -418,7 +418,7 @@ li {
 }
 
 
-#cronometro2 {
+#cronometro {
     width: 150px; /* Ancho fijo de la caja */
     height: 40px; /* Alto fijo de la caja */
     background: #0069bb;
@@ -433,4 +433,3 @@ li {
     color: white;
     margin: 80px;
 }
-
