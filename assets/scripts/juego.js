@@ -30,12 +30,15 @@ var comodinUsado
 var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
 var ultimaPreguntaMostrada = 1;
 var preguntasAcertadas = localStorage.getItem('puntaje');
+var botonEliminacionPresionado = false;
+document.getElementById('btnEliminarRespuestas').disabled = true;
 
 if (nivelDificultadActual === '1') {
     preguntasAcertadas = 0;
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
+    document.getElementById('btnEliminarRespuestas').disabled = false;
 }
-   
+
 
 if (preguntasAcertadas === null) {
     // Si no hay un puntaje almacenado, establecerlo en 0
@@ -44,6 +47,17 @@ if (preguntasAcertadas === null) {
     // Convertir el valor recuperado a un número
     preguntasAcertadas = parseInt(preguntasAcertadas);
 }
+
+var preguntaActual = localStorage.getItem('preguntaActual');
+var preguntaActual = 1;
+localStorage.setItem('preguntaActual', preguntaActual);
+
+if (preguntaActual === null) {
+    preguntaActual = 0;
+} else {
+    preguntaActual = parseInt(preguntaActual);
+}
+
 
 function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     var botones = boton.parentElement.querySelectorAll('button');
@@ -54,6 +68,9 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         boton.classList.remove("backgroundContenidoRespuesta");
         boton.classList.add("backgroundContenidoRespuestaCorrecta");
         respuestasCorrectas++;
+
+        preguntaActual++;
+        localStorage.setItem('preguntaActual', preguntaActual);
 
         preguntasAcertadas++;
         localStorage.setItem('puntaje', preguntasAcertadas);
@@ -84,6 +101,8 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             if (siguientePregunta) {
                 siguientePregunta.style.display = "block";
             }
+
+            // Incrementa el número de la pregunta actual
         }
     } else {
         soundBadQuestion();
@@ -217,20 +236,59 @@ function pausarCronometro() {
     }
 }
 
+function eliminarRespuestasIncorrectas(preguntaActual) {
+    console.log(preguntaActual);
 
-function eliminarRespuestas(boton) {
-    var botones = boton.parentElement.querySelectorAll('button');
-    var respuestasIncorrectas = [];
+    // Obtiene una referencia al botón de eliminación
+    var botonEliminar = document.getElementById('btnEliminarRespuestas');
 
-    // Filtrar las respuestas incorrectas
-    botones.forEach(function(element) {
-        if (!element.classList.contains("backgroundContenidoRespuestaCorrecta")) {
-            respuestasIncorrectas.push(element);
+    // Verifica si el botón ya se encuentra deshabilitado
+    if (botonEliminar.disabled) {
+        return;
+    }
+
+    var pregunta = document.getElementById('pregunta_' + preguntaActual);
+
+    if (pregunta) {
+        var respuestas = pregunta.querySelectorAll('.contenidoRespuesta');
+
+        var respuestasIncorrectas = [];
+        
+        respuestas.forEach(function(boton) {
+            var respuestaCorrecta = boton.getAttribute('data-respuesta-correcta');
+            var respuestaActual = boton.innerText.trim();
+
+            if (respuestaActual !== respuestaCorrecta.trim()) {
+                respuestasIncorrectas.push(boton);
+            }
+        });
+
+        // Verifica si hay al menos dos respuestas incorrectas para ocultar
+        if (respuestasIncorrectas.length >= 2) {
+            // Genera un índice aleatorio para mantener una de las respuestas incorrectas
+            var indiceVisible = Math.floor(Math.random() * respuestasIncorrectas.length);
+
+            // Oculta todas las respuestas incorrectas excepto la elegida al azar
+            for (var i = 0; i < respuestasIncorrectas.length; i++) {
+                if (i !== indiceVisible) {
+                    respuestasIncorrectas[i].style.display = 'none';
+                }
+            }
+
+            // Deshabilita el botón de eliminación
+            botonEliminar.disabled = true;
+            // Cambia el estilo del botón (opcional)
+            botonEliminar.style.backgroundColor = 'gray';
         }
-    });
-
-    // Eliminar todas las respuestas incorrectas
-    respuestasIncorrectas.forEach(function(respuestaIncorrecta) {
-        respuestaIncorrecta.style.display = "none";
-    });
+    }
 }
+
+
+
+
+
+// Agrega un evento click al botón
+document.getElementById('btnEliminarRespuestas').addEventListener('click', function() {
+    var preguntaActual = localStorage.getItem('preguntaActual'); // Obtener la pregunta actual
+    eliminarRespuestasIncorrectas(preguntaActual); // Llamar a la función para ocultar respuestas incorrectas
+});
