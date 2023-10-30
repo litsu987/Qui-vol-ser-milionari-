@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
     avisoJS.style.display = 'none'; // Oculta el mensaje de aviso
     fondoDesenfocado.style.display = 'none'; // Oculta el fondo desenfocado
-  });
+});
 function playSound(soundFile) {
     var audio = new Audio(soundFile);
     audio.play();
@@ -156,64 +156,49 @@ function scrollHaciaAbajo() {
 //     document.getElementById("popup").style.display = "none";
 // }
 
-function mostrarEstadistica(pregunta, porcentaje) {
+
+
+function mostrarEstadistica() {
     const popup = document.getElementById("popup");
     popup.style.display = "block";
-  
-    const chartData = [
-      { opcion: "Correcta", porcentaje: porcentaje },
-      { opcion: "Incorrecta", porcentaje: 100 - porcentaje }
-    ];
-  
-    dibujarDiagrama(chartData, pregunta);
+
+    obtenerEstadisticaSimulada(function(chartData) {
+        dibujarDiagrama(chartData);
+    });
 }
-  
-function leerPreguntasDesdeArchivo() {
-    // Código para leer el archivo de texto y devolver un array de preguntas y porcentajes
+
+function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
 }
-  
- function dibujarDiagrama(data, pregunta) {
+
+function obtenerEstadisticaSimulada(callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'leer_preguntas.php');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const estadistica = JSON.parse(xhr.responseText);
+            callback(estadistica);
+        }
+    };
+    xhr.send();
+}
+
+function dibujarDiagrama(data) {
     const chartDiv = document.getElementById("chart");
-  
+
     const chart = document.createElement("div");
     chart.classList.add("chart");
-  
-    data.forEach(item => {
-      const barra = document.createElement("div");
-      barra.classList.add("barra");
-      barra.style.width = `${item.porcentaje}%`;
-      barra.innerText = `${item.opcion} (${item.porcentaje}%)`;
-      chart.appendChild(barra);
+
+    data.forEach(opciones => {
+        opciones.forEach(item => {
+            const barra = document.createElement("div");
+            barra.classList.add("barra");
+            barra.style.width = `${item.porcentaje}%`;
+            barra.innerText = `${item.opcion} (${item.porcentaje}%)`;
+            chart.appendChild(barra);
+        });
     });
-  
-    const preguntaElement = document.createElement("h3");
-    preguntaElement.innerText = pregunta;
-  
+
     chartDiv.innerHTML = ''; // Limpiar contenido previo
-    chartDiv.appendChild(preguntaElement);
     chartDiv.appendChild(chart);
 }
-  
-function cargarPregunta(idPregunta) {
-    const preguntas = leerPreguntasDesdeArchivo();
-    const preguntaActual = preguntas[idPregunta];
-  
-    if (preguntaActual) {
-      const [pregunta, porcentaje] = preguntaActual.split(";");
-      mostrarEstadistica(pregunta, Number(porcentaje));
-    } else {
-      alert("No hay más preguntas disponibles.");
-    }
-}
-  
-function siguientePregunta() {
-    // Lógica para cargar la siguiente pregunta
-    cargarPregunta(1); // Por ejemplo, cargar la segunda pregunta (índice 1)
-}
-  
-  
-  
-  
-  
-  
-  

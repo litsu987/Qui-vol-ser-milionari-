@@ -60,7 +60,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
     </noscript> 
     <div class="comodines">
             <button class="comTiempo oval">50 : 50</button>
-            <button onclick="mostrarEstadistica()" class="comPublico oval">comPublico</button>
+            <button onclick="mostrarPopup()" class="comPublico oval">comPublico</button>
             <button class="comCincueta oval">comCincueta</button>
         </div>
     <div class="bannerMillonario">
@@ -74,14 +74,14 @@ $dificultad = $_SESSION['nivel_dificultad'];
         <?php echo $_SESSION['nivel_dificultad']; ?>
     </h3>
 
-
     <div id="popup" class="popup">
         <div class="contenido-popup">
             <span class="cerrar-popup" onclick="cerrarPopup()">&times;</span>
             <h2>Estadística</h2>
-            <p>Aquí va tu estadística</p>
+            <div id="chart"></div>
         </div>
     </div>
+    
 
     <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
     <?php
@@ -214,8 +214,43 @@ $dificultad = $_SESSION['nivel_dificultad'];
     // Carga y muestra las preguntas desde el archivo seleccionado
     
     // A continuación, se crea un formulario para permitir al jugador avanzar a la siguiente pregunta:
-    
+
+        
+        $preguntas = cargarPreguntas();
+        
+        // Obtener estadística simulada
+        $estadistica = array();
+        
+        foreach ($preguntas as $pregunta) {
+            $respuestas = explode(",", $pregunta); // Suponiendo que las respuestas están separadas por comas
+            $correcta = rand(0, 3); // Respuesta correcta (0-3)
+        
+            $opciones = array();
+        
+            for ($i = 0; $i < 4; $i++) {
+                if ($i == $correcta) {
+                    $probabilidad = rand(80, 100); // Respuesta correcta con 80-100% de probabilidad
+                } else {
+                    $probabilidad = rand(0, 20); // Respuesta incorrecta con 0-20% de probabilidad
+                }
+        
+                $opciones[] = array(
+                    "opcion" => $respuestas[$i],
+                    "porcentaje" => $probabilidad
+                );
+            }
+        
+            $estadistica[] = $opciones;
+        }
+        
+        echo json_encode($estadistica);
+        
+        
+
+
     ?>
+    
+
     <form method="post" action="game.php">
         <input type="hidden" name="aumentar_dificultad" value="1">
         <!-- Campo oculto que indica la intención de aumentar la dificultad -->
