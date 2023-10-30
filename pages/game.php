@@ -20,11 +20,16 @@ if (isset($_POST['aumentar_dificultad'])) {
         $_SESSION['nivel_dificultad']++;
     }
 } else {
-   
     $_SESSION['nivel_dificultad'] = 1;
+    $_SESSION['pregunta_actual'] = 0;
 }
 
 $dificultad = $_SESSION['nivel_dificultad'];
+
+if (isset($_POST['pregunta_actual'])) {
+    $_SESSION['pregunta_actual'] = $_POST['pregunta_actual'];
+}
+
 
 ?>
 
@@ -47,11 +52,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
         <h1 id="cronometro">-:--</h1>
     </div>
 
-    <button id="eliminarRespuestas" onclick="eliminarRespuestas(this)">Eliminar 2 respuestas incorrectas</button>
-
-
-
-
+    <button id="btnEliminarRespuestas" class="tu-clase" disabled>Eliminar Respuestas Incorrectas</button>
 
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
@@ -65,7 +66,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
     <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
     
     <?php
-
+    
     
 
 
@@ -80,24 +81,24 @@ $dificultad = $_SESSION['nivel_dificultad'];
         }
     }
 
-    function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta)
-    {
+    function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta){
+       
+        
         // echo "<div class='preguntasRespuestasDiv'>";
         echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
-    
         echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
-    
         // Recorre las respuestas
+        
         foreach ($respuestas as $i => $respuesta) {
             $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
-            echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
+            echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" data-respuesta-correcta="' . $respuestaCorrecta . '" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
         }
-       
         echo '</div>'; // Cierra el contenedor de respuestas
         // echo "</div>";
     
         echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje de respuesta
+       
     }
 
 
@@ -166,18 +167,21 @@ $dificultad = $_SESSION['nivel_dificultad'];
 
                 // Limitar a las 3 primeras preguntas
                 $preguntas_respuestas = array_slice($preguntas_respuestas, 0, 3);
-
+               
                 echo '<div id="preguntas_contenedor">'; // Abre el contenedor principal para todas las preguntas
                 foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
                     $pregunta = $pregunta_respuestas['pregunta']; // Extrae la pregunta actual
                     $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
-                    $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta']; // Extrae la respuesta correcta
-    
+                    $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
                     echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
                     echo '</div>'; // Cierra el div de la pregunta
-                }
+                
+                }      
+                         
                 echo '</div>'; // Cierra el contenedor principal de todas las preguntas
+               
+                
     
             } else {
                 echo "No se pudo abrir el archivo.";
@@ -186,7 +190,6 @@ $dificultad = $_SESSION['nivel_dificultad'];
             echo "El archivo no existe.";
         }
     }
-
     if ($dificultad > 6) {
         // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
         echo "<script>window.location = 'win.php';</script>";
@@ -211,7 +214,7 @@ $dificultad = $_SESSION['nivel_dificultad'];
         <input type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
         <!-- Botón de envío con texto "Siguiente Pregunta" (depende del idioma) -->
     </form>
-
+   
     <script src="../assets/scripts/juego.js"></script>
 </body>
 
