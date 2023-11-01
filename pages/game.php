@@ -80,13 +80,24 @@ function comodinPublico() {
         <h1 id="cronometro">-:--</h1>
     </div>
 
-    
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <div id="diagrama" class="diagrama"></div>
+        </div>
+    </div>
+
+    <div id="barras"></div>
+
     <div class="comodines">
             <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
             <button id="comodin-publico"class="comPublico oval">comPublico</button>
-            <button class="comCincueta oval">comCincueta</button>
+            <button  onclick="mostrarModal()" class="comCincueta oval">comCincueta</button>
     </div>
     
+
+   
+
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>

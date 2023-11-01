@@ -177,7 +177,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
 var tiempoInicio = localStorage.getItem('tiempoInicio');
 var cronometroInterval; // Variable para almacenar el intervalo del cronómetro
-var cronometroPausado = false; 
+var cronometroPausado = false;
 
 if (tiempoInicio === null || preguntasAcertadas <= 0) {
     tiempoInicio = 0;
@@ -187,7 +187,7 @@ if (tiempoInicio === null || preguntasAcertadas <= 0) {
 
 function actualizarCronometro() {
     var cronometro = document.getElementById('cronometro');
-    
+
     cronometroInterval = setInterval(function () {
         var minutos = Math.floor(tiempoInicio / 60);
         var segundos = tiempoInicio % 60;
@@ -247,7 +247,7 @@ function pausarCronometro() {
 }
 
 function eliminarRespuestasIncorrectas(preguntaActual) {
-    
+
         // Obtiene una referencia al botón de eliminación
     var botonEliminar = document.getElementById('btnEliminarRespuestas');
 
@@ -262,7 +262,7 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
         var respuestas = pregunta.querySelectorAll('.contenidoRespuesta');
 
         var respuestasIncorrectas = [];
-        
+
         respuestas.forEach(function(boton) {
             var respuestaCorrecta = boton.getAttribute('data-respuesta-correcta');
             var respuestaActual = boton.innerText.trim();
@@ -291,7 +291,7 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
         }
 
 
-    }  
+    }
 }
 
 
@@ -302,7 +302,7 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
     if (botonEliminacionPresionado !== 'true' && localStorage.getItem('preguntaActual') < 3 ) {
         var preguntaActual = localStorage.getItem('preguntaActual');
         eliminarRespuestasIncorrectas(preguntaActual);
-        
+
         // Marca el botón como pulsado en el almacenamiento local
         localStorage.setItem('botonEliminacionPresionado', 'true');
 
@@ -314,7 +314,7 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
 
 function scrollHaciaSiguientePregunta() {
     var siguientePregunta = document.querySelector('.pregunta:not(.respondida)');
-  
+
     if (siguientePregunta) {
       siguientePregunta.scrollIntoView({ behavior: "smooth" });
     }
@@ -328,7 +328,7 @@ function scrollHaciaSiguientePregunta() {
 }
 function scrollHaciaAbajo() {
     var botonCambiarNivel = document.getElementById('botonCambiarNivel');
-  
+
     if (botonCambiarNivel) {
       botonCambiarNivel.scrollIntoView({ behavior: "smooth" });
     }
@@ -339,7 +339,7 @@ function scrollHaciaAbajo() {
 
 
 document.getElementById('comodin-publico').addEventListener('click', function() {
-    
+
     var botonPublico = document.getElementById('comodin-publico');
     var respuestaCorrecta = localStorage.getItem('bien');
 
@@ -355,7 +355,7 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         var respuestasIncorrectas = [];
         respuestas.forEach(function(boton) {
             //var respuestaCorrecta = boton.getAttribute('data-respuesta-correcta');
-            localStorage.setItem('bien', respuestaCorrecta= boton.getAttribute('data-respuesta-correcta')) 
+            localStorage.setItem('bien', respuestaCorrecta= boton.getAttribute('data-respuesta-correcta'))
             var respuestaActual = boton.innerText.trim();
 
             if (respuestaActual !== respuestaCorrecta.trim()) {
@@ -367,18 +367,18 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         var porcentajeCorrecta = 80;
         var porcentajeIncorrectas = (100 - porcentajeCorrecta);
         var porcentajesAleatorios = [];
-        
+
         for (var i = 0; i < respuestasIncorrectas.length - 1; i++) {
             var porcentajeAleatorio = Math.floor(Math.random() * porcentajeIncorrectas) + 1;
             porcentajesAleatorios.push(porcentajeAleatorio);
             porcentajeIncorrectas -= porcentajeAleatorio;
         }
-        
+
         // El porcentaje restante se asigna a la última respuesta incorrecta
         porcentajesAleatorios.push(porcentajeIncorrectas);
-        
 
-      
+        var dataFromPHP = [];
+
         var estadistica = "Estadística del Público\n";
         estadistica += "Porcentaje de votos para "+ respuestaCorrecta + ": "+ porcentajeCorrecta + "%\n";
 
@@ -394,6 +394,59 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
 
         // Mostrar el diagrama de barras (esto es solo un ejemplo, necesitarías implementar una representación gráfica real)
         alert(estadistica);
-    }  
+
+        // Obtén los datos desde PHP (puedes usar AJAX para obtenerlos si son dinámicos)
+        
+
+        // Configura la gráfica de barras
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar', // Tipo de gráfica de barras
+            data: {
+                labels: ['Dato 1', 'Dato 2', 'Dato 3', 'Dato 4'],
+                datasets: [{
+                    label: 'Mi Gráfica de Barras',
+                    data: dataFromPHP,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
 })
+
+function mostrarModal() {
+    var modal = document.getElementById('modal');
+    modal.style.display = 'block';
+}
+
+function cerrarModal() {
+    var modal = document.getElementById('modal');
+    modal.style.display = 'none';
+}
+
+function diagrama(estadistica){
+
+    
+
+}
+
 
