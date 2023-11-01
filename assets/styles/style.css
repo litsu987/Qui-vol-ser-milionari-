@@ -501,24 +501,22 @@ li {
 /* POPUP COMODIN PUBLICO */
 
 .modal {
-    display: none; 
-    z-index: 60; 
-    margin: 25%;
-    margin-top: 17%;
-    align-content: center;
+    display: none;
+    z-index: 60;
+    position: fixed;
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Centra en ambas direcciones */
     height: 400px;
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     border: 8px outset #b3b3b2;
     padding: 20px;
     border-radius: 19px 0px 26px 0px;
     width: 700px;
-    position: fixed; 
     color: white;
-  }
+}
+
   
-  .modal-contenido {
-    
-  }
   
   .cerrar {
     color: #aaa;
