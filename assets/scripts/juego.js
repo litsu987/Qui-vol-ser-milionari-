@@ -9,6 +9,10 @@ function soundSuccessQuuestion() {
     playSound('../music/success_sound.mp3');
 }
 
+function eggQuuestion() {
+    playSound('../music/egg.mp3');
+}
+
 function soundBadQuestion() {
     playSound('../music/error_sound.mp3');
 }
@@ -31,6 +35,7 @@ var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttri
 var ultimaPreguntaMostrada = 1;
 var preguntasAcertadas = localStorage.getItem('puntaje');
 
+
 if (nivelDificultadActual === '1') {
     preguntasAcertadas = 0;
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
@@ -44,7 +49,6 @@ if (botonEliminacionPresionado === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
     document.getElementById('btnEliminarRespuestas').disabled = true;
 }
-
 
 if (preguntasAcertadas === null) {
     // Si no hay un puntaje almacenado, establecerlo en 0
@@ -99,7 +103,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         // Obtén el ID de la pregunta actual
         var id = parseInt(boton.parentElement.parentElement.id.split('_')[1]);
-
+        scrollHaciaSiguientePregunta();
         // Muestra automáticamente la siguiente pregunta si no estás en la última pregunta
         if (id < 3) {
             var siguienteId = id + 1;
@@ -110,6 +114,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
             // Incrementa el número de la pregunta actual
         }
+        scrollHaciaSiguientePregunta();
     } else {
         soundBadQuestion();
         boton.classList.add("backgroundContenidoRespuestaIncorrecta");
@@ -307,3 +312,86 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
         this.disabled = true;
     }
 });
+
+
+
+function scrollHaciaSiguientePregunta() {
+    var siguientePregunta = document.querySelector('.pregunta:not(.respondida)');
+  
+    if (siguientePregunta) {
+      siguientePregunta.scrollIntoView({ behavior: "smooth" });
+    }
+    else {
+        // Si no hay más preguntas, hacer scroll hacia el final de la página
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+    }
+}
+function scrollHaciaAbajo() {
+    var botonCambiarNivel = document.getElementById('botonCambiarNivel');
+  
+    if (botonCambiarNivel) {
+      botonCambiarNivel.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+
+
+
+
+// function mostrarPopup() {
+//     document.getElementById("popup").style.display = "block";
+// }
+  
+// function cerrarPopup() {
+//     document.getElementById("popup").style.display = "none";
+// }
+
+
+
+function mostrarEstadistica() {
+    const popup = document.getElementById("popup");
+    popup.style.display = "block";
+
+    obtenerEstadisticaSimulada(function(chartData) {
+        dibujarDiagrama(chartData);
+    });
+}
+
+function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function obtenerEstadisticaSimulada(callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'leer_preguntas.php');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const estadistica = JSON.parse(xhr.responseText);
+            callback(estadistica);
+        }
+    };
+    xhr.send();
+}
+
+function dibujarDiagrama(data) {
+    const chartDiv = document.getElementById("chart");
+
+    const chart = document.createElement("div");
+    chart.classList.add("chart");
+
+    data.forEach(opciones => {
+        opciones.forEach(item => {
+            const barra = document.createElement("div");
+            barra.classList.add("barra");
+            barra.style.width = `${item.porcentaje}%`;
+            barra.innerText = `${item.opcion} (${item.porcentaje}%)`;
+            chart.appendChild(barra);
+        });
+    });
+
+    chartDiv.innerHTML = ''; // Limpiar contenido previo
+    chartDiv.appendChild(chart);
+}

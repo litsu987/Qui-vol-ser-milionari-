@@ -48,12 +48,28 @@ if (isset($_POST['pregunta_actual'])) {
 </head>
 
 <body>
+    <noscript>
+        <div id="avisoJS" class="avisoJS" >
+            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+            <div class="deshabilitado">
+            <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" 
+                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+            </div>
+        </div>
+        <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+    </noscript>
     <div id="cronometro2">
         <h1 id="cronometro">-:--</h1>
     </div>
 
-    <button id="btnEliminarRespuestas" class="tu-clase">Eliminar Respuestas Incorrectas</button>
-
+    
+    <div class="comodines">
+            <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
+            <button onclick="mostrarPopup()" class="comPublico oval">comPublico</button>
+            <button class="comCincueta oval">comCincueta</button>
+    </div>
+    
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>

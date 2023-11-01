@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    header('HTTP/1.1 403 Forbidden');
+    die('Error 403 Forbidden');
+}
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
