@@ -292,3 +292,60 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
     var preguntaActual = localStorage.getItem('preguntaActual'); // Obtener la pregunta actual
     eliminarRespuestasIncorrectas(preguntaActual); // Llamar a la función para ocultar respuestas incorrectas
 });
+
+
+
+// function mostrarPopup() {
+//     document.getElementById("popup").style.display = "block";
+// }
+  
+// function cerrarPopup() {
+//     document.getElementById("popup").style.display = "none";
+// }
+
+
+
+function mostrarEstadistica() {
+    const popup = document.getElementById("popup");
+    popup.style.display = "block";
+
+    obtenerEstadisticaSimulada(function(chartData) {
+        dibujarDiagrama(chartData);
+    });
+}
+
+function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function obtenerEstadisticaSimulada(callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'leer_preguntas.php');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const estadistica = JSON.parse(xhr.responseText);
+            callback(estadistica);
+        }
+    };
+    xhr.send();
+}
+
+function dibujarDiagrama(data) {
+    const chartDiv = document.getElementById("chart");
+
+    const chart = document.createElement("div");
+    chart.classList.add("chart");
+
+    data.forEach(opciones => {
+        opciones.forEach(item => {
+            const barra = document.createElement("div");
+            barra.classList.add("barra");
+            barra.style.width = `${item.porcentaje}%`;
+            barra.innerText = `${item.opcion} (${item.porcentaje}%)`;
+            chart.appendChild(barra);
+        });
+    });
+
+    chartDiv.innerHTML = ''; // Limpiar contenido previo
+    chartDiv.appendChild(chart);
+}
