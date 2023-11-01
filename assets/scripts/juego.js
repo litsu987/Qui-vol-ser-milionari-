@@ -32,6 +32,8 @@ var ultimaPreguntaMostrada = 1;
 var preguntasAcertadas = localStorage.getItem('puntaje');
 
 
+
+
 if (nivelDificultadActual === '1') {
     preguntasAcertadas = 0;
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
@@ -339,7 +341,6 @@ function scrollHaciaAbajo() {
 
 
 document.getElementById('comodin-publico').addEventListener('click', function() {
-
     var botonPublico = document.getElementById('comodin-publico');
     var respuestaCorrecta = localStorage.getItem('bien');
 
@@ -354,14 +355,12 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
 
         var respuestasIncorrectas = [];
         respuestas.forEach(function(boton) {
-            //var respuestaCorrecta = boton.getAttribute('data-respuesta-correcta');
-            localStorage.setItem('bien', respuestaCorrecta= boton.getAttribute('data-respuesta-correcta'))
+            localStorage.setItem('bien', respuestaCorrecta = boton.getAttribute('data-respuesta-correcta'));
             var respuestaActual = boton.innerText.trim();
 
             if (respuestaActual !== respuestaCorrecta.trim()) {
                 respuestasIncorrectas.push(boton);
             }
-            console.log(respuestaCorrecta)
         });
 
         var porcentajeCorrecta = 80;
@@ -377,76 +376,110 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         // El porcentaje restante se asigna a la última respuesta incorrecta
         porcentajesAleatorios.push(porcentajeIncorrectas);
 
-        var dataFromPHP = [];
-
-        var estadistica = "Estadística del Público\n";
-        estadistica += "Porcentaje de votos para "+ respuestaCorrecta + ": "+ porcentajeCorrecta + "%\n";
+        var estadistica = respuestaCorrecta + "@" + porcentajeCorrecta;
+        var estadistica2 = []
 
         respuestasIncorrectas.forEach(function(boton, index) {
             var respuesta = boton.innerText.trim();
-            estadistica += "Porcentaje de votos para " + respuesta + ": " + porcentajesAleatorios[index] + "%\n";
+            if (index !=2) {
+                estadistica2 += respuesta + "@" + porcentajesAleatorios[index] +"#";
+            } else {
+                estadistica2 += respuesta + "@" + porcentajesAleatorios[index];
+            }
+           
         });
-        console.log(respuestaCorrecta)
+
+
+        localStorage.setItem('estadistica2', estadistica2);
+        localStorage.setItem('estadistica', estadistica);
+      
         // Deshabilita el botón de eliminación
         botonPublico.disabled = true;
         // Cambia el estilo del botón (opcional)
         botonPublico.style.backgroundColor = 'gray';
 
-        // Mostrar el diagrama de barras (esto es solo un ejemplo, necesitarías implementar una representación gráfica real)
-        alert(estadistica);
+        // Llama a la función mostrarModal después de actualizar 'estadistica'
+        mostrarModal();
+    }
+});
 
-        // Obtén los datos desde PHP (puedes usar AJAX para obtenerlos si son dinámicos)
-        
 
-        // Configura la gráfica de barras
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'bar', // Tipo de gráfica de barras
+
+
+function mostrarModal() {
+    const estadistica = localStorage.getItem('estadistica');
+    const estadistica2 = localStorage.getItem('estadistica2');
+
+    if (estadistica) {
+        const [nombre, porcentaje] = estadistica.split('@');
+        const porcentajeNumerico = parseFloat(porcentaje);
+
+        console.log(`Nombre: ${nombre}, Porcentaje: ${porcentajeNumerico}`);
+
+        const modal = document.getElementById('modal');
+        modal.style.display = 'block';
+
+        const modalCanvas = document.getElementById('modal-contenido');
+        if (modalCanvas.chart) {
+            modalCanvas.chart.destroy();
+        }
+        const modalCtx = modalCanvas.getContext('2d');
+
+        const labels = [nombre];
+        const data = [porcentajeNumerico];
+
+        console.log('Labels:', labels);
+        console.log('Data:', data);
+
+        if (estadistica2) {
+            const respuestas = estadistica2.split('#');
+            respuestas.forEach(respuesta => {
+                const [nombreRespuesta, porcentajeRespuesta] = respuesta.split('@');
+                labels.push(nombreRespuesta);
+                data.push(parseFloat(porcentajeRespuesta));
+            });
+        }
+
+        const modalChart = new Chart(modalCtx, {
+            type: 'bar',
             data: {
-                labels: ['Dato 1', 'Dato 2', 'Dato 3', 'Dato 4'],
+                labels: labels,
                 datasets: [{
-                    label: 'Mi Gráfica de Barras',
-                    data: dataFromPHP,
-                    backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                    ],
+                    label: '[x]',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        suggestedMax: 100
                     }
                 }
             }
         });
-    }
-})
 
-function mostrarModal() {
-    var modal = document.getElementById('modal');
-    modal.style.display = 'block';
+        modalCanvas.chart = modalChart;
+    } else {
+        console.log('No se encontró estadística en el almacenamiento local.');
+    }
 }
 
+
+// Función para cerrar el modal
 function cerrarModal() {
-    var modal = document.getElementById('modal');
+    const modal = document.getElementById('modal');
     modal.style.display = 'none';
 }
 
-function diagrama(estadistica){
-
-    
-
+function generateRandomColors(count) {
+    const colors = [];
+    for (let i = 0; i < count; i++) {
+        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.2)`;
+        colors.push(randomColor);
+    }
+    return colors;
 }
-
-
