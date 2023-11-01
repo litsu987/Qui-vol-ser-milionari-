@@ -227,7 +227,7 @@ function resetearCronoPregunta() {
 window.onload = function () {
     actualizarCronometro();
     if (nivelDificultadActual != '1'){
-        actualizarCronometro();
+        actualizarCronoPregunta();
         var cronoPregunta = document.getElementById('cronoPregunta');
         var tiempoInicial = parseInt(cronoPregunta.innerHTML);
         var intervalo = setInterval(actualizarCronoPregunta, 1000); // Actualizar cada segundo
