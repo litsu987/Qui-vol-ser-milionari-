@@ -64,6 +64,9 @@ if (preguntaActual === null) {
     preguntaActual = parseInt(preguntaActual);
 }
 
+if (preguntaActual >3){
+
+}
 
 function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     var botones = boton.parentElement.querySelectorAll('button');
@@ -244,9 +247,8 @@ function pausarCronometro() {
 }
 
 function eliminarRespuestasIncorrectas(preguntaActual) {
-    console.log(preguntaActual);
-
-    // Obtiene una referencia al botón de eliminación
+    
+        // Obtiene una referencia al botón de eliminación
     var botonEliminar = document.getElementById('btnEliminarRespuestas');
 
     // Verifica si el botón ya se encuentra deshabilitado
@@ -287,17 +289,17 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
             // Cambia el estilo del botón (opcional)
             botonEliminar.style.backgroundColor = 'gray';
         }
-    }
+    } 
+
+    
 }
-
-
-
 
 
 // Agrega un evento click al botón
 document.getElementById('btnEliminarRespuestas').addEventListener('click', function() {
     // Verifica si el botón ya ha sido pulsado
-    if (botonEliminacionPresionado !== 'true') {
+    console.log(localStorage.getItem('preguntaActual'));
+    if (botonEliminacionPresionado !== 'true' && localStorage.getItem('preguntaActual') < 3 ) {
         var preguntaActual = localStorage.getItem('preguntaActual');
         eliminarRespuestasIncorrectas(preguntaActual);
         
@@ -308,7 +310,6 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
         this.disabled = true;
     }
 });
-
 
 
 function scrollHaciaSiguientePregunta() {
