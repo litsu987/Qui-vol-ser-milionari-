@@ -289,9 +289,9 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
             // Cambia el estilo del botón (opcional)
             botonEliminar.style.backgroundColor = 'gray';
         }
-    } 
 
-    
+
+    }  
 }
 
 
@@ -338,57 +338,62 @@ function scrollHaciaAbajo() {
 
 
 
-// function mostrarPopup() {
-//     document.getElementById("popup").style.display = "block";
-// }
-  
-// function cerrarPopup() {
-//     document.getElementById("popup").style.display = "none";
-// }
+document.getElementById('comodin-publico').addEventListener('click', function() {
+    
+    var botonPublico = document.getElementById('comodin-publico');
+    var respuestaCorrecta = localStorage.getItem('bien');
 
+    if (botonPublico.disabled) {
+        return;
+    }
 
+    var pregunta = document.getElementById('pregunta_' + preguntaActual);
 
-function mostrarEstadistica() {
-    const popup = document.getElementById("popup");
-    popup.style.display = "block";
+    if (pregunta) {
+        var respuestas = pregunta.querySelectorAll('.contenidoRespuesta');
 
-    obtenerEstadisticaSimulada(function(chartData) {
-        dibujarDiagrama(chartData);
-    });
-}
+        var respuestasIncorrectas = [];
+        respuestas.forEach(function(boton) {
+            //var respuestaCorrecta = boton.getAttribute('data-respuesta-correcta');
+            localStorage.setItem('bien', respuestaCorrecta= boton.getAttribute('data-respuesta-correcta')) 
+            var respuestaActual = boton.innerText.trim();
 
-function cerrarPopup() {
-    document.getElementById("popup").style.display = "none";
-}
-
-function obtenerEstadisticaSimulada(callback) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'leer_preguntas.php');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            const estadistica = JSON.parse(xhr.responseText);
-            callback(estadistica);
-        }
-    };
-    xhr.send();
-}
-
-function dibujarDiagrama(data) {
-    const chartDiv = document.getElementById("chart");
-
-    const chart = document.createElement("div");
-    chart.classList.add("chart");
-
-    data.forEach(opciones => {
-        opciones.forEach(item => {
-            const barra = document.createElement("div");
-            barra.classList.add("barra");
-            barra.style.width = `${item.porcentaje}%`;
-            barra.innerText = `${item.opcion} (${item.porcentaje}%)`;
-            chart.appendChild(barra);
+            if (respuestaActual !== respuestaCorrecta.trim()) {
+                respuestasIncorrectas.push(boton);
+            }
+            console.log(respuestaCorrecta)
         });
-    });
 
-    chartDiv.innerHTML = ''; // Limpiar contenido previo
-    chartDiv.appendChild(chart);
-}
+        var porcentajeCorrecta = 80;
+        var porcentajeIncorrectas = (100 - porcentajeCorrecta);
+        var porcentajesAleatorios = [];
+        
+        for (var i = 0; i < respuestasIncorrectas.length - 1; i++) {
+            var porcentajeAleatorio = Math.floor(Math.random() * porcentajeIncorrectas) + 1;
+            porcentajesAleatorios.push(porcentajeAleatorio);
+            porcentajeIncorrectas -= porcentajeAleatorio;
+        }
+        
+        // El porcentaje restante se asigna a la última respuesta incorrecta
+        porcentajesAleatorios.push(porcentajeIncorrectas);
+        
+
+      
+        var estadistica = "Estadística del Público\n";
+        estadistica += "Porcentaje de votos para "+ respuestaCorrecta + ": "+ porcentajeCorrecta + "%\n";
+
+        respuestasIncorrectas.forEach(function(boton, index) {
+            var respuesta = boton.innerText.trim();
+            estadistica += "Porcentaje de votos para " + respuesta + ": " + porcentajesAleatorios[index] + "%\n";
+        });
+        console.log(respuestaCorrecta)
+        // Deshabilita el botón de eliminación
+        botonPublico.disabled = true;
+        // Cambia el estilo del botón (opcional)
+        botonPublico.style.backgroundColor = 'gray';
+
+        // Mostrar el diagrama de barras (esto es solo un ejemplo, necesitarías implementar una representación gráfica real)
+        alert(estadistica);
+    }  
+})
+

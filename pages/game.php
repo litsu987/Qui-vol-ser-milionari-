@@ -31,6 +31,23 @@ if (isset($_POST['pregunta_actual'])) {
 }
 
 
+
+function comodinPublico() {
+    $random = rand(0, 100);
+  
+    if ($random <= 80) {
+      // La respuesta simulada del público es la respuesta correcta
+      return "La mayoría del público cree que la respuesta correcta es A.";
+    } else {
+      // La respuesta simulada del público es una respuesta incorrecta aleatoria
+      $respuestasIncorrectas = array("B", "C", "D");
+      $respuestaSimulada = $respuestasIncorrectas[array_rand($respuestasIncorrectas)];
+      return "La mayoría del público cree que la respuesta correcta es " . $respuestaSimulada . ".";
+    }
+}
+  
+
+
 ?>
 
 
@@ -66,7 +83,7 @@ if (isset($_POST['pregunta_actual'])) {
     
     <div class="comodines">
             <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
-            <button onclick="mostrarPopup()" class="comPublico oval">comPublico</button>
+            <button id="comodin-publico"class="comPublico oval">comPublico</button>
             <button class="comCincueta oval">comCincueta</button>
     </div>
     
