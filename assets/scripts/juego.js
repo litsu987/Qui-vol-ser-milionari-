@@ -73,8 +73,9 @@ if (preguntaActual >3){
 function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     var botones = boton.parentElement.querySelectorAll('button');
     var esRespuestaCorrecta = respuesta === respuestaCorrecta;
-
+    
     if (esRespuestaCorrecta) {
+        resetearCronoPregunta()
         soundSuccessQuuestion();
         boton.classList.remove("backgroundContenidoRespuesta");
         boton.classList.add("backgroundContenidoRespuestaCorrecta");
@@ -201,8 +202,36 @@ function actualizarCronometro() {
     }, 1000);
 }
 
+var intervalo; // Declara la variable intervalo en un alcance más amplio
+
+function actualizarCronoPregunta() {
+    var cronoPregunta = document.getElementById('cronoPregunta');
+    var tiempoRestante = parseInt(cronoPregunta.innerHTML);
+
+    if (tiempoRestante > 0) {
+        tiempoRestante--;
+        cronoPregunta.innerHTML = tiempoRestante;
+    }
+
+    if (tiempoRestante === 0) {
+        clearInterval(intervalo);
+        enviarTiempoTranscurrido()
+    }
+}
+
+function resetearCronoPregunta() {
+    var cronoPregunta = document.getElementById('cronoPregunta');
+    cronoPregunta.innerHTML = '60';
+}
+
 window.onload = function () {
     actualizarCronometro();
+    if (nivelDificultadActual != '1'){
+        actualizarCronometro();
+        var cronoPregunta = document.getElementById('cronoPregunta');
+        var tiempoInicial = parseInt(cronoPregunta.innerHTML);
+        var intervalo = setInterval(actualizarCronoPregunta, 1000); // Actualizar cada segundo
+    }
 };
 
 localStorage.onload = function () {
@@ -249,8 +278,7 @@ function pausarCronometro() {
 }
 
 function eliminarRespuestasIncorrectas(preguntaActual) {
-
-        // Obtiene una referencia al botón de eliminación
+    // Obtiene una referencia al botón de eliminación
     var botonEliminar = document.getElementById('btnEliminarRespuestas');
 
     // Verifica si el botón ya se encuentra deshabilitado
@@ -274,27 +302,36 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
             }
         });
 
-        // Verifica si hay al menos dos respuestas incorrectas para ocultar
+        // Verifica si hay al menos dos respuestas incorrectas para eliminar
         if (respuestasIncorrectas.length >= 2) {
-            // Genera un índice aleatorio para mantener una de las respuestas incorrectas
+            // Elimina todas las respuestas incorrectas excepto una elegida al azar
             var indiceVisible = Math.floor(Math.random() * respuestasIncorrectas.length);
-
-            // Oculta todas las respuestas incorrectas excepto la elegida al azar
+            var respuestaGuardada = '';
             for (var i = 0; i < respuestasIncorrectas.length; i++) {
                 if (i !== indiceVisible) {
-                    respuestasIncorrectas[i].style.display = 'none';
+                    var botonAEliminar = respuestasIncorrectas[i];
+                    var textoRespuestaIncorrecta = botonAEliminar.innerText.trim();
+                    if (i >1){
+                        respuestaGuardada += textoRespuestaIncorrecta;
+                    }else{
+                        respuestaGuardada += textoRespuestaIncorrecta+',';
+                    }
+                    localStorage.setItem('respuestaIncorrecta_',respuestaGuardada)
+                    
+                    botonAEliminar.parentNode.removeChild(botonAEliminar); // Elimina el botón del DOM
                 }
             }
+           console.log(localStorage.getItem('respuestaIncorrecta_'))
 
+            localStorage.setItem('funcionEjecutada', 'true');
             // Deshabilita el botón de eliminación
             botonEliminar.disabled = true;
             // Cambia el estilo del botón (opcional)
             botonEliminar.style.backgroundColor = 'gray';
         }
-
-
     }
 }
+
 
 
 // Agrega un evento click al botón
@@ -335,9 +372,6 @@ function scrollHaciaAbajo() {
       botonCambiarNivel.scrollIntoView({ behavior: "smooth" });
     }
 }
-
-
-
 
 
 document.getElementById('comodin-publico').addEventListener('click', function() {
@@ -389,7 +423,6 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
            
         });
 
-
         localStorage.setItem('estadistica2', estadistica2);
         localStorage.setItem('estadistica', estadistica);
       
@@ -402,8 +435,6 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         mostrarModal();
     }
 });
-
-
 
 
 function mostrarModal() {
@@ -475,11 +506,3 @@ function cerrarModal() {
     modal.style.display = 'none';
 }
 
-function generateRandomColors(count) {
-    const colors = [];
-    for (let i = 0; i < count; i++) {
-        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.2)`;
-        colors.push(randomColor);
-    }
-    return colors;
-}
