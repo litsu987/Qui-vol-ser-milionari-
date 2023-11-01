@@ -63,7 +63,7 @@ if (isset($_POST['pregunta_actual'])) {
         <h1 id="cronometro">-:--</h1>
     </div>
 
-    <button id="btnEliminarRespuestas" class="tu-clase" disabled>Eliminar Respuestas Incorrectas</button>
+    <button id="btnEliminarRespuestas" class="tu-clase">Eliminar Respuestas Incorrectas</button>
     
     <div class="comodines">
             <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
