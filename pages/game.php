@@ -52,7 +52,7 @@ if (isset($_POST['pregunta_actual'])) {
         <h1 id="cronometro">-:--</h1>
     </div>
 
-    <button id="btnEliminarRespuestas" class="tu-clase" disabled>Eliminar Respuestas Incorrectas</button>
+    <button id="btnEliminarRespuestas" class="tu-clase">Eliminar Respuestas Incorrectas</button>
 
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
@@ -190,7 +190,6 @@ if (isset($_POST['pregunta_actual'])) {
             echo "El archivo no existe.";
         }
     }
-    echo 'Pregunta #' . $_SESSION['pregunta_actual'];
     if ($dificultad > 6) {
         // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
         echo "<script>window.location = 'win.php';</script>";

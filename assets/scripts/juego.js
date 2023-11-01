@@ -30,13 +30,19 @@ var comodinUsado
 var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
 var ultimaPreguntaMostrada = 1;
 var preguntasAcertadas = localStorage.getItem('puntaje');
-var botonEliminacionPresionado = false;
-document.getElementById('btnEliminarRespuestas').disabled = true;
 
 if (nivelDificultadActual === '1') {
     preguntasAcertadas = 0;
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
     document.getElementById('btnEliminarRespuestas').disabled = false;
+    localStorage.setItem('botonEliminacionPresionado', 'false');
+}
+
+var botonEliminacionPresionado = localStorage.getItem('botonEliminacionPresionado');
+
+if (botonEliminacionPresionado === 'true') {
+    // Si ya ha sido pulsado, deshabilita el botón
+    document.getElementById('btnEliminarRespuestas').disabled = true;
 }
 
 
@@ -289,6 +295,15 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
 
 // Agrega un evento click al botón
 document.getElementById('btnEliminarRespuestas').addEventListener('click', function() {
-    var preguntaActual = localStorage.getItem('preguntaActual'); // Obtener la pregunta actual
-    eliminarRespuestasIncorrectas(preguntaActual); // Llamar a la función para ocultar respuestas incorrectas
+    // Verifica si el botón ya ha sido pulsado
+    if (botonEliminacionPresionado !== 'true') {
+        var preguntaActual = localStorage.getItem('preguntaActual');
+        eliminarRespuestasIncorrectas(preguntaActual);
+        
+        // Marca el botón como pulsado en el almacenamiento local
+        localStorage.setItem('botonEliminacionPresionado', 'true');
+
+        // Deshabilita el botón
+        this.disabled = true;
+    }
 });
