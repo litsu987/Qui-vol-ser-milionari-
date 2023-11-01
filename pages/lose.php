@@ -43,10 +43,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
 </head>
 
 <body onload="soundLoseQuestion()" class="bodyLoseWin">
-    <div id="banner">
-        <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
-    </div>
-    <div class="fondo">
+        <noscript>
+            <div id="avisoJS" class="avisoJS" >
+                <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+                <div class="deshabilitado">
+                <?php echo $lang['noscipt']['message']; ?>
+                    <a href="https://support.google.com/adsense/answer/12654?hl" 
+                    target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+                </div>
+            </div>
+            <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+        </noscript>
+        <div id="banner">
+            <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
+        </div>   <div class="fondo">
         <h1 class="tituloLost centrar h1Titulo">
             <?php echo $lang['messages']['lose']; ?>
         </h1>

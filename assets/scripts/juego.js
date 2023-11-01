@@ -9,10 +9,6 @@ function soundSuccessQuuestion() {
     playSound('../music/success_sound.mp3');
 }
 
-function eggQuuestion() {
-    playSound('../music/egg.mp3');
-}
-
 function soundBadQuestion() {
     playSound('../music/error_sound.mp3');
 }
