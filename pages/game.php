@@ -64,7 +64,13 @@ if (isset($_POST['pregunta_actual'])) {
     </div>
 
     <button id="btnEliminarRespuestas" class="tu-clase" disabled>Eliminar Respuestas Incorrectas</button>
-
+    
+    <div class="comodines">
+            <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
+            <button onclick="mostrarPopup()" class="comPublico oval">comPublico</button>
+            <button class="comCincueta oval">comCincueta</button>
+    </div>
+    
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>

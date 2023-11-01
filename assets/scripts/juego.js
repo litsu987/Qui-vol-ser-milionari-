@@ -93,7 +93,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         // Obtén el ID de la pregunta actual
         var id = parseInt(boton.parentElement.parentElement.id.split('_')[1]);
-
+        scrollHaciaSiguientePregunta();
         // Muestra automáticamente la siguiente pregunta si no estás en la última pregunta
         if (id < 3) {
             var siguienteId = id + 1;
@@ -104,6 +104,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
             // Incrementa el número de la pregunta actual
         }
+        scrollHaciaSiguientePregunta();
     } else {
         soundBadQuestion();
         boton.classList.add("backgroundContenidoRespuestaIncorrecta");
@@ -292,6 +293,33 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
     var preguntaActual = localStorage.getItem('preguntaActual'); // Obtener la pregunta actual
     eliminarRespuestasIncorrectas(preguntaActual); // Llamar a la función para ocultar respuestas incorrectas
 });
+
+
+
+
+function scrollHaciaSiguientePregunta() {
+    var siguientePregunta = document.querySelector('.pregunta:not(.respondida)');
+  
+    if (siguientePregunta) {
+      siguientePregunta.scrollIntoView({ behavior: "smooth" });
+    }
+    else {
+        // Si no hay más preguntas, hacer scroll hacia el final de la página
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+    }
+}
+function scrollHaciaAbajo() {
+    var botonCambiarNivel = document.getElementById('botonCambiarNivel');
+  
+    if (botonCambiarNivel) {
+      botonCambiarNivel.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+
 
 
 

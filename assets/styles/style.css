@@ -460,6 +460,7 @@ li {
     position: fixed;
     color: white;
     margin: 80px;
+    z-index: 50;
 }
 
 /* GAME.PHP BOTONES COMODINES */

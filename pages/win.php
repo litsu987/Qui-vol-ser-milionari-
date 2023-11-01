@@ -37,6 +37,17 @@ if (isset($_POST['tiempoTranscurrido'])) {
 </head>
 
 <body onload="soundWinQuestion()" class="bodyLoseWin">
+    <noscript>
+        <div id="avisoJS" class="avisoJS" >
+            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+            <div class="deshabilitado">
+            <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" 
+                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+            </div>
+        </div>
+        <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+    </noscript>
     <div id="banner">
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
