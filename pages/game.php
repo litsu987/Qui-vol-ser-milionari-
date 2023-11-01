@@ -46,11 +46,7 @@ function comodinPublico() {
     }
 }
   
-
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="ca">
 
@@ -127,10 +123,9 @@ function comodinPublico() {
             return '../assets/questions/english_' . $_SESSION['nivel_dificultad'] . '.txt';
         }
     }
-
+    echo '<div id="cronoPregunta">60</div>';
     function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta){
        
-        
         // echo "<div class='preguntasRespuestasDiv'>";
         echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
         echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
@@ -147,7 +142,6 @@ function comodinPublico() {
         echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje de respuesta
        
     }
-
 
 
     function cargarPreguntas($nombre_archivo)
