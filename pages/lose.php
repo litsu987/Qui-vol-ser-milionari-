@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
             <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
         </noscript>
         <div id="banner">
-            <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
+            <img src="../assets/images/LOGO_QQSM.png" alt="Banner" onclick='soundBicho()'>
         </div>   <div class="fondo">
         <h1 class="tituloLost centrar h1Titulo">
             <?php echo $lang['messages']['lose']; ?>
