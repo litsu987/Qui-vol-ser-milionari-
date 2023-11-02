@@ -181,7 +181,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 var tiempoInicio = localStorage.getItem('tiempoInicio');
 var cronometroInterval; // Variable para almacenar el intervalo del cronómetro
 var cronometroPausado = false;
-
+var cronometroIniciado = true;
 if (tiempoInicio === null || preguntasAcertadas <= 0) {
     tiempoInicio = 0;
 } else {
@@ -276,6 +276,19 @@ function pausarCronometro() {
         cronometroPausado = true;
     }
 }
+let tiempoTranscurrido = 0;
+
+function retomarCronometro() {
+    if (cronometroPausado) { // Solo despausar si está pausado
+        clearInterval(cronometroInterval); // Detener el intervalo existente si lo hay
+        cronometroInterval = setInterval(function() {
+            tiempoTranscurrido += 1; // Incrementa el tiempo transcurrido en 1 segundo
+            actualizarCronometro(); // Llama a una función que actualiza la visualización del cronómetro
+        }, 1000); // Reanuda el intervalo de 1 segundo
+        cronometroPausado = false;
+    }
+}
+
 
 function eliminarRespuestasIncorrectas(preguntaActual) {
     // Obtiene una referencia al botón de eliminación
@@ -375,6 +388,7 @@ function scrollHaciaAbajo() {
 
 
 document.getElementById('comodin-publico').addEventListener('click', function() {
+    pausarCronometro();
     var botonPublico = document.getElementById('comodin-publico');
     var respuestaCorrecta = localStorage.getItem('bien');
 
@@ -504,7 +518,9 @@ function mostrarModal() {
 
 // Función para cerrar el modal
 function cerrarModal() {
+     
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
+    retomarCronometro();
 }
 
