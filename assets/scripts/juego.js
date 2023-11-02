@@ -25,6 +25,10 @@ function soundAnimation() {
     playSound('../music/epica.mp3');
 }
 
+function soundBicho() {
+    playSound('../music/bicho.mp3');
+}
+
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
 var comodinUsado
 var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
@@ -613,4 +617,3 @@ function cerrarModal() {
     reanudarCronometro()
     
 }
-
