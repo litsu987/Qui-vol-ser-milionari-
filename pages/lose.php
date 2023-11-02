@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    http_response_code(403);
+    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+    exit;
+}
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
@@ -13,9 +20,15 @@ if (isset($_POST['puntaje'])) {
     $puntaje = intval($_POST['puntaje']);
     $_SESSION['score'] = $puntaje;
 }
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"])) {
+    $tiempoInicio = $_POST["tiempoTranscurrido"];
+    $_SESSION['tiempoInicio'] = $tiempoInicio;
+} else {
+}
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,10 +44,20 @@ if (isset($_POST['puntaje'])) {
 </head>
 
 <body onload="soundLoseQuestion()" class="bodyLoseWin">
-    <div id="banner">
-        <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
-    </div>
-    <div class="fondo">
+        <noscript>
+            <div id="avisoJS" class="avisoJS" >
+                <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+                <div class="deshabilitado">
+                <?php echo $lang['noscipt']['message']; ?>
+                    <a href="https://support.google.com/adsense/answer/12654?hl" 
+                    target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+                </div>
+            </div>
+            <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+        </noscript>
+        <div id="banner">
+            <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
+        </div>   <div class="fondo">
         <h1 class="tituloLost centrar h1Titulo">
             <?php echo $lang['messages']['lose']; ?>
         </h1>
@@ -57,7 +80,7 @@ if (isset($_POST['puntaje'])) {
         <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
-                <input type="hidden" id="currentDate" name="currentDate" value="">
+                <input type="hidden" id="currentDate" name="currentDate" value="tiempoInicio">
                 <button type="submit" class="button" id="publishButton">
                     <?php echo $lang['buttons']['publishButton']; ?>
                     <i class="fas fa-upload"></i>
