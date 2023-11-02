@@ -40,10 +40,12 @@ if (nivelDificultadActual === '1') {
     document.getElementById('btnEliminarRespuestas').disabled = false;
     localStorage.setItem('botonEliminacionPresionado', 'false');
     localStorage.setItem('botonEliminacionPresionado2', 'false');
+    localStorage.setItem('botonEliminacionPresionado3', 'false');
 }
 
 var botonEliminacionPresionado = localStorage.getItem('botonEliminacionPresionado');
 var botonEliminacionPresionado2 = localStorage.getItem('botonEliminacionPresionado2');
+var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado2');
 
 if (botonEliminacionPresionado === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
@@ -53,6 +55,11 @@ if (botonEliminacionPresionado === 'true') {
 if (botonEliminacionPresionado2 === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
     document.getElementById('comodin-publico').disabled = true;
+}
+
+if (botonEliminacionPresionado3 === 'true') {
+    // Si ya ha sido pulsado, deshabilita el botón
+    document.getElementById('comodin-llamada').disabled = true;
 }
 
 if (preguntasAcertadas === null) {
@@ -207,6 +214,8 @@ if (tiempoInicio === null || preguntasAcertadas <= 0) {
     tiempoInicio = parseInt(tiempoInicio);
 }
 
+
+
 function actualizarCronometro() {
     var cronometro = document.getElementById('cronometro');
 
@@ -242,6 +251,34 @@ function resetearCronoPregunta() {
     var cronoPregunta = document.getElementById('cronoPregunta');
     cronoPregunta.innerHTML = '60';
 }
+
+function sumarTiempo(segundos) {
+
+    if ( botonEliminacionPresionado3 === 'true') {
+        // Si ya se ha utilizado el comodín público, no hagas nada
+        return;
+    }
+
+    var cronoPregunta = document.getElementById('cronoPregunta');
+    var tiempoRestante = parseInt(cronoPregunta.innerHTML);
+
+    // Verifica si el tiempo restante es mayor que 0 y si el botón no ha sido deshabilitado
+    if (tiempoRestante > 0 ) {
+        // Suma los segundos al tiempo restante
+        tiempoRestante += segundos;
+
+        // Asegúrate de que el tiempo restante no sea mayor que 60
+        tiempoRestante = Math.min(tiempoRestante, 60);
+
+        // Actualiza el cronómetro con el nuevo tiempo
+        cronoPregunta.innerHTML = tiempoRestante;
+
+        // Deshabilita el botón para evitar más clics
+        var botonComodin = document.getElementById('comodin-publico');
+        botonComodin.disabled = true;
+    }
+}
+
 
 window.onload = function () {
     actualizarCronometro();
@@ -377,8 +414,20 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
         // Deshabilita el botón
         this.disabled = true;
     }
-
 });
+
+document.getElementById('comodin-llamada').addEventListener('click', function() {
+    var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
+    if (botonEliminacionPresionado3 !== 'true' && localStorage.getItem('preguntaActual') < 3) {
+        var preguntaActual = localStorage.getItem('preguntaActual');
+        sumarTiempo(60);
+        // Marca el comodín como utilizado en el almacenamiento local
+        localStorage.setItem('botonEliminacionPresionado3', 'true');
+        // Deshabilita el botón
+        this.disabled = true;
+    }
+});
+
 
 
 function scrollHaciaSiguientePregunta() {
