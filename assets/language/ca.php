@@ -29,5 +29,15 @@ $lang = array(
     'namePlaceholder' => 'Introdueix el teu nom',
     'tittle' => 'QUI VOL SER MILLONARI?',
     'nextQuestions' => 'SEGÜENTS PREGUNTES',
+    'noscipt' => [
+        'tittle' => 'Javascript NO ESTÀ ACTIVAT',
+        'message' => ' Javascript està deshabilitat al vostre navegador web.<br />
+                    Por favor, para ver correctamente este sitio,<br/>
+                    <b><i>habiliti javascript</i></b>.<br/>
+                    <br />
+                    Per veure les instruccions per habilitar javascript<br />
+                    al vostre navegador, feu click ',
+        'link'=> 'aquí',
+    ],
 );
 ?>
