@@ -39,13 +39,20 @@ if (nivelDificultadActual === '1') {
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
     document.getElementById('btnEliminarRespuestas').disabled = false;
     localStorage.setItem('botonEliminacionPresionado', 'false');
+    localStorage.setItem('botonEliminacionPresionado2', 'false');
 }
 
 var botonEliminacionPresionado = localStorage.getItem('botonEliminacionPresionado');
+var botonEliminacionPresionado2 = localStorage.getItem('botonEliminacionPresionado2');
 
 if (botonEliminacionPresionado === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
     document.getElementById('btnEliminarRespuestas').disabled = true;
+}
+
+if (botonEliminacionPresionado2 === 'true') {
+    // Si ya ha sido pulsado, deshabilita el botón
+    document.getElementById('comodin-publico').disabled = true;
 }
 
 if (preguntasAcertadas === null) {
@@ -161,18 +168,30 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     }
     if (preguntasAcertadas === 18) {
         var alertTimeout = setTimeout(function() {
-            var formWin = document.createElement('form');
-            formWin.method = 'post';
-            formWin.action = 'win.php';
+            // Cambia la acción del formulario a 'lose.php'
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = 'win.php';
 
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'puntaje';
-            input.value = preguntasAcertadas;
+            // Crea un campo oculto para el tiempo transcurrido
+            var inputTiempo = document.createElement('input');
+            inputTiempo.type = 'hidden';
+            inputTiempo.name = 'tiempoTranscurrido';
+            inputTiempo.value = tiempoInicio;
 
-            formWin.appendChild(input);
-            document.body.appendChild(formWin);
-            formWin.submit();
+            // Crea un campo oculto para el puntaje
+            var inputPuntaje = document.createElement('input');
+            inputPuntaje.type = 'hidden';
+            inputPuntaje.name = 'puntaje';
+            inputPuntaje.value = preguntasAcertadas;
+
+            // Agrega los campos ocultos al formulario
+            form.appendChild(inputTiempo);
+            form.appendChild(inputPuntaje);
+
+            // Agrega el formulario al cuerpo del documento y envíalo
+            document.body.appendChild(form);
+            form.submit();
         }, 1000);
     }
 }
@@ -181,7 +200,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 var tiempoInicio = localStorage.getItem('tiempoInicio');
 var cronometroInterval; // Variable para almacenar el intervalo del cronómetro
 var cronometroPausado = false;
-var cronometroIniciado = true;
+
 if (tiempoInicio === null || preguntasAcertadas <= 0) {
     tiempoInicio = 0;
 } else {
@@ -276,18 +295,15 @@ function pausarCronometro() {
         cronometroPausado = true;
     }
 }
-let tiempoTranscurrido = 0;
 
-function retomarCronometro() {
-    if (cronometroPausado) { // Solo despausar si está pausado
-        clearInterval(cronometroInterval); // Detener el intervalo existente si lo hay
-        cronometroInterval = setInterval(function() {
-            tiempoTranscurrido += 1; // Incrementa el tiempo transcurrido en 1 segundo
-            actualizarCronometro(); // Llama a una función que actualiza la visualización del cronómetro
-        }, 1000); // Reanuda el intervalo de 1 segundo
+function reanudarCronometro() {
+    if (cronometroPausado) { // Solo reanudar si está pausado
+        actualizarCronometro();
         cronometroPausado = false;
     }
 }
+
+
 
 
 function eliminarRespuestasIncorrectas(preguntaActual) {
@@ -361,6 +377,7 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
         // Deshabilita el botón
         this.disabled = true;
     }
+
 });
 
 
@@ -389,10 +406,24 @@ function scrollHaciaAbajo() {
 
 document.getElementById('comodin-publico').addEventListener('click', function() {
     pausarCronometro();
+    if (botonEliminacionPresionado2 !== 'true' && localStorage.getItem('preguntaActual') < 3 ) {
+        var preguntaActual = localStorage.getItem('preguntaActual');
+
+        // Marca el botón como pulsado en el almacenamiento local
+        localStorage.setItem('botonEliminacionPresionado2', 'true');
+
+        // Deshabilita el botón
+       
+    }
     var botonPublico = document.getElementById('comodin-publico');
     var respuestaCorrecta = localStorage.getItem('bien');
 
     if (botonPublico.disabled) {
+        return;
+    }
+
+    if ( botonEliminacionPresionado2 === 'true') {
+        // Si ya se ha utilizado el comodín público, no hagas nada
         return;
     }
 
@@ -490,12 +521,11 @@ function mostrarModal() {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'VOTO DEL PUBLICO',
+                    label: '[x]',
                     data: data,
-                    backgroundColor: 'rgba(255, 192, 18, 0.4)',
-                    borderColor: 'rgba(255, 209, 18, 1)',
-                    borderWidth: 1,
-                    
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
                 }]
             },
             options: {
@@ -508,8 +538,7 @@ function mostrarModal() {
             }
         });
 
-
-        
+        modalCanvas.chart = modalChart;
     } else {
         console.log('No se encontró estadística en el almacenamiento local.');
     }
@@ -518,9 +547,9 @@ function mostrarModal() {
 
 // Función para cerrar el modal
 function cerrarModal() {
-     
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
-    retomarCronometro();
+    reanudarCronometro()
+    
 }
 
