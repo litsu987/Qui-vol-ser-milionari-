@@ -78,8 +78,9 @@ function comodinPublico() {
 
     <div id="modal" class="modal">
         <div class="modal-contenido">
-            <canvas id="modal-contenido"></canvas>
             <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <canvas id="modal-contenido"></canvas>
+            
             <div id="diagrama" class="diagrama"></div>
         </div>
     </div>
