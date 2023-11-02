@@ -545,10 +545,9 @@ li {
     position: fixed;
     color: white;
     z-index: 40;
-    left: 20%; /* Centra horizontalmente en relación con la ventana */
     transform: translate(-50%, -50%); /* Centra el elemento en sí mismo */
-    margin: 0; /* Elimina el margen que configuraste anteriormente */
-    margin-top: 20%;
+    margin-top: 8%;
+    margin-left: 8.5%;
     font-size: 20px;
 }
 
