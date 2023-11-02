@@ -417,10 +417,13 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
 });
 
 document.getElementById('comodin-llamada').addEventListener('click', function() {
+    var nivelDificultadActual = parseInt(document.getElementById('nivel-dificultad').getAttribute('data-nivel'));
     var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
-    if (botonEliminacionPresionado3 !== 'true' && localStorage.getItem('preguntaActual') < 3) {
+
+    if (nivelDificultadActual > 1 && botonEliminacionPresionado3 !== 'true' && localStorage.getItem('preguntaActual') < 3) {
+        console.log(nivelDificultadActual)
         var preguntaActual = localStorage.getItem('preguntaActual');
-        sumarTiempo(60);
+        sumarTiempo(30);
         // Marca el comodín como utilizado en el almacenamiento local
         localStorage.setItem('botonEliminacionPresionado3', 'true');
         // Deshabilita el botón
