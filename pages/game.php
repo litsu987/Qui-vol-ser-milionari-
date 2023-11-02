@@ -119,6 +119,21 @@ $dificultad = $_SESSION['nivel_dificultad'];
     }
 
 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function cargarPreguntas($nombre_archivo)
     {
