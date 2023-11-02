@@ -80,7 +80,7 @@ function comodinPublico() {
     <?php
         echo '<div id="cronoPregunta">60</div>';
         ?>
-    <div id="modal" class="modal">
+    <div id="modal" class="modal flip-in-diag-2-br">
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarModal()">&times;</span>
             <canvas id="modal-contenido"></canvas>
