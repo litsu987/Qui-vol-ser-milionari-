@@ -129,7 +129,6 @@ function comodinPublico() {
     }
     
     function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta){
-       
         // echo "<div class='preguntasRespuestasDiv'>";
         echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
         echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
@@ -139,12 +138,11 @@ function comodinPublico() {
             $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
             echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" data-respuesta-correcta="' . $respuestaCorrecta . '" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
-            
         }
-        echo '<div id="cronoPregunta">60</div>';
+        
         echo '</div>'; // Cierra el contenedor de respuestas
         // echo "</div>";
-        
+
         echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje de respuesta
        
     }
@@ -323,14 +321,14 @@ function comodinPublico() {
                     $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
                     $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
                     echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
+                    echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display: none;'></div>";
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
-
+                    
 
                     $englishQuestion = getEnglishQuestion($_SESSION['nivel_dificultad'], $pregunta);
                     if (imgExists($_SESSION['nivel_dificultad'], $englishQuestion)) {
                         $imgName = getfileImgName($_SESSION['nivel_dificultad'], $englishQuestion);
                         echo "<div id='divImgQuestion'><img class='questionImg' src='../assets/images/questionPictures/{$_SESSION['nivel_dificultad']}/$imgName' alt='Imagen relacionada a la pregunta'></div>";
-
                     }
 
                     echo '</div>'; // Cierra el div de la pregunta

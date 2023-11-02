@@ -84,16 +84,28 @@ if (preguntaActual === null) {
     preguntaActual = parseInt(preguntaActual);
 }
 
-if (preguntaActual >3){
+var cronometro1; // Declarar las variables fuera de la función
+var cronometro2;
+var cronometro0;
 
-}
 
-function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
+function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
+
+    if (preguntaActual ==1 && nivelDificultadActual != '1'){
+        document.getElementById('cronoPregunta_1').style.display = 'block';
+        detenerCronometro(cronometro0);
+        cronometro1 = iniciarCronometro('cronoPregunta_1', 60);
+    }
+    if (preguntaActual ==2 && nivelDificultadActual != '1'){
+        document.getElementById('cronoPregunta_2').style.display = 'block';
+        detenerCronometro(cronometro1); // Detener el cronómetro 1 si es necesario
+        cronometro2 = iniciarCronometro('cronoPregunta_2', 60);
+    }
     var botones = boton.parentElement.querySelectorAll('button');
     var esRespuestaCorrecta = respuesta === respuestaCorrecta;
     
     if (esRespuestaCorrecta) {
-        resetearCronoPregunta()
+       
         soundSuccessQuuestion();
         boton.classList.remove("backgroundContenidoRespuesta");
         boton.classList.add("backgroundContenidoRespuestaCorrecta");
@@ -108,6 +120,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         // Reproducir el sonido de éxito
 
         if (respuestasCorrectas === 3) {
+            clearInterval(cronometro2);
             pausarCronometro();
             var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
             botonesFormulario.forEach(function(boton) {
@@ -234,40 +247,66 @@ function actualizarCronometro() {
     }, 1000);
 }
 
-var intervalo; // Declara la variable intervalo en un alcance más amplio
+function iniciarCronometro(cronoId, valorInicial) {
+    var cronoPregunta = document.getElementById(cronoId);
 
-function actualizarCronoPregunta() {
-    var cronoPregunta = document.getElementById('cronoPregunta');
-    var tiempoRestante = parseInt(cronoPregunta.innerHTML);
+    if (cronoPregunta) {
+        var valorActual = valorInicial;
+        cronoPregunta.innerHTML = valorActual;
 
-    if (tiempoRestante > 0) {
-        tiempoRestante--;
-        cronoPregunta.innerHTML = tiempoRestante;
-    }
+        var intervalo = setInterval(function() {
+            valorActual--;
+            cronoPregunta.innerHTML = valorActual;
 
-    if (tiempoRestante === 0) {
-        clearInterval(intervalo);
-        enviarTiempoTranscurrido()
+            if (valorActual === 0) {
+                clearInterval(intervalo);
+                    // Cambia la acción del formulario a 'lose.php'
+                var form = document.createElement('form');
+                form.method = 'post';
+                form.action = 'lose.php';
+
+                // Crea un campo oculto para el tiempo transcurrido
+                var inputTiempo = document.createElement('input');
+                inputTiempo.type = 'hidden';
+                inputTiempo.name = 'tiempoTranscurrido';
+                inputTiempo.value = tiempoInicio;
+
+                // Crea un campo oculto para el puntaje
+                var inputPuntaje = document.createElement('input');
+                inputPuntaje.type = 'hidden';
+                inputPuntaje.name = 'puntaje';
+                inputPuntaje.value = preguntasAcertadas;
+
+                // Agrega los campos ocultos al formulario
+                form.appendChild(inputTiempo);
+                form.appendChild(inputPuntaje);
+
+                // Agrega el formulario al cuerpo del documento y envíalo
+                document.body.appendChild(form);
+                form.submit();
+
+            }
+        }, 1000); // Actualiza cada 1 segundo (1000 milisegundos)
+
+        return intervalo; // Devuelve el identificador del intervalo
     }
 }
 
-function resetearCronoPregunta() {
-    var cronoPregunta = document.getElementById('cronoPregunta');
-    cronoPregunta.innerHTML = '60';
+function detenerCronometro(intervalo) {
+    clearInterval(intervalo);
 }
 
-function sumarTiempo(segundos) {
-
-    if ( botonEliminacionPresionado3 === 'true') {
+function sumarTiempo(segundos, cronometroId) {
+    if (botonEliminacionPresionado3 === 'true') {
         // Si ya se ha utilizado el comodín público, no hagas nada
         return;
     }
 
-    var cronoPregunta = document.getElementById('cronoPregunta');
+    var cronoPregunta = document.getElementById(cronometroId);
     var tiempoRestante = parseInt(cronoPregunta.innerHTML);
 
     // Verifica si el tiempo restante es mayor que 0 y si el botón no ha sido deshabilitado
-    if (tiempoRestante > 0 ) {
+    if (tiempoRestante > 0) {
         // Suma los segundos al tiempo restante
         tiempoRestante += segundos;
 
@@ -280,17 +319,21 @@ function sumarTiempo(segundos) {
         // Deshabilita el botón para evitar más clics
         var botonComodin = document.getElementById('comodin-publico');
         botonComodin.disabled = true;
+
+        // Evita que el evento del botón se propague y refresque la página
+        return false;
     }
 }
+
 
 
 window.onload = function () {
     actualizarCronometro();
     if (nivelDificultadActual != '1'){
-        actualizarCronoPregunta();
-        var cronoPregunta = document.getElementById('cronoPregunta');
-        var tiempoInicial = parseInt(cronoPregunta.innerHTML);
-        var intervalo = setInterval(actualizarCronoPregunta, 1000); // Actualizar cada segundo
+        document.getElementById('cronoPregunta_0').style.display = 'block';
+        cronometro0 = iniciarCronometro('cronoPregunta_0', 60); 
+    }else{
+        
     }
 };
 
@@ -424,9 +467,16 @@ document.getElementById('comodin-llamada').addEventListener('click', function() 
     var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
 
     if (nivelDificultadActual > 1 && botonEliminacionPresionado3 !== 'true' && localStorage.getItem('preguntaActual') < 3) {
-        console.log(nivelDificultadActual)
+        
         var preguntaActual = localStorage.getItem('preguntaActual');
-        sumarTiempo(30);
+        if (preguntaActual==1){
+            console.log(nivelDificultadActual)
+            sumarTiempo(30, 'cronoPregunta_0');
+        }else if(preguntaActual==2){
+            sumarTiempo(30, 'cronoPregunta_1');
+        }else if(preguntaActual==3){
+            sumarTiempo(30, 'cronoPregunta_2');
+        }
         // Marca el comodín como utilizado en el almacenamiento local
         localStorage.setItem('botonEliminacionPresionado3', 'true');
         // Deshabilita el botón
