@@ -399,7 +399,6 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
 }
 
 
-
 // Agrega un evento click al botón
 document.getElementById('btnEliminarRespuestas').addEventListener('click', function() {
     // Verifica si el botón ya ha sido pulsado
@@ -430,7 +429,6 @@ document.getElementById('comodin-llamada').addEventListener('click', function() 
         this.disabled = true;
     }
 });
-
 
 
 function scrollHaciaSiguientePregunta() {
@@ -494,10 +492,21 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
             }
         });
 
-        var porcentajeCorrecta = 80;
-        var porcentajeIncorrectas = (100 - porcentajeCorrecta);
+        var porcentajeCorrecta;
+        var porcentajeIncorrectas;
         var porcentajesAleatorios = [];
 
+        // Determina aleatoriamente si la respuesta correcta tendrá un 80% de probabilidad de ser correcta
+        if (Math.random() <= 0.8) {
+            // Genera un número aleatorio entre 51 y 99 para el porcentaje de la respuesta correcta
+            porcentajeCorrecta = Math.floor(Math.random() * 49) + 51;
+            porcentajeIncorrectas = 100 - porcentajeCorrecta;
+        } else {
+            porcentajeCorrecta = 20; // Respuesta correcta con 20% de probabilidad
+            porcentajeIncorrectas = 100 - porcentajeCorrecta;
+        }
+
+        // Genera porcentajes aleatorios para las respuestas incorrectas
         for (var i = 0; i < respuestasIncorrectas.length - 1; i++) {
             var porcentajeAleatorio = Math.floor(Math.random() * porcentajeIncorrectas) + 1;
             porcentajesAleatorios.push(porcentajeAleatorio);
@@ -508,21 +517,20 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         porcentajesAleatorios.push(porcentajeIncorrectas);
 
         var estadistica = respuestaCorrecta + "@" + porcentajeCorrecta;
-        var estadistica2 = []
+        var estadistica2 = [];
 
         respuestasIncorrectas.forEach(function(boton, index) {
             var respuesta = boton.innerText.trim();
-            if (index !=2) {
-                estadistica2 += respuesta + "@" + porcentajesAleatorios[index] +"#";
+            if (index != 2) {
+                estadistica2 += respuesta + "@" + porcentajesAleatorios[index] + "#";
             } else {
                 estadistica2 += respuesta + "@" + porcentajesAleatorios[index];
             }
-           
         });
 
         localStorage.setItem('estadistica2', estadistica2);
         localStorage.setItem('estadistica', estadistica);
-      
+
         // Deshabilita el botón de eliminación
         botonPublico.disabled = true;
         // Cambia el estilo del botón (opcional)
@@ -530,7 +538,8 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
 
         // Llama a la función mostrarModal después de actualizar 'estadistica'
         mostrarModal();
-    }
+
+                }
 });
 
 
