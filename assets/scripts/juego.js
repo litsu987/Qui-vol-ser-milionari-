@@ -22,7 +22,7 @@ function soundWinQuestion() {
 }
 
 function soundAnimation() {
-    playSound('../music/help_sound.mp3');
+    playSound('../music/epica.mp3');
 }
 
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
