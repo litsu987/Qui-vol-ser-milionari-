@@ -476,11 +476,12 @@ function mostrarModal() {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '[x]',
+                    label: 'VOTO DEL PUBLICO',
                     data: data,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
+                    backgroundColor: 'rgba(255, 192, 18, 0.4)',
+                    borderColor: 'rgba(255, 209, 18, 1)',
+                    borderWidth: 1,
+                    
                 }]
             },
             options: {
@@ -493,7 +494,8 @@ function mostrarModal() {
             }
         });
 
-        modalCanvas.chart = modalChart;
+
+        
     } else {
         console.log('No se encontró estadística en el almacenamiento local.');
     }
