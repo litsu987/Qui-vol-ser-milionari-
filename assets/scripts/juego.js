@@ -45,7 +45,7 @@ if (nivelDificultadActual === '1') {
 
 var botonEliminacionPresionado = localStorage.getItem('botonEliminacionPresionado');
 var botonEliminacionPresionado2 = localStorage.getItem('botonEliminacionPresionado2');
-var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado2');
+var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
 
 if (botonEliminacionPresionado === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón

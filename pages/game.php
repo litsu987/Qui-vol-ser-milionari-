@@ -58,6 +58,7 @@ function comodinPublico() {
     </title>
     <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
@@ -94,8 +95,8 @@ function comodinPublico() {
 
     <div class="comodines">
             <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
-            <button id="comodin-publico"class="comPublico oval">comPublico</button>
-            <button id="comodin-llamada" class="comPublico oval">Sumar Tiempo</button>
+            <button id="comodin-publico"class="comPublico oval"><i class="fa-solid fa-users" style="color: #ffffff;"></i></button>
+            <button id="comodin-llamada" class="comPublico oval">+60'</button>
     </div>
     
 
