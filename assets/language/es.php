@@ -29,5 +29,15 @@ $lang = array(
     'namePlaceholder' => 'Introduce tu nombre',
     'tittle' => '¿QUIEN QUIERE SER MILLONARIO?',
     'nextQuestions' => 'SIGUIENTES PREGUNTAS',
+    'noscipt' => [
+        'tittle' => 'Javascript NO ESTÁ ACTIVADO',
+        'message' => 'Javascript está deshabilitado en su navegador web.<br />
+                    Por favor, para ver correctamente este sitio,<br/>
+                    <b><i>habilite javascript</i></b>.<br/>
+                    <br />
+                    Para ver las instrucciones para habilitar javascript<br />
+                    en su navegador, haga click',
+        'link'=> 'aquí',
+    ],
 );
 ?>
