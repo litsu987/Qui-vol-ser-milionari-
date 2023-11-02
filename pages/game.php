@@ -92,7 +92,7 @@ function comodinPublico() {
     <div class="comodines">
             <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
             <button id="comodin-publico"class="comPublico oval">comPublico</button>
-            <button class="comCincueta oval">comCincueta</button>
+            <button id="comodin-llamada" class="comPublico oval">Sumar Tiempo</button>
     </div>
     
 
