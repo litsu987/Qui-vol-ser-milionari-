@@ -534,7 +534,7 @@ li {
   } 
 
 
-  #cronoPregunta {
+#cronoPregunta {
     width: 150px; /* Ancho fijo de la caja */
     height: 20px; /* Alto fijo de la caja */
     background: #0069bb;
