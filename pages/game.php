@@ -95,7 +95,7 @@ function comodinPublico() {
 
     <div class="comodines">
             <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
-            <button id="comodin-publico"class="comPublico oval"><i class="fa-solid fa-users" style="color: #ffffff;"></i></button>
+            <button id="comodin-publico" onclick="soundAnimation()" class="comPublico oval"><i class="fa-solid fa-users" style="color: #ffffff;"></i></button>
             <button id="comodin-llamada" class="comPublico oval">+30'</button>
     </div>
     

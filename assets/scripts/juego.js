@@ -21,7 +21,7 @@ function soundWinQuestion() {
     playSound('../music/win_sound.mp3');
 }
 
-function soundHelpQuestion() {
+function soundAnimation() {
     playSound('../music/help_sound.mp3');
 }
 
