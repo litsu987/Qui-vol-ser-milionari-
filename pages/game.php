@@ -144,6 +144,121 @@ function comodinPublico() {
     }
 
 
+
+
+
+
+
+    function getQuestions($fileName)
+    {
+        // echo "<br>=====================================================================================<br>";
+    
+        if (file_exists($fileName)) {
+            $archivo = fopen($fileName, 'r');
+            if ($archivo) {
+                $questionsArray = [];
+                while (($linea = fgets($archivo)) !== false) {
+                    $linea = trim($linea); // Elimina espacios en blanco al principio y al final de la línea
+                    if (empty($linea)) {
+                        continue; // Salta las líneas en blanco
+                    }
+                    if (substr($linea, 0, 1) === '*') {
+                        $question = rtrim(substr($linea, 2), "?");
+                        // echo "<br>//////////question ---> " . $question;
+                        $questionsArray[] = $question;
+
+                    }
+                }
+                // echo "<br>=====================================================================================<br>";
+    
+                fclose($archivo);
+                return $questionsArray;
+            }
+        }
+        // echo "<br>=====================================================================================<br>";
+    
+        return null;
+    }
+
+    function getFileNamesWithoutExtension($dir)
+    {
+        $filesArray = scandir($dir);
+        foreach ($filesArray as $file) {
+        }
+        $namesWithoutExtension = array_map(function ($file) {
+            return pathinfo($file, PATHINFO_FILENAME);
+        }, $filesArray);
+        return array_filter($namesWithoutExtension);
+    }
+
+    function getEnglishQuestion($dificultLvl, $question)
+    {
+        $question = trim(rtrim($question, "?"));
+        $QuestionsFileName = '../assets/questions/english_' . $_SESSION['nivel_dificultad'] . '.txt';
+        $arrayQuestions = getQuestions($QuestionsFileName);
+
+
+        if ($_SESSION['lang'] != 'en') {
+            $userQuestionsFileName = obtenerArchivoSegunDificultad($dificultLvl);
+            $UserArrayQuestions = getQuestions($userQuestionsFileName);
+            for ($i = 0; $i < count($arrayQuestions); $i++) {
+                // echo "question ---> " . $UserArrayQuestions[$i];
+                // echo " index ---> $i<br>";
+            }
+            $index = array_search($question, $UserArrayQuestions);
+            $question = $arrayQuestions[$index];
+            // echo "<br>question ---> " . $question;
+            // echo " index ---> $index<br>";
+        }
+        $question = str_replace('"', '', $question);
+        return $question;
+    }
+    function imgExists($dificultLvl, $englishQuestion)
+    {
+        $imgArray = getFileNamesWithoutExtension("../assets/images/questionPictures/$dificultLvl");
+
+        // Convertir $englishQuestion a minúsculas y eliminar espacios en blanco
+        $englishQuestion = strtolower(trim((rtrim($englishQuestion, " "))));
+
+        for ($i = 2; $i < count($imgArray) + 1; $i++) {
+            // Convertir $imgArray[$i] a minúsculas y eliminar espacios en blanco
+            $imgArray[$i] = strtolower(trim((rtrim($imgArray[$i], " "))));
+            if ($imgArray[$i] == $englishQuestion) {
+            }
+        }
+
+        return in_array($englishQuestion, $imgArray);
+    }
+
+
+
+
+    function getfileImgName($dificultLvl, $englishQuestion)
+    {
+        $imgDir = "../assets/images/questionPictures/$dificultLvl";
+        $imgFilesArray = scandir($imgDir);
+
+        foreach ($imgFilesArray as $img) {
+            // echo " img -->" . pathinfo($img, PATHINFO_FILENAME); // Muestra el nombre del archivo sin la extensión
+    
+            if (pathinfo($img, PATHINFO_FILENAME) === $englishQuestion) {
+                return $img;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+    
     function cargarPreguntas($nombre_archivo)
     {
         // Comprueba si el archivo existe
@@ -216,6 +331,14 @@ function comodinPublico() {
                     $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
                     echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
+
+                    $englishQuestion = getEnglishQuestion($_SESSION['nivel_dificultad'], $pregunta);
+                    if (imgExists($_SESSION['nivel_dificultad'], $englishQuestion)) {
+                        $imgName = getfileImgName($_SESSION['nivel_dificultad'], $englishQuestion);
+                        echo "<div id='divImgQuestion'><img class='questionImg' src='../assets/images/questionPictures/{$_SESSION['nivel_dificultad']}/$imgName' alt='Imagen relacionada a la pregunta'></div>";
+
+                    }
+
                     echo '</div>'; // Cierra el div de la pregunta
                 
                 }      

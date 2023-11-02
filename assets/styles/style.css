@@ -550,3 +550,12 @@ li {
     margin: 0; /* Elimina el margen que configuraste anteriormente */
     font-size: 20px;
 }
+
+#divImgQuestion {
+    text-align: center;
+    margin: 30px;
+}
+.questionImg {
+    width: 400px;
+    height: auto;
+}
