@@ -34,7 +34,7 @@ function soundHelpQuestion() {
 }
 
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
-var comodinUsado
+var comodinUsado;
 var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
 var ultimaPreguntaMostrada = 1;
 var preguntasAcertadas = localStorage.getItem('puntaje');

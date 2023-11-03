@@ -285,7 +285,7 @@ button[type="reset"].button:hover {
     align-items: center;
     justify-content: center;
     align-content: center;
-    flex-direction: column;
+    flex-direction: column; 
     height: 400px;
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     border: 8px outset #b3b3b2;
@@ -293,6 +293,24 @@ button[type="reset"].button:hover {
     border-radius: 19px 0px 26px 0px;
     width: 700px;
     color: white;
+}
+#divLogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column; 
+    height: 400px;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    border: 8px outset #b3b3b2;
+    padding: 20px;
+    border-radius: 19px 0px 26px 0px;
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align: center;
+    color: white;
+    gap: 4%;
 }
 .tituloLost{
     color: white;

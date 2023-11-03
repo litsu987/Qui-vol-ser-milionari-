@@ -23,8 +23,47 @@
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-    
 
-    <script src="../assets/scripts/juego.js"></script>
+
+
+
+
+<?php
+    include "usuarios.php";
+
+    $error = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $user = $_POST["user"];
+        $pass = $_POST["pass"];
+
+        if (isset($usuarios[$user]) && $usuarios[$user] == $pass) {
+            session_start();
+            $_SESSION["user"] = $user; 
+            header("Location: edit.php");
+            exit();
+        } else {
+            $error = "Usuario o contraseña incorrectos. Por favor, intenta nuevamente.";
+        }
+    }
+?>
+
+<div id="divLogin" class="fondo">
+    <h1>Iniciar Sesión</h1>
+    <form id="login" action="" method="post">
+        <label for="user"> Usuario</label><br>
+        <input type="text" name="user" required><br><br>
+        <label for="pass"> Contraseña</label><br>
+        <input type="password" name="pass" required><br><br>
+        <button id="btnLogin" type="submit" class="button">Iniciar Sesión</button>
+    </form>
+    <?php if ($error != "") { ?>
+            <p style="color: red;"><?php echo $error; ?></p>
+        <?php } ?>
+</div>
+
+
+
+
 </body>
 </html>
