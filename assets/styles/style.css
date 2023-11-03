@@ -6,7 +6,6 @@
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(90deg,#6610f2 0%, #6f42c1 80%);
@@ -285,7 +284,7 @@ button[type="reset"].button:hover {
     align-items: center;
     justify-content: center;
     align-content: center;
-    flex-direction: column; 
+    flex-direction: column;
     height: 400px;
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     border: 8px outset #b3b3b2;
