@@ -1,4 +1,4 @@
-<Files "lose.php">
+<!-- <Files "lose.php">
     Order Deny,Allow
     Deny from all
 </Files>
@@ -6,4 +6,4 @@
 <Files "win.php">
     Order Deny,Allow
     Deny from all
-</Files>
+</Files> -->

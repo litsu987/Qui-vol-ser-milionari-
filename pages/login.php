@@ -23,7 +23,7 @@
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-
+    
 
     <script src="../assets/scripts/juego.js"></script>
 </body>
