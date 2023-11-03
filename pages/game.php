@@ -148,9 +148,6 @@ function comodinPublico() {
     }
 
 
-
-
-
     function getQuestions($fileName)
     {
         // echo "<br>=====================================================================================<br>";
