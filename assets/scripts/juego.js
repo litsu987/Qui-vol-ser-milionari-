@@ -29,6 +29,10 @@ function soundBicho() {
     playSound('../music/bicho.mp3');
 }
 
+function soundHelpQuestion() {
+    playSound('../music/help_sound.mp3');
+}
+
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
 var comodinUsado
 var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
