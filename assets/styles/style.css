@@ -17,36 +17,6 @@ body {
     background: linear-gradient(90deg,#6610f2 0%, #6f42c1 80%);
     
 }
-/* NOSCRIPT */
-.avisoJS{
-    background-color: red;
-    color: white;
-    width: 40%;
-    text-align: center;
-    height: 25%;
-    margin: 0% 30%;
-    padding: 3px;
-    bottom: 38%;
-    border-radius: 10px;
-    z-index: 1000;
-    overflow: hidden;
-    font-family: Arial;
-    font-size: 15.7px;
-    position: fixed; 
-}
-.fondoDesenfocado{
-    z-index: 999;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(10px); 
-}
-.titleNoscript{
-    margin-top: 25px;
-}
-
 /* INDEX.PHP */
 .container {
     max-width: 800px;
@@ -262,13 +232,15 @@ button[type="reset"].button:hover {
 .oculto {
     display: none;
 }
+
+
 .nextQuestion{
     display: block;
     margin: 0 auto;
     cursor: pointer;
     text-align: center;
     font-size: x-large;
-    width: 325px;
+    width: 20%;
     height: 80px;
     color: white;
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
@@ -288,22 +260,7 @@ button[type="reset"].button:hover {
     
     text-align: center; /* Alinea el texto al centro */
     position: center; /* Fija el banner en la pantalla */
-    width: 700px; /* Anchonoscript{
-        background-color: #683611;
-        color: #F6E8B8;
-        width: 40%;
-        text-align: center;
-        height: 30%;
-        margin: 0% 30%;
-        padding: 3px;
-        bottom: 38%;
-        border-radius: 10px;
-        z-index: 2;
-        overflow: hidden;
-        font-family: Arial;
-        font-size: 15.7px;
-        position: fixed; 
-    }del banner al 100% de la pantalla */
+    width: 700px; /* Ancho del banner al 100% de la pantalla */
     top: 0; /* Sitúa el banner en la parte superior */
 }
 .bodyLoseWin{
@@ -354,77 +311,35 @@ button[type="reset"].button:hover {
     flex-direction: column;
 }
 
-/* GAME.PHP BOTONES COMODINES */
-.comodines{
-    display: flex;
-    width: 100%;
-    height: 80px;
-    margin-left: -40px;
-    margin-top: 50px;
-    padding: 10px; 
-    justify-content: right;
-    text-align: center;
-    gap: 15px;
-    position: fixed;
-    z-index: 50;
-
-
-}
-.oval {
-    cursor: pointer;
-    width: 80px;
-    height: 50px;
-    background-color: #ccc;
-    border: 2px solid white;
-    border-radius: 50% / 50%;
+/* NOSCRIPT */
+.avisoJS{
+    background-color: red;
     color: white;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    width: 40%;
+    text-align: center;
+    height: 25%;
+    margin: 0% 30%;
+    padding: 3px;
+    bottom: 38%;
+    border-radius: 10px;
+    z-index: 1000;
+    overflow: hidden;
+    font-family: Arial;
+    font-size: 15.7px;
+    position: fixed; 
 }
-.oval:hover{
-    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
-
-}
-.comTiempo{
-    font-size: large;
-}
-
-
-/* POPUP COMODIN PUBLICO */
-
-.popup {
-    display: none;
+.fondoDesenfocado{
+    z-index: 999;
     position: fixed;
-    z-index: 51;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px); 
 }
-
-.contenido-popup {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+.titleNoscript{
+    margin-top: 25px;
 }
-
-.cerrar-popup {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.cerrar-popup:hover,
-.cerrar-popup:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-  
 
 /* index.php */
 .buttonsGroup {
@@ -529,3 +444,159 @@ li {
 .text-container {
     margin-left: 20px;
 }
+
+
+#cronometro2 {
+    width: 150px; /* Ancho fijo de la caja */
+    height: 40px; /* Alto fijo de la caja */
+    background: #0069bb;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    border: 5px outset #b3b3b2;
+    border-radius: 19px 26px 0px 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    color: white;
+    margin: 80px;
+    z-index: 50;
+}
+
+/* GAME.PHP BOTONES COMODINES */
+.comodines{
+    display: flex;
+    width: 100%;
+    height: 80px;
+    margin-left: -40px;
+    margin-top: 50px;
+    padding: 10px; 
+    justify-content: right;
+    text-align: center;
+    gap: 15px;
+    position: fixed;
+    z-index: 50;
+
+
+}
+.oval {
+    cursor: pointer;
+    width: 80px;
+    height: 50px;
+    background-color: #ccc;
+    border: 2px solid white;
+    border-radius: 50% / 50%;
+    color: white;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+}
+.oval:hover{
+    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+
+}
+.comTiempo{
+    font-size: large;
+}
+.comPublico{
+    font-size: large;
+
+}
+
+
+/* POPUP COMODIN PUBLICO */
+
+.modal {
+    display: none;
+    z-index: 60;
+    position: fixed;
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Centra en ambas direcciones */
+    height: 400px;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    border: 8px outset #b3b3b2;
+    padding: 20px;
+    border-radius: 19px 0px 26px 0px;
+    width: 700px;
+    color: white;
+    margin-left: -374px;
+    margin-top: -137px;
+}
+
+  
+  
+  .cerrar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .cerrar:hover,
+  .cerrar:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  } 
+
+
+  .CronoPregunta {
+    width: 150px; /* Ancho fijo de la caja */
+    height: 20px; /* Alto fijo de la caja */
+    background: #0069bb;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    border: 5px outset #b3b3b2;
+    border-radius: 19px 26px 0px 0px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+#divImgQuestion {
+    text-align: center;
+    margin: 30px;
+}
+.questionImg {
+    width: 400px;
+    height: auto;
+}
+.swirl-in-fwd {
+	-webkit-animation: swirl-in-fwd 0.6s ease-out both;
+	        animation: swirl-in-fwd 0.6s ease-out both;
+}/* ----------------------------------------------
+ * Generated by Animista on 2023-11-2 12:45:19
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation swirl-in-fwd
+ * ----------------------------------------
+ */
+@-webkit-keyframes swirl-in-fwd {
+    0% {
+      -webkit-transform: rotate(-540deg) scale(0);
+              transform: rotate(-540deg) scale(0);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotate(0) scale(1);
+              transform: rotate(0) scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes swirl-in-fwd {
+    0% {
+      -webkit-transform: rotate(-540deg) scale(0);
+              transform: rotate(-540deg) scale(0);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotate(0) scale(1);
+              transform: rotate(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  
