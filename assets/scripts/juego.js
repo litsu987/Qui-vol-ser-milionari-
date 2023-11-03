@@ -121,6 +121,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
         preguntasAcertadas++;
         localStorage.setItem('puntaje', preguntasAcertadas);
 
+        
         // Reproducir el sonido de éxito
 
         if (respuestasCorrectas === 3) {
@@ -129,13 +130,15 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
             var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
             botonesFormulario.forEach(function(boton) {
                 boton.classList.remove("oculto");
-                boton.classList.add("nextQuestion");
+                boton.classList.add("nextQuestion");              
             });
         }
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
         botones.forEach(function(element) {
             element.disabled = true;
+            element.classList.remove("backgroundContenidoRespuesta");
+            element.classList.add("btonBloqueado");
         });
 
         // Obtén el ID de la pregunta actual
@@ -151,6 +154,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
 
             // Incrementa el número de la pregunta actual
         }
+        
         scrollHaciaSiguientePregunta();
     } else {
         soundBadQuestion();
@@ -158,7 +162,10 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
         botones.forEach(function(element) {
+            element.classList.remove("backgroundContenidoRespuesta");
+            element.classList.add("btonBloqueado");
             element.disabled = true;
+            
         });
 
         // Mostrar ventana emergente al fallar la respuesta
@@ -462,6 +469,8 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
         localStorage.setItem('botonEliminacionPresionado', 'true');
 
         // Deshabilita el botón
+        this.classList.remove("ovalBackground");
+        this.classList.add("btonBloqueadoComodin");
         this.disabled = true;
     }
 });
@@ -484,6 +493,8 @@ document.getElementById('comodin-llamada').addEventListener('click', function() 
         // Marca el comodín como utilizado en el almacenamiento local
         localStorage.setItem('botonEliminacionPresionado3', 'true');
         // Deshabilita el botón
+        this.classList.remove("ovalBackground");
+        this.classList.add("btonBloqueadoComodin");
         this.disabled = true;
     }
 });
@@ -594,6 +605,8 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         // Cambia el estilo del botón (opcional)
         botonPublico.style.backgroundColor = 'gray';
 
+        botonPublico.classList.remove("ovalBackground");
+        botonPublico.classList.add("btonBloqueadoComodin");
         // Llama a la función mostrarModal después de actualizar 'estadistica'
         mostrarModal();
 
