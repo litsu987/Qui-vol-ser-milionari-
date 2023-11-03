@@ -9,19 +9,19 @@ if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION[
     $tiempo = $_SESSION['tiempoInicio'];
     $minutos = $tiempo / 60; 
 
-    if ($_SESSION["score"] == 18){
-        if ($tiempo <= 300){
-            $score=$score+3;
-        }else if ($tiempo <= 600){
-            $score=$score+2;
-        }else if ($tiempo <= 900){
-            $score=$score+1;
-        }
-    }
+    $puntosPorRespuestaCorrecta = 100; // Puntos por respuesta correcta
+    $puntuacionRespuestasCorrectas = $score * $puntosPorRespuestaCorrecta;
+    $puntosPorMinuto = 5; // Puntos iniciales por minuto
+    $puntosRestadosPorTiempo = $minutos * $puntosPorMinuto;
+
+    $adjustedScore = max(0, $puntuacionRespuestasCorrectas - $puntosRestadosPorTiempo);
+
+    $adjustedScore = intval($adjustedScore);
 
     $tiempo_formateado = sprintf("%d:%02d", floor($minutos), $tiempo % 60);
 
-    $data = "$sessionId-;-;-$name-;-;-$score-;-;-$tiempo_formateado" . PHP_EOL;
+    $data = "$sessionId-;-;-$name-;-;-$adjustedScore-;-;-$tiempo_formateado" . PHP_EOL;
+
 
     // Abre el archivo para escritura al final del mismo
     $file = fopen("../../data/records.txt", "a");
