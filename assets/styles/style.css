@@ -628,7 +628,11 @@ li {
 
 
 
-
+#nextQuestions {
+    width: auto;
+    padding: 2%;
+    margin-bottom: 5%;
+}
 
 .userRow {
     background-color: #4e003d;
