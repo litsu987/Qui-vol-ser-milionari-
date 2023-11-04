@@ -373,7 +373,10 @@ function comodinPublico()
     <form method="post" action="game.php">
         <input type="hidden" name="aumentar_dificultad" value="1">
         <!-- Campo oculto que indica la intención de aumentar la dificultad -->
-        <input id="nextQuestions" type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
+        <div class="centrar">
+            <input id="nextQuestions" type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
+        </div>
+
         <!-- Botón de envío con texto "Siguiente Pregunta" (depende del idioma) -->
     </form>
 

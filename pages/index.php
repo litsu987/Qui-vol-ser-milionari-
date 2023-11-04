@@ -115,12 +115,6 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
             <img id="ca" src="../assets/images/cataloniaFlag.jpg" alt="Catalan flag">
         </a>
     </div>
-    <h1>
-
-        <?php $session = session_id();
-        echo $session ?>
-
-    </h1>
 </body>
 
 </html>

@@ -152,11 +152,13 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
         if (respuestasCorrectas === 3) {
             detenerCronometro(cronometro2);
             pausarCronometro();
-            var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
-            botonesFormulario.forEach(function(boton) {
-                boton.classList.remove("oculto");
-                boton.classList.add("nextQuestion");
-            });
+            document.getElementById("nextQuestions").style.display = "block";
+
+            // var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
+            // botonesFormulario.forEach(function(boton) {
+            //     boton.classList.remove("oculto");
+            //     boton.classList.add("nextQuestion");
+            // });
         }
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
