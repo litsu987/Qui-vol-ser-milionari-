@@ -1,12 +1,7 @@
 <?php
 session_start();
-session_destroy();
-//header("Location: ../../pages/index.php");
+session_regenerate_id(); // Regenera el identificador de sesión
+session_unset(); // Elimina los datos de la sesión
+session_destroy(); // Destruye la sesión
+header("Location: ../../pages/index.php");
 ?>
-
-<html>
-<script>
-    window.location.replace("../../pages/index.php");
-</script>
-
-</html>

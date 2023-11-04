@@ -7,6 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     exit;
 }
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    http_response_code(403);
+    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+    exit;
+}
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {

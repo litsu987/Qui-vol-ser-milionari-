@@ -62,7 +62,6 @@ if (isset($_POST['tiempoTranscurrido'])) {
     <div id="banner" onclick="eggQuuestion()">
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
-
     <div class="fondo">
         <h1 class="tituloLost centrar h1Titulo">
             <?php echo $lang['messages']['win']; ?>

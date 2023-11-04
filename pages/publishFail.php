@@ -25,7 +25,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         <h1>
             <?php echo $lang['messages']['publishFailed']; ?>
         </h1>
-        <a href="index.php" class="button">
+        <a href="../assets/scripts/logout.php" class="button">
             <?php echo $lang['buttons']['toStart']; ?>
         </a>
     </div>

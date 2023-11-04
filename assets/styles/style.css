@@ -241,18 +241,18 @@ button[type="reset"].button:hover {
 }
 
 
-.nextQuestion{
-    display: block;
-    margin: 0 auto;
+#nextQuestions{
     cursor: pointer;
     text-align: center;
     font-size: x-large;
-    width: 20%;
     height: 80px;
     color: white;
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    width: auto;
+    padding: 10px;
+    margin-bottom: 40px;
 }
-.nextQuestion:hover{
+#nextQuestions:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
 
 }
@@ -628,11 +628,7 @@ li {
 
 
 
-#nextQuestions {
-    width: auto;
-    padding: 2%;
-    margin-bottom: 5%;
-}
+
 
 .userRow {
     background-color: #4e003d;
