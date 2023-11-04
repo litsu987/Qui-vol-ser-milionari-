@@ -25,6 +25,9 @@ $lang = array(
         'score' => 'Tu puntuación és ',
         'publishScore' => '¿Quieres publicar tu puntuación?',
         'dificultLvl' => 'Nivel de dificultad',
+        'publishConfirmed' => "Puntuación publicada corectamente",
+        'publishFailed' => "Ha habido un error al publicar la puntuación!!!",
+
     ],
     'namePlaceholder' => 'Introduce tu nombre',
     'tittle' => '¿QUIEN QUIERE SER MILLONARIO?',
@@ -37,7 +40,7 @@ $lang = array(
                     <br />
                     Para ver las instrucciones para habilitar javascript<br />
                     en su navegador, haga click',
-        'link'=> 'aquí',
+        'link' => 'aquí',
     ],
 );
 ?>
