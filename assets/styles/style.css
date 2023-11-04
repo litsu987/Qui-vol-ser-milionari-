@@ -7,12 +7,6 @@
     padding: 0;
 }
 body {
-    font-family: Arial, sans-serif;
-    background-color: #7cb0c8;
-    margin: 0;
-    padding: 0;
-}
-body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(90deg,#6610f2 0%, #6f42c1 80%);
     
@@ -209,18 +203,26 @@ button[type="reset"].button:hover {
     height: 80px;
     color: white;
 }
-.contenidoRespuesta:hover{
+/* .contenidoRespuesta:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
 
-}
+} */
 .backgroundContenidoRespuesta{
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
 }
+.backgroundContenidoRespuesta:hover{
+    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+
+}
+.btonBloqueado{
+    background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
+    cursor: auto;
+}
 .backgroundContenidoRespuestaCorrecta{
-    background: green;
+    background: radial-gradient(circle farthest-corner at center center, #57da57 0%, #126f12 80%);
 }
 .backgroundContenidoRespuestaIncorrecta{
-    background: red;
+    background: radial-gradient(circle farthest-corner at center center, #ff0000 0%, #681c1c 70%);
 }
 .bannerMillonario{
     display: flex;
@@ -298,6 +300,24 @@ button[type="reset"].button:hover {
     border-radius: 19px 0px 26px 0px;
     width: 700px;
     color: white;
+}
+#divLogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column; 
+    height: 400px;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    border: 8px outset #b3b3b2;
+    padding: 20px;
+    border-radius: 19px 0px 26px 0px;
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align: center;
+    color: white;
+    gap: 4%;
 }
 .tituloLost{
     color: white;
@@ -474,12 +494,12 @@ li {
 /* GAME.PHP BOTONES COMODINES */
 .comodines{
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 80px;
-    margin-left: -40px;
-    margin-top: 50px;
-    padding: 10px; 
-    justify-content: right;
+    height: 180px;
+    margin-left: 90%;
+    margin-top: 10px;
+    padding: 10px;  
     text-align: center;
     gap: 15px;
     position: fixed;
@@ -495,9 +515,11 @@ li {
     border: 2px solid white;
     border-radius: 50% / 50%;
     color: white;
+}
+.ovalBackground{
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
 }
-.oval:hover{
+.ovalBackground:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
 
 }
@@ -509,7 +531,11 @@ li {
 
 }
 
+.btonBloqueadoComodin{
+    background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
+    cursor: auto;
 
+}
 /* POPUP COMODIN PUBLICO */
 
 .modal {

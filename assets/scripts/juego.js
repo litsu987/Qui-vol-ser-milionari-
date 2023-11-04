@@ -29,6 +29,12 @@ function soundBicho() {
     playSound('../music/bicho.mp3');
 }
 
+function soundHelpQuestion() {
+    playSound('../music/help_sound.mp3');
+}
+
+var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
+var comodinUsado;
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
 var comodinUsado
 var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
@@ -53,16 +59,22 @@ var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresiona
 
 if (botonEliminacionPresionado === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
+    this.classList.remove("ovalBackground");
+    this.classList.add("btonBloqueadoComodin");
     document.getElementById('btnEliminarRespuestas').disabled = true;
 }
 
 if (botonEliminacionPresionado2 === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
+    document.getElementById('comodin-publico').classList.remove("ovalBackground");
+    document.getElementById('comodin-publico').classList.add("btonBloqueadoComodin");
     document.getElementById('comodin-publico').disabled = true;
 }
 
 if (botonEliminacionPresionado3 === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
+    document.getElementById('comodin-llamada').classList.remove("ovalBackground");
+    document.getElementById('comodin-llamada').classList.add("btonBloqueadoComodin");
     document.getElementById('comodin-llamada').disabled = true;
 }
 
@@ -135,6 +147,8 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
         botones.forEach(function(element) {
+            element.classList.remove("backgroundContenidoRespuesta");
+            element.classList.add("btonBloqueado");
             element.disabled = true;
         });
 
@@ -158,6 +172,8 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
         botones.forEach(function(element) {
+            element.classList.remove("backgroundContenidoRespuesta");
+            element.classList.add("btonBloqueado");
             element.disabled = true;
         });
 
@@ -476,6 +492,7 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
         localStorage.setItem('botonEliminacionPresionado', 'true');
 
         // Deshabilita el botón
+
         this.disabled = true;
     }
 });
@@ -614,6 +631,7 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         // Cambia el estilo del botón (opcional)
         botonPublico.style.backgroundColor = 'gray';
 
+        
         // Llama a la función mostrarModal después de actualizar 'estadistica'
         mostrarModal();
 
