@@ -96,6 +96,20 @@ if (preguntaActual === null) {
     preguntaActual = parseInt(preguntaActual);
 }
 
+if (preguntaActual >3){
+
+}
+
+var preguntaActual = localStorage.getItem('preguntaActual');
+var preguntaActual = 1;
+localStorage.setItem('preguntaActual', preguntaActual);
+
+if (preguntaActual === null) {
+    preguntaActual = 0;
+} else {
+    preguntaActual = parseInt(preguntaActual);
+}
+
 var cronometro1; 
 var cronometro2;
 var cronometro0;
@@ -138,11 +152,13 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
         if (respuestasCorrectas === 3) {
             detenerCronometro(cronometro2);
             pausarCronometro();
-            var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
-            botonesFormulario.forEach(function(boton) {
-                boton.classList.remove("oculto");
-                boton.classList.add("nextQuestion");
-            });
+            document.getElementById("nextQuestions").style.display = "block";
+
+            // var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
+            // botonesFormulario.forEach(function(boton) {
+            //     boton.classList.remove("oculto");
+            //     boton.classList.add("nextQuestion");
+            // });
         }
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
