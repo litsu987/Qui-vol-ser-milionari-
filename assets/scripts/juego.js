@@ -21,10 +21,20 @@ function soundWinQuestion() {
     playSound('../music/win_sound.mp3');
 }
 
+function soundAnimation() {
+    playSound('../music/epica.mp3');
+}
+
+function soundBicho() {
+    playSound('../music/bicho.mp3');
+}
+
 function soundHelpQuestion() {
     playSound('../music/help_sound.mp3');
 }
 
+var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
+var comodinUsado;
 var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
 var comodinUsado
 var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
@@ -39,13 +49,33 @@ if (nivelDificultadActual === '1') {
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
     document.getElementById('btnEliminarRespuestas').disabled = false;
     localStorage.setItem('botonEliminacionPresionado', 'false');
+    localStorage.setItem('botonEliminacionPresionado2', 'false');
+    localStorage.setItem('botonEliminacionPresionado3', 'false');
 }
 
 var botonEliminacionPresionado = localStorage.getItem('botonEliminacionPresionado');
+var botonEliminacionPresionado2 = localStorage.getItem('botonEliminacionPresionado2');
+var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
 
 if (botonEliminacionPresionado === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
+    this.classList.remove("ovalBackground");
+    this.classList.add("btonBloqueadoComodin");
     document.getElementById('btnEliminarRespuestas').disabled = true;
+}
+
+if (botonEliminacionPresionado2 === 'true') {
+    // Si ya ha sido pulsado, deshabilita el botón
+    document.getElementById('comodin-publico').classList.remove("ovalBackground");
+    document.getElementById('comodin-publico').classList.add("btonBloqueadoComodin");
+    document.getElementById('comodin-publico').disabled = true;
+}
+
+if (botonEliminacionPresionado3 === 'true') {
+    // Si ya ha sido pulsado, deshabilita el botón
+    document.getElementById('comodin-llamada').classList.remove("ovalBackground");
+    document.getElementById('comodin-llamada').classList.add("btonBloqueadoComodin");
+    document.getElementById('comodin-llamada').disabled = true;
 }
 
 if (preguntasAcertadas === null) {
@@ -70,12 +100,42 @@ if (preguntaActual >3){
 
 }
 
-function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
+var preguntaActual = localStorage.getItem('preguntaActual');
+var preguntaActual = 1;
+localStorage.setItem('preguntaActual', preguntaActual);
+
+if (preguntaActual === null) {
+    preguntaActual = 0;
+} else {
+    preguntaActual = parseInt(preguntaActual);
+}
+
+var cronometro1; 
+var cronometro2;
+var cronometro0;
+
+
+function verificarRespuesta(respuesta, respuestaCorrecta, boton,cronometroId) {
+    
+    if (preguntaActual ==1 && nivelDificultadActual != '1'){
+        detenerCronometro(cronometro0);
+        document.getElementById('cronoPregunta_1').style.display = 'block';
+        localStorage.setItem("valorInicial",60) 
+        cronometro1 = iniciarCronometro('cronoPregunta_1',60);
+    }
+    if (preguntaActual ==2 && nivelDificultadActual != '1'){
+        detenerCronometro(cronometro1);
+        document.getElementById('cronoPregunta_2').style.display = 'block';
+        detenerCronometro(cronometro2); // Detener el cronómetro 1 si es necesario
+        localStorage.setItem("valorInicial",60)
+        cronometro2 = iniciarCronometro('cronoPregunta_2',60);
+    }
+    
     var botones = boton.parentElement.querySelectorAll('button');
     var esRespuestaCorrecta = respuesta === respuestaCorrecta;
     
     if (esRespuestaCorrecta) {
-        resetearCronoPregunta()
+       
         soundSuccessQuuestion();
         boton.classList.remove("backgroundContenidoRespuesta");
         boton.classList.add("backgroundContenidoRespuestaCorrecta");
@@ -90,6 +150,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
         // Reproducir el sonido de éxito
 
         if (respuestasCorrectas === 3) {
+            detenerCronometro(cronometro2);
             pausarCronometro();
             var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
             botonesFormulario.forEach(function(boton) {
@@ -100,6 +161,8 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
         botones.forEach(function(element) {
+            element.classList.remove("backgroundContenidoRespuesta");
+            element.classList.add("btonBloqueado");
             element.disabled = true;
         });
 
@@ -123,6 +186,8 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
         botones.forEach(function(element) {
+            element.classList.remove("backgroundContenidoRespuesta");
+            element.classList.add("btonBloqueado");
             element.disabled = true;
         });
 
@@ -200,6 +265,8 @@ if (tiempoInicio === null || preguntasAcertadas <= 0) {
     tiempoInicio = parseInt(tiempoInicio);
 }
 
+
+
 function actualizarCronometro() {
     var cronometro = document.getElementById('cronometro');
 
@@ -214,35 +281,107 @@ function actualizarCronometro() {
     }, 1000);
 }
 
-var intervalo; // Declara la variable intervalo en un alcance más amplio
+valorActual = 0;
 
-function actualizarCronoPregunta() {
-    var cronoPregunta = document.getElementById('cronoPregunta');
-    var tiempoRestante = parseInt(cronoPregunta.innerHTML);
 
-    if (tiempoRestante > 0) {
-        tiempoRestante--;
-        cronoPregunta.innerHTML = tiempoRestante;
-    }
 
-    if (tiempoRestante === 0) {
-        clearInterval(intervalo);
-        enviarTiempoTranscurrido()
+function iniciarCronometro(cronoId, segundos) {
+    var cronoPregunta = document.getElementById(cronoId);
+    var valorInicial = localStorage.getItem("valorInicial") || segundos || 60;
+
+    if (cronoPregunta) {
+        var valorActual = valorInicial;
+        cronoPregunta.innerHTML = valorActual;
+
+        var intervalo = setInterval(function() {
+            valorActual--;
+            cronoPregunta.innerHTML = valorActual;
+
+            localStorage.setItem("valorInicial", valorActual);
+
+            if (valorActual === 0) {
+                clearInterval(intervalo);
+                    // Cambia la acción del formulario a 'lose.php'
+                var form = document.createElement('form');
+                form.method = 'post';
+                form.action = 'lose.php';
+
+                // Crea un campo oculto para el tiempo transcurrido
+                var inputTiempo = document.createElement('input');
+                inputTiempo.type = 'hidden';
+                inputTiempo.name = 'tiempoTranscurrido2';
+                inputTiempo.value = tiempoInicio;
+
+                // Crea un campo oculto para el puntaje
+                var inputPuntaje = document.createElement('input');
+                inputPuntaje.type = 'hidden';
+                inputPuntaje.name = 'puntaje';
+                inputPuntaje.value = preguntasAcertadas;
+
+                // Agrega los campos ocultos al formulario
+                form.appendChild(inputTiempo);
+                form.appendChild(inputPuntaje);
+
+                // Agrega el formulario al cuerpo del documento y envíalo
+                document.body.appendChild(form);
+                form.submit();
+
+            }
+        }, 1000); // Actualiza cada 1 segundo (1000 milisegundos)
+
+        return intervalo; // Devuelve el identificador del intervalo
     }
 }
 
-function resetearCronoPregunta() {
-    var cronoPregunta = document.getElementById('cronoPregunta');
-    cronoPregunta.innerHTML = '60';
+
+
+
+function sumarTiempo(cronometroId) {
+    // Obtiene el valor inicial almacenado en localStorage
+    var valorInicial = parseInt(localStorage.getItem("valorInicial"), 10) || 0;
+
+
+    // Suma 30 segundos al valor inicial
+    valorInicial += 30;
+
+
+    // Almacena el nuevo valor en localStorage
+    localStorage.setItem("valorInicial", valorInicial);
+
+    // Actualiza el cronómetro con el nuevo valor
+    var cronoPregunta = document.getElementById(cronometroId);
+    cronoPregunta.innerHTML = valorInicial;
+
+    // Deshabilita el botón para evitar más clics
+    var botonComodin = document.getElementById('comodin-publico');
+    botonComodin.disabled = true;
+    console.log(localStorage.getItem("valorInicial"))
+    // Evita que el evento del botón se propague y refresque la página
+    return false;
 }
+
+
+function detenerCronometro(intervalo) {
+    clearInterval(intervalo);
+}
+
+
+function actualizarCronometroPreguntas(cronometroId, nuevoValor) {
+    var cronoPregunta = document.getElementById(cronometroId);
+
+    if (cronoPregunta) {
+        cronoPregunta.innerHTML = nuevoValor;
+        console.log(nuevoValor);
+    }
+}
+
 
 window.onload = function () {
     actualizarCronometro();
     if (nivelDificultadActual != '1'){
-        actualizarCronoPregunta();
-        var cronoPregunta = document.getElementById('cronoPregunta');
-        var tiempoInicial = parseInt(cronoPregunta.innerHTML);
-        var intervalo = setInterval(actualizarCronoPregunta, 1000); // Actualizar cada segundo
+        document.getElementById('cronoPregunta_0').style.display = 'block';
+        localStorage.setItem("valorInicial",60) 
+        cronometro0 = iniciarCronometro('cronoPregunta_0',60); 
     }
 };
 
@@ -288,6 +427,16 @@ function pausarCronometro() {
         cronometroPausado = true;
     }
 }
+
+function reanudarCronometro() {
+    if (cronometroPausado) { // Solo reanudar si está pausado
+        actualizarCronometro();
+        cronometroPausado = false;
+    }
+}
+
+
+
 
 function eliminarRespuestasIncorrectas(preguntaActual) {
     // Obtiene una referencia al botón de eliminación
@@ -345,7 +494,6 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
 }
 
 
-
 // Agrega un evento click al botón
 document.getElementById('btnEliminarRespuestas').addEventListener('click', function() {
     // Verifica si el botón ya ha sido pulsado
@@ -357,6 +505,35 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
         // Marca el botón como pulsado en el almacenamiento local
         localStorage.setItem('botonEliminacionPresionado', 'true');
 
+        // Deshabilita el botón
+
+        this.disabled = true;
+    }
+});
+
+document.getElementById('comodin-llamada').addEventListener('click', function() {
+    var nivelDificultadActual = parseInt(document.getElementById('nivel-dificultad').getAttribute('data-nivel'));
+    var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
+
+    if (nivelDificultadActual > 1 && botonEliminacionPresionado3 !== 'true' && localStorage.getItem('preguntaActual') < 4) {
+        var preguntaActual = localStorage.getItem('preguntaActual');
+        if (preguntaActual==1){
+            detenerCronometro(cronometro0)
+            sumarTiempo('cronoPregunta_0');
+            cronometro0 = iniciarCronometro('cronoPregunta_0',localStorage.getItem("valorInicial")); 
+        }else if(preguntaActual==2){
+            detenerCronometro(cronometro1);
+            sumarTiempo('cronoPregunta_1');
+            cronometro1 = iniciarCronometro('cronoPregunta_1',localStorage.getItem("valorInicial")); 
+            
+        }else if(preguntaActual==3){
+            detenerCronometro(cronometro2);
+            sumarTiempo('cronoPregunta_2');
+            cronometro2 = iniciarCronometro('cronoPregunta_2',localStorage.getItem("valorInicial")); 
+        }
+
+        // Marca el comodín como utilizado en el almacenamiento local
+        localStorage.setItem('botonEliminacionPresionado3', 'true');
         // Deshabilita el botón
         this.disabled = true;
     }
@@ -387,10 +564,25 @@ function scrollHaciaAbajo() {
 
 
 document.getElementById('comodin-publico').addEventListener('click', function() {
+    pausarCronometro();
+    if (botonEliminacionPresionado2 !== 'true' && localStorage.getItem('preguntaActual') < 4 ) {
+        var preguntaActual = localStorage.getItem('preguntaActual');
+
+        // Marca el botón como pulsado en el almacenamiento local
+        localStorage.setItem('botonEliminacionPresionado2', 'true');
+
+        // Deshabilita el botón
+       
+    }
     var botonPublico = document.getElementById('comodin-publico');
     var respuestaCorrecta = localStorage.getItem('bien');
 
     if (botonPublico.disabled) {
+        return;
+    }
+
+    if ( botonEliminacionPresionado2 === 'true') {
+        // Si ya se ha utilizado el comodín público, no hagas nada
         return;
     }
 
@@ -409,10 +601,21 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
             }
         });
 
-        var porcentajeCorrecta = 80;
-        var porcentajeIncorrectas = (100 - porcentajeCorrecta);
+        var porcentajeCorrecta;
+        var porcentajeIncorrectas;
         var porcentajesAleatorios = [];
 
+        // Determina aleatoriamente si la respuesta correcta tendrá un 80% de probabilidad de ser correcta
+        if (Math.random() <= 0.8) {
+            // Genera un número aleatorio entre 51 y 99 para el porcentaje de la respuesta correcta
+            porcentajeCorrecta = Math.floor(Math.random() * 49) + 51;
+            porcentajeIncorrectas = 100 - porcentajeCorrecta;
+        } else {
+            porcentajeCorrecta = 20; // Respuesta correcta con 20% de probabilidad
+            porcentajeIncorrectas = 100 - porcentajeCorrecta;
+        }
+
+        // Genera porcentajes aleatorios para las respuestas incorrectas
         for (var i = 0; i < respuestasIncorrectas.length - 1; i++) {
             var porcentajeAleatorio = Math.floor(Math.random() * porcentajeIncorrectas) + 1;
             porcentajesAleatorios.push(porcentajeAleatorio);
@@ -423,29 +626,30 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         porcentajesAleatorios.push(porcentajeIncorrectas);
 
         var estadistica = respuestaCorrecta + "@" + porcentajeCorrecta;
-        var estadistica2 = []
+        var estadistica2 = [];
 
         respuestasIncorrectas.forEach(function(boton, index) {
             var respuesta = boton.innerText.trim();
-            if (index !=2) {
-                estadistica2 += respuesta + "@" + porcentajesAleatorios[index] +"#";
+            if (index != 2) {
+                estadistica2 += respuesta + "@" + porcentajesAleatorios[index] + "#";
             } else {
                 estadistica2 += respuesta + "@" + porcentajesAleatorios[index];
             }
-           
         });
 
         localStorage.setItem('estadistica2', estadistica2);
         localStorage.setItem('estadistica', estadistica);
-      
+
         // Deshabilita el botón de eliminación
         botonPublico.disabled = true;
         // Cambia el estilo del botón (opcional)
         botonPublico.style.backgroundColor = 'gray';
 
+        
         // Llama a la función mostrarModal después de actualizar 'estadistica'
         mostrarModal();
-    }
+
+                }
 });
 
 
@@ -488,10 +692,10 @@ function mostrarModal() {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '[x]',
+                    label: 'VOTO DEL PUBLICO',
                     data: data,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(255, 192, 18, 0.4)',
+                    borderColor: 'rgba(255, 209, 18, 1)',
                     borderWidth: 1
                 }]
             },
@@ -516,5 +720,6 @@ function mostrarModal() {
 function cerrarModal() {
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
+    reanudarCronometro()
+    
 }
-

@@ -18,7 +18,7 @@ $recordsArray = [];
 foreach ($records as $record) {
     $data = explode("-;-;-", $record);
     // Verifica si hay al menos 4 elementos en la línea
-    if (count($data) >= 4) {
+    if (count($data) >= 3) {
         $recordData = [
             'idSesion' => $data[0],
             'nombre' => $data[1],
@@ -26,7 +26,6 @@ foreach ($records as $record) {
             'fechaHora' => $data[3],
         ];
         $recordsArray[] = $recordData;
-
     }
 }
 
@@ -46,8 +45,12 @@ function compareRecords($a, $b)
 
 // Ordena los registros utilizando la función de comparación
 usort($recordsArray, 'compareRecords');
-?>
 
+$sessionId = session_id();
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,6 +63,20 @@ usort($recordsArray, 'compareRecords');
 </head>
 
 <body>
+    <noscript>
+        <div id="avisoJS" class="avisoJS">
+            <h1 class="titleNoscript">
+                <?php echo $lang['noscipt']['tittle']; ?>
+            </h1>
+            <div class="deshabilitado">
+                <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" target="_blank">
+                    <?php echo $lang['noscipt']['link']; ?>
+                </a>.
+            </div>
+        </div>
+        <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+    </noscript>
     <h1>Hall Of Fame</h1>
 
     <table>
@@ -68,11 +85,15 @@ usort($recordsArray, 'compareRecords');
             <th>Puntuación</th>
             <th>Nombre</th>
             <th>ID sesion</th>
-            <th>Fecha y Hora</th>
+            <th>Tiempo</th>
         </tr>
         <?php
         foreach ($recordsArray as $index => $record) {
-            echo '<tr>';
+            if ($sessionId === $record['idSesion']) {
+                echo '<tr class="userRow">';
+            } else {
+                echo '<tr>';
+            }
             echo '<td>' . ($index + 1) . '</td>'; // Posición
             echo '<td>' . $record['puntuacion'] . '</td>'; // Puntuación
             echo '<td>' . $record['nombre'] . '</td>'; // Nombre
@@ -83,7 +104,7 @@ usort($recordsArray, 'compareRecords');
         ?>
     </table>
 
-    <a href="index.php" class="button">
+    <a href="../assets/scripts/logout.php" class="button">
         <?php echo $lang['buttons']['toStart']; ?>
     </a>
 </body>

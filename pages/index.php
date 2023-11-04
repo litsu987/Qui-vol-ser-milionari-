@@ -1,11 +1,13 @@
 <?php
 session_start();
+session_destroy();
+session_start();
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
-    if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
-        $_SESSION['lang'] = 'en';
-    }
+    // if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
+    $_SESSION['lang'] = 'en';
+    // }
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
 ?>
@@ -24,6 +26,23 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
 </head>
 
 <body>
+    <noscript>
+        <div id="avisoJS" class="avisoJS">
+            <h1 class="titleNoscript">
+                <?php echo $lang['noscipt']['tittle']; ?>
+            </h1>
+            <div class="deshabilitado">
+                <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" target="_blank">
+                    <?php echo $lang['noscipt']['link']; ?>
+                </a>.
+            </div>
+        </div>
+        <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+    </noscript>
+    <div>
+        <a href="login.php">Login</a>
+    </div>
     <div id="banner">
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
@@ -96,6 +115,12 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
             <img id="ca" src="../assets/images/cataloniaFlag.jpg" alt="Catalan flag">
         </a>
     </div>
+    <h1>
+
+        <?php $session = session_id();
+        echo $session ?>
+
+    </h1>
 </body>
 
 </html>

@@ -25,9 +25,22 @@ $lang = array(
         'score' => 'Tu puntuación és ',
         'publishScore' => '¿Quieres publicar tu puntuación?',
         'dificultLvl' => 'Nivel de dificultad',
+        'publishConfirmed' => "Puntuación publicada corectamente",
+        'publishFailed' => "Ha habido un error al publicar la puntuación!!!",
+
     ],
     'namePlaceholder' => 'Introduce tu nombre',
     'tittle' => '¿QUIEN QUIERE SER MILLONARIO?',
     'nextQuestions' => 'SIGUIENTES PREGUNTAS',
+    'noscipt' => [
+        'tittle' => 'Javascript NO ESTÁ ACTIVADO',
+        'message' => 'Javascript está deshabilitado en su navegador web.<br />
+                    Por favor, para ver correctamente este sitio,<br/>
+                    <b><i>habilite javascript</i></b>.<br/>
+                    <br />
+                    Para ver las instrucciones para habilitar javascript<br />
+                    en su navegador, haga click',
+        'link' => 'aquí',
+    ],
 );
 ?>
