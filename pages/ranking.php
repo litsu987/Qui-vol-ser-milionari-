@@ -45,8 +45,12 @@ function compareRecords($a, $b)
 
 // Ordena los registros utilizando la función de comparación
 usort($recordsArray, 'compareRecords');
-?>
 
+$sessionId = session_id();
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,12 +64,15 @@ usort($recordsArray, 'compareRecords');
 
 <body>
     <noscript>
-        <div id="avisoJS" class="avisoJS" >
-            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+        <div id="avisoJS" class="avisoJS">
+            <h1 class="titleNoscript">
+                <?php echo $lang['noscipt']['tittle']; ?>
+            </h1>
             <div class="deshabilitado">
-            <?php echo $lang['noscipt']['message']; ?>
-                <a href="https://support.google.com/adsense/answer/12654?hl" 
-                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+                <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" target="_blank">
+                    <?php echo $lang['noscipt']['link']; ?>
+                </a>.
             </div>
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
@@ -82,7 +89,11 @@ usort($recordsArray, 'compareRecords');
         </tr>
         <?php
         foreach ($recordsArray as $index => $record) {
-            echo '<tr>';
+            if ($sessionId === $record['idSesion']) {
+                echo '<tr class="userRow">';
+            } else {
+                echo '<tr>';
+            }
             echo '<td>' . ($index + 1) . '</td>'; // Posición
             echo '<td>' . $record['puntuacion'] . '</td>'; // Puntuación
             echo '<td>' . $record['nombre'] . '</td>'; // Nombre
@@ -93,7 +104,7 @@ usort($recordsArray, 'compareRecords');
         ?>
     </table>
 
-    <a href="index.php" class="button">
+    <a href="../assets/scripts/logout.php" class="button">
         <?php echo $lang['buttons']['toStart']; ?>
     </a>
 </body>

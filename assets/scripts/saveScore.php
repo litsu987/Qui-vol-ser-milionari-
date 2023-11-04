@@ -1,21 +1,21 @@
 <?php
 session_start();
-if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION["score"]))&& (isset($_SESSION['tiempoInicio']))){
+if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION["score"])) && (isset($_SESSION['tiempoInicio']))) {
 
     $name = $_POST["name"];
     $currentDate = $_POST["currentDate"];
     $score = $_SESSION["score"];
     $sessionId = session_id();
     $tiempo = $_SESSION['tiempoInicio'];
-    $minutos = $tiempo / 60; 
+    $minutos = $tiempo / 60;
 
-    if ($_SESSION["score"] == 18){
-        if ($tiempo <= 300){
-            $score=$score+3;
-        }else if ($tiempo <= 600){
-            $score=$score+2;
-        }else if ($tiempo <= 900){
-            $score=$score+1;
+    if ($_SESSION["score"] == 18) {
+        if ($tiempo <= 300) {
+            $score = $score + 3;
+        } else if ($tiempo <= 600) {
+            $score = $score + 2;
+        } else if ($tiempo <= 900) {
+            $score = $score + 1;
         }
     }
 
@@ -31,7 +31,11 @@ if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION[
         fwrite($file, $data);
         fclose($file);
     }
+    header("Location: ../../pages/ranking.php");
+
+} else {
+    header("Location: ../../pages/publishFail.php");
+
 }
-header("Location: ../../pages/ranking.php");
-exit;
+
 ?>

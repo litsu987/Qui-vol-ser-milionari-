@@ -25,6 +25,10 @@ $lang = array(
         'score' => 'Your score is: ',
         'publishScore' => 'Do you want to publish your score?',
         'dificultLvl' => 'Difficulty level',
+        'publishConfirmed' => "Score published succesfully",
+        'publishFailed' => "There was an error publishing the score!!!",
+
+
     ],
     'namePlaceholder' => 'Enter your name',
     'tittle' => 'WHO WANTS TO BE A MILLIONAIRE?',
@@ -37,7 +41,7 @@ $lang = array(
                 <br />
                 For instructions to enable javascript<br />
                 In your browser, click',
-        'link'=> 'here',
+        'link' => 'here',
     ],
 );
 ?>
