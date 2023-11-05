@@ -25,4 +25,3 @@ console.log(questionsOK);
 
 
 document.getElementById("preguntasAcertadas").innerHTML = questionsOK;
-console.log();
