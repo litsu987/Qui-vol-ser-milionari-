@@ -13,36 +13,19 @@ function soundBadQuestion() {
     playSound('../music/error_sound.mp3');
 }
 
-function soundLoseQuestion() {
-    playSound('../music/lose_sound.mp3');
-}
-
-function soundWinQuestion() {
-    playSound('../music/win_sound.mp3');
-}
-
 function soundAnimation() {
     playSound('../music/epica.mp3');
-}
-
-function soundBicho() {
-    playSound('../music/bicho.mp3');
 }
 
 function soundHelpQuestion() {
     playSound('../music/help_sound.mp3');
 }
 
-var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
-var comodinUsado;
-var respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
-var comodinUsado
-var nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel');
-var ultimaPreguntaMostrada = 1;
-var preguntasAcertadas = localStorage.getItem('puntaje');
-
-
-
+let respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
+let comodinUsado;
+let nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel'); 
+let ultimaPreguntaMostrada = 1;
+let preguntasAcertadas = localStorage.getItem('puntaje');
 
 if (nivelDificultadActual === '1') {
     preguntasAcertadas = 0;
@@ -725,3 +708,12 @@ function cerrarModal() {
     reanudarCronometro()
     
 }
+
+
+
+
+
+
+
+
+

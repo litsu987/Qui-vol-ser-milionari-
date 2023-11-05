@@ -116,12 +116,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
         </div>
     </div>
 
+    <h1 id="preguntasAcertadas" preguntasAcertadas=<?php $_SESSION['score'] ?>></h1>
 
-
-    <script src="../assets/scripts/script.js"></script>
-    <script src="../assets/scripts/juego.js"></script>
-    <?php session_destroy() ?>
-
+    <script src=" ../assets/scripts/script.js">
+    </script>
+    <script src="../assets/scripts/winLose.js"></script>
 </body>
 
 </html>

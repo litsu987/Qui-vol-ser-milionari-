@@ -18,3 +18,11 @@ function publish() {
 }
 
 document.getElementById("publishButton").addEventListener("click", publish);
+
+
+const questionsOK = document.getElementById("preguntasAcertadas").getAttribute("preguntasAcertadas");
+console.log(questionsOK);
+
+
+document.getElementById("preguntasAcertadas").innerHTML = questionsOK;
+console.log();
