@@ -109,6 +109,7 @@ if (isset($_POST['tiempoTranscurrido'])) {
 
 
     <script src="../assets/scripts/winLose.js"></script>
+
 </body>
 
 </html>
