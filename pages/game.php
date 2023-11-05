@@ -12,7 +12,6 @@ $_SESSION['score'] = 0;
 
 
 if (isset($_POST['aumentar_dificultad'])) {
-    echo "tengo aumentar_dificultad";
     if (!isset($_SESSION['nivel_dificultad'])) {
         // Si la variable de sesión 'nivel_dificultad' no existe en esta sesión, inicialízala en 1
         $_SESSION['nivel_dificultad'] = 1;
@@ -105,7 +104,7 @@ function comodinPublico()
     </div>
 
     <h3 class="lvlDifivultad" id="nivel-dificultad" data-nivel="<?php $_SESSION['nivel_dificultad'] ?>">
-        <?php echo $lang['messages']['dificultLvl'] . " " . $_SESSION['nivel_dificultad'] ?> :
+        <?php echo $lang['messages']['dificultLvl'] . ": " . $_SESSION['nivel_dificultad'] ?>
     </h3>
 
     <?php
@@ -275,7 +274,7 @@ function comodinPublico()
                     $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
                     $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
                     echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
-                    echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display: none;'></div>";
+                    echo "<div id='cronoPregunta_$i'class='CronoPregunta oculto'></div>";
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
     
                     $englishQuestion = getEnglishQuestion($pregunta);

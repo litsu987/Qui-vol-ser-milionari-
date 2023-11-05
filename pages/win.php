@@ -110,7 +110,6 @@ if (isset($_POST['tiempoTranscurrido'])) {
 
     <script src="../assets/scripts/script.js"></script>
     <script src="../assets/scripts/juego.js"></script>
-    <?php session_destroy() ?>
 </body>
 
 </html>
