@@ -23,7 +23,6 @@ if (isset($_POST['aumentar_dificultad'])) {
 } else {
     $_SESSION['nivel_dificultad'] = 1;
     $_SESSION['pregunta_actual'] = 0;
-    echo "nivel_dificultad -> " . $_SESSION['nivel_dificultad'];
 }
 
 if (isset($_POST['pregunta_actual'])) {
