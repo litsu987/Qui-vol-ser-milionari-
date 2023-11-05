@@ -2,15 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 
 /* Estilo general para la página */
-*{
+* {
     margin: 0;
     padding: 0;
 }
+
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(90deg,#6610f2 0%, #6f42c1 80%);
-    
 }
+
 /* INDEX.PHP */
 .container {
     max-width: 800px;
@@ -57,6 +58,7 @@ a {
 a:hover {
     color: #0056b3;
 }
+
 #nameAndPublishDiv {
     display: none;
 }
@@ -139,7 +141,6 @@ button[type="reset"].button:hover {
     background-color: #138496;
 }
 
-
 /* GAME.PHP */
 .lvlDifivultad{
     display: flex;
@@ -156,6 +157,7 @@ button[type="reset"].button:hover {
     background: -moz-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%); 
     color: white;
 }
+
 #preguntas_contenedor{
     display: flex;
     align-items: center;
@@ -182,8 +184,8 @@ button[type="reset"].button:hover {
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     background: -webkit-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     background: -moz-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%); 
-    
 }
+
 .respuestas{
     display: grid; 
     grid-template-rows: 1fr 1fr;
@@ -193,8 +195,8 @@ button[type="reset"].button:hover {
     width: 80%;
     margin-left: 130px;
     margin-bottom: 50px;
-    
 }
+
 .contenidoRespuesta{
     cursor: pointer;
     text-align: center;
@@ -203,43 +205,44 @@ button[type="reset"].button:hover {
     height: 80px;
     color: white;
 }
-/* .contenidoRespuesta:hover{
-    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
 
-} */
 .backgroundContenidoRespuesta{
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
 }
+
 .backgroundContenidoRespuesta:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
-
 }
+
 .btonBloqueado{
     background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
     cursor: auto;
 }
+
 .backgroundContenidoRespuestaCorrecta{
     background: radial-gradient(circle farthest-corner at center center, #57da57 0%, #126f12 80%);
 }
+
 .backgroundContenidoRespuestaIncorrecta{
     background: radial-gradient(circle farthest-corner at center center, #ff0000 0%, #681c1c 70%);
 }
+
 .bannerMillonario{
     display: flex;
     justify-content: center;
     align-content: center;
 }
+
 .bannerImagen{
-    
     text-align: center; /* Alinea el texto al centro */
     position: center; /* Fija el banner en la pantalla */
     width: 455px; /* Ancho del banner al 100% de la pantalla */
     top: 0; /* Sitúa el banner en la parte superior */
 }
+
 .oculto {
     display: none;
 }
-
 
 #nextQuestions{
     cursor: pointer;
@@ -252,9 +255,9 @@ button[type="reset"].button:hover {
     padding: 10px;
     margin-bottom: 40px;
 }
+
 #nextQuestions:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
-
 }
 /* LOSE.PHP-WIN.PHP */
 
@@ -263,13 +266,14 @@ button[type="reset"].button:hover {
     justify-content: center;
     align-content: center;
 }
+
 .imagenPrincipal{
-    
     text-align: center; /* Alinea el texto al centro */
     position: center; /* Fija el banner en la pantalla */
     width: 700px; /* Ancho del banner al 100% de la pantalla */
     top: 0; /* Sitúa el banner en la parte superior */
 }
+
 .bodyLoseWin{
     Overflow: hidden;
     display: flex;
@@ -278,15 +282,18 @@ button[type="reset"].button:hover {
     align-items: center;
     gap: 20px;
 }
+
 .centrar{
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
 }
+
 #name {
     text-align: center;
 }
+
 .fondo{
     display: flex;
     align-items: center;
@@ -301,6 +308,7 @@ button[type="reset"].button:hover {
     width: 700px;
     color: white;
 }
+
 #divLogin{
     display: flex;
     align-items: center;
@@ -319,19 +327,22 @@ button[type="reset"].button:hover {
     color: white;
     gap: 4%;
 }
+
 .tituloLost{
     color: white;
     margin-top: 50px;
     margin-bottom: 50px;
+}
 
-}
 .preguntaPublicar{
-   margin-top: 20px;
-   gap: 10px;
+    margin-top: 20px;
+    gap: 10px;
 }
+
 .score{
     margin-bottom: 20px;
 }
+
 .divExtras{
     margin-top: 20px;
     margin-left: 0px;
@@ -356,6 +367,7 @@ button[type="reset"].button:hover {
     font-size: 15.7px;
     position: fixed; 
 }
+
 .fondoDesenfocado{
     z-index: 999;
     position: fixed;
@@ -365,6 +377,7 @@ button[type="reset"].button:hover {
     height: 100%;
     backdrop-filter: blur(10px); 
 }
+
 .titleNoscript{
     margin-top: 25px;
 }
@@ -398,7 +411,7 @@ button[type="reset"].button:hover {
     justify-content: center;
     margin-top: 5px;
 }
-  
+
 #languages img {
     margin: 10px;
     width: 99px;
@@ -411,16 +424,14 @@ button[type="reset"].button:hover {
     border: 2px solid transparent;
     transition: all 0.3s;
     border: 2px solid #1d060c;
-    
-
 }
-  
+
 #languages img:hover {
     filter: brightness(70%);
     transform: rotate(360deg);
     border-radius: 50%;
 }
-  
+
 #banner {
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     height: 100%;
@@ -462,6 +473,7 @@ ul {
     font-family: 'Roboto Mono', monospace;
     margin: 15px 0px 15px;
 }
+
 li {
     display: flex;
     flex-direction: row;
@@ -472,7 +484,6 @@ li {
 .text-container {
     margin-left: 20px;
 }
-
 
 #cronometro2 {
     width: 150px; /* Ancho fijo de la caja */
@@ -504,9 +515,8 @@ li {
     gap: 15px;
     position: fixed;
     z-index: 50;
-
-
 }
+
 .oval {
     cursor: pointer;
     width: 80px;
@@ -516,25 +526,26 @@ li {
     border-radius: 50% / 50%;
     color: white;
 }
+
 .ovalBackground{
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
 }
+
 .ovalBackground:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
-
 }
+
 .comTiempo{
     font-size: large;
 }
+
 .comPublico{
     font-size: large;
-
 }
 
 .btonBloqueadoComodin{
     background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
     cursor: auto;
-
 }
 /* POPUP COMODIN PUBLICO */
 
@@ -556,24 +567,21 @@ li {
     margin-top: -137px;
 }
 
-  
-  
-  .cerrar {
+.cerrar {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .cerrar:hover,
-  .cerrar:focus {
+}
+
+.cerrar:hover,
+.cerrar:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  } 
+} 
 
-
-  .CronoPregunta {
+.CronoPregunta {
     width: 150px; /* Ancho fijo de la caja */
     height: 20px; /* Alto fijo de la caja */
     background: #0069bb;
@@ -593,42 +601,37 @@ li {
     width: 400px;
     height: auto;
 }
+
 .swirl-in-fwd {
-	-webkit-animation: swirl-in-fwd 0.6s ease-out both;
-	        animation: swirl-in-fwd 0.6s ease-out both;
+    -webkit-animation: swirl-in-fwd 0.6s ease-out both;
+    animation: swirl-in-fwd 0.6s ease-out both;
 }
 
 @-webkit-keyframes swirl-in-fwd {
     0% {
-      -webkit-transform: rotate(-540deg) scale(0);
-              transform: rotate(-540deg) scale(0);
-      opacity: 0;
+        -webkit-transform: rotate(-540deg) scale(0);
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
     }
     100% {
-      -webkit-transform: rotate(0) scale(1);
-              transform: rotate(0) scale(1);
-      opacity: 1;
+        -webkit-transform: rotate(0) scale(1);
+        transform: rotate(0) scale(1);
+        opacity: 1;
     }
-  }
-  @keyframes swirl-in-fwd {
+}
+
+@keyframes swirl-in-fwd {
     0% {
-      -webkit-transform: rotate(-540deg) scale(0);
-              transform: rotate(-540deg) scale(0);
-      opacity: 0;
+        -webkit-transform: rotate(-540deg) scale(0);
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
     }
     100% {
-      -webkit-transform: rotate(0) scale(1);
-              transform: rotate(0) scale(1);
-      opacity: 1;
+        -webkit-transform: rotate(0) scale(1);
+        transform: rotate(0) scale(1);
+        opacity: 1;
     }
-  }
-
-
-
-
-
-
-
+}
 
 .userRow {
     background-color: #4e003d;

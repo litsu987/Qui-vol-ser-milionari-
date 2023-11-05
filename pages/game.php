@@ -274,9 +274,8 @@ function comodinPublico()
                     $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
                     $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
                     echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
-                    if ($_SESSION['nivel_dificultad'] > 1) {
-                        echo "<div id='cronoPregunta_$i'class='CronoPregunta'></div>";
-                    }
+                    echo "<div id='cronoPregunta_$i'class='CronoPregunta'></div>";
+
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
     
                     $englishQuestion = getEnglishQuestion($pregunta);
