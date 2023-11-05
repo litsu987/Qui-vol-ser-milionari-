@@ -177,18 +177,9 @@ function comodinPublico()
             $userArrayQuestions = getQuestions($userQuestionsFilepath); // Array con las preguntas en el idioma seleccionado.
             $index = array_search($question, $userArrayQuestions); // Índice de la pregunta actual en el array seleccionado.
     
-            // foreach ($userArrayQuestions as $arrayQueston) {
-            //     echo "<br>arrayQueston -> " . $arrayQueston;
-            //     echo "<br>question -> " . $question . '<br>';
-            //     if ($arrayQueston === $question) {
-            //         echo 'true';
-            //     }
-            // }
             if ($index !== false) {
-                // echo '<br>index -> ' . $index;
                 $question = $englishArrayQuestions[$index]; // Pregunta en inglés correspondiente al índice.
             } else {
-                // echo '<br>no tengo index';
                 return false;
             }
         }
@@ -288,7 +279,6 @@ function comodinPublico()
                     echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display: none;'></div>";
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
     
-
                     $englishQuestion = getEnglishQuestion($pregunta);
                     if ($englishQuestion) {
                         $img = getImgInfo($englishQuestion);
@@ -297,13 +287,8 @@ function comodinPublico()
                         }
                     }
                     echo '</div>'; // Cierra el div de la pregunta
-    
                 }
-
                 echo '</div>'; // Cierra el contenedor principal de todas las preguntas
-    
-
-
             } else {
                 echo "No se pudo abrir el archivo.";
             }
@@ -311,18 +296,14 @@ function comodinPublico()
             echo "El archivo no existe.";
         }
     }
+    // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
     if ($_SESSION['nivel_dificultad'] > 6) {
-        // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
-        echo "<script>window.location = 'win.php';</script>";
-        // Redirige al jugador a la página de victoria
-        exit;
-        // Detiene la ejecución del script para evitar que el juego continúe
+        echo "<script>window.location = 'win.php';</script>"; // Redirige al jugador a la página de victoria
+        exit; // Detiene la ejecución del script para evitar que el juego continúe
     }
 
-    // Si la dificultad no es mayor que 6, el juego continúa:
+    $archivoSeleccionado = getQuestionsFilepath(); // Selecciona el archivo de preguntas según la dificultad actual
     
-    $archivoSeleccionado = getQuestionsFilepath();
-    // Selecciona el archivo de preguntas según la dificultad actual
     cargarPreguntas($archivoSeleccionado);
     // Carga y muestra las preguntas desde el archivo seleccionado
     
