@@ -118,8 +118,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
 
     <h1 id="preguntasAcertadas" preguntasAcertadas=<?php $_SESSION['score'] ?>></h1>
 
-    <script src=" ../assets/scripts/script.js">
-    </script>
     <script src="../assets/scripts/winLose.js"></script>
 </body>
 

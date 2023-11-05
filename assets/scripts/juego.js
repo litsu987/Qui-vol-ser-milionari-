@@ -27,7 +27,7 @@ let nivelDificultadActual = document.getElementById('nivel-dificultad').getAttri
 let ultimaPreguntaMostrada = 1;
 let preguntasAcertadas = localStorage.getItem('puntaje');
 
-if (nivelDificultadActual === '1') {
+if (nivelDificultadActual === 1) {
     preguntasAcertadas = 0;
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
     document.getElementById('btnEliminarRespuestas').disabled = false;
@@ -92,13 +92,14 @@ function deshabilitarBotones(botones) {
 
 function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     
-    if (preguntaActual == 1 && nivelDificultadActual != '1'){
+    if (preguntaActual == 1 && nivelDificultadActual != 1){
+        console.log(nivelDificultadActual);
         detenerCronometroPregunta(cronometro0);
         document.getElementById('cronoPregunta_1').style.display = 'block';
         localStorage.setItem("valorInicial",60) 
         cronometro1 = iniciarCronometroPregunta('cronoPregunta_1',60);
     }
-    if (preguntaActual ==2 && nivelDificultadActual != '1'){
+    if (preguntaActual ==2 && nivelDificultadActual != 1){
         detenerCronometroPregunta(cronometro1);
         document.getElementById('cronoPregunta_2').style.display = 'block';
         detenerCronometroPregunta(cronometro2); // Detener el cronómetro 1 si es necesario
@@ -393,7 +394,7 @@ function reanudarTiempoTotal() {
 
 window.onload = function () {
     actualizarTiempoTotal();
-    if (nivelDificultadActual != '1'){
+    if (nivelDificultadActual != 1){
         document.getElementById('cronoPregunta_0').style.display = 'block';
         localStorage.setItem("valorInicial",60) 
         cronometro0 = iniciarCronometroPregunta('cronoPregunta_0',60); 

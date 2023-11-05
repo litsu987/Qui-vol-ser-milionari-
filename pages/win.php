@@ -108,8 +108,8 @@ if (isset($_POST['tiempoTranscurrido'])) {
     </div>
 
 
-    <script src="../assets/scripts/script.js"></script>
-    <script src="../assets/scripts/juego.js"></script>
+    <script src="../assets/scripts/winLose.js"></script>
+
 </body>
 
 </html>
