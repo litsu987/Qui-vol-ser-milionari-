@@ -388,12 +388,14 @@ function pausarTiempoTotal() {
 function reanudarTiempoTotal() {
     if (cronometroPausado) { // Solo reanudar si está pausado
         actualizarTiempoTotal();
+        console.log('reanudarTiempoTotal');
         cronometroPausado = false;
     }
 }
 
 window.onload = function () {
     actualizarTiempoTotal();
+    console.log(nivelDificultadActual);
     if (nivelDificultadActual != 1){
         document.getElementById('cronoPregunta_0').style.display = 'block';
         localStorage.setItem("valorInicial",60) 

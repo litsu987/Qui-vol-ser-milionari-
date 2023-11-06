@@ -10,6 +10,7 @@ if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $
 include '../assets/language/' . $_SESSION['lang'] . '.php';
 $_SESSION['score'] = 0;
 
+$dificultad = $_SESSION['nivel_dificultad'];
 
 if (isset($_POST['aumentar_dificultad'])) {
     if (!isset($_SESSION['nivel_dificultad'])) {
@@ -28,22 +29,6 @@ if (isset($_POST['pregunta_actual'])) {
     $_SESSION['pregunta_actual'] = $_POST['pregunta_actual'];
 }
 
-
-
-function comodinPublico()
-{
-    $random = rand(0, 100);
-
-    if ($random <= 80) {
-        // La respuesta simulada del público es la respuesta correcta
-        return "La mayoría del público cree que la respuesta correcta es A.";
-    } else {
-        // La respuesta simulada del público es una respuesta incorrecta aleatoria
-        $respuestasIncorrectas = array("B", "C", "D");
-        $respuestaSimulada = $respuestasIncorrectas[array_rand($respuestasIncorrectas)];
-        return "La mayoría del público cree que la respuesta correcta es " . $respuestaSimulada . ".";
-    }
-}
 
 ?>
 <!DOCTYPE html>
@@ -277,7 +262,7 @@ function comodinPublico()
                     $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
                     $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
                     echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
-                    echo "<div id='cronoPregunta_$i'class='CronoPregunta'></div>";
+                    echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display : none'></div>";
 
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
     
@@ -299,7 +284,7 @@ function comodinPublico()
         }
     }
     // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
-    if ($_SESSION['nivel_dificultad'] > 6) {
+    if ($dificultad > 6) {
         echo "<script>window.location = 'win.php';</script>"; // Redirige al jugador a la página de victoria
         exit; // Detiene la ejecución del script para evitar que el juego continúe
     }
