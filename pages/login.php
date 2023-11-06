@@ -37,15 +37,16 @@
         </noscript>
         <?php
             $error = "";
-
+            $ok = "";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $user = $_POST["user"];
                 $pass = $_POST["pass"];
 
                 if (isset($usuarios[$user]) && $usuarios[$user] == $pass) {
                     $_SESSION["user"] = $user; 
-                    header("Location: edit.php");
+                    header("Location: index.php");
                     exit();
+                    $ok ="inico ok";
                 } else {
                     $error = "Usuario o contraseña incorrectos. Por favor, intenta nuevamente.";
                 }
@@ -67,6 +68,9 @@
             </form>
             <?php if ($error != "") { ?>
                     <p style="color: red;"><?php echo $error; ?></p>
+                <?php } ?>
+                <?php if ($ok != "") { ?>
+                    <p style="color: red;"><?php echo $ok; ?></p>
                 <?php } ?>
         </div>
 
