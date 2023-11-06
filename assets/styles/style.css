@@ -729,10 +729,6 @@ li {
         padding: 6% 3%;
     }
 
-    .index .lvlDifivultad {
-        padding: 3%;
-    }
-
     .index .buttonsGroup .button {
         margin: 25px 0 0;
     }
@@ -770,6 +766,12 @@ li {
     .LoseWin .divExtras {
         margin-bottom: 5%;
     }
+
+    .game .lvlDifivultad {
+        padding: 3%;
+    }
+
+    
 
     
 }
