@@ -37,7 +37,13 @@ $lang = array(
                     <br />
                     Per veure les instruccions per habilitar javascript<br />
                     al vostre navegador, feu click ',
-        'link'=> 'aquí',
+        'link'=> 'aquí',3 
+    ],
+    'login' => [
+        'title' => 'Iniciar Sesió',
+        'user' => 'Usuari',
+        'pass' => 'Contrasenya',
+        'acces' => 'Accedir',
     ],
 );
 ?>
