@@ -43,5 +43,11 @@ $lang = array(
                 In your browser, click',
         'link' => 'here',
     ],
+    'login' => [
+        'title' => 'Iniciar Sesión',
+        'user' => 'Usuario',
+        'pass' => 'Contraseña',
+        'acces' => 'Acceder',
+    ],
 );
 ?>

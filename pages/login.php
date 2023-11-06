@@ -1,3 +1,15 @@
+<?php
+    session_start();
+    if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
+        $_SESSION['lang'] = $_GET['lang'];
+    } else {
+        if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
+            $_SESSION['lang'] = 'en';
+        }
+    }
+    include '../assets/language/' . $_SESSION['lang'] . '.php';
+    $_SESSION['score'] = 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,13 +61,18 @@
 ?>
 
 <div id="divLogin" class="fondo">
-    <h1>Iniciar Sesión</h1>
-    <form id="login" action="" method="post">
-        <label for="user"> Usuario</label><br>
-        <input type="text" name="user" required><br><br>
-        <label for="pass"> Contraseña</label><br>
-        <input type="password" name="pass" required><br><br>
-        <button id="btnLogin" type="submit" class="button">Iniciar Sesión</button>
+    <h1><?php echo $lang['login']['title']; ?></h1>
+    <form id="login" action="" method="post" class="field">
+        <div class="form__group">
+            <input type="text" name="user" class="form__field" required>
+            <label for="user" class="form__label"><?php echo $lang['login']['user']; ?></label><br><br>
+        </div>
+        <div class="form__group">
+            <input type="password" name="pass" class="form__field" required>
+            <label for="pass" class="form__label"><?php echo $lang['login']['pass']; ?></label><br><br>
+        </div>
+        
+        <button id="btnLogin" type="submit" class="buttonLogin css-button-shadow-border-sliding--sky"><?php echo $lang['login']['acces']; ?></button>
     </form>
     <?php if ($error != "") { ?>
             <p style="color: red;"><?php echo $error; ?></p>
