@@ -44,7 +44,7 @@
 
                 if (isset($usuarios[$user]) && $usuarios[$user] == $pass) {
                     $_SESSION["user"] = $user; 
-                    header("Location: edit.php");
+                    header("Location: create.php");
                     exit();
                     
                 } else {
@@ -63,7 +63,6 @@
                     <input type="password" name="pass" class="form__field" required>
                     <label for="pass" class="form__label"><?php echo $lang['login']['pass']; ?></label><br><br>
                 </div>
-                
                 <button id="btnLogin" type="submit" class="buttonLogin css-button-shadow-border-sliding--sky"><?php echo $lang['login']['acces']; ?></button>
             </form>
             <?php if ($error != "") { ?>
