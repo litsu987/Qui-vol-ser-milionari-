@@ -24,6 +24,7 @@ function soundHelpQuestion() {
 let respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
 let comodinUsado;
 let nivelDificultadActual = document.getElementById('nivel-dificultad').getAttribute('data-nivel'); 
+console.log(nivelDificultadActual);
 let ultimaPreguntaMostrada = 1;
 let preguntasAcertadas = localStorage.getItem('puntaje');
 
@@ -127,14 +128,13 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
 
         if (respuestasCorrectas === 3) {
             detenerCronometroPregunta(cronometro2);
-            pausarTiempoTotal();
             document.getElementById("nextQuestions").style.display = "block";
 
-            // var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
-            // botonesFormulario.forEach(function(boton) {
-            //     boton.classList.remove("oculto");
-            //     boton.classList.add("nextQuestion");
-            // });
+            var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
+            botonesFormulario.forEach(function(boton) {
+                boton.classList.remove("oculto");
+                boton.classList.add("nextQuestion");
+            });
         }
 
         // Deshabilita todos los botones en el mismo grupo de respuestas

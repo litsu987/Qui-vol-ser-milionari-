@@ -23,7 +23,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
     <script src="https://kit.fontawesome.com/74ec47558a.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="index">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">

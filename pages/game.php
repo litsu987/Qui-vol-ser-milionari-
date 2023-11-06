@@ -23,6 +23,7 @@ if (isset($_POST['aumentar_dificultad'])) {
 } else {
     $_SESSION['nivel_dificultad'] = 1;
     $_SESSION['pregunta_actual'] = 0;
+    $_SESSION['tiempoTotal'] = 0;
 }
 
 if (isset($_POST['pregunta_actual'])) {
@@ -91,7 +92,7 @@ if (isset($_POST['pregunta_actual'])) {
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>
 
-    <h3 class="lvlDifivultad" id="nivel-dificultad" data-nivel="<?php $_SESSION['nivel_dificultad'] ?>">
+    <h3 class="lvlDifivultad" id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad'] ?>">
         <?php echo $lang['messages']['dificultLvl'] . ": " . $_SESSION['nivel_dificultad'] ?>
     </h3>
 
@@ -284,7 +285,7 @@ if (isset($_POST['pregunta_actual'])) {
         }
     }
     // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
-    if ($dificultad > 6) {
+    if ($_SESSION['nivel_dificultad'] > 6) {
         echo "<script>window.location = 'win.php';</script>"; // Redirige al jugador a la página de victoria
         exit; // Detiene la ejecución del script para evitar que el juego continúe
     }
