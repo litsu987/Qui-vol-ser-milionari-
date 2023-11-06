@@ -37,18 +37,18 @@
         </noscript>
         <?php
             $error = "";
-            $ok = "";
+            
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $user = $_POST["user"];
                 $pass = $_POST["pass"];
 
                 if (isset($usuarios[$user]) && $usuarios[$user] == $pass) {
                     $_SESSION["user"] = $user; 
-                    header("Location: index.php");
+                    header("Location: edit.php");
                     exit();
-                    $ok ="inico ok";
+                    
                 } else {
-                    $error = "Usuario o contraseña incorrectos. Por favor, intenta nuevamente.";
+                    $error = $lang['login']['error'];
                 }
             }
         ?>
@@ -67,10 +67,7 @@
                 <button id="btnLogin" type="submit" class="buttonLogin css-button-shadow-border-sliding--sky"><?php echo $lang['login']['acces']; ?></button>
             </form>
             <?php if ($error != "") { ?>
-                    <p style="color: red;"><?php echo $error; ?></p>
-                <?php } ?>
-                <?php if ($ok != "") { ?>
-                    <p style="color: red;"><?php echo $ok; ?></p>
+                    <p class="vibrate-1"><?php echo $error; ?></p>
                 <?php } ?>
         </div>
 

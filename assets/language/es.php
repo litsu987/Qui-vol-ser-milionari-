@@ -43,10 +43,11 @@ $lang = array(
         'link' => 'aquí',
     ],
     'login' => [
-        'title' => 'Login',
-        'user' => 'User',
-        'pass' => 'Password',
-        'acces' => 'To access',
+        'title' => 'Iniciar Sesión',
+        'user' => 'Usuario',
+        'pass' => 'Contraseña',
+        'acces' => 'Acceder',
+        'error' => 'Usuario o contraseña incorrectos.'
     ],
 );
 ?>

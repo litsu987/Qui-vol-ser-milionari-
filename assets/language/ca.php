@@ -47,6 +47,7 @@ $lang = array(
         'user' => 'Usuari',
         'pass' => 'Contrasenya',
         'acces' => 'Accedir',
+        'error' => 'Usuari o contrasenya incorrectes.'
     ],
 );
 ?>
