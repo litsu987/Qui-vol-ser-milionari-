@@ -29,8 +29,23 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
 <body>
+    <?php
+
+    ?>
     <div class="">
         <form action="" method="get">
+            <div>
+                <label for="archivo">Nivel y idioma de la pregunta</label></br>
+                <select name="archivo" id="archivo">
+                    <?php
+                        // Escanea el directorio para obtener una lista de archivos .txt
+                        $archivos = glob('../assets/questions/*.txt');
+                        foreach ($archivos as $archivo) {
+                            echo "<option value=\"$archivo\">".basename($archivo)."</option>";
+                        }
+                    ?>
+                </select><br>
+            </div>
             <div class="">
                 <label for="pregunta">NUEVA PREGUNTA<label></br>
                 <input type="text" name="pregunta" id="" class="input" required>
@@ -51,6 +66,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
                 <label for="respuestaIncorrecta3">Tercera respuesta incorrecta</label></br>
                 <input type="text" name="respuestaIncorrecta3" id="">
             </div>
+            
             <button type="submit">Crear pregunta</button>
         </form>
     </div>
