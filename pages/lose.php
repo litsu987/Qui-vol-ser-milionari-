@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body onload="soundLoseQuestion()" class="bodyLoseWin">
+<body onload="soundLoseQuestion()" class="LoseWin">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">

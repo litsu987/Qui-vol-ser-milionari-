@@ -12,68 +12,6 @@ body {
     background: linear-gradient(90deg,#6610f2 0%, #6f42c1 80%);
 }
 
-/* INDEX.PHP */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #333;
-    color: #fff;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-a {
-    text-decoration: none;
-    color: #007BFF;
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* Enlace al inicio */
-a:hover {
-    color: #0056b3;
-}
-
-#nameAndPublishDiv {
-    display: none;
-}
-
-#nameAndPublishDiv input {
-    text-align: center;
-}
-
-#publishButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15px;
-}
-
 .button i {
     margin-top: 5px; /* Ajusta el espacio entre el texto y el icono */
 }
@@ -103,45 +41,180 @@ a:hover {
     color: #fff;
 }
 
-/* Estilo para el botón de envío del formulario */
-button[type="submit"].button {
-    background-color: #7e2a5b;
+
+
+
+
+
+
+
+
+
+
+
+
+/* INDEX.PHP */
+.index .ul-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-button[type="submit"].button:hover {
-    background-color: #4e003d;
+a {
+    text-decoration: none;
+    color: #007BFF;
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-/* Estilo para el botón de reinicio del formulario */
-button[type="reset"].button {
-    background-color: #dc3545;
+a:hover {
+    color: #0056b3;
 }
 
-button[type="reset"].button:hover {
-    background-color: #b72e37;
+
+
+
+
+
+
+
+
+
+
+
+
+/* RANKING */
+.ranking table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-/* Estilo para el botón con icono (icono a la izquierda del texto) */
-.button.icon {
+.ranking table, th, td {
+    border: 1px solid #ddd;
+}
+
+.ranking th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.ranking th {
+    background-color: #333;
+    color: #fff;
+}
+
+.ranking tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+
+
+
+
+
+
+
+/* LOSE & WIN */
+.LoseWin {
+    Overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoseWin .fondo {
+    margin: 50px 0;
+    padding: 3%;
+}
+
+.LoseWin .score {
+    margin-top: 5%;
+}
+
+.LoseWin .preguntaPublicar{
+    margin-top: 2%;
+    gap: 10px;
+}
+
+.LoseWin .divExtras{
+    margin-top: 5%;
+    flex-direction: column;
+}
+
+.LoseWin #publishScoreQuestion{
+    margin-top: 8%;
+}
+
+.LoseWin #nameAndPublishDiv {
+    display: none;
+    margin-top: 6%;
+}
+
+.LoseWin #nameAndPublishDiv #name {
+    padding: 7px; /* Espacio interno alrededor del texto */
+  border: 2px solid #ccc; /* Borde del input */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: border-color 0.3s ease;
+}
+
+.LoseWin #nameAndPublishDiv #name:focus {
+    border-color: #007bff;
+}
+
+.LoseWin #publishButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.LoseWin .button .icon {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.button.icon i {
-    margin-right: 5px; /* Espaciado entre el icono y el texto */
-}
 
-/* Estilo para el botón de "Publicar" con icono de Font Awesome */
-.button.publish {
-    background-color: #17a2b8;
-}
 
-.button.publish:hover {
-    background-color: #138496;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* GAME.PHP */
+.game #divTiempoTotal {
+    align-items: center;
+    justify-content: center;
+}
+
 .lvlDifivultad{
     display: flex;
     align-items: center;
@@ -274,14 +347,7 @@ button[type="reset"].button:hover {
     top: 0; /* Sitúa el banner en la parte superior */
 }
 
-.bodyLoseWin{
-    Overflow: hidden;
-    display: flex;
-    align-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
+
 
 .centrar{
     display: flex;
@@ -300,12 +366,12 @@ button[type="reset"].button:hover {
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    height: 400px;
+    height: 100%;
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     border: 8px outset #b3b3b2;
-    padding: 20px;
+    padding: 3%;
     border-radius: 19px 0px 26px 0px;
-    width: 700px;
+    width: 50%;
     color: white;
 }
 
@@ -328,27 +394,7 @@ button[type="reset"].button:hover {
     gap: 4%;
 }
 
-.tituloLost{
-    color: white;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
 
-.preguntaPublicar{
-    margin-top: 20px;
-    gap: 10px;
-}
-
-.score{
-    margin-bottom: 20px;
-}
-
-.divExtras{
-    margin-top: 20px;
-    margin-left: 0px;
-    gap: 10px;
-    flex-direction: column;
-}
 
 /* NOSCRIPT */
 .avisoJS{
@@ -444,6 +490,7 @@ button[type="reset"].button:hover {
 #banner img {
     height: 180px;
     width: auto;
+    padding: 10px;
 }
 
 .h1Titulo{
@@ -636,6 +683,58 @@ li {
 .userRow {
     background-color: #4e003d;
     color: white;
+}
+
+#loginButton {
+    margin: 10px;
+    padding: 8px 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+
+
+@media only screen and (max-width: 400px) {
+    .h1Titulo {
+        margin: 20px 0;
+    }
+
+    ul {
+        margin: 0;
+    }
+
+    .buttonsGroup .button {
+        margin: 25px 0 0;
+    }
+
+    #languages {
+        margin: 20px 0 0;
+    }
+
+    .LoseWin {
+        Overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .LoseWin .fondo {
+        margin: 6% 0;
+        padding: 3%;
+        width: 75%;
+    }
+    
+    .LoseWin form {
+        margin-top: 5%;
+    }
+
+    .LoseWin .divExtras {
+        margin-bottom: 5%;
+    }
+
+    
 }
 
   

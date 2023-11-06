@@ -43,7 +43,7 @@ if (isset($_POST['tiempoTranscurrido'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body onload="soundWinQuestion()" class="bodyLoseWin">
+<body onload="soundWinQuestion()" class="LoseWin">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">

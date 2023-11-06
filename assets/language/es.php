@@ -27,7 +27,7 @@ $lang = array(
         'dificultLvl' => 'Nivel de dificultad',
         'publishConfirmed' => "Puntuación publicada corectamente",
         'publishFailed' => "Ha habido un error al publicar la puntuación!!!",
-
+        'generalTimer' => "Tiempo total:",
     ],
     'namePlaceholder' => 'Introduce tu nombre',
     'tittle' => '¿QUIEN QUIERE SER MILLONARIO?',

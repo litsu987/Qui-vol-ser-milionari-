@@ -60,7 +60,7 @@ function comodinPublico()
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
-<body>
+<body class="game">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">
@@ -76,8 +76,11 @@ function comodinPublico()
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
 
-    <div id="cronometro2">
-        <h1 id="cronometro">--:--</h1>
+    <div id="divTiempoTotal">
+        <h4>
+            <?php echo $lang['messages']['generalTimer']; ?>
+        </h4>
+        <h1 id="tiempoTotal">--:--</h1>
     </div>
 
     <div id="modal" class="swirl-in-fwd modal">

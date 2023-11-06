@@ -335,7 +335,7 @@ function actualizarCronometroPreguntas(cronometroId, nuevoValor) {
 
 
 function actualizarTiempoTotal() {
-    var cronometro = document.getElementById('cronometro');
+    var cronometro = document.getElementById('tiempoTotal');
 
     cronometroInterval = setInterval(function () {
         var minutos = Math.floor(tiempoInicio / 60);
