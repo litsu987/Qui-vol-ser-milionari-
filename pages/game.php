@@ -80,10 +80,22 @@ if (isset($_POST['pregunta_actual'])) {
         <button id="comodin-publico" onclick="soundAnimation()" class="comPublico oval ovalBackground"><i
                 class="fa-solid fa-users" style="color: #ffffff;"></i></button>
         <button id="comodin-llamada" class="comPublico oval ovalBackground">+30'</button>
+        <button id="comodin-telefono" class="comPublico oval ovalBackground">telefono</button>
     </div>
 
+    <div id="minijuego" class="minijuego" style="display: none;">
+        <div class="minijuego-contenido">
+            <h2 id="minifrase">Escucha atentamente y responde con el numero de veces que ha sonado el telefono:</h2>
+            <input type="number" id="respuestaUsuario" style="display: none;" placeholder="Ingresa tu respuesta"
+                pattern="[0-9]*" />
+            <button id="botonComprobar" style="display: none;" onclick="comprobarRespuesta()">Comprobar</button>
+            <button id="botonSalir" style="display: none;" onclick="cerrarMinijuego()">Salir</button>
+            <div id="contenedorMini">
+                <h1 id="resultadoMinijuego" style="display: none;"></h1>
+            </div>
 
-
+        </div>
+    </div>
 
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
@@ -117,7 +129,6 @@ if (isset($_POST['pregunta_actual'])) {
             echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" data-respuesta-correcta="' . $respuestaCorrecta . '" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
         }
-
         echo '</div>';
     }
 
@@ -260,7 +271,7 @@ if (isset($_POST['pregunta_actual'])) {
                     $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
                     $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
                     echo '<div class="preguntas" id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
-                    echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display : none'></div>";
+                    echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display: none'></div>";
 
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
     

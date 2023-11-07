@@ -28,19 +28,20 @@ console.log(nivelDificultadActual);
 let ultimaPreguntaMostrada = 1;
 let preguntasAcertadas = localStorage.getItem('puntaje');
 
-if (nivelDificultadActual === 1) {
+if (nivelDificultadActual === '1') {
     preguntasAcertadas = 0;
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
     document.getElementById('btnEliminarRespuestas').disabled = false;
     localStorage.setItem('botonEliminacionPresionado', 'false');
     localStorage.setItem('botonEliminacionPresionado2', 'false');
     localStorage.setItem('botonEliminacionPresionado3', 'false');
+    localStorage.setItem('botonEliminacionPresionado4', 'false');
 }
 
 var botonEliminacionPresionado = localStorage.getItem('botonEliminacionPresionado');
 var botonEliminacionPresionado2 = localStorage.getItem('botonEliminacionPresionado2');
 var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
-
+var botonEliminacionPresionado4 = localStorage.getItem('botonEliminacionPresionado4');
 
 function deshabilitarBotonSiPresionado(botonId, botonPresionadoId) {
     var botonPresionado = localStorage.getItem(botonPresionadoId);
@@ -515,7 +516,6 @@ document.getElementById('comodin-llamada').addEventListener('click', function() 
 });
 
 document.getElementById('comodin-publico').addEventListener('click', function() {
-    pausarTiempoTotal();
     if (botonEliminacionPresionado2 !== 'true' && localStorage.getItem('preguntaActual') < 4 ) {
         var preguntaActual = localStorage.getItem('preguntaActual');
 
