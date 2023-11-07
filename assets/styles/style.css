@@ -975,3 +975,88 @@ option {
     margin: auto;
     text-align: center;
 }
+
+
+/* Estilos para el contenedor del minijuego */
+.minijuego {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+/* Estilos para el contenido del minijuego */
+.minijuego-contenido {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    padding: 20px;
+    border: 8px outset #b3b3b2;
+    border-radius: 5px;
+    width: 60%; /* Cambia el valor de ancho según tus necesidades */
+    height: 80%;
+    max-width: 1000px; /* Cambia el valor de ancho máximo según tus necesidades */
+}
+
+/* Estilos para el botón de cancelar */
+/* Estilos para centrar el botón en su contenedor */
+/* Estilos para el botón en su contenedor */
+.minijuego-contenido button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border: 2px solid #1d060c;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ocupar todo el ancho del contenedor */
+    margin: 0 0 10px; /* 0 en la parte superior, 0 en los lados, 10px de margen en la parte inferior */
+}
+
+
+
+#resultadoMinijuego {
+    color: #fff;
+    position: absolute; /* Puedes usar "fixed" si deseas que esté fijo en la ventana del navegador */
+    bottom: 0; /* Coloca el elemento en la parte inferior */
+    left: 50%; /* Coloca el elemento en el centro horizontalmente */
+    transform: translateX(-50%); /* Centra el elemento horizontalmente */
+}
+
+#contenedorMini {
+    text-align: center; /* Centra el contenido horizontalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinea el contenido en la parte inferior */
+    align-items: center; /* Centra horizontalmente */
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+}
+
+#respuestaUsuario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ocupar todo el ancho del contenedor */
+    margin: 0 0 10px; /* 0 en la parte superior, 0 en los lados, 10px de margen en la parte inferior */
+}
+
+#minifrase{
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    border-radius: 0px 0px 26px 0px ;
+    border: 8px outset #b3b3b2;
+    color: white;
+}

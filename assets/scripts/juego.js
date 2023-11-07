@@ -51,13 +51,13 @@ if (nivelDificultadActual === '1') {
     localStorage.setItem('botonEliminacionPresionado', 'false');
     localStorage.setItem('botonEliminacionPresionado2', 'false');
     localStorage.setItem('botonEliminacionPresionado3', 'false');
-    localStorage.setItem('botonEliminacionPresionado3', 'false');
+    localStorage.setItem('botonEliminacionPresionado4', 'false');
 }
 
 var botonEliminacionPresionado = localStorage.getItem('botonEliminacionPresionado');
 var botonEliminacionPresionado2 = localStorage.getItem('botonEliminacionPresionado2');
 var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
-var botonEliminacionPresionado4 = localStorage.getItem('botonEliminacionPresionado3');
+var botonEliminacionPresionado4 = localStorage.getItem('botonEliminacionPresionado4');
 
 if (botonEliminacionPresionado === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
@@ -571,7 +571,7 @@ document.getElementById('comodin-telefono').addEventListener('click', function()
         document.getElementById('comodin-telefono').classList.remove("ovalBackground");
         document.getElementById('comodin-telefono').classList.add("btonBloqueadoComodin");
 
-        minijuego();
+        mostrarMinijuego()
 
         // Marca el comodín como utilizado en el almacenamiento local
         localStorage.setItem('botonEliminacionPresionado4', 'true');
@@ -770,67 +770,102 @@ function cerrarModal() {
 
 var cantidadLlamadas; // Variable para almacenar la cantidad de llamadas
 var i = 0; // Variable para rastrear las llamadas realizadas
-
-function reproducirSonido() {
-  var audioElement = document.createElement('audio');
-  audioElement.src = '/assets/music/telefono.mp3'; // Reemplaza 'ruta_del_sonido.mp3' con la ruta de tu archivo de sonido.
-  
-  audioElement.addEventListener('play', function() {
-    mostrarImagenLlamada(); // Mostrar la imagen al comenzar a reproducir el sonido
-  });
-
-  audioElement.play();
-
-  // Cuando el sonido termine, realizar llamada o pedir respuesta
-  audioElement.addEventListener('ended', function() {
-    if (i < cantidadLlamadas) {
-      realizarLlamada(); // Realizar una llamada más
-    } else {
-      var respuesta = prompt('¿Cuántas veces sonó el tono de trucada?');
-      if (respuesta !== null) {
-        respuesta = parseInt(respuesta);
-        if (respuesta === cantidadLlamadas) {
-          alert('¡Correcto! Has acertado el número de tonos de trucada.');
-        } else {
-          alert('Lo siento, has respondido incorrectamente.');
-        }
-      }
-    }
-  });
-}
-
 var imagen = null; // Variable para almacenar la imagen
-
-function mostrarImagenLlamada() {
-  if (imagen === null) {
-    imagen = document.createElement('img');
-    imagen.src = '/assets/images/telefono.png'; // Ruta de la imagen del teléfono.
-    imagen.style.position = 'fixed';
-    imagen.style.top = '50%';
-    imagen.style.left = '50%';
-    imagen.style.transform = 'translate(-50%, -50%)';
-    document.body.appendChild(imagen);
-  }
-
-  // Función para alternar la visibilidad de la imagen al mismo ritmo que el sonido
-  var parpadeo = setInterval(function() {
-    if (imagen.style.visibility === 'visible') {
-      imagen.style.visibility = 'hidden';
-    } else {
-      imagen.style.visibility = 'visible';
-    }
-  }, 2000); // Parpadeo cada 1000 milisegundos (1 segundo)
-}
 
 
 function minijuego() {
-  cantidadLlamadas = Math.floor(Math.random() * 10) + 1;
-  i = 0; // Reiniciar el contador de llamadas
+    cantidadLlamadas = Math.floor(Math.random() * 10) + 1;
+    i = 0; // Reiniciar el contador de llamadas
+    cantidadLlamadas = 1;
+    console.log(cantidadLlamadas);
 
-  setTimeout(function() {
-    reproducirSonido(); // Inicia la reproducción del sonido después de mostrar la imagen
-  }, 0); // Espera 0 segundos antes de iniciar el sonido
+    setTimeout(function() {
+        reproducirSonido(); // Inicia la reproducción del sonido después de mostrar la imagen
+    }, 0); // Espera 0 segundos antes de iniciar el sonido
+
+    // Mostrar el campo de entrada y el botón solo después de reproducir todas las llamadas
+    setTimeout(function() {
+        var respuestaUsuario = document.getElementById('respuestaUsuario');
+        var botonComprobar = document.getElementById('botonComprobar');
+        var botonSalir = document.getElementById('botonSalir');
+
+        botonSalir.style.display = 'block';
+        respuestaUsuario.style.display = 'block';
+        botonComprobar.style.display = 'block';
+    }, cantidadLlamadas * 3000); // Espera el tiempo necesario según la cantidad de llamadas
 }
+
+
+function reproducirSonido() {
+    var audioElement = document.createElement('audio');
+    audioElement.src = '/assets/music/telefono.mp3'; // Reemplaza 'ruta_del_sonido.mp3' con la ruta de tu archivo de sonido.
+  
+    audioElement.addEventListener('play', function() {
+      mostrarImagenLlamada(); // Mostrar la imagen al comenzar a reproducir el sonido
+    });
+  
+       audioElement.addEventListener('ended', function() {
+        i++;
+        if (i < cantidadLlamadas) {
+            setTimeout(function() {
+                reproducirSonido();
+            }, 100); // Espera 4 segundos entre llamadas
+        } else {
+            var pregunta = document.getElementById('pregunta_' + preguntaActual);
+            var respuestas = pregunta.querySelectorAll('.contenidoRespuesta');
+
+            var respuestasIncorrectas = [];
+            respuestas.forEach(function(boton) {
+                localStorage.setItem('bien', respuestaCorrecta = boton.getAttribute('data-respuesta-correcta'));
+                var respuestaActual = boton.innerText.trim();
+
+                if (respuestaActual !== respuestaCorrecta.trim()) {
+                    respuestasIncorrectas.push(boton);
+                }
+            });
+        }
+    });
+  
+    audioElement.play();
+  }
+  
+
+
+function mostrarImagenLlamada() {
+    var minijuegoContainer = document.getElementById('minijuego');
+    if (minijuegoContainer && imagen === null) {
+        imagen = document.createElement('img');
+        imagen.src = '/assets/images/telefono.png';
+        imagen.style.position = 'fixed';
+        imagen.style.top = '50%';
+        imagen.style.left = '50%';
+        imagen.style.transform = 'translate(-50%, -50%)';
+        minijuegoContainer.appendChild(imagen);
+
+        var audioDuration = 2000;
+        var parpadeoInterval = 1000;
+        var isVisible = true;
+  
+        var parpadeo = setInterval(function() {
+            if (isVisible) {
+                imagen.style.visibility = 'hidden';
+                isVisible = false;
+            } else {
+                imagen.style.visibility = 'visible';
+                isVisible = true;
+            }
+        }, parpadeoInterval);
+  
+        setTimeout(function() {
+            clearInterval(parpadeo);
+            if (!isVisible) {
+                imagen.style.visibility = 'visible';
+            }
+        }, audioDuration);
+    }
+}
+  
+
 
 function realizarLlamada() {
   if (i < cantidadLlamadas) {
@@ -839,4 +874,38 @@ function realizarLlamada() {
     }, 100); // Espera 4 segundos entre llamadas
     i++;
   }
+}
+
+function mostrarMinijuego() {
+    const minijuego1 = document.getElementById('minijuego');
+    if (minijuego1) {
+        minijuego1.style.display = 'block';
+        minijuego(); // Llama a la función minijuego para comenzar el juego
+    }
+}
+
+function cerrarMinijuego() {
+    const minijuego = document.getElementById('minijuego');
+    if (minijuego) {
+        minijuego.style.display = 'none';
+    }
+}
+
+function comprobarRespuesta() {
+    document.getElementById('botonComprobar').disabled = true;
+    var respuestaUsuario = document.getElementById('respuestaUsuario').value;
+    var respuestaCorrecta = cantidadLlamadas; // Obtén la respuesta correcta desde tus datos
+
+    var resultadoMinijuego = document.getElementById('resultadoMinijuego');
+    
+    if (parseInt(respuestaUsuario) === respuestaCorrecta) {
+        resultadoMinijuego.innerHTML = '¡Correcto! La respuesta es: '+localStorage.getItem('bien');
+        
+
+    } else {
+        resultadoMinijuego.innerHTML = 'Lo siento, has respondido incorrectamente.';
+    }
+
+    resultadoMinijuego.style.display = 'block';
+    
 }
