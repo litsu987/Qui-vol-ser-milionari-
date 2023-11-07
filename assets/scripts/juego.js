@@ -439,6 +439,8 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
         return;
     }
 
+   
+
     var pregunta = document.getElementById('pregunta_' + preguntaActual);
 
     if (pregunta) {
@@ -506,10 +508,15 @@ document.getElementById('btnEliminarRespuestas').addEventListener('click', funct
 });
 
 document.getElementById('comodin-llamada').addEventListener('click', function() {
+
+
     var nivelDificultadActual = parseInt(document.getElementById('nivel-dificultad').getAttribute('data-nivel'));
     var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
 
     if (nivelDificultadActual > 1 && botonEliminacionPresionado3 !== 'true' && localStorage.getItem('preguntaActual') < 4) {
+        document.getElementById('comodin-llamada').classList.remove("ovalBackground");
+        document.getElementById('comodin-llamada').classList.add("btonBloqueadoComodin");
+
         document.getElementById('comodin-llamada').classList.remove("ovalBackground");
         document.getElementById('comodin-llamada').classList.add("btonBloqueadoComodin");
 
@@ -571,6 +578,8 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
     if (botonPublico.disabled) {
         return;
     }
+
+    
 
     if ( botonEliminacionPresionado2 === 'true') {
         // Si ya se ha utilizado el comodín público, no hagas nada

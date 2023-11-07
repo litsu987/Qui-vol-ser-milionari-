@@ -1,3 +1,15 @@
+<?php
+session_start();
+include "usuarios.php";
+if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
+    $_SESSION['lang'] = $_GET['lang'];
+} else {
+    if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
+        $_SESSION['lang'] = 'en';
+    }
+}
+include '../assets/language/' . $_SESSION['lang'] . '.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
-<body class="login">
+<body>
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">
@@ -27,14 +39,7 @@
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-
-
-
-
-
     <?php
-    include "usuarios.php";
-
     $error = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -42,35 +47,42 @@
         $pass = $_POST["pass"];
 
         if (isset($usuarios[$user]) && $usuarios[$user] == $pass) {
-            session_start();
             $_SESSION["user"] = $user;
-            header("Location: edit.php");
+            header("Location: create.php");
             exit();
+
         } else {
-            $error = "Usuario o contraseña incorrectos. Por favor, intenta nuevamente.";
+            $error = $lang['login']['error'];
         }
     }
     ?>
-
     <div id="divLogin" class="fondo">
-        <h1>Iniciar Sesión</h1>
-        <form id="login" action="" method="post">
-            <label for="user"> Usuario</label><br>
-            <input type="text" name="user" required><br><br>
-            <label for="pass"> Contraseña</label><br>
-            <input type="password" name="pass" required><br><br>
-            <button id="btnLogin" type="submit" class="button">Iniciar Sesión</button>
+        <h1>
+            <?php echo $lang['login']['title']; ?>
+        </h1>
+        <form id="login" action="" method="post" class="field">
+            <div class="form__group">
+                <input type="text" name="user" class="form__field" required>
+                <label for="user" class="form__label">
+                    <?php echo $lang['login']['user']; ?>
+                </label><br><br>
+            </div>
+            <div class="form__group">
+                <input type="password" name="pass" class="form__field" required>
+                <label for="pass" class="form__label">
+                    <?php echo $lang['login']['pass']; ?>
+                </label><br><br>
+            </div>
+            <button id="btnLogin" type="submit" class="buttonLogin css-button-shadow-border-sliding--sky">
+                <?php echo $lang['login']['acces']; ?>
+            </button>
         </form>
         <?php if ($error != "") { ?>
-            <p style="color: red;">
+            <p class="vibrate-1">
                 <?php echo $error; ?>
             </p>
         <?php } ?>
     </div>
-
-
-
-
 </body>
 
 </html>

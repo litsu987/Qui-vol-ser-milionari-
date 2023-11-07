@@ -42,5 +42,22 @@ $lang = array(
                     en su navegador, haga click',
         'link' => 'aquí',
     ],
+    'login' => [
+        'title' => 'Iniciar Sesión',
+        'user' => 'Usuario',
+        'pass' => 'Contraseña',
+        'acces' => 'Acceder',
+        'error' => 'Usuario o contraseña incorrectos.'
+    ],
+    'create' => [
+        'title' => 'Crear pregunta',
+        'select' => 'Nivel y idioma de la pregunta',
+        'newQuestion' => 'Pregunta',
+        'corectQuestion' => 'Respuesta correcta',
+        'incorectQuestion1' => '1.ª Respuesta incorrecta',
+        'incorectQuestion2' => '2.ª Respuesta incorrecta',
+        'incorectQuestion3' => '3.ª Respuesta incorrecta',
+        'submit' => 'Crear pregunta',
+    ]
 );
 ?>
