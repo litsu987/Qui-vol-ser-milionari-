@@ -367,6 +367,13 @@ td {
 
 
 /* GAME */
+.game #nextQuestions {
+    margin-bottom: 5%;
+    height: 80px;
+    font-size: 20px;
+    width: auto;
+}
+
 .game #divTiempoTotal {
     text-align: center;
     position: fixed;
@@ -542,8 +549,8 @@ td {
 }
 
 .game .questionImg {
-    width: 400px;
-    height: auto;
+    width: auto;
+    height: 250px;
 }
 
 .game .contenidoRespuesta {
@@ -772,6 +779,8 @@ td {
         position: absolute;
         right: 0;
         border-radius: 10px;
+        height: 40px;
+        font-size: 16px;
     }
 
     .game .CronoPregunta {

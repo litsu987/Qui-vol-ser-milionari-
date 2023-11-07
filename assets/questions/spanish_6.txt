@@ -53,16 +53,6 @@
 + Máquina del Tiempo
 - Chronosfera
 - DeLorean
-* ¿Quién formuló la teoría de la relatividad general, que amplió y corrigió la teoría de la relatividad especial de Einstein?
-+ Albert Einstein
-- Max Planck
-- Niels Bohr
-- Karl Schwarzschild
-* ¿Cuál es el metal más ligero y abundante en el universo?
-- Hierro
-+ Hidrógeno
-- Oro
-- Plata
 * En astronomía, ¿cuál es el nombre de la galaxia más cercana a la Vía Láctea?
 + Andrómeda
 - Cigarro

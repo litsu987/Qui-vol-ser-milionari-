@@ -53,16 +53,6 @@
 + Màquina del Temps
 - Chronosfera
 - DeLorean
-* Qui va formular la teoria de la relativitat general, que va ampliar i corregir la teoria de la relativitat especial d'Einstein?
-+ Albert Einstein
-- Max Planck
-- Niels Bohr
-- Karl Schwarzschild
-* Quin és el metall més lleuger i abundant a l'univers?
-- Ferro
-+ Hidrogen
-- Or
-- Plata
 * En astronomia, quin és el nom de la galàxia més propera a la Via Làctia?
 + Andròmeda
 - Cigarret
