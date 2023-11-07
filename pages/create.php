@@ -20,17 +20,18 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pregunta = $_POST["pregunta"];
     $respuestas = array(
-        $_POST["respuestaIncorrecta1"],
-        $_POST["respuestaIncorrecta2"],
-        $_POST["respuestaIncorrecta3"]
+        "+ " . $_POST["respuestaCorrecta"],
+        "- " . $_POST["respuestaIncorrecta1"],
+        "- " . $_POST["respuestaIncorrecta2"],
+        "- " . $_POST["respuestaIncorrecta3"]
     );
+
+    // Mezcla las respuestas para aleatorizar su orden
     shuffle($respuestas);
-    $respuesta_correcta = $_POST["respuestaCorrecta"];
+
     $archivo_seleccionado = $_POST["archivo"];
 
-    if (!empty($pregunta) && !empty($archivo_seleccionado) && !empty($respuestas) && !empty($respuesta_correcta)) {
-        
-
+    if (!empty($pregunta) && !empty($archivo_seleccionado) && !empty($respuestas)) {
         // Abre el archivo seleccionado en modo append (añadir contenido al final)
         $archivo = fopen($archivo_seleccionado, "a");
 
@@ -39,12 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         fwrite($archivo, "* " . $pregunta . PHP_EOL);
 
         // Escribe las respuestas en el archivo
-        foreach ($respuestas as $index => $respuesta) {
-            fwrite($archivo, "- " . $respuesta . PHP_EOL );
+        foreach ($respuestas as $respuesta) {
+            fwrite($archivo, $respuesta . PHP_EOL );
         }
-
-        // Escribe la respuesta correcta en el archivo
-        fwrite($archivo, "+ " . $respuesta_correcta . PHP_EOL);
 
         // Cierra el archivo
         fclose($archivo);
