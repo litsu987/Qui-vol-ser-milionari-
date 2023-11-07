@@ -101,6 +101,7 @@ function comodinPublico()
         <button id="comodin-publico" onclick="soundAnimation()" class="comPublico oval ovalBackground"><i
                 class="fa-solid fa-users" style="color: #ffffff;"></i></button>
         <button id="comodin-llamada" class="comPublico oval ovalBackground">+30'</button>
+        <button id="comodin-telefono" class="comPublico oval ovalBackground">telefono</button>
     </div>
 
 

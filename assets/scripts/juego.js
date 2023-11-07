@@ -51,11 +51,13 @@ if (nivelDificultadActual === '1') {
     localStorage.setItem('botonEliminacionPresionado', 'false');
     localStorage.setItem('botonEliminacionPresionado2', 'false');
     localStorage.setItem('botonEliminacionPresionado3', 'false');
+    localStorage.setItem('botonEliminacionPresionado3', 'false');
 }
 
 var botonEliminacionPresionado = localStorage.getItem('botonEliminacionPresionado');
 var botonEliminacionPresionado2 = localStorage.getItem('botonEliminacionPresionado2');
 var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
+var botonEliminacionPresionado4 = localStorage.getItem('botonEliminacionPresionado3');
 
 if (botonEliminacionPresionado === 'true') {
     // Si ya ha sido pulsado, deshabilita el botón
@@ -76,6 +78,13 @@ if (botonEliminacionPresionado3 === 'true') {
     document.getElementById('comodin-llamada').classList.remove("ovalBackground");
     document.getElementById('comodin-llamada').classList.add("btonBloqueadoComodin");
     document.getElementById('comodin-llamada').disabled = true;
+}
+
+if (botonEliminacionPresionado4 === 'true') {
+    // Si ya ha sido pulsado, deshabilita el botón
+    document.getElementById('comodin-telefono').classList.remove("ovalBackground");
+    document.getElementById('comodin-telefono').classList.add("btonBloqueadoComodin");
+    document.getElementById('comodin-telefono').disabled = true;
 }
 
 if (preguntasAcertadas === null) {
@@ -552,6 +561,26 @@ document.getElementById('comodin-llamada').addEventListener('click', function() 
 });
 
 
+document.getElementById('comodin-telefono').addEventListener('click', function() {
+
+
+    var nivelDificultadActual = parseInt(document.getElementById('nivel-dificultad').getAttribute('data-nivel'));
+    var botonEliminacionPresionado4 = localStorage.getItem('botonEliminacionPresionado3');
+
+    if (botonEliminacionPresionado4 !== 'true' && localStorage.getItem('preguntaActual') < 4) {
+        document.getElementById('comodin-telefono').classList.remove("ovalBackground");
+        document.getElementById('comodin-telefono').classList.add("btonBloqueadoComodin");
+
+        minijuego();
+
+        // Marca el comodín como utilizado en el almacenamiento local
+        localStorage.setItem('botonEliminacionPresionado4', 'true');
+        // Deshabilita el botón
+        this.disabled = true;
+    }
+});
+
+
 function scrollHaciaSiguientePregunta() {
     var siguientePregunta = document.querySelector('.pregunta:not(.respondida)');
 
@@ -667,7 +696,6 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
                 }
 });
 
-
 function mostrarModal() {
     const estadistica = localStorage.getItem('estadistica');
     const estadistica2 = localStorage.getItem('estadistica2');
@@ -737,4 +765,78 @@ function cerrarModal() {
     modal.style.display = 'none';
     reanudarCronometro()
     
+}
+
+
+var cantidadLlamadas; // Variable para almacenar la cantidad de llamadas
+var i = 0; // Variable para rastrear las llamadas realizadas
+
+function reproducirSonido() {
+  var audioElement = document.createElement('audio');
+  audioElement.src = '/assets/music/telefono.mp3'; // Reemplaza 'ruta_del_sonido.mp3' con la ruta de tu archivo de sonido.
+  
+  audioElement.addEventListener('play', function() {
+    mostrarImagenLlamada(); // Mostrar la imagen al comenzar a reproducir el sonido
+  });
+
+  audioElement.play();
+
+  // Cuando el sonido termine, realizar llamada o pedir respuesta
+  audioElement.addEventListener('ended', function() {
+    if (i < cantidadLlamadas) {
+      realizarLlamada(); // Realizar una llamada más
+    } else {
+      var respuesta = prompt('¿Cuántas veces sonó el tono de trucada?');
+      if (respuesta !== null) {
+        respuesta = parseInt(respuesta);
+        if (respuesta === cantidadLlamadas) {
+          alert('¡Correcto! Has acertado el número de tonos de trucada.');
+        } else {
+          alert('Lo siento, has respondido incorrectamente.');
+        }
+      }
+    }
+  });
+}
+
+var imagen = null; // Variable para almacenar la imagen
+
+function mostrarImagenLlamada() {
+  if (imagen === null) {
+    imagen = document.createElement('img');
+    imagen.src = '/assets/images/telefono.png'; // Ruta de la imagen del teléfono.
+    imagen.style.position = 'fixed';
+    imagen.style.top = '50%';
+    imagen.style.left = '50%';
+    imagen.style.transform = 'translate(-50%, -50%)';
+    document.body.appendChild(imagen);
+  }
+
+  // Función para alternar la visibilidad de la imagen al mismo ritmo que el sonido
+  var parpadeo = setInterval(function() {
+    if (imagen.style.visibility === 'visible') {
+      imagen.style.visibility = 'hidden';
+    } else {
+      imagen.style.visibility = 'visible';
+    }
+  }, 2000); // Parpadeo cada 1000 milisegundos (1 segundo)
+}
+
+
+function minijuego() {
+  cantidadLlamadas = Math.floor(Math.random() * 10) + 1;
+  i = 0; // Reiniciar el contador de llamadas
+
+  setTimeout(function() {
+    reproducirSonido(); // Inicia la reproducción del sonido después de mostrar la imagen
+  }, 0); // Espera 0 segundos antes de iniciar el sonido
+}
+
+function realizarLlamada() {
+  if (i < cantidadLlamadas) {
+    setTimeout(function() {
+      reproducirSonido();
+    }, 100); // Espera 4 segundos entre llamadas
+    i++;
+  }
 }
