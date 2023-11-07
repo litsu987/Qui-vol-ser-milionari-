@@ -15,6 +15,45 @@ if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $
     }
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $pregunta = $_POST["pregunta"];
+    $respuestas = array(
+        $_POST["respuestaIncorrecta1"],
+        $_POST["respuestaIncorrecta2"],
+        $_POST["respuestaIncorrecta3"]
+    );
+    shuffle($respuestas);
+    $respuesta_correcta = $_POST["respuestaCorrecta"];
+    $archivo_seleccionado = $_POST["archivo"];
+
+    if (!empty($pregunta) && !empty($archivo_seleccionado) && !empty($respuestas) && !empty($respuesta_correcta)) {
+        
+
+        // Abre el archivo seleccionado en modo append (añadir contenido al final)
+        $archivo = fopen($archivo_seleccionado, "a");
+
+        fwrite($archivo, PHP_EOL);
+        // Escribe la pregunta en el archivo
+        fwrite($archivo, "* " . $pregunta . PHP_EOL);
+
+        // Escribe las respuestas en el archivo
+        foreach ($respuestas as $index => $respuesta) {
+            fwrite($archivo, "- " . $respuesta . PHP_EOL );
+        }
+
+        // Escribe la respuesta correcta en el archivo
+        fwrite($archivo, "+ " . $respuesta_correcta . PHP_EOL);
+
+        // Cierra el archivo
+        fclose($archivo);
+    }
+
+    // Redirecciona a la página del formulario
+    header("Location: create.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,14 +68,13 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
 <body>
-    <?php
-
-    ?>
-    <div class="">
-        <form action="" method="get">
-            <div>
-                <label for="archivo">Nivel y idioma de la pregunta</label></br>
-                <select name="archivo" id="archivo">
+    <div class="login-box">
+        <h1><?php echo $lang['create']['title']; ?></h1>
+        <form action="create.php" method="post" class="">
+            <div class="divSelect">
+                <label for="archivo" class="labelCreate"><?php echo $lang['create']['select']; ?></label></br></br>
+                <select name="archivo" id="archivo" value="-" required>
+                    <option value=""></option>
                     <?php
                         // Escanea el directorio para obtener una lista de archivos .txt
                         $archivos = glob('../assets/questions/*.txt');
@@ -46,28 +84,27 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
                     ?>
                 </select><br>
             </div>
-            <div class="">
-                <label for="pregunta">NUEVA PREGUNTA<label></br>
-                <input type="text" name="pregunta" id="" class="input" required>
+            <div class="user-box">
+                <input type="text" name="pregunta" id="" class="" required>
+                <label for="pregunta"><?php echo $lang['create']['newQuestion']; ?><label>
             </div>
-            <div>
-                <label for="respuestaCorrecta">Respuesta correcta</label></br>
-                <input type="text" name="respuestaCorrecta" id="">
+            <div class="user-box">
+                <input type="text" name="respuestaCorrecta" id="" required>
+                <label for="respuestaCorrecta"><?php echo $lang['create']['corectQuestion']; ?></label>
             </div>
-            <div>
-                <label for="respuestaIncorrecta1">Primera respuesta incorrecta</label></br>
-                <input type="text" name="respuestaIncorrecta2" id="">
+            <div class="user-box">
+                <input type="text" name="respuestaIncorrecta1" id="" required>
+                <label for="respuestaIncorrecta1"><?php echo $lang['create']['incorectQuestion1']; ?></label>
             </div>
-            <div>
-                <label for="respuestaIncorrecta2">Segunda respuesta incorrecta</label></br>
-                <input type="text" name="respuestaIncorrecta2" id="">
+            <div class="user-box">
+                <input type="text" name="respuestaIncorrecta2" id="" required>
+                <label for="respuestaIncorrecta2"><?php echo $lang['create']['incorectQuestion2']; ?></label>
             </div>
-            <div>
-                <label for="respuestaIncorrecta3">Tercera respuesta incorrecta</label></br>
-                <input type="text" name="respuestaIncorrecta3" id="">
+            <div class="user-box">
+                <input type="text" name="respuestaIncorrecta3" id="" required>
+                <label for="respuestaIncorrecta3"><?php echo $lang['create']['incorectQuestion3']; ?></label>          
             </div>
-            
-            <button type="submit">Crear pregunta</button>
+            <input type="submit" value="<?php echo $lang['create']['submit']; ?>" class="enviarPregunta">
         </form>
     </div>
 </body>

@@ -69,9 +69,5 @@
                     <p class="vibrate-1"><?php echo $error; ?></p>
                 <?php } ?>
         </div>
-
-
-
-
     </body>
 </html>
