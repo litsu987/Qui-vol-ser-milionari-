@@ -53,16 +53,6 @@
 + Time Machine
 - Chronosphere
 - DeLorean
-* Who formulated the theory of general relativity, which expanded and corrected Einstein's theory of special relativity?
-+ Albert Einstein
-- Max Planck
-- Niels Bohr
-- Karl Schwarzschild
-* What is the lightest and most abundant metal in the universe?
-- Iron
-+ Hydrogen
-- Gold
-- Silver
 * In astronomy, what is the name of the galaxy closest to the Milky Way?
 + Andromeda
 - Cigar
