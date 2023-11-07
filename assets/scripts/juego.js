@@ -95,10 +95,6 @@ if (preguntaActual === null) {
 }
 
 
-
-
-
-
 var cronometro0;
 var cronometro1; 
 var cronometro2;
@@ -113,14 +109,14 @@ function deshabilitarBotones(botones) {
 
 function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
     
-    if (preguntaActual == 1 && nivelDificultadActual != 1){
+    if (preguntaActual == 1 && nivelDificultadActual != '1'){
         console.log(nivelDificultadActual);
         detenerCronometroPregunta(cronometro0);
         document.getElementById('cronoPregunta_1').style.display = 'block';
         localStorage.setItem("valorInicial",60) 
         cronometro1 = iniciarCronometroPregunta('cronoPregunta_1',60);
     }
-    if (preguntaActual ==2 && nivelDificultadActual != 1){
+    if (preguntaActual == 2 && nivelDificultadActual != '1'){
         detenerCronometroPregunta(cronometro1);
         document.getElementById('cronoPregunta_2').style.display = 'block';
         detenerCronometroPregunta(cronometro2); // Detener el cronómetro 1 si es necesario
@@ -150,11 +146,11 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             detenerCronometroPregunta(cronometro2);
             document.getElementById("nextQuestions").style.display = "block";
 
-            var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
-            botonesFormulario.forEach(function(boton) {
-                boton.classList.remove("oculto");
-                boton.classList.add("nextQuestion");
-            });
+            // var botonesFormulario = document.querySelectorAll("form input[type=submit].oculto");
+            // botonesFormulario.forEach(function(boton) {
+            //     boton.classList.remove("oculto");
+            //     boton.classList.add("nextQuestion");
+            // });
         }
 
         // Deshabilita todos los botones en el mismo grupo de respuestas
@@ -461,6 +457,9 @@ function eliminarRespuestasIncorrectas(preguntaActual) {
 
         // Verifica si hay al menos dos respuestas incorrectas para eliminar
         if (respuestasIncorrectas.length >= 2) {
+            document.getElementById('btnEliminarRespuestas').classList.remove("ovalBackground");
+            document.getElementById('btnEliminarRespuestas').classList.add("btonBloqueadoComodin");
+
             // Elimina todas las respuestas incorrectas excepto una elegida al azar
             var indiceVisible = Math.floor(Math.random() * respuestasIncorrectas.length);
             var respuestaGuardada = '';
@@ -511,6 +510,9 @@ document.getElementById('comodin-llamada').addEventListener('click', function() 
     var botonEliminacionPresionado3 = localStorage.getItem('botonEliminacionPresionado3');
 
     if (nivelDificultadActual > 1 && botonEliminacionPresionado3 !== 'true' && localStorage.getItem('preguntaActual') < 4) {
+        document.getElementById('comodin-llamada').classList.remove("ovalBackground");
+        document.getElementById('comodin-llamada').classList.add("btonBloqueadoComodin");
+
         var preguntaActual = localStorage.getItem('preguntaActual');
         if (preguntaActual==1){
             detenerCronometroPregunta(cronometro0)
@@ -534,8 +536,27 @@ document.getElementById('comodin-llamada').addEventListener('click', function() 
     }
 });
 
+
+document.getElementById('comodin-telefono').addEventListener('click', function() {
+    var nivelDificultadActual = parseInt(document.getElementById('nivel-dificultad').getAttribute('data-nivel'));
+    var botonEliminacionPresionado4 = localStorage.getItem('botonEliminacionPresionado3');
+    if (botonEliminacionPresionado4 !== 'true' && localStorage.getItem('preguntaActual') < 4) {
+        document.getElementById('comodin-telefono').classList.remove("ovalBackground");
+        document.getElementById('comodin-telefono').classList.add("btonBloqueadoComodin");
+        mostrarMinijuego()
+        // Marca el comodín como utilizado en el almacenamiento local
+        localStorage.setItem('botonEliminacionPresionado4', 'true');
+        // Deshabilita el botón
+        this.disabled = true;
+    }
+});
+
+
 document.getElementById('comodin-publico').addEventListener('click', function() {
     if (botonEliminacionPresionado2 !== 'true' && localStorage.getItem('preguntaActual') < 4 ) {
+        document.getElementById('comodin-publico').classList.remove("ovalBackground");
+        document.getElementById('comodin-publico').classList.add("btonBloqueadoComodin");
+
         var preguntaActual = localStorage.getItem('preguntaActual');
 
         // Marca el botón como pulsado en el almacenamiento local
@@ -713,4 +734,147 @@ function scrollHaciaAbajo() {
     if (botonCambiarNivel) {
       botonCambiarNivel.scrollIntoView({ behavior: "smooth" });
     }
+}
+
+
+var cantidadLlamadas; // Variable para almacenar la cantidad de llamadas
+var i = 0; // Variable para rastrear las llamadas realizadas
+var imagen = null; // Variable para almacenar la imagen
+
+
+function minijuego() {
+    cantidadLlamadas = Math.floor(Math.random() * 10) + 1;
+    i = 0; // Reiniciar el contador de llamadas
+    cantidadLlamadas = 1;
+    console.log(cantidadLlamadas);
+
+    setTimeout(function() {
+        reproducirSonido(); // Inicia la reproducción del sonido después de mostrar la imagen
+    }, 0); // Espera 0 segundos antes de iniciar el sonido
+
+    // Mostrar el campo de entrada y el botón solo después de reproducir todas las llamadas
+    setTimeout(function() {
+        var respuestaUsuario = document.getElementById('respuestaUsuario');
+        var botonComprobar = document.getElementById('botonComprobar');
+        var botonSalir = document.getElementById('botonSalir');
+
+        botonSalir.style.display = 'block';
+        respuestaUsuario.style.display = 'block';
+        botonComprobar.style.display = 'block';
+    }, cantidadLlamadas * 3000); // Espera el tiempo necesario según la cantidad de llamadas
+}
+
+
+function reproducirSonido() {
+    var audioElement = document.createElement('audio');
+    audioElement.src = '/assets/music/telefono.mp3'; // Reemplaza 'ruta_del_sonido.mp3' con la ruta de tu archivo de sonido.
+  
+    audioElement.addEventListener('play', function() {
+      mostrarImagenLlamada(); // Mostrar la imagen al comenzar a reproducir el sonido
+    });
+  
+       audioElement.addEventListener('ended', function() {
+        i++;
+        if (i < cantidadLlamadas) {
+            setTimeout(function() {
+                reproducirSonido();
+            }, 100); // Espera 4 segundos entre llamadas
+        } else {
+            var pregunta = document.getElementById('pregunta_' + preguntaActual);
+            var respuestas = pregunta.querySelectorAll('.contenidoRespuesta');
+
+            var respuestasIncorrectas = [];
+            respuestas.forEach(function(boton) {
+                localStorage.setItem('bien', respuestaCorrecta = boton.getAttribute('data-respuesta-correcta'));
+                var respuestaActual = boton.innerText.trim();
+
+                if (respuestaActual !== respuestaCorrecta.trim()) {
+                    respuestasIncorrectas.push(boton);
+                }
+            });
+        }
+    });
+  
+    audioElement.play();
+  }
+  
+
+
+function mostrarImagenLlamada() {
+    var minijuegoContainer = document.getElementById('minijuego');
+    if (minijuegoContainer && imagen === null) {
+        imagen = document.createElement('img');
+        imagen.src = '/assets/images/telefono.png';
+        imagen.style.position = 'fixed';
+        imagen.style.top = '50%';
+        imagen.style.left = '50%';
+        imagen.style.transform = 'translate(-50%, -50%)';
+        minijuegoContainer.appendChild(imagen);
+
+        var audioDuration = 2000;
+        var parpadeoInterval = 1000;
+        var isVisible = true;
+  
+        var parpadeo = setInterval(function() {
+            if (isVisible) {
+                imagen.style.visibility = 'hidden';
+                isVisible = false;
+            } else {
+                imagen.style.visibility = 'visible';
+                isVisible = true;
+            }
+        }, parpadeoInterval);
+  
+        setTimeout(function() {
+            clearInterval(parpadeo);
+            if (!isVisible) {
+                imagen.style.visibility = 'visible';
+            }
+        }, audioDuration);
+    }
+}
+  
+
+
+function realizarLlamada() {
+  if (i < cantidadLlamadas) {
+    setTimeout(function() {
+      reproducirSonido();
+    }, 100); // Espera 4 segundos entre llamadas
+    i++;
+  }
+}
+
+function mostrarMinijuego() {
+    const minijuego1 = document.getElementById('minijuego');
+    if (minijuego1) {
+        minijuego1.style.display = 'block';
+        minijuego(); // Llama a la función minijuego para comenzar el juego
+    }
+}
+
+function cerrarMinijuego() {
+    const minijuego = document.getElementById('minijuego');
+    if (minijuego) {
+        minijuego.style.display = 'none';
+    }
+}
+
+function comprobarRespuesta() {
+    document.getElementById('botonComprobar').disabled = true;
+    var respuestaUsuario = document.getElementById('respuestaUsuario').value;
+    var respuestaCorrecta = cantidadLlamadas; // Obtén la respuesta correcta desde tus datos
+
+    var resultadoMinijuego = document.getElementById('resultadoMinijuego');
+    
+    if (parseInt(respuestaUsuario) === respuestaCorrecta) {
+        resultadoMinijuego.innerHTML = '¡Correcto! La respuesta es: '+localStorage.getItem('bien');
+        
+
+    } else {
+        resultadoMinijuego.innerHTML = 'Lo siento, has respondido incorrectamente.';
+    }
+
+    resultadoMinijuego.style.display = 'block';
+    
 }
