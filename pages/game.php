@@ -262,7 +262,7 @@ if (isset($_POST['pregunta_actual'])) {
                     $pregunta = $pregunta_respuestas['pregunta']; // Extrae la pregunta actual
                     $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
                     $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
-                    echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
+                    echo '<div class="preguntas" id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
                     echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display : none'></div>";
 
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
@@ -301,7 +301,8 @@ if (isset($_POST['pregunta_actual'])) {
     <form method="post" action="game.php">
         <input type="hidden" name="aumentar_dificultad" value="1">
         <div class="centrar">
-            <input id="nextQuestions" type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
+            <input id="nextQuestions" type="submit" value=" <?php echo $lang['nextQuestions']; ?>"
+                class="oculto button">
         </div>
     </form>
 

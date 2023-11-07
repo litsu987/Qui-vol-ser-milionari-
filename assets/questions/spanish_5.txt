@@ -1,35 +1,75 @@
-* ¿Qué jugador australiano tiene el salario más alto?
-+ Mathew Ryan
-- Harry Soutar
-- Milos Degenek
-- Leo Messi
-* ¿Son los británicos puntuales?
-+ Siempre
-- Generalmente
-- Puede
-- Nunca
-* ¿Cuáles de estos países no fueron colonizados por Inglaterra?
-- Islas Maldivas
-- Islas Caimán
-- Islas Bermudas
-+ Bielorrusia
-* ¿En qué siglo el cricket se convirtió en deporte nacional?
-+ A finales del siglo XVIII
-- A principios del siglo XVII
-- A finales del siglo XV.
-- A principios del siglo XIX
-* ¿En qué colonia inglesa se juega menos al cricket?
-- India
-+ Australia
-- Pakistán
+* ¿En qué siglo se creó el fútbol?
++ Siglo XIX
+- Siglo XX
+- Siglo I
+- Ahora
+* ¿En qué año se llevó a cabo la Revolución Rusa?
+- 1776
++ 1917
+- 1945
+- 1989
+* ¿Cuántos años vivieron los aborígenes?
+- 12.000 Años
++ 40.000 Años
+- 25.000 años
+- 60.000 años
+* En literatura, ¿quién escribió "Cien años de soledad"?
++ Gabriel García Márquez
+- Mario Vargas Llosa
+- Julio Cortázar
+- Pablo Neruda
+* ¿Cuál es la corriente oceánica cálida que influye en el clima de la costa este de Estados Unidos?
+- Corriente de California
++ Corriente del Golfo
+- Corriente de Humboldt
+- Corriente de Kuroshio* 
+* ¿Quién es el autor de la obra filosófica "Así habló Zaratustra"?
+- Jean-Jacques Rousseau
++ Friedrich Nietzsche
+- Søren Kierkegaard+
+- Karl Marx
+* ¿En qué año se fundó la Organización de las Naciones Unidas (ONU)?
++ 1945
+- 1950
+- 1939
+- 1960
+* ¿Cuál es el país más poblado de África?
++ Nigeria
 - Sudáfrica
-* ¿Cuál de estos países europeos sigue siendo una colonia del Imperio Británico?
-+ Gibraltar
-- Chipre
-- Islas del Canal
-- Inglaterra
-* ¿De qué se trata la tradición del Rolling Cheese?
-- Comer queso redondo
-+ Tirar queso redondo desde una colina
-- Hacer una tarta de queso redonda
-- Compra un queso redondo grande.
+- Egipto
+- Kenia
+* En química, ¿cuál es el símbolo del elemento químico oxígeno?
++ O
+- Ox
+- Oxí
+- Oxg
+* ¿Quién fue el líder de la Revolución Rusa que se convirtió en el primer gobernante de la Unión Soviética?
++ Vladimir Lenin
+- Leon Trotsky
+- Joseph Stalin
+- Mikhail Gorbachev
+* En anatomía, ¿cuál es el nombre del hueso más largo del cuerpo humano?
+- Húmero
++ Fémur
+- Tibia
+- Radio
+* ¿Cuál es la capital de Canadá?
+- Montreal
+- Toronto
+- Vancouver
++ Ottawa
+* ¿Cuál es el río más largo de América del Sur?
++ Amazonas
+- Orinoco
+- Paraná
+- Magdalena
+* En la teoría de la relatividad, ¿qué concepto se refiere a la curvatura del espacio-tiempo debido a la presencia de masa?
+- Ley de la gravitación universal
+- Principio de incertidumbre
+- Efecto Doppler
++ Gravedad
+* ¿En qué ciudad se celebraron los Juegos Olímpicos de Verano en 2008?
+- Sídney
+- Atenas
++ Pekín
+- Río de Janeiro
