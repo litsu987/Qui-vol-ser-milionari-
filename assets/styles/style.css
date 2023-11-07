@@ -968,4 +968,10 @@ option {
     background-color: rgba(36, 59, 85, 0.7);
     font-size: medium; 
 }
-  
+.demo-preview {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}

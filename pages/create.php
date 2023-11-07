@@ -46,6 +46,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Cierra el archivo
         fclose($archivo);
+
+        echo "<div class=''>
+        </div>
+                       <div class='alert alert-success alert-dismissable fade in'>
+                <button type='button' data-dismiss='alert' aria-label='close' class='close'>
+                    <span aria-hidden='true'>×</span>
+                </button>
+                <strong>Well done!</strong> You successfully read this important alert message.
+                </div>"
+
     }
 
     // Redirecciona a la página del formulario
