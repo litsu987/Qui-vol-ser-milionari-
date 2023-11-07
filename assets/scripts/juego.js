@@ -59,6 +59,7 @@ function deshabilitarBotonSiPresionado(botonId, botonPresionadoId) {
 deshabilitarBotonSiPresionado('btnEliminarRespuestas', 'botonEliminacionPresionado');
 deshabilitarBotonSiPresionado('comodin-publico', 'botonEliminacionPresionado2');
 deshabilitarBotonSiPresionado('comodin-llamada', 'botonEliminacionPresionado3');
+deshabilitarBotonSiPresionado('comodin-telefono', 'botonEliminacionPresionado4 ');
 
 
 
@@ -79,6 +80,24 @@ if (preguntaActual === null) {
 } else {
     preguntaActual = parseInt(preguntaActual);
 }
+
+
+
+if (preguntaActual >3){
+}
+var preguntaActual = localStorage.getItem('preguntaActual');
+var preguntaActual = 1;
+localStorage.setItem('preguntaActual', preguntaActual);
+if (preguntaActual === null) {
+    preguntaActual = 0;
+} else {
+    preguntaActual = parseInt(preguntaActual);
+}
+
+
+
+
+
 
 var cronometro0;
 var cronometro1; 
