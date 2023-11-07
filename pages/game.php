@@ -32,20 +32,21 @@ if (isset($_POST['pregunta_actual'])) {
 
 
 
-function comodinPublico() {
+function comodinPublico()
+{
     $random = rand(0, 100);
-  
+
     if ($random <= 80) {
-      // La respuesta simulada del público es la respuesta correcta
-      return "La mayoría del público cree que la respuesta correcta es A.";
+        // La respuesta simulada del público es la respuesta correcta
+        return "La mayoría del público cree que la respuesta correcta es A.";
     } else {
-      // La respuesta simulada del público es una respuesta incorrecta aleatoria
-      $respuestasIncorrectas = array("B", "C", "D");
-      $respuestaSimulada = $respuestasIncorrectas[array_rand($respuestasIncorrectas)];
-      return "La mayoría del público cree que la respuesta correcta es " . $respuestaSimulada . ".";
+        // La respuesta simulada del público es una respuesta incorrecta aleatoria
+        $respuestasIncorrectas = array("B", "C", "D");
+        $respuestaSimulada = $respuestasIncorrectas[array_rand($respuestasIncorrectas)];
+        return "La mayoría del público cree que la respuesta correcta es " . $respuestaSimulada . ".";
     }
 }
-  
+
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -63,43 +64,47 @@ function comodinPublico() {
 
 <body>
     <noscript>
-        <div id="avisoJS" class="avisoJS" >
-            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+        <div id="avisoJS" class="avisoJS">
+            <h1 class="titleNoscript">
+                <?php echo $lang['noscipt']['tittle']; ?>
+            </h1>
             <div class="deshabilitado">
-            <?php echo $lang['noscipt']['message']; ?>
-                <a href="https://support.google.com/adsense/answer/12654?hl" 
-                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+                <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" target="_blank">
+                    <?php echo $lang['noscipt']['link']; ?>
+                </a>.
             </div>
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
     <div id="cronometro2">
         <h1 id="cronometro">-:--</h1>
-        
+
     </div>
     <?php
-        ?>
+    ?>
     <div id="modal" class="swirl-in-fwd modal">
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarModal()">&times;</span>
             <canvas id="modal-contenido"></canvas>
-            
+
             <div id="diagrama" class="diagrama"></div>
         </div>
     </div>
 
     <div id="barras"></div>
 
-    
+
 
     <div class="comodines">
-            <button id="btnEliminarRespuestas" class="comTiempo oval">50 : 50</button>
-            <button id="comodin-publico" onclick="soundAnimation()" class="comPublico oval"><i class="fa-solid fa-users" style="color: #ffffff;"></i></button>
-            <button id="comodin-llamada" class="comPublico oval">+30'</button>
+        <button id="btnEliminarRespuestas" class="comTiempo oval ovalBackground">50 : 50</button>
+        <button id="comodin-publico" onclick="soundAnimation()" class="comPublico oval ovalBackground"><i
+                class="fa-solid fa-users" style="color: #ffffff;"></i></button>
+        <button id="comodin-llamada" class="comPublico oval ovalBackground">+30'</button>
     </div>
-    
 
-   
+
+
 
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
@@ -111,10 +116,10 @@ function comodinPublico() {
     </h3>
 
     <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
-    
+
     <?php
-    
-    
+
+
 
 
     function obtenerArchivoSegunDificultad($nivelDificultad)
@@ -127,25 +132,29 @@ function comodinPublico() {
             return '../assets/questions/english_' . $_SESSION['nivel_dificultad'] . '.txt';
         }
     }
-    
-    function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta){
+
+    function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta)
+    {
         // echo "<div class='preguntasRespuestasDiv'>";
         echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
         echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
         // Recorre las respuestas
-       
+    
         foreach ($respuestas as $i => $respuesta) {
             $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
             echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" data-respuesta-correcta="' . $respuestaCorrecta . '" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
         }
-        
+
         echo '</div>'; // Cierra el contenedor de respuestas
         // echo "</div>";
-
+    
         echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje de respuesta
-       
+    
     }
+
+
+
 
 
     function getQuestions($fileName)
@@ -311,7 +320,7 @@ function comodinPublico() {
 
                 // Limitar a las 3 primeras preguntas
                 $preguntas_respuestas = array_slice($preguntas_respuestas, 0, 3);
-               
+
                 echo '<div id="preguntas_contenedor">'; // Abre el contenedor principal para todas las preguntas
                 foreach ($preguntas_respuestas as $i => $pregunta_respuestas) {
                     $pregunta = $pregunta_respuestas['pregunta']; // Extrae la pregunta actual
@@ -320,7 +329,7 @@ function comodinPublico() {
                     echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
                     echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display: none;'></div>";
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
-                    
+    
 
                     $englishQuestion = getEnglishQuestion($_SESSION['nivel_dificultad'], $pregunta);
                     if (imgExists($_SESSION['nivel_dificultad'], $englishQuestion)) {
@@ -329,13 +338,13 @@ function comodinPublico() {
                     }
 
                     echo '</div>'; // Cierra el div de la pregunta
-                
-                }      
-                         
-                echo '</div>'; // Cierra el contenedor principal de todas las preguntas
-               
-                
     
+                }
+
+                echo '</div>'; // Cierra el contenedor principal de todas las preguntas
+    
+
+
             } else {
                 echo "No se pudo abrir el archivo.";
             }
@@ -364,13 +373,16 @@ function comodinPublico() {
     <form method="post" action="game.php">
         <input type="hidden" name="aumentar_dificultad" value="1">
         <!-- Campo oculto que indica la intención de aumentar la dificultad -->
-        <input type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
+        <div class="centrar">
+            <input id="nextQuestions" type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
+        </div>
+
         <!-- Botón de envío con texto "Siguiente Pregunta" (depende del idioma) -->
     </form>
-   
+
     <script src="../assets/scripts/juego.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
 </body>
 
 </html>

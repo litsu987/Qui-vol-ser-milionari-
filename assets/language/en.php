@@ -25,6 +25,10 @@ $lang = array(
         'score' => 'Your score is: ',
         'publishScore' => 'Do you want to publish your score?',
         'dificultLvl' => 'Difficulty level',
+        'publishConfirmed' => "Score published succesfully",
+        'publishFailed' => "There was an error publishing the score!!!",
+
+
     ],
     'namePlaceholder' => 'Enter your name',
     'tittle' => 'WHO WANTS TO BE A MILLIONAIRE?',
@@ -37,7 +41,24 @@ $lang = array(
                 <br />
                 For instructions to enable javascript<br />
                 In your browser, click',
-        'link'=> 'here',
+        'link' => 'here',
     ],
+    'login' => [
+        'title' => 'Login',
+        'user' => 'User',
+        'pass' => 'Password',
+        'acces' => 'To access',
+        'error' => 'Incorrect username or password.'
+    ],
+    'create' => [
+        'title' => 'Create question',
+        'select' => 'Question level and language',
+        'newQuestion' => 'Question',
+        'corectQuestion' => 'Correct answer',
+        'incorectQuestion1' => '1st incorrect answer',
+        'incorectQuestion2' => '2nd incorrect answer',
+        'incorectQuestion3' => '3rd incorrect answer',
+        'submit' => 'Create question',
+    ]
 );
 ?>

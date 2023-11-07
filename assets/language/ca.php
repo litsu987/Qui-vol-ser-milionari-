@@ -25,6 +25,9 @@ $lang = array(
         'score' => 'La teva puntuació és: ',
         'publishScore' => 'Vols publicar la teva puntuació?',
         'dificultLvl' => 'Nivell de dificultat',
+        'publishConfirmed' => "Puntuació publicada corectament",
+        'publishFailed' => "Ha hagut un error al publicar la puntuació!!!",
+
     ],
     'namePlaceholder' => 'Introdueix el teu nom',
     'tittle' => 'QUI VOL SER MILLONARI?',
@@ -37,7 +40,24 @@ $lang = array(
                     <br />
                     Per veure les instruccions per habilitar javascript<br />
                     al vostre navegador, feu click ',
-        'link'=> 'aquí',
+        'link'=> 'aquí', 
     ],
+    'login' => [
+        'title' => 'Iniciar Sesió',
+        'user' => 'Usuari',
+        'pass' => 'Contrasenya',
+        'acces' => 'Accedir',
+        'error' => 'Usuari o contrasenya incorrectes.'
+    ],
+    'create' => [
+        'title' => 'Crear pregunta',
+        'select' => 'Nivell i idioma de la pregunta',
+        'newQuestion' => 'Pregunta',
+        'corectQuestion' => 'Resposta correcta',
+        'incorectQuestion1' => '1a Resposta incorrecta',
+        'incorectQuestion2' => '2a Resposta incorrecta',
+        'incorectQuestion3' => '3a Resposta incorrecta',
+        'submit' => 'Crear pregunta',
+    ]
 );
 ?>
