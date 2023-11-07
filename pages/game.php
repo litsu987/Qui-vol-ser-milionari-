@@ -10,8 +10,6 @@ if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $
 include '../assets/language/' . $_SESSION['lang'] . '.php';
 $_SESSION['score'] = 0;
 
-$dificultad = $_SESSION['nivel_dificultad'];
-
 if (isset($_POST['aumentar_dificultad'])) {
     if (!isset($_SESSION['nivel_dificultad'])) {
         // Si la variable de sesión 'nivel_dificultad' no existe en esta sesión, inicialízala en 1
@@ -23,7 +21,6 @@ if (isset($_POST['aumentar_dificultad'])) {
 } else {
     $_SESSION['nivel_dificultad'] = 1;
     $_SESSION['pregunta_actual'] = 0;
-    $_SESSION['tiempoTotal'] = 0;
 }
 
 if (isset($_POST['pregunta_actual'])) {
