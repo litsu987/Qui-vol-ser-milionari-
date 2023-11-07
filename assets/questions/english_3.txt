@@ -8,11 +8,6 @@
 - India
 + United States
 - England
-* How many territories did the British Empire conquer?
-- 5 Territories
-- 8 territories
-- 10 territories
-- 12 territories
 * Which country has won the most wars?
 + England
 - Australia
@@ -28,8 +23,8 @@
 - New Zealand
 - Philippines
 + England
-*Who is the president of the United Kingdom?
--Donald Trump
+* Who is the president of the United Kingdom?
+- Donald Trump
 - Pedro Sánchez
 - Dina Boluarte
 + Boris Johnson
@@ -43,8 +38,8 @@
 + Nile
 - Mississippi
 - Danube
-*In the metric system, how many centimeters are in a meter?
-+100
+* In the metric system, how many centimeters are in a meter?
++ 100
 - 1,000
 - 10
 - 10,000

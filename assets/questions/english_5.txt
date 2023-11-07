@@ -43,10 +43,10 @@
 - Ox
 - Oxy
 - Oxg
-*Who was the leader of the Russian Revolution who became the first ruler of the Soviet Union?
-+Vladimir Lenin
--Leon Trotsky
--Joseph Stalin
+* Who was the leader of the Russian Revolution who became the first ruler of the Soviet Union?
++ Vladimir Lenin
+- Leon Trotsky
+- Joseph Stalin
 - Mikhail Gorbachev
 * In anatomy, what is the name of the longest bone in the human body?
 - Humerus

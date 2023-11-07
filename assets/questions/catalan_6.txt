@@ -13,7 +13,7 @@
 + Tritó
 - Europa
 - Ganímedes
-* En matemàtiques, quin és el nombre auri representat per la lletra grega φ (phi) i que té una aproximació de 1.618?
+* En matemàtiques, quin és el nombre auri representat per una lletra grega i que té una aproximació de 1.618?
 - Pi (π)
 - Epsilon (ε)
 - Tau (τ)

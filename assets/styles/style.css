@@ -119,6 +119,21 @@ a:hover {
     width: 100%;
 }
 
+#banner img {
+    height: 180px;
+    width: auto;
+    padding: 10px;
+}
+
+.h1Titulo {
+    color: #1d060c;
+    text-align: center;
+    font-family: 'Alfa Slab One', serif;
+    font-size: 250%;
+    margin: 10px 0px 0px;
+    -webkit-text-stroke: 0.5px #b3b3b2;
+}
+
 
 
 /* INDEX */
@@ -182,21 +197,6 @@ a:hover {
     border-radius: 50%;
 }
 
-.index #banner img {
-    height: 180px;
-    width: auto;
-    padding: 10px;
-}
-
-.index .h1Titulo {
-    color: #1d060c;
-    text-align: center;
-    font-family: 'Alfa Slab One', serif;
-    font-size: 250%;
-    margin: 10px 0px 0px;
-    -webkit-text-stroke: 0.5px #b3b3b2;
-}
-
 .index #ul-container {
     display: flex;
     justify-content: center;
@@ -242,6 +242,9 @@ a:hover {
     width: 95%;
     border-collapse: collapse;
     margin-top: 20px;
+    border-radius: 10px; /* Ajusta el valor según tu preferencia */
+    overflow: hidden;
+    border: 2px solid #333;
 }
 
 .ranking .tableContainer {
@@ -252,7 +255,7 @@ a:hover {
 .ranking table,
 .ranking th,
 .ranking td {
-    border: 1px solid #ddd;
+    border: 2px solid #333;
     text-align: right;
 }
 
@@ -484,7 +487,7 @@ td {
     cursor: auto;
 }
 
-.game .game .modal {
+.game .modal {
     display: none;
     z-index: 60;
     position: fixed;
@@ -773,6 +776,10 @@ td {
 
     .game .CronoPregunta {
         font-size: 15px;
+    }
+
+    .ranking .idSesionColumna {
+        display: none;
     }
 
     

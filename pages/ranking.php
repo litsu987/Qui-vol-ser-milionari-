@@ -88,7 +88,7 @@ $sessionId = session_id();
                 <th>Posición</th>
                 <th>Puntuación</th>
                 <th>Nombre</th>
-                <th>ID sesion</th>
+                <th class="idSesionColumna">ID sesion</th>
                 <th>Tiempo</th>
             </tr>
             <?php
@@ -101,7 +101,7 @@ $sessionId = session_id();
                 echo '<td>' . ($index + 1) . '</td>'; // Posición
                 echo '<td>' . $record['puntuacion'] . '</td>'; // Puntuación
                 echo '<td>' . $record['nombre'] . '</td>'; // Nombre
-                echo '<td>' . $record['idSesion'] . '</td>'; // Nombre
+                echo '<td class="idSesionColumna">' . $record['idSesion'] . '</td>'; // Nombre
                 echo '<td>' . $record['fechaHora'] . '</td>'; // Fecha y Hora
                 echo '</tr>';
             }

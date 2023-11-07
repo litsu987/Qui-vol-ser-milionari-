@@ -13,7 +13,7 @@
 + Tritón
 - Europa
 - Ganímedes
-* En matemáticas, ¿cuál es el número áureo representado por la letra griega φ (phi) y que tiene una aproximación de 1.618?
+* En matemáticas, ¿cuál es el número áureo representado por una letra griega y que tiene una aproximación de 1.618?
 - Pi (π)
 - Epsilon (ε)
 - Tau (τ)

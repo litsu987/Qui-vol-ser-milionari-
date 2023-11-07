@@ -13,7 +13,7 @@
 + Triton
 - Europe
 - Ganymede
-* In mathematics, what is the golden ratio represented by the Greek letter φ (phi) and which has an approximation of 1.618?
+* In mathematics, what is the golden ratio represented by an Greek letter and which has an approximation of 1.618?
 - Pi (π)
 - Epsilon (ε)
 - Tau (τ)
