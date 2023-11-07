@@ -22,7 +22,7 @@
 - Corriente de California
 + Corriente del Golfo
 - Corriente de Humboldt
-- Corriente de Kuroshio* 
+- Corriente de Kuroshio
 * ¿Quién es el autor de la obra filosófica "Así habló Zaratustra"?
 - Jean-Jacques Rousseau
 + Friedrich Nietzsche
@@ -41,7 +41,7 @@
 * En química, ¿cuál es el símbolo del elemento químico oxígeno?
 + O
 - Ox
-- Oxí
+- Oxi
 - Oxg
 * ¿Quién fue el líder de la Revolución Rusa que se convirtió en el primer gobernante de la Unión Soviética?
 + Vladimir Lenin

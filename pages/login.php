@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
-<body>
+<body class="login">
     <noscript>
-        <div id="avisoJS" class="avisoJS" >
-            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+        <div id="avisoJS" class="avisoJS">
+            <h1 class="titleNoscript">
+                <?php echo $lang['noscipt']['tittle']; ?>
+            </h1>
             <div class="deshabilitado">
                 <?php echo $lang['noscipt']['message']; ?>
-                <a href="https://support.google.com/adsense/answer/12654?hl" 
-                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+                <a href="https://support.google.com/adsense/answer/12654?hl" target="_blank">
+                    <?php echo $lang['noscipt']['link']; ?>
+                </a>.
             </div>
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
@@ -28,7 +32,7 @@
 
 
 
-<?php
+    <?php
     include "usuarios.php";
 
     $error = "";
@@ -39,31 +43,34 @@
 
         if (isset($usuarios[$user]) && $usuarios[$user] == $pass) {
             session_start();
-            $_SESSION["user"] = $user; 
+            $_SESSION["user"] = $user;
             header("Location: edit.php");
             exit();
         } else {
             $error = "Usuario o contraseña incorrectos. Por favor, intenta nuevamente.";
         }
     }
-?>
+    ?>
 
-<div id="divLogin" class="fondo">
-    <h1>Iniciar Sesión</h1>
-    <form id="login" action="" method="post">
-        <label for="user"> Usuario</label><br>
-        <input type="text" name="user" required><br><br>
-        <label for="pass"> Contraseña</label><br>
-        <input type="password" name="pass" required><br><br>
-        <button id="btnLogin" type="submit" class="button">Iniciar Sesión</button>
-    </form>
-    <?php if ($error != "") { ?>
-            <p style="color: red;"><?php echo $error; ?></p>
+    <div id="divLogin" class="fondo">
+        <h1>Iniciar Sesión</h1>
+        <form id="login" action="" method="post">
+            <label for="user"> Usuario</label><br>
+            <input type="text" name="user" required><br><br>
+            <label for="pass"> Contraseña</label><br>
+            <input type="password" name="pass" required><br><br>
+            <button id="btnLogin" type="submit" class="button">Iniciar Sesión</button>
+        </form>
+        <?php if ($error != "") { ?>
+            <p style="color: red;">
+                <?php echo $error; ?>
+            </p>
         <?php } ?>
-</div>
+    </div>
 
 
 
 
 </body>
+
 </html>

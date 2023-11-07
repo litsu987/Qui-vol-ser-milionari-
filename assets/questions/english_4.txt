@@ -1,45 +1,60 @@
-* How many world cups has England win?
-- None
-+ 1 World Cup
-- 2 World Cup
-- Never gone
-* Which way do the English people drive?
-+ Driving in the left lane and the driver on the right.
-- Driving in the right lane and the driver on the left.
-- Like everyone.
-- To the other way
-* Which commonwealth country do you think has the best economic situation?
-+ India
-- Canada
-- Pakistan
-- United Kingdom
-* What is the country with the most colonies in the world?
-- Russia
-+ France
-- Denmark
-- Portugal
-* In what time of the day do the British drink tea?
-- 2 P.M
-- 1 P.M
-- 5 P.M
-+ 4 P.M
-* What was the first official team of football in the UK?
-- Notts County Football Club 
-+ Sheffield
-- Hallam FC
-- Munich
-* What is the name of the party where the British dressed in green and pick flowers?
-- Easter day
-+ May day
-- San Patrick day
-- April Fool's day
-* Which country consumes more tea annually?
-- Portugal
-+ The UK
+* Are the British punctual?
++ Always
+- Generally
+- Can
+- Never
+* Which of these countries were not colonized by England?
+- Maldiva's Islands
+- Cayman Islands
+- Bermuda Islands
++ Belarus
+* What African territory was conquered in the 19th century by England?
++ Uganda
 - Spain
 - France
-* Which colonial country has more world cups?
-- France
-- Spain
-+ Germany
-- Brazil
+- Melilla
+* Who were those who used the word “alborigen”?
+- Arabs
+- Asians
+- Spanish
++ Italians - Greeks
+* In which century did cricket become a national sport?
+- At the end of the 18th century
+- At the beginning of the 17th century
+- At the end of the 15th century.
++ At the beginning of the 19th century
+* Why are the British empires important?
+- For their food
++ For their dead
+- For their victories
+- For your money
+* Who was the first president of the United States?
+- Thomas Jefferson
+- Benjamin Franklin
++ George Washington
+- John Adams
+* What is the capital of Australia?
+- Sydney
+- Melbourne
+- Brisbane
++ Canberra
+* What is the fifth planet in the solar system?
+- Mars
++ Jupiter
+- Saturn
+- Uranus
+* What is the monetary unit of Japan?
+- Yuan
+- Dollar
+- Euro
++ Yen
+* Who was the author of "The Odyssey"?
++ Homer
+- Sophocles
+- Plato
+- Aristotle
+* Which famous scientist developed the theory of relativity?
+- Isaac Newton
++ Albert Einstein
+- Stephen Hawking
+- Galileo Galilei

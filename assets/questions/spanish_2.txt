@@ -28,7 +28,7 @@
 - Ruanda
 - Nigeria
 + Inglaterra
-- * ¿De dónde es Gandhi?
+* ¿De dónde es Gandhi?
 - Marruecos
 + India
 - Inglaterra
@@ -57,4 +57,4 @@
 - Charles Dickens
 + William Shakespeare
 - Fyodor Dostoevsky
-- Jane Austen* 
+- Jane Austen 

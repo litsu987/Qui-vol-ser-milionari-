@@ -77,36 +77,42 @@ $sessionId = session_id();
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-    <h1>Hall Of Fame</h1>
 
-    <table>
-        <tr>
-            <th>Posición</th>
-            <th>Puntuación</th>
-            <th>Nombre</th>
-            <th>ID sesion</th>
-            <th>Tiempo</th>
-        </tr>
-        <?php
-        foreach ($recordsArray as $index => $record) {
-            if ($sessionId === $record['idSesion']) {
-                echo '<tr class="userRow">';
-            } else {
-                echo '<tr>';
+    <div id="banner" class="centrar">
+        <h1 class="hallOfFameTittle">HALL OF FAME</h1>
+    </div>
+
+    <div class="tableContainer">
+        <table>
+            <tr>
+                <th>Posición</th>
+                <th>Puntuación</th>
+                <th>Nombre</th>
+                <th>ID sesion</th>
+                <th>Tiempo</th>
+            </tr>
+            <?php
+            foreach ($recordsArray as $index => $record) {
+                if ($sessionId === $record['idSesion']) {
+                    echo '<tr class="userRow">';
+                } else {
+                    echo '<tr>';
+                }
+                echo '<td>' . ($index + 1) . '</td>'; // Posición
+                echo '<td>' . $record['puntuacion'] . '</td>'; // Puntuación
+                echo '<td>' . $record['nombre'] . '</td>'; // Nombre
+                echo '<td>' . $record['idSesion'] . '</td>'; // Nombre
+                echo '<td>' . $record['fechaHora'] . '</td>'; // Fecha y Hora
+                echo '</tr>';
             }
-            echo '<td>' . ($index + 1) . '</td>'; // Posición
-            echo '<td>' . $record['puntuacion'] . '</td>'; // Puntuación
-            echo '<td>' . $record['nombre'] . '</td>'; // Nombre
-            echo '<td>' . $record['idSesion'] . '</td>'; // Nombre
-            echo '<td>' . $record['fechaHora'] . '</td>'; // Fecha y Hora
-            echo '</tr>';
-        }
-        ?>
-    </table>
-
-    <a href="../assets/scripts/logout.php" class="button">
-        <?php echo $lang['buttons']['toStart']; ?>
-    </a>
+            ?>
+        </table>
+    </div>
+    <div class="centrar" id="toStartButton">
+        <a href="../assets/scripts/logout.php" class="button">
+            <?php echo $lang['buttons']['toStart']; ?>
+        </a>
+    </div>
 </body>
 
 </html>
