@@ -16,6 +16,7 @@ if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
 
+$mensaje = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pregunta = $_POST["pregunta"];
@@ -47,14 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Cierra el archivo
         fclose($archivo);
 
-        echo "<div class=''>
-        </div>
-                       <div class='alert alert-success alert-dismissable fade in'>
-                <button type='button' data-dismiss='alert' aria-label='close' class='close'>
-                    <span aria-hidden='true'>×</span>
-                </button>
-                <strong>Well done!</strong> You successfully read this important alert message.
-                </div>"
+        $_SESSION["mensaje"]  = "<div id='alertQuestion' class='demo-preview'>
+                        <div class='alert alert-success alert-dismissable fade in'>
+                        <button aria-label='Close' onclick=\"document.getElementById('alertQuestion').style.display='none';\" class='close spanX'><i class='fa-regular fa-circle-xmark' style='color: #ffffff;'></i></button>
+                        <strong>La pregunta se ha guardado correctamente!</strong>
+                        </div>
+                    </div>";
+         
 
     }
 
@@ -62,6 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: create.php");
     exit();
 }
+$mensaje = isset($_SESSION["mensaje"]) ? $_SESSION["mensaje"] : "";
+unset($_SESSION["mensaje"]); // Limpiar el mensaje después de mostrarlo
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,21 +78,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
 <body>
+    <div><?php echo $mensaje; ?></div>  
     <div class="login-box">
         <h1><?php echo $lang['create']['title']; ?></h1>
         <form action="create.php" method="post" class="">
             <div class="divSelect">
-                <label for="archivo" class="labelCreate"><?php echo $lang['create']['select']; ?></label></br></br>
-                <select name="archivo" id="archivo" value="-" required>
-                    <option value=""></option>
-                    <?php
-                        // Escanea el directorio para obtener una lista de archivos .txt
-                        $archivos = glob('../assets/questions/*.txt');
-                        foreach ($archivos as $archivo) {
-                            echo "<option value=\"$archivo\">".basename($archivo)."</option>";
-                        }
-                    ?>
-                </select><br>
+                
             </div>
             <div class="user-box">
                 <input type="text" name="pregunta" id="" class="" required>

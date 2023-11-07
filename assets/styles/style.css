@@ -971,7 +971,43 @@ option {
 .demo-preview {
     padding-top: 20px;
     padding-bottom: 10px;
-    width: 70%;
+    width: 42%;
     margin: auto;
     text-align: center;
-}
+  }
+  
+  .alert {
+    padding: .7143rem 1.071rem;
+    margin-bottom: 1.429rem;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    color: #FFF
+  }
+  
+  .alert.alert-square {
+    border-radius: 0
+  }
+  
+  .alert .close {
+    position: relative
+  }
+  
+  .alert.alert-dismissable,
+  .alert.alert-dismissible {
+    padding-right: 2.5rem
+  }
+  
+  .alert.alert-dismissable .close,
+  .alert.alert-dismissible .close {
+    top: 1px;
+    right: -79%;
+    color: inherit
+  }
+  .alert.alert-success {
+    background-color: #64DD17;
+    border-color: #64DD17
+  }
+  .spanX{
+    all: unset;
+    cursor: pointer;
+  }
