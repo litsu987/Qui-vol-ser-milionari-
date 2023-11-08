@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION["user"])) {
@@ -80,8 +81,19 @@ unset($_SESSION["mensaje"]); // Limpiar el mensaje después de mostrarlo
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
 <body>
+    <noscript>
+        <div id="avisoJS" class="avisoJS" >
+            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+            <div class="deshabilitado">
+                <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" 
+                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+            </div>
+        </div>
+        <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
+    </noscript>
     <div><?php echo $mensaje; ?></div>  
-    <div class="login-box">
+    <div class="createQuestion">
         <h1><?php echo $lang['create']['title']; ?></h1>
         <form action="create.php" method="post" class="">
             <div class="divSelect">

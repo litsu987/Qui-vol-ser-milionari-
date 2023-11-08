@@ -10,35 +10,45 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(90deg, #6610f2 0%, #6f42c1 80%);
+    background: linear-gradient(181deg,#141e30 0%, #243b55 80%);
+    
 }
-
-.button i {
-    margin-top: 5px;
-}
-
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    border: 2px solid #1d060c;
+/* INDEX.PHP */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
     border-radius: 10px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.button:hover {
-    background-color: #0056b3;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
     color: #fff;
 }
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:nth-child(odd) td {
+    color: white;
+  }
 
 a {
     text-decoration: none;
@@ -48,15 +58,255 @@ a {
     font-weight: bold;
 }
 
+/* Enlace al inicio */
 a:hover {
     color: #0056b3;
+}
+#nameAndPublishDiv {
+    display: none;
+}
+
+#nameAndPublishDiv input {
+    text-align: center;
+}
+
+#publishButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.button i {
+    margin-top: 5px;
+}
+
+.button {
+    position: relative;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 4px;
+    background-color: #141e30;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover {
+    background: #03e9f4;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+}
+
+/* Estilo para el botón de envío del formulario */
+.button[type="submit"].button {
+    background-color: #7e2a5b;
+}
+
+.button[type="submit"].button:hover {
+    background-color: #4e003d;
+}
+
+/* Estilo para el botón de reinicio del formulario */
+.button[type="reset"].button {
+    background-color: #dc3545;
+}
+
+.button[type="reset"].button:hover {
+    background-color: #b72e37;
+}
+
+/* Estilo para el botón con icono (icono a la izquierda del texto) */
+.button.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button.icon i {
+    margin-right: 5px; /* Espaciado entre el icono y el texto */
+}
+
+/* Estilo para el botón de "Publicar" con icono de Font Awesome */
+.button.publish {
+    background-color: #17a2b8;
+}
+
+.button.publish:hover {
+    background-color: #138496;
+}
+
+
+    a {
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 20px;
+        letter-spacing: 4px;
+        background-color: #2d4675;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 3;
+    }
+    .login:hover {
+        background: #03e9f4;
+        color: #141e30;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4,
+                    0 0 25px #03e9f4,
+                    0 0 50px #03e9f4,
+                    0 0 100px #03e9f4;
+    }
+
+    .divLogin{
+        display: flex;
+        justify-content: right;
+        margin-right: 1%;
+    }
+
+/* GAME.PHP */
+.lvlDifivultad{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    align-items: flex-start;
+    color: white;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+#preguntas_contenedor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.preguntasRespuestasDiv {
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    border-radius: 19px 0px 26px 0px ;
+    border: 8px outset #b3b3b2;
+}
+
+.contenidoPregunta{
+    color: white;
+    width: 1250px;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    
+}
+.respuestas{
+    display: grid; 
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    height: 50%;
+    width: 80%;
+    margin-left: 130px;
+    margin-bottom: 50px;
+    
+}
+.contenidoRespuesta{
+    cursor: pointer;
+    text-align: center;
+    font-size: x-large;
+    width: 100%;
+    height: 80px;
+    color: white;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    transition: .5s;
+}
+/* .contenidoRespuesta:hover{
+    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+
+} */
+.backgroundContenidoRespuesta{
+    background: rgba(0,0,0,.5);
+}
+.backgroundContenidoRespuesta:hover{
+    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+
+}
+.btonBloqueado{
+    background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
+    cursor: auto;
+}
+.backgroundContenidoRespuestaCorrecta{
+    background: radial-gradient(circle farthest-corner at center center, #57da57 0%, #126f12 80%);
+}
+.backgroundContenidoRespuestaIncorrecta{
+    background: radial-gradient(circle farthest-corner at center center, #ff0000 0%, #681c1c 70%);
 }
 
 .oculto {
     display: none;
 }
 
-.centrar {
+
+#nextQuestions{
+    cursor: pointer;
+    text-align: center;
+    font-size: x-large;
+    height: 80px;
+    color: white;
+    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    width: auto;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+#nextQuestions:hover{
+    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+}
+/* LOSE.PHP-WIN.PHP */
+
+.divImagenPrincipal{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.imagenPrincipal{
+    
+    text-align: center; /* Alinea el texto al centro */
+    position: center; /* Fija el banner en la pantalla */
+    width: 700px; /* Ancho del banner al 100% de la pantalla */
+    top: 0; /* Sitúa el banner en la parte superior */
+}
+.bodyLoseWin{
+    Overflow: hidden;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.centrar{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,13 +319,61 @@ a:hover {
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    height: 100%;
+    height: 400px;
+    padding: 20px;
+    width: 70%;
+    color: white;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+#divLogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column; 
+    height: 400px;
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     border: 8px outset #b3b3b2;
-    padding: 3%;
+    padding: 20px;
     border-radius: 19px 0px 26px 0px;
-    width: 50%;
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align: center;
     color: white;
+    gap: 4%;
+}
+.tituloLost{
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+.preguntaPublicar{
+   margin-top: 20px;
+   gap: 10px;
+}
+.score{
+    margin-bottom: 20px;
+}
+.divExtras{
+    margin-top: 20px;
+    margin-left: 0px;
+    gap: 10px;
+    flex-direction: column;
+}
+.textUser{
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #03e9f4;
+	background: rgba(0,0,0,.5);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #03e9f4;
 }
 
 /* NOSCRIPT */
@@ -111,7 +409,6 @@ a:hover {
 }
 
 #banner {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     height: 100%;
     display: flex;
     justify-content: center;
@@ -207,8 +504,9 @@ a:hover {
     width: 65%;
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     padding: 20px;
-    border-radius: 19px 0px 26px 0px;
-    border: 8px outset #b3b3b2;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
     list-style: none;
     text-align: justify;
     color: white;
@@ -224,11 +522,22 @@ a:hover {
 }
 
 .index #loginButton {
-    margin: 10px;
-    padding: 8px 10px;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 4px;
+    background-color: #2d4675;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    top: 0;
-    left: 0;
+    z-index: 3;
 }
 
 .index .text-container {
@@ -291,6 +600,17 @@ td {
 .ranking #toStartButton {
     padding: 2%;
     margin-top: 3%;
+}
+
+.salonTitle{
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
 }
 
 
@@ -368,10 +688,30 @@ td {
 
 /* GAME */
 .game #nextQuestions {
-    margin-bottom: 5%;
+    cursor: pointer;
+    text-align: center;
+    font-size: x-large;
     height: 80px;
-    font-size: 20px;
-    width: auto;
+    color: white;
+    width: 17%;
+    padding: 10px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    background: rgba(0,0,0,.5);
+    border-radius: 10px;
+    transition: .5s;
+}
+
+#nextQuestions:hover{
+    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+    background: #03e9f4;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
 }
 
 .game #divTiempoTotal {
@@ -466,19 +806,25 @@ td {
 .game .oval {
     cursor: pointer;
     width: 80px;
+    transition: .5s;
     height: 50px;
-    background-color: #ccc;
-    border: 2px solid white;
-    border-radius: 50% / 50%;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
     color: white;
 }
 
 .game .ovalBackground {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: rgba(0,0,0,.5);
 }
-
-.game .ovalBackground:hover {
-    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+.game .ovalBackground:hover{
+    background: #ffc107;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ffc107,
+                0 0 25px #ffc107,
+                0 0 50px #ffc107,
+                0 0 100px #ffc107;
 }
 
 .game .comTiempo {
@@ -490,7 +836,7 @@ td {
 }
 
 .game .botton .btonBloqueadoComodin {
-    background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
+    background: #3c3c3d;
     cursor: auto;
 }
 
@@ -505,14 +851,15 @@ td {
     transform: translate(-50%, -50%);
     /* Centra en ambas direcciones */
     height: 400px;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    border: 8px outset #b3b3b2;
     padding: 20px;
-    border-radius: 19px 0px 26px 0px;
     width: 700px;
     color: white;
     margin-left: -374px;
     margin-top: -137px;
+    background: rgba(39, 35, 53, 0.9);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
 .game .cerrar {
@@ -541,6 +888,10 @@ td {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
 .game #divImgQuestion {
@@ -563,24 +914,30 @@ td {
 }
 
 .game .backgroundContenidoRespuesta {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: rgba(0,0,0,.5);
 }
 
 .game .backgroundContenidoRespuesta:hover {
-    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+    background: #ffc107;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ffc107,
+                0 0 25px #ffc107,
+                0 0 50px #ffc107,
+                0 0 100px #ffc107;
 }
 
 .game .btonBloqueado {
-    background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
+    background: rgba(27, 27, 27, 0.5);
     cursor: auto;
 }
 
 .game .backgroundContenidoRespuestaCorrecta {
-    background: radial-gradient(circle farthest-corner at center center, #57da57 0%, #126f12 80%);
+    background: rgba(0, 255, 34, 0.7);
 }
 
 .game .backgroundContenidoRespuestaIncorrecta {
-    background: radial-gradient(circle farthest-corner at center center, #ff0000 0%, #681c1c 70%);
+    background: rgba(255, 0, 0, 0.7);
 }
 
 .game .bannerMillonario {
@@ -624,141 +981,95 @@ td {
 
 
 
-/* LOGIN */
-.login #divLogin {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    height: 400px;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    border: 8px outset #b3b3b2;
-    padding: 20px;
-    border-radius: 19px 0px 26px 0px;
-    width: 700px;
-    margin: 0 auto;
-    margin-top: 10%;
-    text-align: center;
-    color: white;
-    gap: 4%;
-}
-
-.form__group {
-    position: relative;
-    padding: 15px 0 0;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid white;
-    outline: 0;
-    font-size: 1.3rem;
-    color: #fff;
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
-
-    &::placeholder {
-        color: transparent;
-    }
-
-    &:placeholder-shown ~ .form__label {
-        font-size: 1.3rem;
-        cursor: text;
-        top: 20px;
-    }
-}
-
-.form__label {
+/* LOGIN.PHP */
+.formLogin {
     position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: white;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
-.form__field:focus {
-    ~ .form__label {
-        position: absolute;
-        top: 0;
-        display: block;
-        transition: 0.2s;
-        font-size: 1rem;
-        color: white;
-        font-weight:500;    
-    }
-    padding-bottom: 6px;  
-    font-weight: 400;
-    border-width: 3px;
-    border-image: linear-gradient(268deg,#df10de 0%, #5b1683 80%);
-    border-image-slice: 1;
+.formLogin h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
 }
+
+.formLogin .user-box {
+    position: relative;
+}
+
+.formLogin .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.formLogin .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.formLogin .user-box input:focus ~ label,
+.formLogin .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
 /* reset input */
 .form__field{
     &:required,&:invalid { box-shadow:none; }
 }
 
-
 .buttonLogin {
-    display: inline-block;
+    position: relative;
     padding: 10px 20px;
-    border: none;
-    color: #fff;
-    border: 2px solid #1d060c;
-    border-radius: 10px;
+    color: #03e9f4;
     font-size: 16px;
-    text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    background-color: #141e30;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.css-button-shadow-border-sliding--sky {
-    min-width: 130px;
-    height: 40px;
-    color: #fff;
-    padding: 5px 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    outline: none;
+.buttonLogin:hover{
+    background: #03e9f4;
+    color: #141e30;
     border-radius: 5px;
-    border: none;
-    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);
-    background: #4433ff;
-   z-index: 1;
-  }
-  .css-button-shadow-border-sliding--sky:hover:after {
-    width: 100%;
-    left: 0;
-  }
-  .css-button-shadow-border-sliding--sky:after {
-    border-radius: 5px;
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    z-index: -1;
-    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);
-    transition: all 0.3s ease;
-    background-color: #8b2cb1;
-    right: 0;
-  }
-  .css-button-shadow-border-sliding--sky:active {
-    top: 2px;
-  }
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+}
+
 .vibrate-1 {
     margin-top: 2%;
     font-size: large;
@@ -769,6 +1080,7 @@ td {
 	-webkit-animation: vibrate-1 0.3s linear both;
 	animation: vibrate-1 0.3s linear both;
 }
+
 @-webkit-keyframes vibrate-1 {
     0% {
         -webkit-transform: translate(0);
@@ -795,6 +1107,7 @@ td {
                 transform: translate(0);
     }
 }
+
 @keyframes vibrate-1 {
     0% {
         -webkit-transform: translate(0);
@@ -826,7 +1139,7 @@ td {
 
 /* CREATE.PHP */
 
-.login-box {
+.createQuestion {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -839,18 +1152,18 @@ td {
     border-radius: 10px;
   }
   
-  .login-box h1 {
+  .createQuestion h1 {
     margin: 0 0 30px;
     padding: 0;
     color: #fff;
     text-align: center;
   }
   
-  .login-box .user-box {
+  .createQuestion .user-box {
     position: relative;
   }
   
-  .login-box .user-box input {
+  .createQuestion .user-box input {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -861,7 +1174,7 @@ td {
     outline: none;
     background: transparent;
   }
-  .login-box .user-box label {
+  .createQuestion .user-box label {
     position: absolute;
     top:0;
     left: 0;
@@ -872,15 +1185,15 @@ td {
     transition: .5s;
   }
   
-  .login-box .user-box input:focus ~ label,
-  .login-box .user-box input:valid ~ label {
+  .createQuestion .user-box input:focus ~ label,
+  .createQuestion .user-box input:valid ~ label {
     top: -20px;
     left: 0;
     color: #03e9f4;
     font-size: 12px;
   }
   
-  .login-box form .enviarPregunta {
+  .createQuestion form .enviarPregunta {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
@@ -896,7 +1209,7 @@ td {
     cursor: pointer;
   }
   
-  .login-box .enviarPregunta:hover {
+  .createQuestion .enviarPregunta:hover {
     background: #03e9f4;
     color: #141e30;
     border-radius: 5px;
@@ -956,6 +1269,48 @@ option {
     margin: auto;
     text-align: center;
   }
+  
+  .alert {
+    padding: .7143rem 1.071rem;
+    margin-bottom: 1.429rem;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    color: #FFF;
+  }
+  
+  .alert.alert-square {
+    border-radius: 0
+  }
+  salonTitle
+  .alert .close {
+    position: relative
+  }
+  
+  .alert.alert-dismissable,
+  .alert.alert-dismissible {
+    padding-right: 2.5rem
+  }
+  
+  .alert.alert-dismissable .close,
+  .alert.alert-dismissible .close {
+    top: 1px;
+    right: -75%;
+    color: inherit
+  }
+  .alert.alert-success {
+    background-color: #64DD17;
+    border-color: #64DD17
+  }
+  .spanX{
+    all: unset;
+    cursor: pointer;
+  }
+
+
+
+
+
+/* COMODIN DE LA LLAMADA */
 /* Estilos para el contenedor del minijuego */
 .minijuego {
     display: none;
@@ -1052,7 +1407,7 @@ option {
     margin-bottom: 1.429rem;
     border-radius: 2px;
     border: 1px solid transparent;
-    color: #FFF
+    color: #FFF;
   }
   
   .alert.alert-square {
@@ -1229,9 +1584,4 @@ option {
     .ranking .idSesionColumna {
         display: none;
     }
-
-    
-
-
-
 }

@@ -56,24 +56,24 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         }
     }
     ?>
-    <div id="divLogin" class="fondo">
+    <div class="formLogin">
         <h1>
             <?php echo $lang['login']['title']; ?>
         </h1>
         <form id="login" action="" method="post" class="field">
-            <div class="form__group">
-                <input type="text" name="user" class="form__field" required>
-                <label for="user" class="form__label">
+            <div class="user-box">
+                <input type="text" name="user" class="" required>
+                <label for="user" class="">
                     <?php echo $lang['login']['user']; ?>
                 </label><br><br>
             </div>
-            <div class="form__group">
+            <div class="user-box">
                 <input type="password" name="pass" class="form__field" required>
                 <label for="pass" class="form__label">
                     <?php echo $lang['login']['pass']; ?>
                 </label><br><br>
             </div>
-            <button id="btnLogin" type="submit" class="buttonLogin css-button-shadow-border-sliding--sky">
+            <button id="btnLogin" type="submit" class="buttonLogin">
                 <?php echo $lang['login']['acces']; ?>
             </button>
         </form>

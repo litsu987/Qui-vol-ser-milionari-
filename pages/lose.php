@@ -1,18 +1,18 @@
 <?php
 session_start();
+error_reporting(0);
+// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+//     http_response_code(403);
+//     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+//     exit;
+// }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    http_response_code(403);
-    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
-    exit;
-}
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    http_response_code(403);
-    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
-    exit;
-}
+// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+//     http_response_code(403);
+//     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+//     exit;
+// }
 
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
         <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <div class="centrar">
-                    <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
+                    <input type="text" id="name" name="name" class="textUser" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
                 </div>
                 <input type="hidden" id="currentDate" name="currentDate" value="tiempoInicio">
                 <button class="button" id="publishButton">

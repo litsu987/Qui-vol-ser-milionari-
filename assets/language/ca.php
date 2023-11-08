@@ -6,7 +6,8 @@ $lang = array(
         "Una vegada el concursant hagi respost una pregunta no podrà modificar-la",
         "Cada 3 preguntes encertades el jugador passarà al següent nivell. A cada nivell les preguntes són més difícils. Hi ha 6 nivells.",
         "Si el concursant respon incorrectament a una pregunta, s'acaba el joc.",
-        "L'objectiu final és arribar a la pregunta número 18 i respondre-la correctament per guanyar el premi màxim."
+        "L'objectiu final és arribar a la pregunta número 18 i respondre-la correctament per guanyar el premi màxim.",
+        'login' => 'Iniciar sessió'
     ],
     'buttons' => [
         'play' => 'JUGAR',
