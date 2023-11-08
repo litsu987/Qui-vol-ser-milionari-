@@ -1,35 +1,75 @@
-* Quin jugador australià té el salari més alt?
-+ Mathew Ryan
-- Harry Soutar
-- Milos Degenek
-- Leo Messi
-* Són els britànics puntuals?
-+ Sempre
-- Generalment
-- Potser
-- Mai
-* Quins d'aquests països no van ser colonitzats per Anglaterra?
-- Illes Maldives
-- Illes Caiman
-- Illes Bermudes
-+ Bielorrusia
-* A quin segle el cricket es va convertir en l'esport nacional?
-+ A finals del segle XVIII
-- A principis del segle XVII
-- A finals del segle XV
-- A principis del segle XIX
-* A quina colonia anglesa es juga menys al cricket?
-- India
-+ Austràlia
-- Pakistán
-- Sudàfrica
-* Quin d'aquests països europeus segueix siguent una colonia de l'Imperi Britànic?
-+ Gibraltar
-- Chipre
-- Illes del Canal
-- Anglaterra
-* De què tracta la tradició del Rolling Cheese?
-- Menjar formatge rodó
-+ Llençar formatge per un pujol
-- Fer una tarta de formatge rodona
-- Compra un formatge rodó gegant
+* En quin segle es va crear el futbol?
++ Segle XIX
+- Segle XX
+- Segle I
+- Ara
+* En quin any es va dur a terme la Revolució Russa?
+- 1776
++ 1917
+- 1945
+- 1989
+* Quants anys van viure els aborígens?
+- 12.000 anys
++ 40.000 Anys
+- 25.000 anys
+- 60.000 anys
+* En literatura, qui va escriure "Cent anys de solitud"?
++ Gabriel García Márquez
+- Mario Vargas Llosa
+- Julio Cortázar
+- Pablo Neruda
+* Quin és el corrent oceànic càlid que influeix en el clima de la costa est dels Estats Units?
+- Corrent de Califòrnia
++ Corrent del Golf
+- Corrent de Humboldt
+- Corrent de Kuroshio
+* Qui és l'autor de l'obra filosòfica "Així va parlar Zaratustra"?
+- Jean-Jacques Rousseau
++ Friedrich Nietzsche
+- Søren Kierkegaard+
+- Karl Marx
+* Quin any es va fundar l'Organització de les Nacions Unides (ONU)?
++ 1945
+- 1950
+- 1939
+- 1960
+* Quin és el país més poblat d'Àfrica?
++ Nigèria
+- Sud-àfrica
+- Egipte
+- Kenya
+* En química, quin és el símbol de l'element químic oxigen?
++ O
+- Ox
+- Oxi
+- Oxg
+* Qui va ser el líder de la Revolució Russa que es va convertir en el primer governant de la Unió Soviètica?
++ Vladimir Lenin
+- Leon Trotski
+- Joseph Stalin
+- Mikhail Gorbachev
+* En anatomia, quin és el nom de l'os més llarg del cos humà?
+- Húmer
++ Fèmur
+- Tíbia
+- Ràdio
+* Quina és la capital del Canadà?
+- Montreal
+- Toronto
+- Vancouver
++ Ottawa
+* Quin és el riu més llarg d'Amèrica del Sud?
++ Amazones
+- Orinoco
+- Paraná
+- Magdalena
+* En la teoria de la relativitat, quin concepte es refereix a la curvatura de l'espai-temps a causa de la presència de massa?
+- Llei de la gravitació universal
+- Principi d'incertesa
+- Efecte Doppler
++ Gravetat
+* A quina ciutat es van celebrar els Jocs Olímpics d'Estiu el 2008?
+- Sydney
+- Atenes
++ Pequín
+- Rio de Janeiro

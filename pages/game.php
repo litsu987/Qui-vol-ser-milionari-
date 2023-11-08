@@ -11,7 +11,6 @@ if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $
 include '../assets/language/' . $_SESSION['lang'] . '.php';
 $_SESSION['score'] = 0;
 
-
 if (isset($_POST['aumentar_dificultad'])) {
     if (!isset($_SESSION['nivel_dificultad'])) {
         // Si la variable de sesión 'nivel_dificultad' no existe en esta sesión, inicialízala en 1
@@ -25,28 +24,10 @@ if (isset($_POST['aumentar_dificultad'])) {
     $_SESSION['pregunta_actual'] = 0;
 }
 
-$dificultad = $_SESSION['nivel_dificultad'];
-
 if (isset($_POST['pregunta_actual'])) {
     $_SESSION['pregunta_actual'] = $_POST['pregunta_actual'];
 }
 
-
-
-function comodinPublico()
-{
-    $random = rand(0, 100);
-
-    if ($random <= 80) {
-        // La respuesta simulada del público es la respuesta correcta
-        return "La mayoría del público cree que la respuesta correcta es A.";
-    } else {
-        // La respuesta simulada del público es una respuesta incorrecta aleatoria
-        $respuestasIncorrectas = array("B", "C", "D");
-        $respuestaSimulada = $respuestasIncorrectas[array_rand($respuestasIncorrectas)];
-        return "La mayoría del público cree que la respuesta correcta es " . $respuestaSimulada . ".";
-    }
-}
 
 ?>
 <!DOCTYPE html>
@@ -63,7 +44,7 @@ function comodinPublico()
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
-<body>
+<body class="game">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">
@@ -78,12 +59,14 @@ function comodinPublico()
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-    <div id="cronometro2">
-        <h1 id="cronometro">-:--</h1>
 
+    <div id="divTiempoTotal">
+        <h4>
+            <?php echo $lang['messages']['generalTimer']; ?>
+        </h4>
+        <h1 id="tiempoTotal">--:--</h1>
     </div>
-    <?php
-    ?>
+
     <div id="modal" class="swirl-in-fwd modal">
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarModal()">&times;</span>
@@ -93,37 +76,38 @@ function comodinPublico()
         </div>
     </div>
 
-    <div id="barras"></div>
-
-
-
     <div class="comodines">
         <button id="btnEliminarRespuestas" class="comTiempo oval ovalBackground">50 : 50</button>
         <button id="comodin-publico" onclick="soundAnimation()" class="comPublico oval ovalBackground"><i
                 class="fa-solid fa-users" style="color: #ffffff;"></i></button>
         <button id="comodin-llamada" class="comPublico oval ovalBackground">+30'</button>
+        <button id="comodin-telefono" class="comPublico oval ovalBackground">telefono</button>
     </div>
 
+    <div id="minijuego" class="minijuego" style="display: none;">
+        <div class="minijuego-contenido">
+            <h2 id="minifrase">Escucha atentamente y responde con el numero de veces que ha sonado el telefono:</h2>
+            <input type="number" id="respuestaUsuario" style="display: none;" placeholder="Ingresa tu respuesta"
+                pattern="[0-9]*" />
+            <button id="botonComprobar" style="display: none;" onclick="comprobarRespuesta()">Comprobar</button>
+            <button id="botonSalir" style="display: none;" onclick="cerrarMinijuego()">Salir</button>
+            <div id="contenedorMini">
+                <h1 id="resultadoMinijuego" style="display: none;"></h1>
+            </div>
 
-
+        </div>
+    </div>
 
     <div class="bannerMillonario">
         <img class="bannerImagen" src="../assets/images/presentador.png" alt="Banner">
     </div>
 
-    <h3 class="lvlDifivultad">
-        <?php echo $lang['messages']['dificultLvl']; ?> :
-        <?php echo $_SESSION['nivel_dificultad']; ?>
+    <h3 class="lvlDifivultad" id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad'] ?>">
+        <?php echo $lang['messages']['dificultLvl'] . ": " . $_SESSION['nivel_dificultad'] ?>
     </h3>
 
-    <div id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad']; ?>"></div>
-
     <?php
-
-
-
-
-    function obtenerArchivoSegunDificultad($nivelDificultad)
+    function getQuestionsFilepath()
     {
         if ($_SESSION['lang'] == 'ca') {
             return '../assets/questions/catalan_' . $_SESSION['nivel_dificultad'] . '.txt';
@@ -134,34 +118,23 @@ function comodinPublico()
         }
     }
 
+    // funcion para imprimir las preguntas con sus respuestas
     function mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta)
     {
         // echo "<div class='preguntasRespuestasDiv'>";
-        echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n"; // Imprime la pregunta como texto en negrita
-        echo '<div class="respuestas">'; // Abre un contenedor para las respuestas
-        // Recorre las respuestas
-    
+        echo "<h1 class='contenidoPregunta'>$pregunta</h1>\n";
+        echo '<div class="respuestas">';
+
         foreach ($respuestas as $i => $respuesta) {
             $respuestaTexto = $respuesta['respuesta']; // Extrae el texto de la respuesta
             echo '<button class="contenidoRespuesta backgroundContenidoRespuesta" data-respuesta-correcta="' . $respuestaCorrecta . '" onclick="verificarRespuesta(\'' . $respuestaTexto . '\', \'' . $respuestaCorrecta . '\', this)"> ' . $respuestaTexto . '</button>';
             // Imprime un botón que muestra la respuesta y llama a la función verificarRespuesta al hacer clic
         }
-
-        echo '</div>'; // Cierra el contenedor de respuestas
-        // echo "</div>";
-    
-        echo '<div id="mensaje_respuesta"></div>'; // Aquí se mostrará el mensaje de respuesta
-    
+        echo '</div>';
     }
-
-
-
-
 
     function getQuestions($fileName)
     {
-        // echo "<br>=====================================================================================<br>";
-    
         if (file_exists($fileName)) {
             $archivo = fopen($fileName, 'r');
             if ($archivo) {
@@ -172,89 +145,60 @@ function comodinPublico()
                         continue; // Salta las líneas en blanco
                     }
                     if (substr($linea, 0, 1) === '*') {
-                        $question = rtrim(substr($linea, 2), "?");
-                        // echo "<br>//////////question ---> " . $question;
-                        $questionsArray[] = $question;
-
+                        $questionsArray[] = trim(strtolower(str_replace(['"', ' ', '?', '¿'], '', substr($linea, 2))));
                     }
                 }
-                // echo "<br>=====================================================================================<br>";
-    
                 fclose($archivo);
                 return $questionsArray;
             }
         }
-        // echo "<br>=====================================================================================<br>";
-    
         return null;
     }
-    function getFileNamesWithoutExtension($dir)
+
+    // Función para obtener la versión en inglés de una pregunta
+    function getEnglishQuestion($question)
     {
-        $filesArray = scandir($dir);
-        foreach ($filesArray as $file) {
-        }
-        $namesWithoutExtension = array_map(function ($file) {
-            return pathinfo($file, PATHINFO_FILENAME);
-        }, $filesArray);
-        return array_filter($namesWithoutExtension);
-    }
+        $question = trim(strtolower(str_replace(['"', ' ', '?', '¿'], '', $question)));
+        // devuelve la pregunta sin espacios al principio y al final y sin el interrogante
+    
+        $englishQuestionsFileName = '../assets/questions/english_' . $_SESSION['nivel_dificultad'] . '.txt';
+        $englishArrayQuestions = getQuestions($englishQuestionsFileName);
 
-    function getEnglishQuestion($dificultLvl, $question)
-    {
-        $question = trim(rtrim($question, "?"));
-        $QuestionsFileName = '../assets/questions/english_' . $_SESSION['nivel_dificultad'] . '.txt';
-        $arrayQuestions = getQuestions($QuestionsFileName);
-
-
+        // Si el idioma seleccionado por el usuario no es inglés, se crea un array de preguntas en el idioma elegido.
+        // Dado que los arrays de preguntas mantienen el mismo orden independientemente del idioma, se obtiene el índice de posición
+        // en el array que contiene la pregunta actual ($question). Luego, se extrae la pregunta en inglés del array de preguntas en inglés
+        // utilizando el índice de posición.
         if ($_SESSION['lang'] != 'en') {
-            $userQuestionsFileName = obtenerArchivoSegunDificultad($dificultLvl);
-            $UserArrayQuestions = getQuestions($userQuestionsFileName);
-            for ($i = 0; $i < count($arrayQuestions); $i++) {
-                // echo "question ---> " . $UserArrayQuestions[$i];
-                // echo " index ---> $i<br>";
+            $userQuestionsFilepath = getQuestionsFilepath(); // Ruta del archivo de preguntas en el idioma seleccionado.
+            $userArrayQuestions = getQuestions($userQuestionsFilepath); // Array con las preguntas en el idioma seleccionado.
+            $index = array_search($question, $userArrayQuestions); // Índice de la pregunta actual en el array seleccionado.
+    
+            if ($index !== false) {
+                $question = $englishArrayQuestions[$index]; // Pregunta en inglés correspondiente al índice.
+            } else {
+                return false;
             }
-            $index = array_search($question, $UserArrayQuestions);
-            $question = $arrayQuestions[$index];
-            // echo "<br>question ---> " . $question;
-            // echo " index ---> $index<br>";
         }
-        $question = str_replace('"', '', $question);
+
+        $question = trim(strtolower(str_replace(['"', ' '], '', $question)));
         return $question;
     }
-    function imgExists($dificultLvl, $englishQuestion)
+
+    // Función para buscar una imagen relacionada con una pregunta en inglés
+    function getImgInfo($englishQuestion)
     {
-        $imgArray = getFileNamesWithoutExtension("../assets/images/questionPictures/$dificultLvl");
-
-        // Convertir $englishQuestion a minúsculas y eliminar espacios en blanco
-        $englishQuestion = strtolower(trim((rtrim($englishQuestion, " "))));
-
-        for ($i = 2; $i < count($imgArray) + 1; $i++) {
-            // Convertir $imgArray[$i] a minúsculas y eliminar espacios en blanco
-            $imgArray[$i] = strtolower(trim((rtrim($imgArray[$i], " "))));
-            if ($imgArray[$i] == $englishQuestion) {
-            }
-        }
-
-        return in_array($englishQuestion, $imgArray);
-    }
-
-
-
-
-    function getfileImgName($dificultLvl, $englishQuestion)
-    {
-        $imgDir = "../assets/images/questionPictures/$dificultLvl";
+        $imgDir = "../assets/images/questionPictures/" . $_SESSION['nivel_dificultad'];
         $imgFilesArray = scandir($imgDir);
 
         foreach ($imgFilesArray as $img) {
-            // echo " img -->" . pathinfo($img, PATHINFO_FILENAME); // Muestra el nombre del archivo sin la extensión
-    
-            if (pathinfo($img, PATHINFO_FILENAME) === $englishQuestion) {
-                return $img;
+            $imgNameWithoutExtension = pathinfo($img, PATHINFO_FILENAME);
+            $imgNameWithoutExtension = trim(strtolower(str_replace(['"', ' '], '', $imgNameWithoutExtension)));
+
+            // Compara la pregunta (sin espacios y en minúsculas) con el nombre de archivo (sin la extension, sin espacios y en minúsculas)
+            if ($imgNameWithoutExtension === $englishQuestion) {
+                return $img; // Retorna el nombre del archivo de imagen
             }
         }
-
-        return false;
     }
 
     function cargarPreguntas($nombre_archivo)
@@ -327,25 +271,21 @@ function comodinPublico()
                     $pregunta = $pregunta_respuestas['pregunta']; // Extrae la pregunta actual
                     $respuestas = $pregunta_respuestas['respuestas']; // Extrae las respuestas de la pregunta
                     $respuestaCorrecta = $pregunta_respuestas['respuestaCorrecta'];
-                    echo '<div id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
-                    echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display: none;'></div>";
+                    echo '<div class="preguntas" id="pregunta_' . ($i + 1) . '" style="display: ' . ($i === 0 ? 'block' : 'none') . ';">'; // Abre un div para una pregunta
+                    echo "<div id='cronoPregunta_$i'class='CronoPregunta' style='display: none'></div>";
+
                     mostrarPreguntaRespuestas($pregunta, $respuestas, $respuestaCorrecta); // Llama a la función para mostrar la pregunta y respuestas
     
-
-                    $englishQuestion = getEnglishQuestion($_SESSION['nivel_dificultad'], $pregunta);
-                    if (imgExists($_SESSION['nivel_dificultad'], $englishQuestion)) {
-                        $imgName = getfileImgName($_SESSION['nivel_dificultad'], $englishQuestion);
-                        echo "<div id='divImgQuestion'><img class='questionImg' src='../assets/images/questionPictures/{$_SESSION['nivel_dificultad']}/$imgName' alt='Imagen relacionada a la pregunta'></div>";
+                    $englishQuestion = getEnglishQuestion($pregunta);
+                    if ($englishQuestion) {
+                        $img = getImgInfo($englishQuestion);
+                        if ($img) {
+                            echo "<div id='divImgQuestion'><img class='questionImg' src='../assets/images/questionPictures/{$_SESSION['nivel_dificultad']}/$img' alt='Imagen relacionada a la pregunta'></div>";
+                        }
                     }
-
                     echo '</div>'; // Cierra el div de la pregunta
-    
                 }
-
                 echo '</div>'; // Cierra el contenedor principal de todas las preguntas
-    
-
-
             } else {
                 echo "No se pudo abrir el archivo.";
             }
@@ -353,18 +293,14 @@ function comodinPublico()
             echo "El archivo no existe.";
         }
     }
-    if ($dificultad > 6) {
-        // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
-        echo "<script>window.location = 'win.php';</script>";
-        // Redirige al jugador a la página de victoria
-        exit;
-        // Detiene la ejecución del script para evitar que el juego continúe
+    // Verifica si la dificultad actual es mayor que 6 (condición de victoria)
+    if ($_SESSION['nivel_dificultad'] > 6) {
+        echo "<script>window.location = 'win.php';</script>"; // Redirige al jugador a la página de victoria
+        exit; // Detiene la ejecución del script para evitar que el juego continúe
     }
 
-    // Si la dificultad no es mayor que 6, el juego continúa:
+    $archivoSeleccionado = getQuestionsFilepath(); // Selecciona el archivo de preguntas según la dificultad actual
     
-    $archivoSeleccionado = obtenerArchivoSegunDificultad($dificultad);
-    // Selecciona el archivo de preguntas según la dificultad actual
     cargarPreguntas($archivoSeleccionado);
     // Carga y muestra las preguntas desde el archivo seleccionado
     
@@ -373,12 +309,10 @@ function comodinPublico()
     ?>
     <form method="post" action="game.php">
         <input type="hidden" name="aumentar_dificultad" value="1">
-        <!-- Campo oculto que indica la intención de aumentar la dificultad -->
         <div class="centrar">
-            <input id="nextQuestions" type="submit" value=" <?php echo $lang['nextQuestions']; ?>" class="oculto">
+            <input id="nextQuestions" type="submit" value=" <?php echo $lang['nextQuestions']; ?>"
+                class="oculto button">
         </div>
-
-        <!-- Botón de envío con texto "Siguiente Pregunta" (depende del idioma) -->
     </form>
 
     <script src="../assets/scripts/juego.js"></script>

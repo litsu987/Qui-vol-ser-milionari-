@@ -1,45 +1,65 @@
-* What African territory did England conquer in the 19th century?
-+ Uganda
-- Spain
-- France
-- Melilla
-* Where is the big ben located?
-- Paris
-+ London
-- Andorra
-- Germany
-* Who said this sentence "Life is like riding a bicycle. To keep your balance, you must keep moving.")?
-+ Albert Einstein
-- Forrest Gump
-- Will Smith
-- Barack Obama
-* Where is typical to eat fish and chips 
-+ UK
-- Scotland 
-- France
-- Ireland
-* When was the year with most visitors in the British Museum?
-- 2017
-+ 2015
-- 2020
-- 2016
-* Who said this sentence "Oh Romeo, Romeo! Wherefore art you Romeo? Deny your father and refuse your name; or, if you will rot I swear you my love and I'll not longer be a Capulet."?
-+ Shakespeare
-- Zorrilla
-- Quevedo
-- Cervantes
-* What year did Elizabeth become Queen?
-- 1959
-+ 1952
-- 1954
-- 1960
-* Who was Ada Lovelace?
-- Politic
-- Sciencist
-+ Mathematician
-- Chemistry
-* Where is Buckingham Palace located?
-- France
-+ England
-- Italy
-- South-Africa
+* What is the name of the space telescope launched by NASA in 1990 that has captured impressive images of the universe?
++ Hubble
+- Kepler
+- Galileo
+- Newton
+* Who wrote "The Origin of Species" and formulated the theory of evolution by natural selection?
++ Charles Darwin
+- Alfred Russel Wallace
+- Gregor Mendel
+- Louis Pasteur
+* What is the name of the natural satellite of Neptune, discovered in 1846?
+- Callisto
++ Triton
+- Europe
+- Ganymede
+* In mathematics, what is the golden ratio represented by an Greek letter and which has an approximation of 1.618?
+- Pi (π)
+- Epsilon (ε)
+- Tau (τ)
++ Phi (φ)
+* What is the molecule responsible for storing and transmitting genetic information in living beings?
+- RNA (ribonucleic acid)
++ DNA (deoxyribonucleic acid)
+- Protein
+- Glucose
+* In what year was the United States Declaration of Independence signed?
+- 1763
++ 1776
+- 1789
+- 1801
+* What is the subatomic particle found in the nucleus of an atom and has a positive charge?
+- Electron
+- Neutron
++ Proton
+- Muon
+* Who is the author of the novel "To Kill a Mockingbird" published in 1960?
+- Jane Austen
++ Harper Lee
+- Margaret Atwood
+- George Orwell
+* What is the scale used to measure the intensity of earthquakes?
++ Richter scale
+- Beaufort Scale
+- Fahrenheit scale
+- Kelvin scale
+* In what year was the Panama Canal inaugurated?
+- 1904
++ 1914
+- 1924
+- 1934
+* What is the name of the theoretical device considered the "time machine" in the science fiction work of H.G. Wells?
+- TARDIS
++ Time Machine
+- Chronosphere
+- DeLorean
+* In astronomy, what is the name of the galaxy closest to the Milky Way?
++ Andromeda
+- Cigar
+- Hat
+- Swirl
+* What is the name of the molecule that is made up of three oxygen atoms and that forms the ozone layer in the Earth's atmosphere?
+- CO2 (carbon dioxide)
+- H2O (water)
++ O3 (ozone)
+- CH4 (methane)

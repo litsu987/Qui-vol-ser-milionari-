@@ -1,13 +1,11 @@
 <?php
 session_start();
-session_destroy();
-session_start();
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
-    // if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
-    $_SESSION['lang'] = 'en';
-    // }
+    if (!isset($_SESSION['lang']) && !($_SESSION['lang'] == 'es' || $_SESSION['lang'] == 'ca' || $_SESSION['lang'] == 'en')) {
+        $_SESSION['lang'] = 'en';
+    }
 }
 include '../assets/language/' . $_SESSION['lang'] . '.php';
 ?>
@@ -25,7 +23,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
     <script src="https://kit.fontawesome.com/74ec47558a.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="index">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">
@@ -44,6 +42,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         <a href="login.php" class="login"><?php echo $lang['instructions']['login']; ?></a>
     </div>
     <div id="banner">
+        <a id="loginButton" class="button" href="login.php">Login</a>
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
     <h1 class="h1Titulo">

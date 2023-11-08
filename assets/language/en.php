@@ -28,8 +28,7 @@ $lang = array(
         'dificultLvl' => 'Difficulty level',
         'publishConfirmed' => "Score published succesfully",
         'publishFailed' => "There was an error publishing the score!!!",
-
-
+        'generalTimer' => "Total time:",
     ],
     'namePlaceholder' => 'Enter your name',
     'tittle' => 'WHO WANTS TO BE A MILLIONAIRE?',
