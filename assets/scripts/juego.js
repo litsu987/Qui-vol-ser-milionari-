@@ -6,7 +6,7 @@ function playSound(soundFile) {
 }
 
 function soundSuccessQuuestion() {
-    playSound('../music/success_sound.mp3');
+    playSound('../../assets/music/success_sound.mp3');
 }
 
 function soundBadQuestion() {
