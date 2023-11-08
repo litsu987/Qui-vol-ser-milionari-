@@ -1,4 +1,5 @@
 var tiempoInicio = Date.now();
+var soundAlreadyPlayed = false;
 
 function playSound(soundFile) {
     var audio = new Audio(soundFile);
@@ -20,6 +21,22 @@ function soundAnimation() {
 function soundHelpQuestion() {
     playSound('../../assets/music/help_sound.mp3');
 }
+
+function soundBicho() {
+    if (!soundAlreadyPlayed) {
+        playSound('../../assets/music/bicho.mp3');
+        soundAlreadyPlayed = true; // Marca el sonido como reproducido
+    }
+}
+
+function soundLoseQuestion() {
+    playSound('../../assets/music/lose_sound.mp3');
+}
+
+function soundWinQuestion() {
+    playSound('../../assets/music/win_sound.mp3');
+}
+
 
 let respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas
 let comodinUsado;
@@ -59,7 +76,7 @@ function deshabilitarBotonSiPresionado(botonId, botonPresionadoId) {
 deshabilitarBotonSiPresionado('btnEliminarRespuestas', 'botonEliminacionPresionado');
 deshabilitarBotonSiPresionado('comodin-publico', 'botonEliminacionPresionado2');
 deshabilitarBotonSiPresionado('comodin-llamada', 'botonEliminacionPresionado3');
-deshabilitarBotonSiPresionado('comodin-telefono', 'botonEliminacionPresionado4 ');
+deshabilitarBotonSiPresionado('comodin-telefono', 'botonEliminacionPresionado4');
 
 
 
@@ -393,6 +410,7 @@ function enviarTiempoTotalTranscurrido() {
 }
 
 window.onload = function () {
+    document.getElementById('puntuacion').textContent = 'Puntuación: ' + localStorage.getItem('valor');
     actualizarTiempoTotal();
     console.log(nivelDificultadActual);
     if (nivelDificultadActual != 1){
@@ -861,13 +879,15 @@ function realizarLlamada() {
 function mostrarMinijuego() {
     const minijuego1 = document.getElementById('minijuego');
     if (minijuego1) {
-        if (preguntaActual==1){
-            detenerCronometroPregunta(cronometro0)
-        }else if(preguntaActual==2){
-            detenerCronometroPregunta(cronometro1);
-            
-        }else if(preguntaActual==3){
-            detenerCronometroPregunta(cronometro2);
+        if (nivelDificultadActual != '1'){
+            if (preguntaActual==1){
+                detenerCronometroPregunta(cronometro0)
+            }else if(preguntaActual==2){
+                detenerCronometroPregunta(cronometro1);
+                
+            }else if(preguntaActual==3){
+                detenerCronometroPregunta(cronometro2);
+            }
         }
         minijuego1.style.display = 'block';
         minijuego(); // Llama a la función minijuego para comenzar el juego
@@ -877,13 +897,15 @@ function mostrarMinijuego() {
 function cerrarMinijuego() {
     const minijuego = document.getElementById('minijuego');
     if (minijuego) {
-        if (preguntaActual==1){
-            cronometro0 = iniciarCronometroPregunta('cronoPregunta_0',localStorage.getItem("valorInicial")); 
-        }else if(preguntaActual==2){
-            cronometro1 = iniciarCronometroPregunta('cronoPregunta_1',localStorage.getItem("valorInicial")); 
-        }else if(preguntaActual==3){
-            cronometro2 = iniciarCronometroPregunta('cronoPregunta_2',localStorage.getItem("valorInicial")); 
-        }
+        if (nivelDificultadActual != '1'){
+            if (preguntaActual==1){
+                cronometro0 = iniciarCronometroPregunta('cronoPregunta_0',localStorage.getItem("valorInicial")); 
+            }else if(preguntaActual==2){
+                cronometro1 = iniciarCronometroPregunta('cronoPregunta_1',localStorage.getItem("valorInicial")); 
+            }else if(preguntaActual==3){
+                cronometro2 = iniciarCronometroPregunta('cronoPregunta_2',localStorage.getItem("valorInicial")); 
+            }
+        }       
         minijuego.style.display = 'none';
     }
 }
@@ -905,4 +927,12 @@ function comprobarRespuesta() {
 
     resultadoMinijuego.style.display = 'block';
     
+}
+
+
+function MostrarPuntuacion() {
+    var valor = localStorage.getItem('valor');
+    valor = localStorage.getItem('puntaje')*100;
+    localStorage.setItem('valor',valor);
+    document.getElementById('puntuacion').textContent = 'Puntuación: ' + localStorage.getItem('valor',valor);
 }
