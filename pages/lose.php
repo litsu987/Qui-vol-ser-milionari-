@@ -1,18 +1,18 @@
 <?php
 session_start();
-error_reporting(0);
-// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//     http_response_code(403);
-//     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
-//     exit;
-// }
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    http_response_code(403);
+    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+    exit;
+}
 
 
-// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//     http_response_code(403);
-//     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
-//     exit;
-// }
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    http_response_code(403);
+    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+    exit;
+}
 
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
@@ -48,10 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-
-
-
-<body onload="soundLoseQuestion()" class="bodyLoseWin">
+<body onload="soundLoseQuestion()" class="LoseWin">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">
@@ -76,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
         <h3 class="centrar score">
             <?php echo $lang['messages']['score'] . $_SESSION['score']; ?>
         </h3>
-        <h5 id="publishScoreQuestion" class="centrar">
+        <h5 id="publishScoreQuestion" class="centrar ">
             <?php echo $lang['messages']['publishScore']; ?>
         </h5>
         <div id="publishQuestion" class="preguntaPublicar centrar">
@@ -88,10 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
                 <?php echo $lang['buttons']['no']; ?>
             </button>
         </div>
+
         <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <div class="centrar">
-                    <input type="text" id="name" name="name" class="textUser" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
+                    <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>"
+                        required>
                 </div>
                 <input type="hidden" id="currentDate" name="currentDate" value="tiempoInicio">
                 <button class="button" id="publishButton">
@@ -117,12 +116,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
         </div>
     </div>
 
+    <h1 id="preguntasAcertadas" preguntasAcertadas=<?php $_SESSION['score'] ?>></h1>
 
-
-    <script src="../assets/scripts/script.js"></script>
-    <script src="../assets/scripts/juego.js"></script>
-    <?php session_destroy() ?>
-
+    <script src="../assets/scripts/winLose.js"></script>
 </body>
 
 </html>
