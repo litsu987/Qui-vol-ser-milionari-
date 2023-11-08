@@ -151,7 +151,9 @@ th {
         align-items: center;
         position: absolute;
         z-index: 3;
+        border-radius: 10px;
     }
+
     .login:hover {
         background: #03e9f4;
         color: #141e30;
@@ -448,7 +450,7 @@ th {
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
     list-style: none;
-    max-width: 60%;
+    width: 70%;
     text-align: justify;
     color: white;
     font-family: 'Roboto Mono', monospace;
@@ -1370,7 +1372,7 @@ option {
     }
 
     .index ul {
-        width: 80%;
+        width: 90%;
         font-size: 90%;
         border-width: 6px;
     }
@@ -1499,6 +1501,10 @@ option {
     .game .CronoPregunta {
         font-size: 15px;
     }
+
+    .game .bannerImagen {
+        display: none;
+    } 
 
     .ranking .idSesionColumna {
         display: none;
