@@ -1,6 +1,5 @@
 <?php
     session_start();
-    error_reporting(0);
     include "usuarios.php";
     if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
         $_SESSION['lang'] = $_GET['lang'];

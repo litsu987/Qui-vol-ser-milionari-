@@ -617,7 +617,7 @@ li {
 }
 
 .btonBloqueadoComodin{
-    background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
+    background: #3c3c3d;
     cursor: auto;
 
 }
@@ -631,18 +631,16 @@ li {
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Centra en ambas direcciones */
     height: 400px;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    border: 8px outset #b3b3b2;
     padding: 20px;
-    border-radius: 19px 0px 26px 0px;
     width: 700px;
     color: white;
     margin-left: -374px;
     margin-top: -137px;
+    background: rgba(39, 35, 53, 0.9);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
-
-  
-  
   .cerrar {
     color: #aaa;
     float: right;

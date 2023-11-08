@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION["user"])) {
