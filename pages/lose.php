@@ -48,7 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body onload="soundLoseQuestion()" class="LoseWin">
+
+
+
+<body onload="soundLoseQuestion()" class="bodyLoseWin">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">
@@ -114,9 +117,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
         </div>
     </div>
 
-    <h1 id="preguntasAcertadas" preguntasAcertadas=<?php $_SESSION['score'] ?>></h1>
 
-    <script src="../assets/scripts/winLose.js"></script>
+
+    <script src="../assets/scripts/script.js"></script>
+    <script src="../assets/scripts/juego.js"></script>
+    <?php session_destroy() ?>
+
 </body>
 
 </html>

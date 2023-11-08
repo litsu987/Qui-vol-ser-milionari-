@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(0);
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
@@ -38,10 +40,10 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-    <div id="banner">
-        <div class="divLogin">
-            <a id="loginButton" class="button" href="login.php">Login</a>
+    <div class="divLogin">
+            <a id="loginButton" class="login" href="login.php">Login</a>
         </div>
+    <div id="banner">  
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>
     <h1 class="h1Titulo">
