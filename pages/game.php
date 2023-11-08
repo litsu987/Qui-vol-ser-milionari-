@@ -75,19 +75,6 @@ if (isset($_POST['pregunta_actual'])) {
         </div>
     </div>
 
-    <div id="minijuego" class="minijuego" style="display: none;">
-    <div class="minijuego-contenido">
-        <h2 id="minifrase">Escucha atentamente y responde con el numero de veces que ha sonado el telefono:</h2>
-        <input type="number" id="respuestaUsuario" style="display: none;" placeholder="Ingresa tu respuesta" pattern="[0-9]*" />
-        <button id="botonComprobar" style="display: none;" onclick="comprobarRespuesta()">Comprobar</button>
-        <button id="botonSalir" style="display: none;" onclick="cerrarMinijuego()">Salir</button>
-        <div id="contenedorMini">
-             <h1 id="resultadoMinijuego" style="display: none;"></h1>
-        </div>
-        
-    </div>
-</div>
-
     <div class="comodines">
         <button id="btnEliminarRespuestas" class="comTiempo oval ovalBackground">50 : 50</button>
         <button id="comodin-publico" onclick="soundAnimation()" class="comPublico oval ovalBackground"><i

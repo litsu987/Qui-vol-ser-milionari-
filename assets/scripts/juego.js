@@ -258,8 +258,6 @@ if (tiempoInicio === null || preguntasAcertadas <= 0) {
 
 valorActual = 0;
 
-
-
 function iniciarCronometroPregunta(cronoId, segundos) {
     var cronoPregunta = document.getElementById(cronoId);
     var valorInicial = localStorage.getItem("valorInicial") || segundos || 60;
@@ -392,21 +390,6 @@ function enviarTiempoTotalTranscurrido() {
     // Agrega el formulario al cuerpo del documento y envíalo
     document.body.appendChild(form);
     form.submit();
-}
-
-function pausarTiempoTotal() {
-    if (!cronometroPausado) { // Solo pausar si no está pausado ya
-        clearInterval(cronometroInterval);
-        cronometroPausado = true;
-    }
-}
-
-function reanudarTiempoTotal() {
-    if (cronometroPausado) { // Solo reanudar si está pausado
-        actualizarTiempoTotal();
-        console.log('reanudarTiempoTotal');
-        cronometroPausado = false;
-    }
 }
 
 window.onload = function () {
@@ -645,7 +628,6 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
         // Cambia el estilo del botón (opcional)
         botonPublico.style.backgroundColor = 'gray';
 
-        
         // Llama a la función mostrarModal después de actualizar 'estadistica'
         mostrarModal();
 
@@ -657,6 +639,16 @@ function mostrarModal() {
     const estadistica2 = localStorage.getItem('estadistica2');
 
     if (estadistica) {
+
+        if (preguntaActual==1){
+            detenerCronometroPregunta(cronometro0)
+        }else if(preguntaActual==2){
+            detenerCronometroPregunta(cronometro1);
+            
+        }else if(preguntaActual==3){
+            detenerCronometroPregunta(cronometro2);
+        }
+        
         const [nombre, porcentaje] = estadistica.split('@');
         const porcentajeNumerico = parseFloat(porcentaje);
 
@@ -716,9 +708,15 @@ function mostrarModal() {
 
 // Función para cerrar el modal
 function cerrarModal() {
+    if (preguntaActual==1){
+        cronometro0 = iniciarCronometroPregunta('cronoPregunta_0',localStorage.getItem("valorInicial")); 
+    }else if(preguntaActual==2){
+        cronometro1 = iniciarCronometroPregunta('cronoPregunta_1',localStorage.getItem("valorInicial")); 
+    }else if(preguntaActual==3){
+        cronometro2 = iniciarCronometroPregunta('cronoPregunta_2',localStorage.getItem("valorInicial")); 
+    }
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
-    reanudarCronometro()
     
 }
 
@@ -788,7 +786,18 @@ function reproducirSonido() {
                 reproducirSonido();
             }, 100);
         } else {
-            // Tu lógica para manejar las respuestas
+            var pregunta = document.getElementById('pregunta_' + preguntaActual);
+            var respuestas = pregunta.querySelectorAll('.contenidoRespuesta');
+
+            var respuestasIncorrectas = [];
+            respuestas.forEach(function(boton) {
+                localStorage.setItem('bien', respuestaCorrecta = boton.getAttribute('data-respuesta-correcta'));
+                var respuestaActual = boton.innerText.trim();
+
+                if (respuestaActual !== respuestaCorrecta.trim()) {
+                    respuestasIncorrectas.push(boton);
+                }
+            });
         }
     });
 
@@ -852,6 +861,14 @@ function realizarLlamada() {
 function mostrarMinijuego() {
     const minijuego1 = document.getElementById('minijuego');
     if (minijuego1) {
+        if (preguntaActual==1){
+            detenerCronometroPregunta(cronometro0)
+        }else if(preguntaActual==2){
+            detenerCronometroPregunta(cronometro1);
+            
+        }else if(preguntaActual==3){
+            detenerCronometroPregunta(cronometro2);
+        }
         minijuego1.style.display = 'block';
         minijuego(); // Llama a la función minijuego para comenzar el juego
     }
@@ -860,6 +877,13 @@ function mostrarMinijuego() {
 function cerrarMinijuego() {
     const minijuego = document.getElementById('minijuego');
     if (minijuego) {
+        if (preguntaActual==1){
+            cronometro0 = iniciarCronometroPregunta('cronoPregunta_0',localStorage.getItem("valorInicial")); 
+        }else if(preguntaActual==2){
+            cronometro1 = iniciarCronometroPregunta('cronoPregunta_1',localStorage.getItem("valorInicial")); 
+        }else if(preguntaActual==3){
+            cronometro2 = iniciarCronometroPregunta('cronoPregunta_2',localStorage.getItem("valorInicial")); 
+        }
         minijuego.style.display = 'none';
     }
 }
