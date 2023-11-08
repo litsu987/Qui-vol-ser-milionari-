@@ -1392,10 +1392,6 @@ option {
         padding: 6% 3%;
     }
 
-    .index .lvlDifivultad {
-        padding: 3%;
-    }
-
     .index .buttonsGroup .button {
         margin: 15px 0 0;
     }
@@ -1437,10 +1433,10 @@ option {
     .game .lvlDifivultad {
         border-radius: 0 0 20px 20px;
         border-width: 6px;
-        margin-bottom: 10%;
         justify-content: left;
         position: fixed;
         width: 100%;
+        background-color: #121d2a;
     }
 
     .game .contenidoPregunta {
@@ -1482,6 +1478,7 @@ option {
     .game .contenidoRespuesta {
         height: 55px;
         font-size: 16px;
+        padding: 10px;
     }
 
     .game #divImgQuestion {
@@ -1503,6 +1500,7 @@ option {
 
     .game #preguntas_contenedor {
         margin-bottom: 40px;
+        margin-top: 65px;
     }
 
     .game #nextQuestions {
