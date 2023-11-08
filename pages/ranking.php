@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(0);
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
@@ -77,7 +79,7 @@ $sessionId = session_id();
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-    <h1>Hall Of Fame</h1>
+    <h1 class="salonTitle">Hall Of Fame</h1>
 
     <table>
         <tr>

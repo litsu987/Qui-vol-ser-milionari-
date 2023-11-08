@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+error_reporting(0);
 // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 //     http_response_code(403);
 //     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
@@ -85,11 +85,11 @@ if (isset($_POST['tiempoTranscurrido'])) {
         <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <div class="centrar">
-                    <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>"
+                    <input type="text" id="name" name="name" class="textUser" placeholder="<?php echo $lang['namePlaceholder']; ?>"
                         required>
                 </div>
                 <input type="hidden" id="currentDate" name="currentDate" value="tiempoInicio">
-                <button type="submit" class="button" id="publishButton">
+                <button class="button" id="publishButton">
                     <?php echo $lang['buttons']['publishButton']; ?>
                     <i class="fas fa-upload"></i>
                 </button>
