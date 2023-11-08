@@ -746,23 +746,23 @@ function scrollHaciaAbajo() {
 }
 
 
-var cantidadLlamadas; // Variable para almacenar la cantidad de llamadas
-var i = 0; // Variable para rastrear las llamadas realizadas
-var imagen = null; // Variable para almacenar la imagen
-
+var cantidadLlamadas;
+var i = 0;
+var imagen = null;
+var parpadeo; // Variable para el intervalo de parpadeo
+var isVisible = true; // Variable para rastrear la visibilidad de la imagen
+var contadorTono = 0;
 
 function minijuego() {
     cantidadLlamadas = Math.floor(Math.random() * 10) + 1;
-    i = 0; // Reiniciar el contador de llamadas
-    cantidadLlamadas = 1;
+    i = 0;
     console.log(cantidadLlamadas);
 
-    setTimeout(function() {
-        reproducirSonido(); // Inicia la reproducción del sonido después de mostrar la imagen
-    }, 0); // Espera 0 segundos antes de iniciar el sonido
+    setTimeout(function () {
+        reproducirSonido();
+    }, 0);
 
-    // Mostrar el campo de entrada y el botón solo después de reproducir todas las llamadas
-    setTimeout(function() {
+    setTimeout(function () {
         var respuestaUsuario = document.getElementById('respuestaUsuario');
         var botonComprobar = document.getElementById('botonComprobar');
         var botonSalir = document.getElementById('botonSalir');
@@ -770,46 +770,33 @@ function minijuego() {
         botonSalir.style.display = 'block';
         respuestaUsuario.style.display = 'block';
         botonComprobar.style.display = 'block';
-    }, cantidadLlamadas * 3000); // Espera el tiempo necesario según la cantidad de llamadas
+    }, cantidadLlamadas * 3000);
 }
-
 
 function reproducirSonido() {
     var audioElement = document.createElement('audio');
-    audioElement.src = '/assets/music/telefono.mp3'; // Reemplaza 'ruta_del_sonido.mp3' con la ruta de tu archivo de sonido.
-  
-    audioElement.addEventListener('play', function() {
-      mostrarImagenLlamada(); // Mostrar la imagen al comenzar a reproducir el sonido
+    audioElement.src = '/assets/music/telefono.mp3';
+
+    audioElement.addEventListener('play', function () {
+        mostrarImagenLlamada();
     });
-  
-       audioElement.addEventListener('ended', function() {
+
+    audioElement.addEventListener('ended', function () {
         i++;
         if (i < cantidadLlamadas) {
-            setTimeout(function() {
+            setTimeout(function () {
                 reproducirSonido();
-            }, 100); // Espera 4 segundos entre llamadas
+            }, 100);
         } else {
-            var pregunta = document.getElementById('pregunta_' + preguntaActual);
-            var respuestas = pregunta.querySelectorAll('.contenidoRespuesta');
-
-            var respuestasIncorrectas = [];
-            respuestas.forEach(function(boton) {
-                localStorage.setItem('bien', respuestaCorrecta = boton.getAttribute('data-respuesta-correcta'));
-                var respuestaActual = boton.innerText.trim();
-
-                if (respuestaActual !== respuestaCorrecta.trim()) {
-                    respuestasIncorrectas.push(boton);
-                }
-            });
+            // Tu lógica para manejar las respuestas
         }
     });
-  
-    audioElement.play();
-  }
-  
 
+    audioElement.play();
+}
 
 function mostrarImagenLlamada() {
+    
     var minijuegoContainer = document.getElementById('minijuego');
     if (minijuegoContainer && imagen === null) {
         imagen = document.createElement('img');
@@ -821,28 +808,36 @@ function mostrarImagenLlamada() {
         minijuegoContainer.appendChild(imagen);
 
         var audioDuration = 2000;
-        var parpadeoInterval = 1000;
-        var isVisible = true;
-  
-        var parpadeo = setInterval(function() {
+        var parpadeoInterval = 1100;
+
+        // Inicializar el intervalo de parpadeo
+        parpadeo = setInterval(function () {
+            console.log(contadorTono);
             if (isVisible) {
                 imagen.style.visibility = 'hidden';
+                contadorTono += 1;
                 isVisible = false;
             } else {
                 imagen.style.visibility = 'visible';
                 isVisible = true;
             }
-        }, parpadeoInterval);
-  
-        setTimeout(function() {
-            clearInterval(parpadeo);
-            if (!isVisible) {
-                imagen.style.visibility = 'visible';
+
+            if (contadorTono >= cantidadLlamadas){
+                setTimeout(function () {
+                    clearInterval(parpadeo);
+                    if (!isVisible) {
+                        imagen.style.visibility = 'visible';
+                    }
+                }, audioDuration);
             }
-        }, audioDuration);
+        }, parpadeoInterval);
+        console.log(cantidadLlamadas);
+        
+
+    } else {
+        
     }
 }
-  
 
 
 function realizarLlamada() {
