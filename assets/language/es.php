@@ -29,6 +29,7 @@ $lang = array(
         'publishConfirmed' => "Puntuación publicada corectamente",
         'publishFailed' => "Ha habido un error al publicar la puntuación!!!",
         'generalTimer' => "Tiempo total:",
+        'generalScore' => "Puntuacion:",
     ],
     'namePlaceholder' => 'Introduce tu nombre',
     'tittle' => '¿QUIEN QUIERE SER MILLONARIO?',
