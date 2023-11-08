@@ -48,6 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
+
+
+
 <body onload="soundLoseQuestion()" class="bodyLoseWin">
     <noscript>
         <div id="avisoJS" class="avisoJS">
@@ -73,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
         <h3 class="centrar score">
             <?php echo $lang['messages']['score'] . $_SESSION['score']; ?>
         </h3>
-        <h5 id="publishScoreQuestion" class="centrar ">
+        <h5 id="publishScoreQuestion" class="centrar">
             <?php echo $lang['messages']['publishScore']; ?>
         </h5>
         <div id="publishQuestion" class="preguntaPublicar centrar">
@@ -85,12 +88,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
                 <?php echo $lang['buttons']['no']; ?>
             </button>
         </div>
-
         <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <div class="centrar">
-                    <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>"
-                        required>
+                    <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>" required>
                 </div>
                 <input type="hidden" id="currentDate" name="currentDate" value="tiempoInicio">
                 <button class="button" id="publishButton">
