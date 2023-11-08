@@ -105,7 +105,12 @@ if (isset($_POST['pregunta_actual'])) {
         <?php echo $lang['messages']['dificultLvl'] . ": " . $_SESSION['nivel_dificultad'] ?>
     </h3>
 
-    <h1 id="puntuacion">Puntuación: 0</h1>
+    <div id="puntuacionDiv">
+        <h4>
+            <?php echo $lang['messages']['generalScore']; ?>
+        </h4>
+        <h1 id="puntuacion">0</h1>
+    </div>
 
     <?php
     function getQuestionsFilepath()
