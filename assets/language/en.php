@@ -6,7 +6,8 @@ $lang = array(
         "Once the contestant has answered a question, they cannot modify it.",
         "Every 3 correct answers, the player will move to the next level. Questions become more difficult at each level. There are 6 levels in total.",
         "If the contestant answers a question incorrectly, the game ends.",
-        "The ultimate goal is to reach question number 18 and answer it correctly to win the maximum prize."
+        "The ultimate goal is to reach question number 18 and answer it correctly to win the maximum prize.",
+        'login' => 'Log in'
     ],
     'buttons' => [
         'play' => 'PLAY',

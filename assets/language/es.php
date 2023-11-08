@@ -6,7 +6,8 @@ $lang = array(
         "Una vez que el concursante ha respondido a una pregunta, no puede modificarla.",
         "Cada 3 respuestas correctas, el jugador avanzará al siguiente nivel. Las preguntas se vuelven más difíciles en cada nivel. Hay 6 niveles en total.",
         "Si el concursante responde incorrectamente a una pregunta, el juego termina.",
-        "El objetivo final es llegar a la pregunta número 18 y responderla correctamente para ganar el premio máximo."
+        "El objetivo final es llegar a la pregunta número 18 y responderla correctamente para ganar el premio máximo.",
+        'login' => 'Iniciar sesión'
     ],
     'buttons' => [
         'play' => 'JUGAR',

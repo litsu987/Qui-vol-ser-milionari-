@@ -41,7 +41,7 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
     <div class="divLogin">
-        <a href="login.php" class="login">Login</a>
+        <a href="login.php" class="login"><?php echo $lang['instructions']['login']; ?></a>
     </div>
     <div id="banner">
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">

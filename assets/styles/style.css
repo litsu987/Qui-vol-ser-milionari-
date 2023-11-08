@@ -81,18 +81,18 @@ a:hover {
 
 /* Estilos base para los botones */
 .button {
-    display: inline-block;
+    position: relative;
     padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    border: 2px solid #1d060c;
-    border-radius: 10px;
+    color: #03e9f4;
     font-size: 16px;
-    text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 4px;
+    background-color: #141e30;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,8 +100,13 @@ a:hover {
 
 /* Estilo cuando se pasa el cursor sobre el botón */
 .button:hover {
-    background-color: #0056b3;
-    color: #fff;
+    background: #03e9f4;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
 }
 
 /* Estilo para el botón de envío del formulario */
@@ -144,22 +149,30 @@ a:hover {
 
 .login{
     padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    border: 2px solid #1d060c;
-    border-radius: 10px;
+    color: #03e9f4;
     font-size: 16px;
-    text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 4px;
+    background-color: #2d4675;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     z-index: 3;
 }
 .login:hover {
-    background-color: #0056b3;
-    color: #fff;
+    background: #03e9f4;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
 }
 
 .divLogin{
@@ -450,7 +463,6 @@ a:hover {
 }
   
 #banner {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     height: 100%;
     display: flex;
     justify-content: center;
@@ -477,12 +489,12 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
-
 ul {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: rgba(0,0,0,.5);
     padding: 20px;
-    border-radius: 19px 0px 26px 0px;
-    border: 8px outset #b3b3b2;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
     list-style: none;
     max-width: 60%;
     text-align: justify;
@@ -665,61 +677,59 @@ li {
 
   
 /* LOGIN.PHP */
-.form__group {
-    position: relative;
-    padding: 15px 0 0;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid white;
-    outline: 0;
-    font-size: 1.3rem;
-    color: #fff;
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
-
-    &::placeholder {
-        color: transparent;
-    }
-
-    &:placeholder-shown ~ .form__label {
-        font-size: 1.3rem;
-        cursor: text;
-        top: 20px;
-    }
-}
-
-.form__label {
+.formLogin {
     position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: white;
-}
-
-.form__field:focus {
-    ~ .form__label {
-        position: absolute;
-        top: 0;
-        display: block;
-        transition: 0.2s;
-        font-size: 1rem;
-        color: white;
-        font-weight:500;    
-    }
-    padding-bottom: 6px;  
-    font-weight: 400;
-    border-width: 3px;
-    border-image: linear-gradient(268deg,#df10de 0%, #5b1683 80%);
-    border-image-slice: 1;
-}
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+  
+  .formLogin h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .formLogin .user-box {
+    position: relative;
+  }
+  
+  .formLogin .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  .formLogin .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .formLogin .user-box input:focus ~ label,
+  .formLogin .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
 /* reset input */
 .form__field{
     &:required,&:invalid { box-shadow:none; }
@@ -727,59 +737,32 @@ li {
 
 
 .buttonLogin {
-    display: inline-block;
+    position: relative;
     padding: 10px 20px;
-    border: none;
-    color: #fff;
-    border: 2px solid #1d060c;
-    border-radius: 10px;
+    color: #03e9f4;
     font-size: 16px;
-    text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    background-color: #141e30;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
-
-.css-button-shadow-border-sliding--sky {
-    min-width: 130px;
-    height: 40px;
-    color: #fff;
-    padding: 5px 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    outline: none;
+.buttonLogin:hover{
+    background: #03e9f4;
+    color: #141e30;
     border-radius: 5px;
-    border: none;
-    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);
-    background: #4433ff;
-   z-index: 1;
-  }
-  .css-button-shadow-border-sliding--sky:hover:after {
-    width: 100%;
-    left: 0;
-  }
-  .css-button-shadow-border-sliding--sky:after {
-    border-radius: 5px;
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    z-index: -1;
-    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);
-    transition: all 0.3s ease;
-    background-color: #8b2cb1;
-    right: 0;
-  }
-  .css-button-shadow-border-sliding--sky:active {
-    top: 2px;
-  }
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+}
 .vibrate-1 {
     margin-top: 2%;
     font-size: large;
@@ -845,7 +828,7 @@ li {
 
 /* CREATE.PHP */
 
-.login-box {
+.createQuestion {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -858,18 +841,18 @@ li {
     border-radius: 10px;
   }
   
-  .login-box h1 {
+  .createQuestion h1 {
     margin: 0 0 30px;
     padding: 0;
     color: #fff;
     text-align: center;
   }
   
-  .login-box .user-box {
+  .createQuestion .user-box {
     position: relative;
   }
   
-  .login-box .user-box input {
+  .createQuestion .user-box input {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -880,7 +863,7 @@ li {
     outline: none;
     background: transparent;
   }
-  .login-box .user-box label {
+  .createQuestion .user-box label {
     position: absolute;
     top:0;
     left: 0;
@@ -891,15 +874,15 @@ li {
     transition: .5s;
   }
   
-  .login-box .user-box input:focus ~ label,
-  .login-box .user-box input:valid ~ label {
+  .createQuestion .user-box input:focus ~ label,
+  .createQuestion .user-box input:valid ~ label {
     top: -20px;
     left: 0;
     color: #03e9f4;
     font-size: 12px;
   }
   
-  .login-box form .enviarPregunta {
+  .createQuestion form .enviarPregunta {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
@@ -915,7 +898,7 @@ li {
     cursor: pointer;
   }
   
-  .login-box .enviarPregunta:hover {
+  .createQuestion .enviarPregunta:hover {
     background: #03e9f4;
     color: #141e30;
     border-radius: 5px;
@@ -981,7 +964,7 @@ option {
     margin-bottom: 1.429rem;
     border-radius: 2px;
     border: 1px solid transparent;
-    color: #FFF
+    color: #FFF;
   }
   
   .alert.alert-square {
