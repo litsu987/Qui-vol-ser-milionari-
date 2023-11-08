@@ -10,15 +10,15 @@ function soundSuccessQuuestion() {
 }
 
 function soundBadQuestion() {
-    playSound('../music/error_sound.mp3');
+    playSound('../../assets/music/error_sound.mp3');
 }
 
 function soundAnimation() {
-    playSound('../music/epica.mp3');
+    playSound('../../assets/music/epica.mp3');
 }
 
 function soundHelpQuestion() {
-    playSound('../music/help_sound.mp3');
+    playSound('../../assets/music/help_sound.mp3');
 }
 
 let respuestasCorrectas = 0; // Variable para rastrear las respuestas correctas

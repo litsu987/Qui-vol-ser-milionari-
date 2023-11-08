@@ -4,15 +4,15 @@ function playSound(soundFile) {
 }
 
 function soundLoseQuestion() {
-    playSound('../music/lose_sound.mp3');
+    playSound('../../assets/music/lose_sound.mp3');
 }
 
 function soundBicho() {
-    playSound('../music/bicho.mp3');
+    playSound('../../assets/music/bicho.mp3');
 }
 
 function soundWinQuestion() {
-    playSound('../music/win_sound.mp3');
+    playSound('../../assets/music/win_sound.mp3');
 }
 
 function yesPublish() {
