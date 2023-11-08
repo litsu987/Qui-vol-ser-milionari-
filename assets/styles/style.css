@@ -981,7 +981,7 @@ option {
   .alert.alert-dismissable .close,
   .alert.alert-dismissible .close {
     top: 1px;
-    right: -79%;
+    right: -75%;
     color: inherit
   }
   .alert.alert-success {

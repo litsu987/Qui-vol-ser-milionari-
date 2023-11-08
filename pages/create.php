@@ -18,49 +18,51 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
 
 $mensaje = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $pregunta = $_POST["pregunta"];
-    $respuestas = array(
-        "+ " . $_POST["respuestaCorrecta"],
-        "- " . $_POST["respuestaIncorrecta1"],
-        "- " . $_POST["respuestaIncorrecta2"],
-        "- " . $_POST["respuestaIncorrecta3"]
-    );
+$idioma = $_POST["idioma"];
+$nivel = $_POST["nivel"];
 
-    // Mezcla las respuestas para aleatorizar su orden
-    shuffle($respuestas);
+if (!empty($idioma) && !empty($nivel)) {
+    $ruta_archivo = "../assets/questions/{$idioma}_{$nivel}.txt";
 
-    $archivo_seleccionado = $_POST["archivo"];
-
-    if (!empty($pregunta) && !empty($archivo_seleccionado) && !empty($respuestas)) {
-        // Abre el archivo seleccionado en modo append (añadir contenido al final)
-        $archivo = fopen($archivo_seleccionado, "a");
-
-        fwrite($archivo, PHP_EOL);
-        // Escribe la pregunta en el archivo
-        fwrite($archivo, "* " . $pregunta . PHP_EOL);
-
-        // Escribe las respuestas en el archivo
-        foreach ($respuestas as $respuesta) {
-            fwrite($archivo, $respuesta . PHP_EOL );
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $pregunta = $_POST["pregunta"];
+        $respuestas = array(
+            "+ " . $_POST["respuestaCorrecta"],
+            "- " . $_POST["respuestaIncorrecta1"],
+            "- " . $_POST["respuestaIncorrecta2"],
+            "- " . $_POST["respuestaIncorrecta3"]
+        );
+    
+        // Mezcla las respuestas para aleatorizar su orden
+        shuffle($respuestas);
+    
+        if (!empty($pregunta) && !empty($respuestas)) {
+            // Abre el archivo seleccionado en modo append (añadir contenido al final)
+            $archivo = fopen($ruta_archivo, "a");
+    
+            fwrite($archivo, PHP_EOL);
+            // Escribe la pregunta en el archivo
+            fwrite($archivo, "* " . $pregunta . PHP_EOL);
+    
+            // Escribe las respuestas en el archivo
+            foreach ($respuestas as $respuesta) {
+                fwrite($archivo, $respuesta . PHP_EOL );
+            }
+    
+            // Cierra el archivo
+            fclose($archivo);
+    
+            $_SESSION["mensaje"]  = "<div id='alertQuestion' class='demo-preview'>
+                            <div class='alert alert-success alert-dismissable fade in'>
+                            <button aria-label='Close' onclick=\"document.getElementById('alertQuestion').style.display='none';\" class='close spanX'><i class='fa-regular fa-circle-xmark' style='color: #ffffff;'></i></button>
+                            <strong>La pregunta se ha guardado correctamente!</strong>
+                            </div>
+                        </div>";
         }
-
-        // Cierra el archivo
-        fclose($archivo);
-
-        $_SESSION["mensaje"]  = "<div id='alertQuestion' class='demo-preview'>
-                        <div class='alert alert-success alert-dismissable fade in'>
-                        <button aria-label='Close' onclick=\"document.getElementById('alertQuestion').style.display='none';\" class='close spanX'><i class='fa-regular fa-circle-xmark' style='color: #ffffff;'></i></button>
-                        <strong>La pregunta se ha guardado correctamente!</strong>
-                        </div>
-                    </div>";
-         
-
+        // Redirecciona a la página del formulario
+        header("Location: create.php");
+        exit();
     }
-
-    // Redirecciona a la página del formulario
-    header("Location: create.php");
-    exit();
 }
 $mensaje = isset($_SESSION["mensaje"]) ? $_SESSION["mensaje"] : "";
 unset($_SESSION["mensaje"]); // Limpiar el mensaje después de mostrarlo
@@ -83,7 +85,20 @@ unset($_SESSION["mensaje"]); // Limpiar el mensaje después de mostrarlo
         <h1><?php echo $lang['create']['title']; ?></h1>
         <form action="create.php" method="post" class="">
             <div class="divSelect">
-                
+                <label for="idioma" class="labelCreate" value=""><?php echo $lang['create']['selectLanguage']; ?></label></br></br>
+                <select name="idioma" id="idioma" required>
+                    <option value="catalan"><?php echo $lang['create']['fileLanguageCat']; ?></option>
+                    <option value="spanish"><?php echo $lang['create']['fileLanguageEs']; ?></option>
+                    <option value="english"><?php echo $lang['create']['fileLanguageEn']; ?></option>
+                </select><br></br>
+                <label for="nivel" class="labelCreate"><?php echo $lang['create']['selectLvl']; ?></label></br></br>
+                <select name="nivel" id="nivel" required>
+                    <?php
+                        for ($i = 1; $i <= 6; $i++) {
+                            echo "<option value='$i'>$i</option>";
+                        }
+                    ?>
+                </select><br>
             </div>
             <div class="user-box">
                 <input type="text" name="pregunta" id="" class="" required>

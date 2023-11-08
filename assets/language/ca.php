@@ -51,13 +51,17 @@ $lang = array(
     ],
     'create' => [
         'title' => 'Crear pregunta',
-        'select' => 'Nivell i idioma de la pregunta',
+        'selectLanguage' => 'Seleccionar idioma',
+        'selectLvl' => 'Seleccionar nivell',
         'newQuestion' => 'Pregunta',
         'corectQuestion' => 'Resposta correcta',
         'incorectQuestion1' => '1a Resposta incorrecta',
         'incorectQuestion2' => '2a Resposta incorrecta',
         'incorectQuestion3' => '3a Resposta incorrecta',
         'submit' => 'Crear pregunta',
+        'fileLanguageCat' => 'Català',
+        'fileLanguageCat' => 'Castellà',
+        'fileLanguageCat' => 'Anglès',
     ]
 );
 ?>
