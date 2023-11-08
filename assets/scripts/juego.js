@@ -657,14 +657,15 @@ function mostrarModal() {
     const estadistica2 = localStorage.getItem('estadistica2');
 
     if (estadistica) {
-
-        if (preguntaActual==1){
-            detenerCronometroPregunta(cronometro0)
-        }else if(preguntaActual==2){
-            detenerCronometroPregunta(cronometro1);
-            
-        }else if(preguntaActual==3){
-            detenerCronometroPregunta(cronometro2);
+         if (nivelDificultadActual != '1'){
+            if (preguntaActual==1){
+                detenerCronometroPregunta(cronometro0)
+            }else if(preguntaActual==2){
+                detenerCronometroPregunta(cronometro1);
+                
+            }else if(preguntaActual==3){
+                detenerCronometroPregunta(cronometro2);
+            }
         }
         
         const [nombre, porcentaje] = estadistica.split('@');
@@ -726,16 +727,17 @@ function mostrarModal() {
 
 // Función para cerrar el modal
 function cerrarModal() {
-    if (preguntaActual==1){
-        cronometro0 = iniciarCronometroPregunta('cronoPregunta_0',localStorage.getItem("valorInicial")); 
-    }else if(preguntaActual==2){
-        cronometro1 = iniciarCronometroPregunta('cronoPregunta_1',localStorage.getItem("valorInicial")); 
-    }else if(preguntaActual==3){
-        cronometro2 = iniciarCronometroPregunta('cronoPregunta_2',localStorage.getItem("valorInicial")); 
+    if (nivelDificultadActual != '1'){
+        if (preguntaActual==1){
+            cronometro0 = iniciarCronometroPregunta('cronoPregunta_0',localStorage.getItem("valorInicial")); 
+        }else if(preguntaActual==2){
+            cronometro1 = iniciarCronometroPregunta('cronoPregunta_1',localStorage.getItem("valorInicial")); 
+        }else if(preguntaActual==3){
+            cronometro2 = iniciarCronometroPregunta('cronoPregunta_2',localStorage.getItem("valorInicial")); 
+        }
     }
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
-    
 }
 
 function scrollHaciaSiguientePregunta() {
