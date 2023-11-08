@@ -11,7 +11,7 @@ html {
 }
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(#141e30, #243b55);
+    background: linear-gradient(181deg,#141e30 0%, #243b55 80%);
     
 }
 /* INDEX.PHP */
@@ -316,13 +316,13 @@ a:hover {
 }
 #nextQuestions:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
-    background: rgb(148, 3, 244);
+    background: #03e9f4;
     color: #141e30;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgb(148, 3, 244),
-                0 0 25px rgb(148, 3, 244),
-                0 0 50px rgb(148, 3, 244),
-                0 0 100px rgb(148, 3, 244);
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
 
 }
 /* LOSE.PHP-WIN.PHP */
@@ -606,7 +606,6 @@ li {
                 0 0 25px #ffc107,
                 0 0 50px #ffc107,
                 0 0 100px #ffc107;
-
 }
 .comTiempo{
     font-size: large;
