@@ -46,6 +46,7 @@ let ultimaPreguntaMostrada = 1;
 let preguntasAcertadas = localStorage.getItem('puntaje');
 
 if (nivelDificultadActual === '1') {
+    localStorage.setItem('valor',0);
     preguntasAcertadas = 0;
     localStorage.setItem('nivelDificultad', nivelDificultadActual);
     document.getElementById('btnEliminarRespuestas').disabled = false;
@@ -188,6 +189,7 @@ function verificarRespuesta(respuesta, respuestaCorrecta, boton) {
             // Incrementa el número de la pregunta actual
         }
         scrollHaciaSiguientePregunta();
+        MostrarPuntuacion()
     } else {
         soundBadQuestion();
         boton.classList.add("backgroundContenidoRespuestaIncorrecta");
@@ -410,7 +412,7 @@ function enviarTiempoTotalTranscurrido() {
 }
 
 window.onload = function () {
-    document.getElementById('puntuacion').textContent = 'Puntuación: ' + localStorage.getItem('valor');
+    document.getElementById('puntuacion').textContent = localStorage.getItem('valor');
     actualizarTiempoTotal();
     console.log(nivelDificultadActual);
     if (nivelDificultadActual != 1){
@@ -425,8 +427,6 @@ localStorage.onload = function () {
     clearInterval(cronometroInterval); // Detén el intervalo actual
     actualizarTiempoTotal(); // Reinicia el cronómetro con el valor de localStorage
 };
-
-
 
 
 
@@ -934,5 +934,5 @@ function MostrarPuntuacion() {
     var valor = localStorage.getItem('valor');
     valor = localStorage.getItem('puntaje')*100;
     localStorage.setItem('valor',valor);
-    document.getElementById('puntuacion').textContent = 'Puntuación: ' + localStorage.getItem('valor',valor);
+    document.getElementById('puntuacion').textContent = localStorage.getItem('valor',valor);
 }
