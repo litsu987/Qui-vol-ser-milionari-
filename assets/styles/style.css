@@ -682,7 +682,6 @@ td {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 10px;
 }
 
 .game .contenidoPregunta {
@@ -1425,6 +1424,9 @@ option {
         border-radius: 0 0 20px 20px;
         border-width: 6px;
         margin-bottom: 10%;
+        justify-content: left;
+        position: fixed;
+        width: 100%;
     }
 
     .game .contenidoPregunta {
@@ -1443,13 +1445,14 @@ option {
     }
 
     .game .oval {
-        width: 60px;
-        height: 40px;
+        width: 50px;
+        height: 35px;
         font-size: 12px;
     }
 
     .game .comodines {
-        gap: 10px
+        gap: 2px;
+        flex-direction: row;
     }
 
     .game .preguntas {
