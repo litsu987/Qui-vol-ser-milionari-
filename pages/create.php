@@ -33,29 +33,29 @@ if (!empty($idioma) && !empty($nivel)) {
             "- " . $_POST["respuestaIncorrecta2"],
             "- " . $_POST["respuestaIncorrecta3"]
         );
-    
+
         // Mezcla las respuestas para aleatorizar su orden
         shuffle($respuestas);
-    
+
         if (!empty($pregunta) && !empty($respuestas)) {
             // Abre el archivo seleccionado en modo append (añadir contenido al final)
             $archivo = fopen($ruta_archivo, "a");
-    
+
             fwrite($archivo, PHP_EOL);
             // Escribe la pregunta en el archivo
             fwrite($archivo, "* " . $pregunta . PHP_EOL);
-    
+
             // Escribe las respuestas en el archivo
             foreach ($respuestas as $respuesta) {
-                fwrite($archivo, $respuesta . PHP_EOL );
+                fwrite($archivo, $respuesta . PHP_EOL);
             }
-    
+
             // Cierra el archivo
             fclose($archivo);
-    
-            $_SESSION["mensaje"]  = "<div id='alertQuestion' class='demo-preview'>
+
+            $_SESSION["mensaje"] = "<div id='alertQuestion' class='demo-preview'>
                             <div class='alert alert-success alert-dismissable fade in'>
-                            <button aria-label='Close' onclick=\"document.getElementById('alertQuestion').style.display='none';\" class='close spanX'><i class='fa-regular fa-circle-xmark' style='color: #ffffff;'></i></button>
+                            <button class='cerrarAlerta' aria-label='Close' onclick=\"document.getElementById('alertQuestion').style.display='none';\" class='close spanX'><i class='fa-regular fa-circle-xmark' style='color: #ffffff;'></i></button>
                             <strong>La pregunta se ha guardado correctamente!</strong>
                             </div>
                         </div>";
@@ -70,70 +70,99 @@ unset($_SESSION["mensaje"]); // Limpiar el mensaje después de mostrarlo
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            <?php echo $lang['tittle']; ?>
-        </title>
-        <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    </head>
-<body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <?php echo $lang['tittle']; ?>
+    </title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="create">
     <noscript>
-        <div id="avisoJS" class="avisoJS" >
-            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+        <div id="avisoJS" class="avisoJS">
+            <h1 class="titleNoscript">
+                <?php echo $lang['noscipt']['tittle']; ?>
+            </h1>
             <div class="deshabilitado">
                 <?php echo $lang['noscipt']['message']; ?>
-                <a href="https://support.google.com/adsense/answer/12654?hl" 
-                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+                <a href="https://support.google.com/adsense/answer/12654?hl" target="_blank">
+                    <?php echo $lang['noscipt']['link']; ?>
+                </a>.
             </div>
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-    <div><?php echo $mensaje; ?></div>  
+    <div>
+        <?php echo $mensaje; ?>
+    </div>
     <div class="createQuestion">
-        <h1><?php echo $lang['create']['title']; ?></h1>
+        <h1>
+            <?php echo $lang['create']['title']; ?>
+        </h1>
         <form action="create.php" method="post" class="">
             <div class="divSelect">
-                <label for="idioma" class="labelCreate" value=""><?php echo $lang['create']['selectLanguage']; ?></label></br></br>
+                <label for="idioma" class="labelCreate" value="">
+                    <?php echo $lang['create']['selectLanguage']; ?>
+                </label></br></br>
                 <select name="idioma" id="idioma" required>
-                    <option value="catalan"><?php echo $lang['create']['fileLanguageCat']; ?></option>
-                    <option value="spanish"><?php echo $lang['create']['fileLanguageEs']; ?></option>
-                    <option value="english"><?php echo $lang['create']['fileLanguageEn']; ?></option>
+                    <option value="catalan">
+                        <?php echo $lang['create']['fileLanguageCat']; ?>
+                    </option>
+                    <option value="spanish">
+                        <?php echo $lang['create']['fileLanguageEs']; ?>
+                    </option>
+                    <option value="english">
+                        <?php echo $lang['create']['fileLanguageEn']; ?>
+                    </option>
                 </select><br></br>
-                <label for="nivel" class="labelCreate"><?php echo $lang['create']['selectLvl']; ?></label></br></br>
+                <label for="nivel" class="labelCreate">
+                    <?php echo $lang['create']['selectLvl']; ?>
+                </label></br></br>
                 <select name="nivel" id="nivel" required>
                     <?php
-                        for ($i = 1; $i <= 6; $i++) {
-                            echo "<option value='$i'>$i</option>";
-                        }
+                    for ($i = 1; $i <= 6; $i++) {
+                        echo "<option value='$i'>$i</option>";
+                    }
                     ?>
                 </select><br>
             </div>
             <div class="user-box">
                 <input type="text" name="pregunta" id="" class="" required>
-                <label for="pregunta"><?php echo $lang['create']['newQuestion']; ?><label>
+                <label for="pregunta">
+                    <?php echo $lang['create']['newQuestion']; ?><label>
             </div>
             <div class="user-box">
                 <input type="text" name="respuestaCorrecta" id="" required>
-                <label for="respuestaCorrecta"><?php echo $lang['create']['corectQuestion']; ?></label>
+                <label for="respuestaCorrecta">
+                    <?php echo $lang['create']['corectQuestion']; ?>
+                </label>
             </div>
             <div class="user-box">
                 <input type="text" name="respuestaIncorrecta1" id="" required>
-                <label for="respuestaIncorrecta1"><?php echo $lang['create']['incorectQuestion1']; ?></label>
+                <label for="respuestaIncorrecta1">
+                    <?php echo $lang['create']['incorectQuestion1']; ?>
+                </label>
             </div>
             <div class="user-box">
                 <input type="text" name="respuestaIncorrecta2" id="" required>
-                <label for="respuestaIncorrecta2"><?php echo $lang['create']['incorectQuestion2']; ?></label>
+                <label for="respuestaIncorrecta2">
+                    <?php echo $lang['create']['incorectQuestion2']; ?>
+                </label>
             </div>
             <div class="user-box">
                 <input type="text" name="respuestaIncorrecta3" id="" required>
-                <label for="respuestaIncorrecta3"><?php echo $lang['create']['incorectQuestion3']; ?></label>          
+                <label for="respuestaIncorrecta3">
+                    <?php echo $lang['create']['incorectQuestion3']; ?>
+                </label>
             </div>
             <input type="submit" value="<?php echo $lang['create']['submit']; ?>" class="enviarPregunta">
         </form>
     </div>
 </body>
+
 </html>

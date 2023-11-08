@@ -83,6 +83,7 @@ th {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #757575;
 }
 
 .button:hover {
@@ -95,23 +96,7 @@ th {
                 0 0 100px #03e9f4;
 }
 
-/* Estilo para el botón de envío del formulario */
-.button[type="submit"].button {
-    background-color: #7e2a5b;
-}
 
-.button[type="submit"].button:hover {
-    background-color: #4e003d;
-}
-
-/* Estilo para el botón de reinicio del formulario */
-.button[type="reset"].button {
-    background-color: #dc3545;
-}
-
-.button[type="reset"].button:hover {
-    background-color: #b72e37;
-}
 
 /* Estilo para el botón con icono (icono a la izquierda del texto) */
 .button.icon {
@@ -134,46 +119,9 @@ th {
 }
 
 
-    .login{
-        padding: 10px 20px;
-        color: #03e9f4;
-        font-size: 16px;
-        text-decoration: none;
-        text-transform: uppercase;
-        overflow: hidden;
-        transition: .5s;
-        margin-top: 20px;
-        letter-spacing: 4px;
-        background-color: #141e30;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        z-index: 3;
-        border-radius: 10px;
-    }
 
-    .login:hover {
-        background: #03e9f4;
-        color: #141e30;
-        border-radius: 5px;
-        box-shadow: 0 0 5px #03e9f4,
-                    0 0 25px #03e9f4,
-                    0 0 50px #03e9f4,
-                    0 0 100px #03e9f4;
-    }
-
-    .divLogin{
-        display: flex;
-        justify-content: right;
-        margin-right: 1%;
-    }
 
 /* GAME.PHP */
-
-
-
 .preguntasRespuestasDiv {
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     border-radius: 19px 0px 26px 0px ;
@@ -537,6 +485,10 @@ td {
     text-align: center;
 }
 
+.ranking .button {
+    margin-bottom: 30px;
+}
+
 
 
 /* LOSE & WIN */
@@ -550,6 +502,7 @@ td {
 .LoseWin .fondo {
     margin: 50px 0;
     padding: 3%;
+    height: auto;
 }
 
 .LoseWin .score {
@@ -662,7 +615,7 @@ td {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
     padding: 10px;
     align-items: flex-start;
     color: white;
@@ -1057,172 +1010,136 @@ td {
 
 /* CREATE.PHP */
 
-.createQuestion {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60%;
-    padding: 40px;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,.5);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 10px;
-  }
-  
-  .createQuestion h1 {
-    margin: 0 0 30px;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-  }
-  
-  .createQuestion .user-box {
-    position: relative;
-  }
-  
-  .createQuestion .user-box input {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #fff;
-    outline: none;
-    background: transparent;
-  }
-  .createQuestion .user-box label {
-    position: absolute;
-    top:0;
-    left: 0;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .5s;
-  }
-  
-  .createQuestion .user-box input:focus ~ label,
-  .createQuestion .user-box input:valid ~ label {
-    top: -20px;
-    left: 0;
-    color: #03e9f4;
-    font-size: 12px;
-  }
-  
-  .createQuestion form .enviarPregunta {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #03e9f4;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px;
-    background-color: #141e30;
-    cursor: pointer;
-  }
-  
-  .createQuestion .enviarPregunta:hover {
-    background: #03e9f4;
-    color: #141e30;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #03e9f4,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 100px #03e9f4;
-  }
-  
-.divSelect{
-    margin-bottom: 20px;
-}
-
-.labelCreate{
-    color: white;
-}
-:root{
-    --arrow-bg: rgba(255, 255, 255, 0.3);
-  --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
-  --option-bg: rgba(255, 255, 255, 0.3);
-  --select-bg: rgba(255, 255, 255, 0.2);
-}
-select {
-    /* Reset */
-    appearance: none;
-    border: 0;
-    outline: 0;
-    /* Personalize */
-    width: 20rem;
-    padding: 1rem 4rem 1rem 1rem;
-    background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
-        linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
-    color: white;
-    border-radius: 0.25em;
-    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    font-size: medium; 
-    /* Remove IE arrow */
-    &::-ms-expand {
-        display: none;
+.create {
+    .createQuestion {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60%;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,.5);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0,0,0,.6);
+        border-radius: 10px;
     }
-    /* Remove focus outline */
-    &:focus {
+    .createQuestion h1 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+    }
+    .createQuestion .user-box {
+        position: relative;
+    }
+    .createQuestion .user-box input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
         outline: none;
-    }  
+        background: transparent;
+    }
+    .createQuestion .user-box label {
+        position: absolute;
+        top:0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: .5s;
+    }
+    .createQuestion .user-box input:focus ~ label,
+    .createQuestion .user-box input:valid ~ label {
+        top: -20px;
+        left: 0;
+        color: #03e9f4;
+        font-size: 12px;
+    }
+    .createQuestion form .enviarPregunta {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #03e9f4;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px;
+        background-color: #141e30;
+        cursor: pointer;
+    }
+    .createQuestion .enviarPregunta:hover {
+        background: #03e9f4;
+        color: #141e30;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4,
+                    0 0 25px #03e9f4,
+                    0 0 50px #03e9f4,
+                    0 0 100px #03e9f4;
+    }
+    .divSelect{
+        margin-bottom: 20px;
+    }
+    .labelCreate{
+        color: white;
+    }
+    .demo-preview {
+        padding-top: 20px;
+        padding-bottom: 10px;
+        width: 42%;
+        margin: auto;
+        text-align: center;
+    }
     
 }
-option {
-    color: inherit;
-    background-color: rgba(36, 59, 85, 0.7);
-    font-size: medium; 
-}
-.demo-preview {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    width: 42%;
-    margin: auto;
-    text-align: center;
-  }
-  
-  .alert {
-    padding: .7143rem 1.071rem;
-    margin-bottom: 1.429rem;
-    border-radius: 2px;
-    border: 1px solid transparent;
-    color: #FFF;
-  }
-  
-  .alert.alert-square {
-    border-radius: 0
-  }
-  salonTitle
-  .alert .close {
-    position: relative
-  }
-  
-  .alert.alert-dismissable,
-  .alert.alert-dismissible {
-    padding-right: 2.5rem
-  }
-  
-  .alert.alert-dismissable .close,
-  .alert.alert-dismissible .close {
-    top: 1px;
-    right: -75%;
-    color: inherit
-  }
-  .alert.alert-success {
-    background-color: #64DD17;
-    border-color: #64DD17
-  }
-  .spanX{
-    all: unset;
-    cursor: pointer;
-  }
+
+    
+    :root {
+        --arrow-bg: rgba(255, 255, 255, 0.3);
+      --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+      --option-bg: rgba(255, 255, 255, 0.3);
+      --select-bg: rgba(255, 255, 255, 0.2);
+    }
+    select {
+        /* Reset */
+        appearance: none;
+        border: 0;
+        outline: 0;
+        /* Personalize */
+        width: 20rem;
+        padding: 1rem 4rem 1rem 1rem;
+        background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+            linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+        color: white;
+        border-radius: 0.25em;
+        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        font-size: medium; 
+        /* Remove IE arrow */
+        &::-ms-expand {
+            display: none;
+        }
+        /* Remove focus outline */
+        &:focus {
+            outline: none;
+        }  
+        
+    }
+    option {
+        color: inherit;
+        background-color: rgba(36, 59, 85, 0.7);
+        font-size: medium; 
+        color: white;
+    }
+    
+
 
 
 
@@ -1320,41 +1237,42 @@ option {
 
 
   
-  .alert {
+.alert {
     padding: .7143rem 1.071rem;
     margin-bottom: 1.429rem;
     border-radius: 2px;
     border: 1px solid transparent;
     color: #FFF;
-  }
-  
-  .alert.alert-square {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+.alert.alert-square {
     border-radius: 0
-  }
-  
-  .alert .close {
+}
+salonTitle .alert .close {
     position: relative
-  }
-  
-  .alert.alert-dismissable,
-  .alert.alert-dismissible {
+}
+.alert.alert-dismissible {
     padding-right: 2.5rem
-  }
-  
-  .alert.alert-dismissable .close,
-  .alert.alert-dismissible .close {
-    top: 1px;
+}
+.alert-dismissible .close {
+    top: 1;
     right: -75%;
     color: inherit
-  }
-  .alert.alert-success {
+}
+.alert.alert-success {
     background-color: #64DD17;
     border-color: #64DD17
-  }
-  .spanX{
+}
+.spanX{
     all: unset;
     cursor: pointer;
-  }
+}
 
   .game #puntuacionDiv {
     text-align: center;
@@ -1437,6 +1355,7 @@ option {
         position: fixed;
         width: 100%;
         background-color: #121d2a;
+        font-size: 100%;
     }
 
     .game .contenidoPregunta {
@@ -1508,7 +1427,7 @@ option {
         right: 0;
         border-radius: 10px;
         height: 40px;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .game .CronoPregunta {
@@ -1535,4 +1454,28 @@ option {
         justify-content: center;
         text-align: center;
     }
+
+    .ranking #banner {
+        border-radius: 0 0 15px 15px;
+        height: 80px;
+    }
+
+    .login .formLogin {
+        width: 85%;
+    }
+
+    .create {
+        .createQuestion {
+            width: 85%;
+            margin: 60px 0
+        }
+    }
+
+    select {
+        width: 100%;
+        height: 40px;
+        padding: 5px 15px 5px 20px
+    }
+
+    
 }
