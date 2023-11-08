@@ -47,18 +47,7 @@ th {
 
 
 
-a {
-    text-decoration: none;
-    color: #007BFF;
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: bold;
-}
 
-/* Enlace al inicio */
-a:hover {
-    color: #0056b3;
-}
 #nameAndPublishDiv {
     display: none;
 }
@@ -1267,6 +1256,7 @@ option {
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
+    margin-top: -40px;
 }
 
 /* Estilos para el botón de cancelar */
@@ -1276,9 +1266,7 @@ option {
     display: inline-block;
     padding: 10px 20px;
     border: none;
-    background-color: #007bff;
     color: #fff;
-    border: 2px solid #1d060c;
     border-radius: 10px;
     font-size: 16px;
     text-align: center;

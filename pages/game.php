@@ -86,15 +86,15 @@ if (isset($_POST['pregunta_actual'])) {
 
     <div id="minijuego" class="minijuego" style="display: none;">
         <div class="minijuego-contenido">
-            <input type="number" id="respuestaUsuario" style="display: none;" placeholder="Ingresa tu respuesta"
+            <input type="number" id="respuestaUsuario" class="textUser" style="display: none;" placeholder="Ingresa tu respuesta"
                 pattern="[0-9]*" />
-            <button id="botonComprobar" style="display: none;" onclick="comprobarRespuesta()">Comprobar</button>
-            <button id="botonSalir" style="display: none;" onclick="cerrarMinijuego()">Salir</button>
+            <button id="botonComprobar" class="button" style="display: none;" onclick="comprobarRespuesta()">Comprobar</button>
+            <button id="botonSalir" class="button" style="display: none;" onclick="cerrarMinijuego()">Salir</button>
             <div id="contenedorMini">
                 <h1 id="resultadoMinijuego" style="display: none;"></h1>
             </div>
-
         </div>
+        
     </div>
 
     <div class="bannerMillonario">
