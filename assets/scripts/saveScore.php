@@ -36,7 +36,7 @@ if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION[
         fwrite($file, $data);
         fclose($file);
     }
-    header("Location: ../../pages/ranking.php");
+    echo "<script>window.location.href = '../../pages/ranking.php';</script>";
 
 } else {
     // header("Location: ../../pages/publishFail.php");
