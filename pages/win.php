@@ -1,11 +1,11 @@
 <?php
 session_start();
-error_reporting(0);
-// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//     http_response_code(403);
-//     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
-//     exit;
-// }
+
+ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+     http_response_code(403);
+     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+    exit;
+ }
 
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
@@ -21,12 +21,10 @@ if (isset($_POST['puntaje'])) {
     $_SESSION['score'] = $puntaje;
 }
 
-if (isset($_POST['tiempoTranscurrido'])) {
-
-    $tiempoTranscurrido = $_POST['tiempoTranscurrido'];
-    $_SESSION['tiempoTranscurrido'] = $tiempoTranscurrido;
-
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"])) {
+    $tiempoInicio = $_POST["tiempoTranscurrido"];
+    $_SESSION['tiempoInicio'] = $tiempoInicio;
+} 
 
 ?>
 
@@ -85,7 +83,7 @@ if (isset($_POST['tiempoTranscurrido'])) {
         <div id="nameAndPublishDiv">
             <form action="../assets/scripts/saveScore.php" method="post">
                 <div class="centrar">
-                    <input type="text" id="name" name="name" class="textUser" placeholder="<?php echo $lang['namePlaceholder']; ?>"
+                    <input type="text" id="name" name="name" placeholder="<?php echo $lang['namePlaceholder']; ?>"
                         required>
                 </div>
                 <input type="hidden" id="currentDate" name="currentDate" value="tiempoInicio">
@@ -107,10 +105,11 @@ if (isset($_POST['tiempoTranscurrido'])) {
 
     </div>
 
+    <h1 id="preguntasAcertadas" preguntasAcertadas=<?php $_SESSION['score'] ?>></h1>
 
     <script src="../assets/scripts/script.js"></script>
     <script src="../assets/scripts/juego.js"></script>
-    <?php session_destroy() ?>
+
 </body>
 
 </html>
