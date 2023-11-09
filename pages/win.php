@@ -43,7 +43,7 @@ if (isset($_POST['tiempoTranscurrido'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body onload="soundWinQuestion()" class="LoseWin">
+<body onload="soundWinQuestion()" class="bodyLoseWin">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">
@@ -108,8 +108,9 @@ if (isset($_POST['tiempoTranscurrido'])) {
     </div>
 
 
-    <script src="../assets/scripts/winLose.js"></script>
-
+    <script src="../assets/scripts/script.js"></script>
+    <script src="../assets/scripts/juego.js"></script>
+    <?php session_destroy() ?>
 </body>
 
 </html>

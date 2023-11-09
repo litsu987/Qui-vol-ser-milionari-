@@ -79,9 +79,8 @@ $sessionId = session_id();
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-    <h1 class="salonTitle">Hall Of Fame</h1>
 
-    <div id="banner" class="centrar">
+    <div id="banner" class="centrar salonTitle">
         <h1 class="hallOfFameTittle">HALL OF FAME</h1>
     </div>
 

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 
-
+html {
+    height: 100%;
+  }
 /* GENERAL */
 * {
     margin: 0;
@@ -10,7 +12,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(#141e30, #243b55);
+    background: #243b55;
     
 }
 /* INDEX.PHP */
@@ -43,9 +45,7 @@ th {
     color: #fff;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+
 
 a {
     text-decoration: none;
@@ -144,55 +144,44 @@ a:hover {
     background-color: #138496;
 }
 
-.login{
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    border: 2px solid #1d060c;
-    border-radius: 10px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    position: absolute;
-    z-index: 3;
-}
-.login:hover {
-    background-color: #0056b3;
-    color: #fff;
-}
 
-.divLogin{
-    display: flex;
-    justify-content: right;
-    margin-right: 1%;
-}
+    .login{
+        padding: 10px 20px;
+        color: #03e9f4;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 20px;
+        letter-spacing: 4px;
+        background-color: #141e30;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 3;
+    }
+    .login:hover {
+        background: #03e9f4;
+        color: #141e30;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4,
+                    0 0 25px #03e9f4,
+                    0 0 50px #03e9f4,
+                    0 0 100px #03e9f4;
+    }
+
+    .divLogin{
+        display: flex;
+        justify-content: right;
+        margin-right: 1%;
+    }
 
 /* GAME.PHP */
-.lvlDifivultad{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    border: 8px outset #b3b3b2;
-    padding: 10px;
-    border-radius: 19px 26px 0px 0px;
-    align-items: flex-start;
-    background: #0069bb;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    background: -webkit-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    background: -moz-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%); 
-    color: white;
-}
-#preguntas_contenedor{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
+
+
 
 .preguntasRespuestasDiv {
     background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
@@ -200,20 +189,6 @@ a:hover {
     border: 8px outset #b3b3b2;
 }
 
-.contenidoPregunta{
-    color: white;
-    width: 1250px;
-    margin-bottom: 50px;
-    text-align: center;
-    border: 8px outset #b3b3b2;
-    padding: 20px;
-    border-radius: 19px 26px 0px 0px;
-    background: transparent;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    background: -webkit-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    background: -moz-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%); 
-    
-}
 .respuestas{
     display: grid; 
     grid-template-rows: 1fr 1fr;
@@ -232,13 +207,17 @@ a:hover {
     width: 100%;
     height: 80px;
     color: white;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    transition: .5s;
 }
 /* .contenidoRespuesta:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
 
 } */
 .backgroundContenidoRespuesta{
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: rgba(0,0,0,.5);
 }
 .backgroundContenidoRespuesta:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
@@ -273,7 +252,6 @@ a:hover {
 }
 #nextQuestions:hover{
     background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
-
 }
 /* LOSE.PHP-WIN.PHP */
 
@@ -311,35 +289,15 @@ a:hover {
     align-content: center;
     flex-direction: column;
     height: 400px;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    border: 8px outset #b3b3b2;
     padding: 20px;
-    border-radius: 19px 0px 26px 0px;
-    width: 700px;
+    width: 70%;
     color: white;
     background: rgba(0,0,0,.5);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
 }
-#divLogin{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column; 
-    height: 400px;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    border: 8px outset #b3b3b2;
-    padding: 20px;
-    border-radius: 19px 0px 26px 0px;
-    width: 700px;
-    margin: 0 auto;
-    margin-top: 10%;
-    text-align: center;
-    color: white;
-    gap: 4%;
-}
+
 .tituloLost{
     color: white;
     margin-top: 50px;
@@ -358,6 +316,16 @@ a:hover {
     margin-left: 0px;
     gap: 10px;
     flex-direction: column;
+}
+.textUser{
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #03e9f4;
+	background: rgba(0,0,0,.5);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #03e9f4;
 }
 
 /* NOSCRIPT */
@@ -393,7 +361,6 @@ a:hover {
 }
 
 #banner {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
     height: 100%;
     display: flex;
     justify-content: center;
@@ -455,7 +422,8 @@ a:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .index #languages img {
@@ -477,43 +445,21 @@ a:hover {
     transform: rotate(360deg);
     border-radius: 50%;
 }
-  
-#banner {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
 
-#banner img {
-    height: 180px;
-    width: auto;
-}
-
-.h1Titulo{
-    color: #1d060c;
-    text-align: center;
-    font-family: 'Alfa Slab One', serif;
-    font-size: 250%;
-    margin: 10px 0px 0px;
-    -webkit-text-stroke: 0.5px #b3b3b2;
-}
-
-#ul-container {
+.index #ul-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-ul {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+.index ul {
+    background: rgba(0,0,0,.5);
     padding: 20px;
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
     list-style: none;
+    max-width: 60%;
     text-align: justify;
     color: white;
     font-family: 'Roboto Mono', monospace;
@@ -527,26 +473,56 @@ ul {
     align-items: center;
 }
 
-.index #loginButton {
-    margin: 10px;
-    padding: 8px 10px;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 .index .text-container {
     margin-left: 20px;
 }
 
 
-#cronometro2 {
-    width: 150px; /* Ancho fijo de la caja */
-    height: 40px; /* Alto fijo de la caja */
-    background: #0069bb;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    border: 5px outset #b3b3b2;
-    border-radius: 19px 26px 0px 0px;
+
+/* RANKING */
+.ranking table {
+    width: 95%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px; /* Ajusta el valor según tu preferencia */
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+.ranking .tableContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.ranking table,
+.ranking th,
+.ranking td {
+    border: 2px solid #333;
+    text-align: right;
+}
+
+.ranking th,
+td {
+    padding: 10px;
+    text-align: right;
+}
+
+.ranking th {
+    background-color: #333;
+    color: #fff;
+}
+
+.ranking tr {
+    background-color: #f2f2f2;
+}
+
+.ranking .userRow {
+    background-color: #4e003d;
+    color: white;
+}
+
+.ranking .hallOfFameTittle {
+    color: #1d060c;
     text-align: center;
     font-family: 'Alfa Slab One', serif;
     font-size: 250%;
@@ -557,6 +533,17 @@ ul {
 .ranking #toStartButton {
     padding: 2%;
     margin-top: 3%;
+}
+
+.salonTitle{
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
 }
 
 
@@ -634,10 +621,30 @@ ul {
 
 /* GAME */
 .game #nextQuestions {
-    margin-bottom: 5%;
+    cursor: pointer;
+    text-align: center;
+    font-size: x-large;
     height: 80px;
-    font-size: 20px;
+    color: white;
     width: auto;
+    padding: 10px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    background: rgba(0,0,0,.5);
+    border-radius: 10px;
+    transition: .5s;
+}
+
+#nextQuestions:hover{
+    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+    background: #03e9f4;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
 }
 
 .game #divTiempoTotal {
@@ -647,27 +654,31 @@ ul {
     left: 0;
     z-index: 10;
     padding: 1%;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    border: 8px outset #b3b3b2;
-    border-radius: 19px 0px 26px 0px;
     color: white;
-    margin: 80px;
-    z-index: 50;
+    margin: 1%;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.game .bannerImagen {
+    text-align: center;
+    width: 25%;
 }
 
 .game .lvlDifivultad {
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 3%;
-    border: 8px outset #b3b3b2;
-    padding: 1%;
-    width: auto;
-    border-radius: 19px 26px 0px 0px;
+    margin-bottom: 20px;
+    padding: 10px;
     align-items: flex-start;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    /* background: -webkit-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%); */
-    /* background: -moz-radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);  */
     color: white;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
 .game .preguntas {
@@ -680,18 +691,19 @@ ul {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 
 .game .contenidoPregunta {
-    color: white;
     width: auto;
+    color: white;
     margin-bottom: 50px;
     text-align: center;
-    border: 8px outset #b3b3b2;
     padding: 20px;
-    border-radius: 20px 0 20px 0;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    font-size: 170%;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
 .game .respuestas {
@@ -714,15 +726,17 @@ ul {
 }
 
 .game .comodines {
-    text-align: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 10;
-    padding: 1%;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 60%;
+    margin-left: 90%;
+    margin-top: 270px;
+    padding: 10px;  
+    text-align: center;
     gap: 15px;
+    position: fixed;
+    z-index: 50;
 }
 
 .game .oval {
@@ -735,12 +749,18 @@ ul {
     border-radius: 10px;
     color: white;
 }
-.ovalBackground{
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-}
-.ovalBackground:hover{
-    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
 
+.game .ovalBackground {
+    background: rgba(0,0,0,.5);
+}
+.game .ovalBackground:hover{
+    background: #ffc107;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ffc107,
+                0 0 25px #ffc107,
+                0 0 50px #ffc107,
+                0 0 100px #ffc107;
 }
 
 .game .comTiempo {
@@ -751,8 +771,8 @@ ul {
     font-size: large;
 }
 
-.btonBloqueadoComodin{
-    background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
+.game .botton .btonBloqueadoComodin {
+    background: #3c3c3d;
     cursor: auto;
 }
 
@@ -778,9 +798,7 @@ ul {
     border-radius: 10px;
 }
 
-  
-  
-  .cerrar {
+.game .cerrar {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -794,17 +812,16 @@ ul {
     cursor: pointer;
 }
 
-
-  .CronoPregunta {
+.game .CronoPregunta {
     width: 150px; /* Ancho fijo de la caja */
     height: 20px; /* Alto fijo de la caja */
-    background: #0069bb;
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
-    border: 5px outset #b3b3b2;
-    border-radius: 19px 26px 0px 0px;
     text-align: center;
     color: white;
     font-size: 20px;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
 .game #divImgQuestion {
@@ -827,24 +844,30 @@ ul {
 }
 
 .game .backgroundContenidoRespuesta {
-    background: radial-gradient(circle farthest-corner at center center, #0069bb 0%, #001242 80%);
+    background: rgba(0,0,0,.5);
 }
 
 .game .backgroundContenidoRespuesta:hover {
-    background: radial-gradient(circle farthest-corner at center center, #ffc107 0%, #fd7e14 70%);
+    background: #ffc107;
+    color: #141e30;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ffc107,
+                0 0 25px #ffc107,
+                0 0 50px #ffc107,
+                0 0 100px #ffc107;
 }
 
 .game .btonBloqueado {
-    background: radial-gradient(circle farthest-corner at center center, #a29f9f 0%, #48484b 80%);
+    background: rgba(27, 27, 27, 0.5);
     cursor: auto;
 }
 
 .game .backgroundContenidoRespuestaCorrecta {
-    background: radial-gradient(circle farthest-corner at center center, #57da57 0%, #126f12 80%);
+    background: rgba(0, 255, 34, 0.7);
 }
 
 .game .backgroundContenidoRespuestaIncorrecta {
-    background: radial-gradient(circle farthest-corner at center center, #ff0000 0%, #681c1c 70%);
+    background: rgba(255, 0, 0, 0.7);
 }
 
 .game .bannerMillonario {
@@ -888,42 +911,32 @@ ul {
 
 
 
-
-
-
-
-
-.userRow {
-    background-color: #4e003d;
-    color: white;
-    gap: 4%;
-}
-
-  
 /* LOGIN.PHP */
-.form__group {
-    position: relative;
-    padding: 15px 0 0;
-    margin-top: 10px;
-    width: 100%;
+.formLogin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
-.form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid white;
-    outline: 0;
-    font-size: 1.3rem;
+.formLogin h1 {
+    margin: 0 0 30px;
+    padding: 0;
     color: #fff;
     text-align: center;
-  }
-  
-  .formLogin .user-box {
+}
+
+.formLogin .user-box {
     position: relative;
-  }
-  
-  .formLogin .user-box input {
+}
+
+.formLogin .user-box input {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -933,8 +946,9 @@ ul {
     border-bottom: 1px solid #fff;
     outline: none;
     background: transparent;
-  }
-  .formLogin .user-box label {
+}
+
+.formLogin .user-box label {
     position: absolute;
     top:0;
     left: 0;
@@ -943,20 +957,20 @@ ul {
     color: #fff;
     pointer-events: none;
     transition: .5s;
-  }
-  
-  .formLogin .user-box input:focus ~ label,
-  .formLogin .user-box input:valid ~ label {
+}
+
+.formLogin .user-box input:focus ~ label,
+.formLogin .user-box input:valid ~ label {
     top: -20px;
     left: 0;
     color: #03e9f4;
     font-size: 12px;
-  }
+}
+
 /* reset input */
 .form__field{
     &:required,&:invalid { box-shadow:none; }
 }
-
 
 .buttonLogin {
     position: relative;
@@ -974,8 +988,8 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
+
 .buttonLogin:hover{
     background: #03e9f4;
     color: #141e30;
@@ -985,6 +999,7 @@ ul {
                 0 0 50px #03e9f4,
                 0 0 100px #03e9f4;
 }
+
 .vibrate-1 {
     margin-top: 2%;
     font-size: large;
@@ -995,6 +1010,7 @@ ul {
 	-webkit-animation: vibrate-1 0.3s linear both;
 	animation: vibrate-1 0.3s linear both;
 }
+
 @-webkit-keyframes vibrate-1 {
     0% {
         -webkit-transform: translate(0);
@@ -1021,6 +1037,7 @@ ul {
                 transform: translate(0);
     }
 }
+
 @keyframes vibrate-1 {
     0% {
         -webkit-transform: translate(0);
@@ -1182,6 +1199,48 @@ option {
     margin: auto;
     text-align: center;
   }
+  
+  .alert {
+    padding: .7143rem 1.071rem;
+    margin-bottom: 1.429rem;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    color: #FFF;
+  }
+  
+  .alert.alert-square {
+    border-radius: 0
+  }
+  salonTitle
+  .alert .close {
+    position: relative
+  }
+  
+  .alert.alert-dismissable,
+  .alert.alert-dismissible {
+    padding-right: 2.5rem
+  }
+  
+  .alert.alert-dismissable .close,
+  .alert.alert-dismissible .close {
+    top: 1px;
+    right: -75%;
+    color: inherit
+  }
+  .alert.alert-success {
+    background-color: #64DD17;
+    border-color: #64DD17
+  }
+  .spanX{
+    all: unset;
+    cursor: pointer;
+  }
+
+
+
+
+
+/* COMODIN DE LA LLAMADA */
 /* Estilos para el contenedor del minijuego */
 .minijuego {
     display: none;
@@ -1268,6 +1327,11 @@ option {
     text-align: center;
   }
 
+
+
+
+
+  
   .alert {
     padding: .7143rem 1.071rem;
     margin-bottom: 1.429rem;
@@ -1303,172 +1367,151 @@ option {
     all: unset;
     cursor: pointer;
   }
-  /* LOGIN.PHP */
-
-.form__group {
-    position: relative;
-    padding: 15px 0 0;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid white;
-    outline: 0;
-    font-size: 1.3rem;
-    color: #fff;
-    text-align: center;
-  }
 
 
-.formLogin {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30%;
-    padding: 40px;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,.5);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 10px;
-  }
-  
-  .formLogin h1 {
-    margin: 0 0 30px;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-  }
-  
-  .formLogin .user-box {
-    position: relative;
-  }
-  
-  .formLogin .user-box input {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #fff;
-    outline: none;
-    background: transparent;
-  }
-  .formLogin .user-box label {
-    position: absolute;
-    top:0;
-    left: 0;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .5s;
-  }
-  
-  .formLogin .user-box input:focus ~ label,
-  .formLogin .user-box input:valid ~ label {
-    top: -20px;
-    left: 0;
-    color: #03e9f4;
-    font-size: 12px;
-  }
-/* reset input */
-.form__field{
-    &:required,&:invalid { box-shadow:none; }
-}
 
+/* RESPONSIVE */
+@media only screen and (max-width: 400px) {
+    .index .h1Titulo {
+        margin: 20px 0;
+    }
 
-.buttonLogin {
-    position: relative;
-    padding: 10px 20px;
-    color: #03e9f4;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px;
-    background-color: #141e30;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-.buttonLogin:hover{
-    background: #03e9f4;
-    color: #141e30;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #03e9f4,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 100px #03e9f4;
-}
-.vibrate-1 {
-    margin-top: 2%;
-    font-size: large;
-    text-shadow: 1px 6px 4px rgba(0,0,0,0.6);
-    color: white;
-    background-color: red;
-    padding: 1%;
-	-webkit-animation: vibrate-1 0.3s linear both;
-	animation: vibrate-1 0.3s linear both;
-}
-@-webkit-keyframes vibrate-1 {
-    0% {
-        -webkit-transform: translate(0);
-                transform: translate(0);
+    .index #ul-container {
+        margin: 0;
     }
-    20% {
-        -webkit-transform: translate(-2px, 2px);
-                transform: translate(-2px, 2px);
+
+    .index ul {
+        width: 80%;
+        font-size: 90%;
+        border-width: 6px;
     }
-    40% {
-        -webkit-transform: translate(-2px, -2px);
-                transform: translate(-2px, -2px);
+
+    .index li {
+        padding: 6% 3%;
     }
-    60% {
-        -webkit-transform: translate(2px, 2px);
-                transform: translate(2px, 2px);
+
+    .index .lvlDifivultad {
+        padding: 3%;
     }
-    80% {
-        -webkit-transform: translate(2px, -2px);
-                transform: translate(2px, -2px);
+
+    .index .buttonsGroup .button {
+        margin: 15px 0 0;
     }
-    100% {
-        -webkit-transform: translate(0);
-                transform: translate(0);
+
+    .index #languages {
+        margin: 20px 0 0;
     }
-}
-@keyframes vibrate-1 {
-    0% {
-        -webkit-transform: translate(0);
-                transform: translate(0);
+
+    .index .icon-container {
+        display: none;
     }
-    20% {
-        -webkit-transform: translate(-2px, 2px);
-                transform: translate(-2px, 2px);
+
+    .index .text-container {
+        padding: 0;
+        margin: 0;
     }
-    40% {
-        -webkit-transform: translate(-2px, -2px);
-                transform: translate(-2px, -2px);
+
+    .LoseWin {
+        Overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    60% {
-        -webkit-transform: translate(2px, 2px);
-                transform: translate(2px, 2px);
+
+    .LoseWin .fondo {
+        margin: 6% 0;
+        padding: 3%;
+        width: 75%;
     }
-    80% {
-        -webkit-transform: translate(2px, -2px);
-                transform: translate(2px, -2px);
+
+    .LoseWin form {
+        margin-top: 5%;
     }
-    100% {
-        -webkit-transform: translate(0);
-                transform: translate(0);
+
+    .LoseWin .divExtras {
+        margin-bottom: 5%;
+    }
+
+    .game .lvlDifivultad {
+        border-radius: 0 0 20px 20px;
+        border-width: 6px;
+        margin-bottom: 10%;
+    }
+
+    .game .contenidoPregunta {
+        font-size: 20px;
+        border-width: 6px;
+        margin-bottom: 5%;
+    }
+
+    .game .questionImg {
+        width: 200px;
+        height: auto;
+    }
+
+    .game .bannerImagen {
+        width: 60%;
+    }
+
+    .game .oval {
+        width: 60px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .game .comodines {
+        gap: 10px
+    }
+
+    .game .preguntas {
+        width: 90%;
+    }
+
+    .game .respuestas {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .game .contenidoRespuesta {
+        height: 55px;
+        font-size: 16px;
+    }
+
+    .game #divImgQuestion {
+        margin-top: 20px;
+    }
+
+    .game #divTiempoTotal {
+        width: 80px;
+        height: 50px;
+        padding: 0 2% 0 2%;
+        font-size: 10px;
+        border-width: 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .game #preguntas_contenedor {
+        margin-bottom: 40px;
+    }
+
+    .game #nextQuestions {
+        position: absolute;
+        right: 0;
+        border-radius: 10px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .game .CronoPregunta {
+        font-size: 15px;
+    }
+
+    .ranking .idSesionColumna {
+        display: none;
     }
 }
