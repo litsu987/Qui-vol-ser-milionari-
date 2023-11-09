@@ -1,18 +1,12 @@
 <?php
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    http_response_code(403);
-    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
-    exit;
+ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+     http_response_code(403);
+     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+     exit;
 }
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    http_response_code(403);
-    echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
-    exit;
-}
 
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
@@ -32,8 +26,9 @@ if (isset($_POST['puntaje'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"])) {
     $tiempoInicio = $_POST["tiempoTranscurrido"];
     $_SESSION['tiempoInicio'] = $tiempoInicio;
-} else {
-}
+} 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body onload="soundLoseQuestion()" class="bodyLoseWin">
+<body onload="soundLoseQuestion()" class="LoseWin">
     <noscript>
         <div id="avisoJS" class="avisoJS">
             <h1 class="titleNoscript">
@@ -116,12 +111,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"]))
         </div>
     </div>
 
-
+    <h1 id="preguntasAcertadas" preguntasAcertadas=<?php $_SESSION['score'] ?>></h1>
 
     <script src="../assets/scripts/script.js"></script>
     <script src="../assets/scripts/juego.js"></script>
-    <?php session_destroy() ?>
-
 </body>
 
 </html>
