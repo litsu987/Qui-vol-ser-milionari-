@@ -1,10 +1,5 @@
 <?php
 session_start();
-
-echo $_POST['name'];
-echo "<br>" . $_POST['currentDate'];
-echo "<br>" . $_SESSION["score"];
-echo "<br>" . $_SESSION['tiempoInicio'];
 if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION["score"])) && (isset($_SESSION['tiempoInicio']))) {
 
     $name = $_POST["name"];
@@ -36,11 +31,11 @@ if (isset($_POST["name"]) && (isset($_POST["currentDate"])) && (isset($_SESSION[
         fwrite($file, $data);
         fclose($file);
     }
-    header("Location: ../../pages/ranking.php");
+    echo "<script>window.location.href = '../../pages/ranking.php';</script>";
+    
 
 } else {
     // header("Location: ../../pages/publishFail.php");
-
 }
 
 ?>
