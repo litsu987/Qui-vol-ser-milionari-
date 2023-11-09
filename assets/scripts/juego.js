@@ -938,3 +938,21 @@ function MostrarPuntuacion() {
     localStorage.setItem('valor',valor);
     document.getElementById('puntuacion').textContent = localStorage.getItem('valor',valor);
 }
+
+const improperios = [
+    'bocachancla','cabezabuque', 'garuulo','puta', 'cabron',
+    'imbezil', 'mamón','cabezabuque', 'abraçafanals','tanoca',
+    'caganer','caca', 'shit','fuck', 'bastard ', 'dick ',
+    'dunderhead ','lerdo', '69', 'llepafils'
+];
+
+function improperis(paraula) {
+    let input = document.getElementById('name');
+    if (improperios.includes(input.toLowerCase())) {
+        return true;
+    }
+    return false;
+}
+
+
+
