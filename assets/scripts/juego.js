@@ -25,7 +25,7 @@ function soundHelpQuestion() {
 function soundBicho() {
     if (!soundAlreadyPlayed) {
         playSound('../../assets/music/bicho.mp3');
-        soundAlreadyPlayed = true; // Marca el sonido como reproducido
+        soundAlreadyPlayed = true; 
     }
 }
 
@@ -653,11 +653,13 @@ document.getElementById('comodin-publico').addEventListener('click', function() 
 });
 
 function mostrarModal() {
+    soundAnimation()
     const estadistica = localStorage.getItem('estadistica');
     const estadistica2 = localStorage.getItem('estadistica2');
 
     if (estadistica) {
-         if (nivelDificultadActual != '1'){
+
+        if (nivelDificultadActual != '1'){
             if (preguntaActual==1){
                 detenerCronometroPregunta(cronometro0)
             }else if(preguntaActual==2){
@@ -667,7 +669,7 @@ function mostrarModal() {
                 detenerCronometroPregunta(cronometro2);
             }
         }
-        
+
         const [nombre, porcentaje] = estadistica.split('@');
         const porcentajeNumerico = parseFloat(porcentaje);
 
@@ -738,6 +740,7 @@ function cerrarModal() {
     }
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
+    
 }
 
 function scrollHaciaSiguientePregunta() {
@@ -841,7 +844,7 @@ function mostrarImagenLlamada() {
 
         // Inicializar el intervalo de parpadeo
         parpadeo = setInterval(function () {
-            console.log(contadorTono);
+    
             if (isVisible) {
                 imagen.style.visibility = 'hidden';
                 contadorTono += 1;
@@ -860,7 +863,6 @@ function mostrarImagenLlamada() {
                 }, audioDuration);
             }
         }, parpadeoInterval);
-        console.log(cantidadLlamadas);
         
 
     } else {
@@ -953,6 +955,3 @@ function improperis(paraula) {
     }
     return false;
 }
-
-
-
