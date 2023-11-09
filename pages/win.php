@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//     http_response_code(403);
-//     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
-//     exit;
-// }
+ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+     http_response_code(403);
+     echo "<div id='contForbidden'><h1>Error 403 - Forbidden</h1></div>";
+    exit;
+ }
 
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
@@ -21,12 +21,10 @@ if (isset($_POST['puntaje'])) {
     $_SESSION['score'] = $puntaje;
 }
 
-if (isset($_POST['tiempoTranscurrido'])) {
-
-    $tiempoTranscurrido = $_POST['tiempoTranscurrido'];
-    $_SESSION['tiempoTranscurrido'] = $tiempoTranscurrido;
-
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tiempoTranscurrido"])) {
+    $tiempoInicio = $_POST["tiempoTranscurrido"];
+    $_SESSION['tiempoInicio'] = $tiempoInicio;
+} 
 
 ?>
 
@@ -89,7 +87,7 @@ if (isset($_POST['tiempoTranscurrido'])) {
                         required>
                 </div>
                 <input type="hidden" id="currentDate" name="currentDate" value="tiempoInicio">
-                <button type="submit" class="button" id="publishButton">
+                <button class="button" id="publishButton">
                     <?php echo $lang['buttons']['publishButton']; ?>
                     <i class="fas fa-upload"></i>
                 </button>
@@ -107,10 +105,11 @@ if (isset($_POST['tiempoTranscurrido'])) {
 
     </div>
 
+    <h1 id="preguntasAcertadas" preguntasAcertadas=<?php $_SESSION['score'] ?>></h1>
 
     <script src="../assets/scripts/script.js"></script>
     <script src="../assets/scripts/juego.js"></script>
-    <?php session_destroy() ?>
+
 </body>
 
 </html>
