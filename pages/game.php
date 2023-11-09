@@ -86,10 +86,8 @@ if (isset($_POST['pregunta_actual'])) {
 
     <div id="minijuego" class="minijuego" style="display: none;">
         <div class="minijuego-contenido">
-            <input type="number" id="respuestaUsuario" class="textUser" style="display: none;"
-                placeholder="Ingresa tu respuesta" pattern="[0-9]*" />
-            <button id="botonComprobar" class="button" style="display: none;"
-                onclick="comprobarRespuesta()">Comprobar</button>
+        <input type="number" id="respuestaUsuario" class="textUser" style="display: none;" placeholder="Ingresa tu respuesta" pattern="[0-9]*" />
+            <button id="botonComprobar" class="button" style="display: none;" onclick="comprobarRespuesta()">Comprobar</button>
             <button id="botonSalir" class="button" style="display: none;" onclick="cerrarMinijuego()">Salir</button>
             <div id="contenedorMini">
                 <h1 id="resultadoMinijuego" style="display: none;"></h1>
@@ -105,6 +103,15 @@ if (isset($_POST['pregunta_actual'])) {
     <h3 class="lvlDifivultad" id="nivel-dificultad" data-nivel="<?php echo $_SESSION['nivel_dificultad'] ?>">
         <?php echo $lang['messages']['dificultLvl'] . ": " . $_SESSION['nivel_dificultad'] ?>
     </h3>
+
+
+    <div id="puntuacionDiv">
+        <h4>
+            <?php echo $lang['messages']['generalScore']; ?>
+        </h4>
+        <h1 id="puntuacion">0</h1>
+    </div>
+
 
     <?php
     function getQuestionsFilepath()
