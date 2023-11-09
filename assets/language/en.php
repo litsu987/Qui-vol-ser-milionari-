@@ -6,7 +6,8 @@ $lang = array(
         "Once the contestant has answered a question, they cannot modify it.",
         "Every 3 correct answers, the player will move to the next level. Questions become more difficult at each level. There are 6 levels in total.",
         "If the contestant answers a question incorrectly, the game ends.",
-        "The ultimate goal is to reach question number 18 and answer it correctly to win the maximum prize."
+        "The ultimate goal is to reach question number 18 and answer it correctly to win the maximum prize.",
+        'login' => 'Log in'
     ],
     'buttons' => [
         'play' => 'PLAY',
@@ -25,6 +26,10 @@ $lang = array(
         'score' => 'Your score is: ',
         'publishScore' => 'Do you want to publish your score?',
         'dificultLvl' => 'Difficulty level',
+        'publishConfirmed' => "Score published succesfully",
+        'publishFailed' => "There was an error publishing the score!!!",
+        'generalTimer' => "Total time:",
+        'generalScore' => "Score:",
     ],
     'namePlaceholder' => 'Enter your name',
     'tittle' => 'WHO WANTS TO BE A MILLIONAIRE?',
@@ -37,7 +42,28 @@ $lang = array(
                 <br />
                 For instructions to enable javascript<br />
                 In your browser, click',
-        'link'=> 'here',
+        'link' => 'here',
     ],
+    'login' => [
+        'title' => 'Login',
+        'user' => 'User',
+        'pass' => 'Password',
+        'acces' => 'To access',
+        'error' => 'Incorrect username or password.'
+    ],
+    'create' => [
+        'title' => 'Create question',
+        'selectLanguage' => 'Select language',
+        'selectLvl' => 'Seleccionar nivell',
+        'newQuestion' => 'Select level',
+        'corectQuestion' => 'Correct answer',
+        'incorectQuestion1' => '1st incorrect answer',
+        'incorectQuestion2' => '2nd incorrect answer',
+        'incorectQuestion3' => '3rd incorrect answer',
+        'submit' => 'Create question',
+        'fileLanguageCat' => 'Catalan',
+        'fileLanguageEs' => 'Spanish',
+        'fileLanguageEn' => 'English',
+    ]
 );
 ?>

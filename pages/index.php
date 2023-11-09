@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(0);
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
@@ -23,18 +25,24 @@ include '../assets/language/' . $_SESSION['lang'] . '.php';
     <script src="https://kit.fontawesome.com/74ec47558a.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="index">
     <noscript>
-        <div id="avisoJS" class="avisoJS" >
-            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+        <div id="avisoJS" class="avisoJS">
+            <h1 class="titleNoscript">
+                <?php echo $lang['noscipt']['tittle']; ?>
+            </h1>
             <div class="deshabilitado">
-            <?php echo $lang['noscipt']['message']; ?>
-                <a href="https://support.google.com/adsense/answer/12654?hl" 
-                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+                <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" target="_blank">
+                    <?php echo $lang['noscipt']['link']; ?>
+                </a>.
             </div>
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
+    <div class="divLogin">
+        <a id="loginButton" class="loginButton" href="login.php">Login</a>
+    </div>
     <div id="banner">
         <img src="../assets/images/LOGO_QQSM.png" alt="Banner">
     </div>

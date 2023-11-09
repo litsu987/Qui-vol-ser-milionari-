@@ -1,45 +1,65 @@
-* ¿Qué territorio africano fue conquistado en el siglo XIX por Inglaterra?
-+ Uganda
-- Espanya
-- Francia
-- Melilla
-* ¿Dónde está localizado el Big Ben?
-- París
-+ London
-- Andorra
-- Alemania
-* "La vida es como montar en bicicleta. Para mantener el balance, debes continuar en movimiento". ¿Quién dijo esta frase?
-+ Albert Einstein
-- Forrest Gump
-- Will Smith
-- Barack Obama
-* ¿Dónde es típico comer pescado y patatas (fish and chips)?
-+ Reino Unido
-- Escocia
-- Francia
-- Irlanda
-* ¿En que año tuvo el Museo Britanico más visitantes?
-- 2017
-+ 2015
-- 2020
-- 2026
-* ¿En qué año Isabel subió al trono?
-- 1959
-+ 1952
-- 1954
-- 1960
-* ¿Quién era Ada Lovelace?
-- Política
-- Científica
-+ Matemática 
-- Química
-* ¿Dónde se encuentra el palacio de Buckingham?
-- Francia
-+ Inglaterra
-- Italia
-- Sudáfrica.
-* "¡Oh Romeo, Romeo! ¿Dónde te encuentras Romeo? Rechaza a tu padre y rechaza tu nombre; o, si te podrirás, te juro mi amor y así yo no seré una Capulet". ¿Quién escribió esto?
-+ Shakespeare
-- Zorrilla
-- Quevedo
-- Cervantes
+* ¿Cuál es el nombre del telescopio espacial lanzado por la NASA en 1990 que ha capturado impresionantes imágenes del universo?
++ Hubble
+- Kepler
+- Galileo
+- Newton
+* ¿Quién escribió "El origen de las especies" y formuló la teoría de la evolución por selección natural?
++ Charles Darwin
+- Alfred Russel Wallace
+- Gregor Mendel
+- Louis Pasteur
+* ¿Cuál es el nombre del satélite natural de Neptuno, descubierto en 1846?
+- Calisto
++ Tritón
+- Europa
+- Ganímedes
+* En matemáticas, ¿cuál es el número áureo representado por una letra griega y que tiene una aproximación de 1.618?
+- Pi (π)
+- Epsilon (ε)
+- Tau (τ)
++ Phi (φ)
+* ¿Cuál es la molécula responsable de almacenar y transmitir información genética en los seres vivos?
+- ARN (ácido ribonucleico)
++ ADN (ácido desoxirribonucleico)
+- Proteína
+- Glucosa
+* ¿En qué año se firmó la Declaración de Independencia de los Estados Unidos?
+- 1763
++ 1776
+- 1789
+- 1801
+* ¿Cuál es la partícula subatómica que se encuentra en el núcleo de un átomo y tiene carga positiva?
+- Electrón
+- Neutrón
++ Protón
+- Muón
+* ¿Quién es la autora de la novela "Matar a un ruiseñor" publicada en 1960?
+- Jane Austen
++ Harper Lee
+- Margaret Atwood
+- George Orwell
+* ¿Cuál es la escala utilizada para medir la intensidad de los terremotos?
++ Escala de Richter
+- Escala de Beaufort
+- Escala de Fahrenheit
+- Escala de Kelvin
+* ¿En qué año se inauguró el Canal de Panamá?
+- 1904* 
++ 1914
+- 1924
+- 1934
+* ¿Cuál es el nombre del dispositivo teórico que se considera la "máquina del tiempo" en la obra de ciencia ficción de H.G. Wells?
+- TARDIS
++ Máquina del Tiempo
+- Chronosfera
+- DeLorean
+* En astronomía, ¿cuál es el nombre de la galaxia más cercana a la Vía Láctea?
++ Andrómeda
+- Cigarro
+- Sombrero
+- Remolino
+* ¿Cuál es el nombre de la molécula que se compone de tres átomos de oxígeno y que forma la capa de ozono en la atmósfera terrestre?
+- CO2 (dióxido de carbono)
+- H2O (agua)
++ O3 (ozono)
+- CH4 (metano)

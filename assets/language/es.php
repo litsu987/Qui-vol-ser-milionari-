@@ -6,7 +6,8 @@ $lang = array(
         "Una vez que el concursante ha respondido a una pregunta, no puede modificarla.",
         "Cada 3 respuestas correctas, el jugador avanzará al siguiente nivel. Las preguntas se vuelven más difíciles en cada nivel. Hay 6 niveles en total.",
         "Si el concursante responde incorrectamente a una pregunta, el juego termina.",
-        "El objetivo final es llegar a la pregunta número 18 y responderla correctamente para ganar el premio máximo."
+        "El objetivo final es llegar a la pregunta número 18 y responderla correctamente para ganar el premio máximo.",
+        'login' => 'Iniciar sesión'
     ],
     'buttons' => [
         'play' => 'JUGAR',
@@ -25,6 +26,10 @@ $lang = array(
         'score' => 'Tu puntuación és ',
         'publishScore' => '¿Quieres publicar tu puntuación?',
         'dificultLvl' => 'Nivel de dificultad',
+        'publishConfirmed' => "Puntuación publicada corectamente",
+        'publishFailed' => "Ha habido un error al publicar la puntuación!!!",
+        'generalTimer' => "Tiempo total:",
+        'generalScore' => "Puntuacion:",
     ],
     'namePlaceholder' => 'Introduce tu nombre',
     'tittle' => '¿QUIEN QUIERE SER MILLONARIO?',
@@ -37,7 +42,28 @@ $lang = array(
                     <br />
                     Para ver las instrucciones para habilitar javascript<br />
                     en su navegador, haga click',
-        'link'=> 'aquí',
+        'link' => 'aquí',
     ],
+    'login' => [
+        'title' => 'Iniciar Sesión',
+        'user' => 'Usuario',
+        'pass' => 'Contraseña',
+        'acces' => 'Acceder',
+        'error' => 'Usuario o contraseña incorrectos.'
+    ],
+    'create' => [
+        'title' => 'Crear pregunta',
+        'selectLanguage' => 'Seleccionar idioma',
+        'selectLvl' => 'Seleccionar nivel',
+        'newQuestion' => 'Pregunta',
+        'corectQuestion' => 'Respuesta correcta',
+        'incorectQuestion1' => '1.ª Respuesta incorrecta',
+        'incorectQuestion2' => '2.ª Respuesta incorrecta',
+        'incorectQuestion3' => '3.ª Respuesta incorrecta',
+        'submit' => 'Crear pregunta',
+        'fileLanguageCat' => 'Catalán',
+        'fileLanguageEs' => 'Castellano',
+        'fileLanguageEn' => 'Inglés',
+    ]
 );
 ?>

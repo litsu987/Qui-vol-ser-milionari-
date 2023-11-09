@@ -1,35 +1,75 @@
-* Which Australian player has the highest salary?
-+ Mathew Ryan
-- Harry Souttar
-- Milos Degenejer
-- Leo Messi
-* Are the British punctual?
-+ Always
-- Usually
-- Maybe
-- Never
-* Which of these countries were not colonized by England?
-- Maldiva's Islands
-- Cayman Islands
-- Bermuda
-+ Belarus
-* In what century the cricket become a national sport?
-+ In the end of 18th century
-- In the beginning of 17th century
-- In the end of 15th century
-- At the beginning of the 19th century
-* In which English colony do they play cricket the least?
-- India
-+ Australia
-- Pakistán
+* In what century was football created?
++ 19th century
+- Twentieth century
+- 1st century
+- Now
+* In what year did the Russian Revolution take place?
+- 1776
++ 1917
+- 1945
+- 1989
+* How many years did the aborigines live?
+- 12,000 Years
++ 40,000 Years
+- 25,000 years
+- 60,000 years
+* In literature, who wrote "One Hundred Years of Solitude"?
++ Gabriel García Márquez
+- Mario Vargas Llosa
+- Julio Cortazar
+- Pablo Neruda
+* What is the warm ocean current that influences the climate of the East Coast of the United States?
+- California Current
++ Gulf Stream
+- Humboldt Current
+- Kuroshio Current
+* Who is the author of the philosophical work "Thus Spoke Zarathustra"?
+- Jean-Jacques Rousseau
++ Friedrich Nietzsche
+- Søren Kierkegaard+
+- Karl Marx
+* In what year was the United Nations (UN) founded?
++ 1945
+- 1950
+- 1939
+- 1960
+* What is the most populated country in Africa?
++ Nigeria
 - South Africa
-* Which of these European countries is still a colony of the British Empire?
-+ Gibraltar
-- Cyprus
-- Channel islands
-- England
-* What is the Rolling Cheese tradition about?
-- Eat round cheese
-+ Throw round cheese off a hille
-- Making a round cheesecake
-- Buy a big round cheese
+- Egypt
+- Kenya
+* In chemistry, what is the symbol for the chemical element oxygen?
++ O
+- Ox
+- Oxy
+- Oxg
+* Who was the leader of the Russian Revolution who became the first ruler of the Soviet Union?
++ Vladimir Lenin
+- Leon Trotsky
+- Joseph Stalin
+- Mikhail Gorbachev
+* In anatomy, what is the name of the longest bone in the human body?
+- Humerus
++ Femur
+- Warm
+- Radio
+* What is The capital of canada?
+-Montreal
+-Toronto
+-Vancouver
++ Ottawa
+* What is the longest river in South America?
++ Amazon
+- Orinoco
+- Parana
+- Magdalena
+* In the theory of relativity, what concept refers to the curvature of space-time due to the presence of mass?
+- Law of universal gravitation
+- Begining of uncertainty
+- Doppler effect
++ Gravity
+* In which city were the Summer Olympics held in 2008?
+- Sydney
+- Athens
++ Beijing
+- Rio de Janeiro

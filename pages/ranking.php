@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(0);
+
 if (isset($_GET['lang']) && ($_GET['lang'] == 'es' || $_GET['lang'] == 'ca' || $_GET['lang'] == 'en')) {
     $_SESSION['lang'] = $_GET['lang'];
 } else {
@@ -45,8 +47,12 @@ function compareRecords($a, $b)
 
 // Ordena los registros utilizando la función de comparación
 usort($recordsArray, 'compareRecords');
-?>
 
+$sessionId = session_id();
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,44 +64,57 @@ usort($recordsArray, 'compareRecords');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
-<body>
+<body class="ranking">
     <noscript>
-        <div id="avisoJS" class="avisoJS" >
-            <h1 class="titleNoscript"><?php echo $lang['noscipt']['tittle']; ?></h1>
+        <div id="avisoJS" class="avisoJS">
+            <h1 class="titleNoscript">
+                <?php echo $lang['noscipt']['tittle']; ?>
+            </h1>
             <div class="deshabilitado">
-            <?php echo $lang['noscipt']['message']; ?>
-                <a href="https://support.google.com/adsense/answer/12654?hl" 
-                target="_blank"><?php echo $lang['noscipt']['link']; ?></a>.
+                <?php echo $lang['noscipt']['message']; ?>
+                <a href="https://support.google.com/adsense/answer/12654?hl" target="_blank">
+                    <?php echo $lang['noscipt']['link']; ?>
+                </a>.
             </div>
         </div>
         <div id="fondoDesenfocado" class="fondoDesenfocado"></div>
     </noscript>
-    <h1>Hall Of Fame</h1>
 
-    <table>
-        <tr>
-            <th>Posición</th>
-            <th>Puntuación</th>
-            <th>Nombre</th>
-            <th>ID sesion</th>
-            <th>Tiempo</th>
-        </tr>
-        <?php
-        foreach ($recordsArray as $index => $record) {
-            echo '<tr>';
-            echo '<td>' . ($index + 1) . '</td>'; // Posición
-            echo '<td>' . $record['puntuacion'] . '</td>'; // Puntuación
-            echo '<td>' . $record['nombre'] . '</td>'; // Nombre
-            echo '<td>' . $record['idSesion'] . '</td>'; // Nombre
-            echo '<td>' . $record['fechaHora'] . '</td>'; // Fecha y Hora
-            echo '</tr>';
-        }
-        ?>
-    </table>
+    <div id="banner" class="centrar salonTitle">
+        <h1 class="hallOfFameTittle">HALL OF FAME</h1>
+    </div>
 
-    <a href="index.php" class="button">
-        <?php echo $lang['buttons']['toStart']; ?>
-    </a>
+    <div class="tableContainer">
+        <table>
+            <tr>
+                <th>Posición</th>
+                <th>Puntuación</th>
+                <th>Nombre</th>
+                <th class="idSesionColumna">ID sesion</th>
+                <th>Tiempo</th>
+            </tr>
+            <?php
+            foreach ($recordsArray as $index => $record) {
+                if ($sessionId === $record['idSesion']) {
+                    echo '<tr class="userRow">';
+                } else {
+                    echo '<tr>';
+                }
+                echo '<td>' . ($index + 1) . '</td>'; // Posición
+                echo '<td>' . $record['puntuacion'] . '</td>'; // Puntuación
+                echo '<td>' . $record['nombre'] . '</td>'; // Nombre
+                echo '<td class="idSesionColumna">' . $record['idSesion'] . '</td>'; // Nombre
+                echo '<td>' . $record['fechaHora'] . '</td>'; // Fecha y Hora
+                echo '</tr>';
+            }
+            ?>
+        </table>
+    </div>
+    <div class="centrar" id="toStartButton">
+        <a href="../assets/scripts/logout.php" class="button">
+            <?php echo $lang['buttons']['toStart']; ?>
+        </a>
+    </div>
 </body>
 
 </html>

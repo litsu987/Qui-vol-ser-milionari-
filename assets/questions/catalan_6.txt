@@ -1,45 +1,65 @@
-* Quin territori africà va conquistar Anglaterra al segle XIX?
-+ Uganda
-- Espanya
-- França
-- Melilla
-* A on es troba el Big Ben?
-- París
-+ Londres
-- Andorra
-- Alemanya
-* "La vida és com muntar una bicicleta. Per mantenir el balanç, has de continuar movent-te". Qui va dir aquesta frase?
-+ Albert Einstein
-- Forrest Gump
-- Will Smith
-- Barack Obama
-* A on és típic menjar peix i patates (fish and chips)?
-+ Regne Unit
-- Escòcia
-- França
-- Irlanda
-* Quin va ser l'any amb més visitants al Museu Britànic?
-- 2017
-+ 2015
-- 2020
-- 2016
-* En quin any va convertir-se Isabel en reina?
-- 1939
-+ 1952
-- 1954
-- 1960
-* Qui era Ada Lovelace?
-- Política
-- Científica
-+ Matemàtica
-- Química
-* A on es localitza el palau de Buckingham?
-- França
-+ Anglaterra
-- Itàlia
-- Sudàfrica.
-* "Oh Romeu, Romeu! Per què ets Romeu? Nega el teu pare i rebutja el teu nom; o, si et podrís, et juro amor meu i ja no seré una Capulet." Qui va escriure això?
-+ Shakespeare
-- Zorrilla
-- Quevedo
-- Cervantes
+* Quin és el nom del telescopi espacial llançat per la NASA el 1990 que ha capturat impressionants imatges de l'univers?
++ Hubble
+- Kepler
+- Galileu
+- Newton
+* Qui va escriure "L'origen de les espècies" i va formular la teoria de l'evolució per selecció natural?
++ Charles Darwin
+- Alfred Russel Wallace
+- Gregor Mendel
+- Louis Pasteur
+* Quin és el nom del satèl·lit natural de Neptú, descobert el 1846?
+- Calist
++ Tritó
+- Europa
+- Ganímedes
+* En matemàtiques, quin és el nombre auri representat per una lletra grega i que té una aproximació de 1.618?
+- Pi (π)
+- Epsilon (ε)
+- Tau (τ)
++ Phi (φ)
+* Quina és la molècula responsable d'emmagatzemar i transmetre informació genètica en els éssers vius?
+- ARN (àcid ribonucleic)
++ ADN (àcid desoxirribonucleic)
+- Proteïna
+- Glucosa
+* Quin any es va signar la Declaració d'Independència dels Estats Units?
+- 1763
++ 1776
+- 1789
+- 1801
+* Quina és la partícula subatòmica que es troba al nucli d'un àtom i té càrrega positiva?
+- Electró
+- Neutró
++ Protó
+- Muón
+* Qui és l'autora de la novel·la "Matar un rossinyol" publicada el 1960?
+- Jane Austen
++ Harper Lee
+- Margaret Atwood
+- George Orwell
+* Quina és l'escala utilitzada per mesurar la intensitat dels terratrèmols?
++ Escala de Richter
+- Escala de Beaufort
+- Escala de Fahrenheit
+- Escala de Kelvin
+* Quin any es va inaugurar el Canal de Panamà?
+- 1904
++ 1914
+- 1924
+- 1934
+* Quin és el nom del dispositiu teòric que es considera la "màquina del temps" a l'obra de ciència ficció de H.G. Wells?
+- TARDIS
++ Màquina del Temps
+- Chronosfera
+- DeLorean
+* En astronomia, quin és el nom de la galàxia més propera a la Via Làctia?
++ Andròmeda
+- Cigarret
+- Barret
+- Remolí
+* Quin és el nom de la molècula que es compon de tres àtoms d'oxigen i que forma la capa d'ozó a l'atmosfera terrestre?
+- CO2 (diòxid de carboni)
+- H2O (aigua)
++ O3 (ozó)
+- CH4 (metà)
