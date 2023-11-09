@@ -833,6 +833,7 @@ function mostrarImagenLlamada() {
     if (minijuegoContainer && imagen === null) {
         imagen = document.createElement('img');
         imagen.src = '/assets/images/telefono.png';
+        imagen.classList.add('telefonoImg');
         imagen.style.position = 'fixed';
         imagen.style.top = '50%';
         imagen.style.left = '50%';
